@@ -1,0 +1,35 @@
+{
+  "allowedOrigins": [
+    "https://example.com",
+    "https://duckduckgo.com",
+    "https://html.duckduckgo.com",
+    "https://search.brave.com",
+    "https://www.google.com",
+    "https://developer.chrome.com",
+    "https://playwright.dev",
+    "https://lightpanda.io",
+    "data:"
+  ],
+  "defaultProfile": "public",
+  "defaultEngine": "chrome",
+  "allowedEngines": [
+    "chrome",
+    "lightpanda"
+  ],
+  "authenticatedEngines": [
+    "chrome"
+  ],
+  "outputDir": "runs",
+  "profileDir": "profiles",
+  "redactKeys": [
+    "authorization",
+    "cookie",
+    "set-cookie",
+    "token",
+    "password",
+    "secret",
+    "api_key",
+    "apiKey"
+  ],
+  "maxEvalBytes": 12000
+}

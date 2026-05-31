@@ -1,0 +1,34 @@
+{
+  "url": "data:text/html,%3Ch1%3EBefore%3C/h1%3E%3Cinput%20id%3D%22q%22%3E%3Cbutton%20id%3D%22go%22%20onclick%3D%22setTimeout(()%3D%3E%7Bdocument.querySelector(%26quot%3B%23result%26quot%3B).textContent%3Ddocument.querySelector(%26quot%3B%23q%26quot%3B).value%3Bdocument.querySelector(%26quot%3Bh1%26quot%3B).textContent%3D%26quot%3BAfter%26quot%3B%7D%2C50)%22%3EGo%3C/button%3E%3Cp%20id%3D%22result%22%3E%3C/p%3E",
+  "steps": [
+    {
+      "type": "fill",
+      "selector": "#q",
+      "value": "hello"
+    },
+    {
+      "type": "click",
+      "selector": "#go"
+    },
+    {
+      "type": "wait-for",
+      "selector": "h1",
+      "text": "After",
+      "timeoutMs": 2000,
+      "pollMs": 50,
+      "as": "ready"
+    },
+    {
+      "type": "extract",
+      "selector": "#result",
+      "fields": [
+        "text"
+      ],
+      "as": "result"
+    },
+    {
+      "type": "observe",
+      "as": "compact"
+    }
+  ]
+}

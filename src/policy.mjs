@@ -1,0 +1,92 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+export const DEFAULT_POLICY_PATH = new URL('../config/example-policy.json', import.meta.url);
+
+export function loadPolicy(policyPath = process.env.SBA_POLICY) {
+  const source = policyPath ? path.resolve(policyPath) : fileURLToPath(DEFAULT_POLICY_PATH);
+  const parsed = JSON.parse(fs.readFileSync(source, 'utf8'));
+  const baseDir = path.dirname(source);
+  return {
+    ...parsed,
+    source,
+    baseDir,
+    outputDir: path.resolve(baseDir, '..', parsed.outputDir || 'runs'),
+    profileDir: path.resolve(baseDir, '..', parsed.profileDir || 'profiles')
+  };
+}
+
+export function assertAllowedUrl(rawUrl, policy) {
+  if (!rawUrl) return;
+  if (rawUrl.startsWith('data:')) {
+    if (policy.allowedOrigins.includes('data:')) return;
+    throw new Error('blocked URL by policy: data:');
+  }
+
+  let url;
+  try {
+    url = new URL(rawUrl);
+  } catch {
+    url = new URL(`https://${rawUrl}`);
+  }
+
+  const origin = url.origin;
+  if (policy.allowedOrigins.includes(origin)) return;
+
+  const wildcardMatch = policy.allowedOrigins.some((entry) => {
+    if (!entry.startsWith('*.')) return false;
+    const suffix = entry.slice(1);
+    return url.hostname.endsWith(suffix);
+  });
+  if (wildcardMatch) return;
+
+  throw new Error(`blocked URL by policy: ${origin}`);
+}
+
+export function profilePath(policy, profileName) {
+  const safeName = String(profileName || policy.defaultProfile || 'default').replace(/[^a-zA-Z0-9_.-]/g, '_');
+  return path.join(policy.profileDir, safeName);
+}
+
+export function statePath(policy, profileName) {
+  return path.join(profilePath(policy, profileName), 'state.json');
+}
+
+export function allowedDomains(policy) {
+  return (policy.allowedOrigins || [])
+    .filter((entry) => !entry.endsWith(':'))
+    .map((entry) => {
+      if (entry.startsWith('*.')) return entry;
+      return new URL(entry).hostname;
+    });
+}
+
+export function assertEngineAllowed(engine, profileName, policy) {
+  const allowed = policy.allowedEngines || ['chrome'];
+  if (!allowed.includes(engine)) {
+    throw new Error(`blocked engine by policy: ${engine}`);
+  }
+  const authEngines = policy.authenticatedEngines || ['chrome'];
+  if (profileName !== 'public' && !authEngines.includes(engine)) {
+    throw new Error(`engine cannot use authenticated profiles by policy: ${engine}`);
+  }
+}
+
+export function redact(value, policy) {
+  const keys = policy.redactKeys || [];
+  const visit = (input, key = '') => {
+    if (keys.some((needle) => key.toLowerCase().includes(needle.toLowerCase()))) {
+      return '[REDACTED]';
+    }
+    if (Array.isArray(input)) return input.map((item) => visit(item));
+    if (input && typeof input === 'object') {
+      return Object.fromEntries(Object.entries(input).map(([nextKey, nextValue]) => [nextKey, visit(nextValue, nextKey)]));
+    }
+    if (typeof input === 'string') {
+      return input.replace(/(bearer|basic)\s+[a-z0-9._~+/=-]+/gi, '$1 [REDACTED]');
+    }
+    return input;
+  };
+  return visit(value);
+}
