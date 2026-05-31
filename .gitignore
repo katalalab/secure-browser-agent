@@ -1,0 +1,4 @@
+profiles/
+runs/
+*.log
+.DS_Store

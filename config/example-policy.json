@@ -1,0 +1,32 @@
+{
+  "allowedOrigins": [
+    "https://example.com",
+    "https://duckduckgo.com",
+    "https://html.duckduckgo.com",
+    "https://search.brave.com",
+    "https://www.google.com",
+    "data:"
+  ],
+  "defaultProfile": "default",
+  "defaultEngine": "chrome",
+  "allowedEngines": [
+    "chrome",
+    "lightpanda"
+  ],
+  "authenticatedEngines": [
+    "chrome"
+  ],
+  "outputDir": "runs",
+  "profileDir": "profiles",
+  "redactKeys": [
+    "authorization",
+    "cookie",
+    "set-cookie",
+    "token",
+    "password",
+    "secret",
+    "api_key",
+    "apiKey"
+  ],
+  "maxEvalBytes": 12000
+}

@@ -1,0 +1,14 @@
+{
+  "url": "data:text/html,%3Cmain%20style%3D%22background%3Awhite%22%3E%3Ch1%3EShot%3C/h1%3E%3Cp%3ERecipe%20artifact%3C/p%3E%3C/main%3E",
+  "steps": [
+    {
+      "type": "observe",
+      "as": "compact"
+    },
+    {
+      "type": "screenshot",
+      "out": "recipe-shot.png",
+      "as": "shot"
+    }
+  ]
+}
