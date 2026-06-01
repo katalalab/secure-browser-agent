@@ -18,6 +18,10 @@ import { buildAgentBrowserDoctor, formatAgentBrowserDoctorCompact } from './agen
 import { buildProviderDoctorStatus, formatProviderDoctorStatusCompact } from './provider-doctor-status.mjs';
 import { buildBackendMatrix, buildBackendMatrixStatus, formatBackendMatrixCompact, formatBackendMatrixMarkdown, formatBackendMatrixStatusCompact } from './backend-matrix.mjs';
 import { formatProviderBenchmarkMarkdown, runProviderBenchmark, writeProviderBenchmarkReport } from './provider-benchmark.mjs';
+import { buildLightpandaGate, formatLightpandaGateCompact } from './lightpanda-gate.mjs';
+import { buildStatusCache, formatStatusCacheCompact } from './status-cache.mjs';
+import { buildTargetWorkerPool, formatTargetWorkerPoolCompact } from './target-worker-pool.mjs';
+import { buildTargetBatch, formatTargetBatchCompact, formatTargetBatchMarkdown } from './target-batch.mjs';
 import { buildSourceAudit, formatSourceAuditCompact, formatSourceAuditMarkdown } from './source-audit.mjs';
 import { buildGithubRepoResearch, formatGithubRepoResearchCompact, formatGithubRepoResearchMarkdown, writeGithubRepoResearch } from './github-repo-research.mjs';
 import { formatTargetBenchmarkMarkdown, runTargetBenchmark, writeTargetBenchmarkReport } from './target-benchmark.mjs';
@@ -247,8 +251,11 @@ Commands:
   provider-doctor-status [--format json|compact]
   backend-matrix [--write] [--out operator/backend-matrix-latest.json] [--mcp-observation-in operator/chrome-mcp-observation-latest.json] [--allow-new-background-tab yes|no] [--new-background-url-env VAR] [--format json|markdown|compact]
   backend-matrix-status [--in operator/backend-matrix-latest.json] [--mcp-observation-in operator/chrome-mcp-observation-latest.json] [--allow-new-background-tab yes|no] [--new-background-url-env VAR] [--stale-after-seconds 900] [--format json|compact]
+  status-cache --key provider-doctor-status|backend-matrix|control-status [--write] [--stale-after-seconds 900] [--format json|compact]
   source-audit [--format json|compact|markdown]
   github-repo-research [--limit 12] [--local-only] [--write] [--out research/github-repo-research-latest.json] [--format json|compact|markdown]
+  target-worker-pool [--target-dir runs/target-packs/name] [--format json|compact]
+  lightpanda-gate [--format json|compact]
   lightpanda-doctor [--format json|markdown|compact]
   lightpanda-decision [--decision reject|adopt] [--reason text] [--write] [--out provider-benchmarks/lightpanda-decision.json] [--format json|markdown]
   playwright-doctor [--format json|markdown|compact]
@@ -330,6 +337,7 @@ Commands:
   target-proof-next [--real-external] [--strict] [--outputs observe.json,inspect.json,scrape.csv] [--format json|markdown]
   target-proof-plan <target-pack-dir> [--real-external] [--strict] [--benchmark-file file] [--outputs observe.json,inspect.json,scrape.csv] [--format json|markdown|compact]
   target-proof-capture <target-pack-dir> [--real-external] [--run] [--wait-auth] [--auth-check-port port] [--wait-auth-timeout-ms 300000] [--wait-auth-interval-ms 5000] [--wait-auth-status-out wait-auth-status.json] [--benchmark-file file] [--apply-permissions] [--stop-daemon] [--completion-audit] [--no-cleanup-on-failure] [--format json|markdown|compact]
+  target-batch <target-pack-dir> [--real-external] [--run] [--wait-auth] [--format json|markdown|compact]
   target-proof <target-pack-dir> [--real-external] [--write] [--strict] [--benchmark-file file] [--outputs observe.json,inspect.json,scrape.csv] [--format json|markdown]
   target-info <target-pack-dir>
   target-status <target-pack-dir> [--profile name]
@@ -1440,6 +1448,26 @@ Safety:
     return;
   }
 
+  if (command === 'status-cache') {
+    const rootDir = path.dirname(fileURLToPath(new URL('../package.json', import.meta.url)));
+    const key = flags.key || positional[0] || 'provider-doctor-status';
+    const builders = {
+      'provider-doctor-status': () => buildProviderDoctorStatus({ rootDir }),
+      'backend-matrix': () => buildBackendMatrix({ rootDir }),
+      'control-status': () => buildControlStatus({ rootDir })
+    };
+    const report = await buildStatusCache(rootDir, key, builders, {
+      ...flags,
+      staleAfterSeconds: Number(flags['stale-after-seconds'] || flags.staleAfterSeconds || 900)
+    });
+    if (flags.format === 'compact') {
+      process.stdout.write(formatStatusCacheCompact(report));
+    } else {
+      printJson(report);
+    }
+    return;
+  }
+
   if (command === 'source-audit') {
     const report = buildSourceAudit({
       rootDir: path.dirname(fileURLToPath(new URL('../package.json', import.meta.url)))
@@ -1500,6 +1528,31 @@ Safety:
       process.stdout.write(formatLightpandaDecisionMarkdown(report));
     } else {
       printJson(report);
+    }
+    return;
+  }
+
+  if (command === 'target-worker-pool') {
+    const rootDir = path.dirname(fileURLToPath(new URL('../package.json', import.meta.url)));
+    const pool = await buildTargetWorkerPool(rootDir, {
+      targetDir: flags['target-dir'] || flags.targetDir || positional[0],
+      profile: flags.profile
+    });
+    if (flags.format === 'compact') {
+      process.stdout.write(formatTargetWorkerPoolCompact(pool));
+    } else {
+      printJson(pool);
+    }
+    return;
+  }
+
+  if (command === 'lightpanda-gate') {
+    const rootDir = path.dirname(fileURLToPath(new URL('../package.json', import.meta.url)));
+    const gate = buildLightpandaGate(rootDir);
+    if (flags.format === 'compact') {
+      process.stdout.write(formatLightpandaGateCompact(gate));
+    } else {
+      printJson(gate);
     }
     return;
   }
@@ -2519,6 +2572,24 @@ Safety:
       process.stdout.write(formatTargetProofCaptureCompact(result));
     } else if (flags.format === 'markdown' || flags.format === 'md') {
       process.stdout.write(formatTargetProofCaptureMarkdown(result));
+    } else {
+      printJson(result);
+    }
+    if (flags.strict && result.status !== 'completed') process.exitCode = 1;
+    return;
+  }
+
+  if (command === 'target-batch') {
+    const result = await buildTargetBatch(positional[0], {
+      ...flags,
+      rootDir: path.dirname(fileURLToPath(new URL('../package.json', import.meta.url))),
+      realExternal: Boolean(flags['real-external']),
+      run: Boolean(flags.run)
+    });
+    if (flags.format === 'compact') {
+      process.stdout.write(formatTargetBatchCompact(result));
+    } else if (flags.format === 'markdown' || flags.format === 'md') {
+      process.stdout.write(formatTargetBatchMarkdown(result));
     } else {
       printJson(result);
     }
