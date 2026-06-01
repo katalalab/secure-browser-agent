@@ -8,6 +8,8 @@ Retrieved: 2026-06-01
 - GitHub Docs, Concurrency: https://docs.github.com/en/actions/concepts/workflows-and-actions/concurrency
 - GitHub Docs, About status checks: https://docs.github.com/articles/about-status-checks
 - GitHub Docs, About protected branches: https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches
+- GitHub `actions/checkout` release notes: https://github.com/actions/checkout/releases
+- GitHub `actions/setup-node` release notes: https://github.com/actions/setup-node/releases
 
 ## Local Context
 
@@ -23,6 +25,8 @@ Retrieved: 2026-06-01
 Add `.github/workflows/verify.yml` under the official workflow directory. Trigger it on `pull_request` to `main`, `push` to `main`, and `workflow_dispatch`. Keep `GITHUB_TOKEN` read-only with `contents: read`. Use concurrency to cancel stale runs for the same branch or PR. Use one uniquely named job, `verify`, so branch protection can target that status check without ambiguity.
 
 The workflow runs `npm run verify:ci`, not the full local `npm run verify`, because GitHub-hosted runners do not have the operator's personal Chrome profiles, local Chrome-for-Testing cache, or ignored `runs/` target-pack state. Browser-backed CDP tests and `compact-command-audit --source all` remain in the local verifier. The CI audit uses `compact-command-audit --source run-gate-audit`, which is clean-checkout safe.
+
+Use `actions/checkout@v5` and `actions/setup-node@v5` to avoid the GitHub Actions Node.js 20 deprecation warning seen on the first successful `main` run. Both v5 actions use the Node 24 action runtime.
 
 ## Verification
 
