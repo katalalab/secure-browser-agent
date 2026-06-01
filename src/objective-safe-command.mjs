@@ -147,11 +147,11 @@ function valueAfter(args = [], option, fallback = '') {
 
 function targetDirFromAudit(audit = {}) {
   const nextArgs = audit.nextAction?.command?.args || [];
-  if (nextArgs[0] === 'node' && nextArgs[1] === 'src/cli.mjs' && nextArgs[2]?.startsWith('target-') && nextArgs[3]) {
+  if (nextArgs[0] === 'node' && nextArgs[1] === 'src/cli.mjs' && nextArgs[2]?.startsWith('target-') && nextArgs[3] && !String(nextArgs[3]).startsWith('-')) {
     return nextArgs[3];
   }
   const safeArgs = audit.executionPolicy?.agentSafeCommand?.args || [];
-  if (safeArgs[0] === 'node' && safeArgs[1] === 'src/cli.mjs' && safeArgs[2]?.startsWith('target-') && safeArgs[3]) {
+  if (safeArgs[0] === 'node' && safeArgs[1] === 'src/cli.mjs' && safeArgs[2]?.startsWith('target-') && safeArgs[3] && !String(safeArgs[3]).startsWith('-')) {
     return safeArgs[3];
   }
   const target = audit.nextAction?.target || '';
