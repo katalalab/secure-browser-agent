@@ -101,6 +101,31 @@ function auditFixture() {
   };
 }
 
+function handoffResumeWatchFixture(overrides = {}) {
+  return {
+    status: 'planned',
+    target: 'github',
+    selectedCommand: {
+      id: 'monitor-auth',
+      startsCapture: false,
+      command: {
+        shell: "'node' 'src/cli.mjs' 'target-auth-watch' 'runs/target-packs/github' '--handoff' 'operator-handoff.json' '--format' 'compact'",
+        args: ['node', 'src/cli.mjs', 'target-auth-watch', 'runs/target-packs/github', '--handoff', 'operator-handoff.json', '--format', 'compact']
+      }
+    },
+    statusBefore: {
+      status: 'waiting-for-login',
+      latestAuthOk: false,
+      captureCompleted: false,
+      capturePlanCommand: {
+        shell: "'node' 'src/cli.mjs' 'target-proof-capture' 'runs/target-packs/github' '--real-external' '--wait-auth' '--format' 'compact'",
+        args: ['node', 'src/cli.mjs', 'target-proof-capture', 'runs/target-packs/github', '--real-external', '--wait-auth', '--format', 'compact']
+      }
+    },
+    ...overrides
+  };
+}
+
 test('objective safe command prefers monitor-only auth watch while capture is blocked', async () => {
   const result = await buildObjectiveSafeCommand({
     rootDir: '/tmp/sba',
@@ -108,27 +133,7 @@ test('objective safe command prefers monitor-only auth watch while capture is bl
     monitorTimeoutMs: 10000,
     monitorIntervalMs: 1000,
     audit: auditFixture(),
-    handoffResumeWatch: {
-      status: 'planned',
-      target: 'github',
-      selectedCommand: {
-        id: 'monitor-auth',
-        startsCapture: false,
-        command: {
-          shell: "'node' 'src/cli.mjs' 'target-auth-watch' 'runs/target-packs/github' '--handoff' 'operator-handoff.json' '--format' 'compact'",
-          args: ['node', 'src/cli.mjs', 'target-auth-watch', 'runs/target-packs/github', '--handoff', 'operator-handoff.json', '--format', 'compact']
-        }
-      },
-      statusBefore: {
-        status: 'waiting-for-login',
-        latestAuthOk: false,
-        captureCompleted: false,
-        capturePlanCommand: {
-          shell: "'node' 'src/cli.mjs' 'target-proof-capture' 'runs/target-packs/github' '--real-external' '--wait-auth' '--format' 'compact'",
-          args: ['node', 'src/cli.mjs', 'target-proof-capture', 'runs/target-packs/github', '--real-external', '--wait-auth', '--format', 'compact']
-        }
-      }
-    }
+    handoffResumeWatch: handoffResumeWatchFixture()
   });
 
   assert.equal(result.safeMode, true);
@@ -307,6 +312,7 @@ test('objective safe command writes secret-free handoff only under runs', async 
       rootDir,
       generatedAt: '2026-05-28T00:00:00.000Z',
       audit: auditFixture(),
+      handoffResumeWatch: handoffResumeWatchFixture(),
       write: true,
       out: 'operator/objective-safe-command-latest.json'
     });
@@ -327,10 +333,11 @@ test('objective safe command writes secret-free handoff only under runs', async 
     await assert.rejects(
       () => buildObjectiveSafeCommand({
         rootDir,
-        generatedAt: '2026-05-28T00:00:00.000Z',
-        audit: auditFixture(),
-        write: true,
-        out: '../objective-safe-command.json'
+      generatedAt: '2026-05-28T00:00:00.000Z',
+      audit: auditFixture(),
+      handoffResumeWatch: handoffResumeWatchFixture(),
+      write: true,
+      out: '../objective-safe-command.json'
       }),
       /invalid objective safe command output path/
     );
@@ -381,7 +388,8 @@ test('objective safe command reports stale handoff port blocker without a runnab
         authWatchHandoffPort: 59036,
         authWatchHandoffPortReachable: false
       }
-    }
+    },
+    handoffResumeWatch: handoffResumeWatchFixture()
   });
 
   assert.equal(result.commandId, 'none');
@@ -444,7 +452,7 @@ test('objective safe command suppresses handoff watch run when child watch rejec
     rootDir: '/tmp/sba',
     generatedAt: '2026-05-28T00:00:00.000Z',
     audit: auditFixture(),
-    handoffResumeWatch: {
+    handoffResumeWatch: handoffResumeWatchFixture({
       status: 'planned',
       target: 'github',
       selectedCommandAvailable: false,
@@ -462,7 +470,7 @@ test('objective safe command suppresses handoff watch run when child watch rejec
         latestAuthOk: false,
         captureCompleted: false
       }
-    }
+    })
   });
 
   assert.equal(result.commandId, 'auth-watch');
@@ -504,7 +512,8 @@ test('objective safe command reclassifies unsafe saved agent command as operator
   const result = await buildObjectiveSafeCommand({
     rootDir: '/tmp/sba',
     generatedAt: '2026-05-28T00:00:00.000Z',
-    audit
+    audit,
+    handoffResumeWatch: handoffResumeWatchFixture()
   });
 
   assert.equal(result.agentSafeAction, 'operator-approval-required');
@@ -536,4 +545,40 @@ test('objective safe command reclassifies unsafe saved agent command as operator
   assert.match(compact, /^proof_capture_allowed_now: no$/m);
   assert.doesNotMatch(compact, /^command: /m);
   assert.doesNotMatch(compact, /^agent_loop_step_run_command: /m);
+});
+
+test('objective safe command does not treat option flags as target directories', async () => {
+  const audit = auditFixture();
+  audit.nextAction = {
+    id: 'target-bootstrap-plan',
+    target: '',
+    command: {
+      shell: "'node' 'src/cli.mjs' 'target-bootstrap-plan' '--name' 'github' '--format' 'compact'",
+      args: ['node', 'src/cli.mjs', 'target-bootstrap-plan', '--name', 'github', '--format', 'compact']
+    }
+  };
+  audit.executionPolicy = {
+    agentSafeAction: 'wait-operator',
+    agentSafeCommandId: 'none',
+    agentSafeCommand: null,
+    agentSafeCommandMonitorOnly: false,
+    agentSafeCommandMayOpenBrowser: false,
+    agentSafeCommandStartsCapture: false
+  };
+  audit.targetApproval = {
+    ...audit.targetApproval,
+    selectedCandidate: '',
+    targetPackExists: false
+  };
+
+  const result = await buildObjectiveSafeCommand({
+    rootDir: '/tmp/sba',
+    generatedAt: '2026-05-28T00:00:00.000Z',
+    audit
+  });
+
+  assert.equal(result.handoffResumeWatch.available, false);
+  assert.equal(result.handoffResumeWatch.status, 'missing-target');
+  assert.notEqual(result.handoffResumeWatch.targetDir, '--name');
+  assert.doesNotMatch(formatObjectiveSafeCommandCompact(result), /target-handoff-resume-watch' '--name'/);
 });
