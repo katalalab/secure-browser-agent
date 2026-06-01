@@ -2,6 +2,7 @@ import { buildChromeControlPlan } from './chrome-control-plan.mjs';
 import { buildChromeExtensionHandoff } from './chrome-extension-handoff.mjs';
 import { buildChromeMcpStatus } from './chrome-mcp-status.mjs';
 import { buildLightpandaDoctor } from './lightpanda-doctor.mjs';
+import { buildLightpandaGate } from './lightpanda-gate.mjs';
 import { buildProofGateStatus } from './proof-gate-status.mjs';
 import { buildSeleniumDoctor } from './selenium-doctor.mjs';
 
@@ -178,7 +179,7 @@ function targetProfileRoute({ task, proofGate }) {
   };
 }
 
-function routeForTask({ task, chromePlan, chromeMcpStatus, chromeHandoff, lightpanda, selenium, proofGate, allowNewBackgroundTab, newBackgroundUrlEnv }) {
+function routeForTask({ task, chromePlan, chromeMcpStatus, chromeHandoff, lightpanda, lightpandaGate, selenium, proofGate, allowNewBackgroundTab, newBackgroundUrlEnv }) {
   if (task === 'existing-tab') {
     const mcpReady = Boolean(chromeMcpStatus?.decision?.chromeDevtoolsMcpUsableForEverydayTabs);
     const mcpConnected = chromeMcpStatus?.observed?.chromeDevtoolsMcpConnected === true;
@@ -328,6 +329,24 @@ function routeForTask({ task, chromePlan, chromeMcpStatus, chromeHandoff, lightp
 
   if (task === 'public-crawl') {
     const lightpandaReady = Boolean(lightpanda.readyForPublicBenchmark);
+    if (lightpandaGate.accepted && lightpandaReady) {
+      return {
+        lane: 'lightpanda-public-gated',
+        backend: 'lightpanda',
+        profileMode: 'public-ephemeral-profile',
+        userPermissionRequired: false,
+        operatorInput: false,
+        canRunInBackground: true,
+        startsCapture: false,
+        captureBlocked: false,
+        commandOpensBrowser: false,
+        approvalCommandOpensBrowser: false,
+        commandRunOnlyAfterUserSays: '',
+        command: command(['node', 'src/cli.mjs', 'extract', '<public-url>', '--selector', 'body', '--engine', 'lightpanda', '--profile', 'public']),
+        approvalCommand: null,
+        reason: 'Lightpanda has an accepted public benchmark/decision proof, so public crawl work can use the Lightpanda lane. Authenticated profiles still stay Chrome-only.'
+      };
+    }
     return {
       lane: lightpandaReady ? 'lightpanda-public-benchmark-candidate' : 'direct-cdp-public',
       backend: lightpandaReady ? 'lightpanda-candidate' : 'direct-cdp-chrome',
@@ -438,10 +457,13 @@ export async function buildBrowserRoute(options = {}) {
   const lightpanda = options.lightpandaDoctor || (task === 'public-crawl'
     ? buildLightpandaDoctor({ ...options, rootDir, generatedAt })
     : { readyForPublicBenchmark: false });
+  const lightpandaGate = options.lightpandaGate || (task === 'public-crawl'
+    ? buildLightpandaGate(rootDir, { generatedAt })
+    : { accepted: false, status: 'not-checked' });
   const selenium = options.seleniumDoctor || (task === 'compatibility-test'
     ? buildSeleniumDoctor({ ...options, rootDir, generatedAt })
     : { readyForLocalSmoke: false });
-  const route = routeForTask({ task, chromePlan, chromeMcpStatus, chromeHandoff, lightpanda, selenium, proofGate, allowNewBackgroundTab, newBackgroundUrlEnv });
+  const route = routeForTask({ task, chromePlan, chromeMcpStatus, chromeHandoff, lightpanda, lightpandaGate, selenium, proofGate, allowNewBackgroundTab, newBackgroundUrlEnv });
 
   return {
     schemaVersion: 1,
@@ -492,6 +514,9 @@ export async function buildBrowserRoute(options = {}) {
       regularChromeExtensionPrepared: Boolean(chromePlan.chrome?.regularExtensionPrepared),
       regularChromeExtensionReady: Boolean(chromePlan.chrome?.regularExtensionReady),
       regularChromeUserPermissionRequired: Boolean(chromeHandoff?.needsUserPermission),
+      lightpandaGateStatus: lightpandaGate.status || 'not-checked',
+      lightpandaGateAccepted: Boolean(lightpandaGate.accepted),
+      lightpandaGateProof: lightpandaGate.proofRelativePath || '',
       lightpandaReadyForPublicBenchmark: Boolean(lightpanda.readyForPublicBenchmark),
       seleniumReadyForLocalSmoke: Boolean(selenium.readyForLocalSmoke)
     },
@@ -548,6 +573,9 @@ export function formatBrowserRouteCompact(route) {
     `regular_chrome_extension_prepared: ${yesNo(route.evidence.regularChromeExtensionPrepared)}`,
     `regular_chrome_extension_ready: ${yesNo(route.evidence.regularChromeExtensionReady)}`,
     `regular_chrome_user_permission_required: ${yesNo(route.evidence.regularChromeUserPermissionRequired)}`,
+    `lightpanda_gate_status: ${clean(route.evidence.lightpandaGateStatus)}`,
+    `lightpanda_gate_accepted: ${yesNo(route.evidence.lightpandaGateAccepted)}`,
+    `lightpanda_gate_proof: ${clean(route.evidence.lightpandaGateProof)}`,
     `lightpanda_public_benchmark_ready: ${yesNo(route.evidence.lightpandaReadyForPublicBenchmark)}`,
     `selenium_local_smoke_ready: ${yesNo(route.evidence.seleniumReadyForLocalSmoke)}`
   ];
@@ -601,6 +629,8 @@ export function formatBrowserRouteMarkdown(route) {
     `- Chrome MCP observed tools: ${route.evidence.chromeMcpObservedTools ?? 'unknown'}`,
     `- Regular Chrome extension prepared: ${route.evidence.regularChromeExtensionPrepared ? 'yes' : 'no'}`,
     `- Regular Chrome extension ready: ${route.evidence.regularChromeExtensionReady ? 'yes' : 'no'}`,
+    `- Lightpanda gate status: ${route.evidence.lightpandaGateStatus || 'not-checked'}`,
+    `- Lightpanda gate accepted: ${route.evidence.lightpandaGateAccepted ? 'yes' : 'no'}`,
     `- Lightpanda public benchmark ready: ${route.evidence.lightpandaReadyForPublicBenchmark ? 'yes' : 'no'}`,
     `- Selenium local smoke ready: ${route.evidence.seleniumReadyForLocalSmoke ? 'yes' : 'no'}`,
     '',

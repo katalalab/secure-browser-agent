@@ -89,10 +89,13 @@ node src/cli.mjs provider-doctor-status --format compact
 node src/cli.mjs backend-matrix --mcp-observation-in operator/chrome-mcp-observation-latest.json --format compact
 node src/cli.mjs backend-matrix --write --out operator/backend-matrix-latest.json --mcp-observation-in operator/chrome-mcp-observation-latest.json --format compact
 node src/cli.mjs backend-matrix-status --in operator/backend-matrix-latest.json --mcp-observation-in operator/chrome-mcp-observation-latest.json --format compact
+node src/cli.mjs status-cache --key provider-doctor-status --write --format compact
 node src/cli.mjs source-audit --format markdown
 node src/cli.mjs github-repo-research --limit 8 --write --out research/github-repo-research-latest.json --format compact
+node src/cli.mjs target-worker-pool --format compact
 node src/cli.mjs lightpanda-doctor --format compact
 node src/cli.mjs lightpanda-decision --decision reject --write --format markdown
+node src/cli.mjs lightpanda-gate --format compact
 node src/cli.mjs playwright-doctor --format compact
 node src/cli.mjs selenium-doctor --format compact
 node src/cli.mjs secret-audit --format markdown
@@ -179,6 +182,8 @@ node src/cli.mjs target-auth-watch runs/target-packs/target-service --status-out
 node src/cli.mjs target-proof-capture runs/target-packs/target-service --real-external --format markdown
 node src/cli.mjs target-proof-capture runs/target-packs/target-service --real-external --format compact
 node src/cli.mjs target-proof-capture runs/target-packs/target-service --real-external --run --wait-auth --wait-auth-status-out wait-auth-status.json --completion-audit --format markdown
+node src/cli.mjs target-batch runs/target-packs/target-service --real-external --format compact
+node src/cli.mjs target-batch runs/target-packs/target-service --real-external --run --wait-auth --format compact
 node src/cli.mjs completion-proof-bundle --include-compact-command-audit --format compact
 node src/cli.mjs completion-proof-bundle --include-compact-command-audit --write --out operator/completion-proof-bundle-latest.json --format compact
 node src/cli.mjs completion-proof-bundle-status --format compact
@@ -457,6 +462,8 @@ Saved `agent-control-plane-status` compact output also mirrors `agent_task_recom
 
 `github-repo-research` is the read-only GitHub and clone-fleet research lane for browser automation references. It uses `gh` to query popular GitHub repositories and the authenticated account's starred repositories, combines them with known local clone candidates, and classifies each candidate as an engine reference, MCP companion, adapter reference, public-crawl candidate, compatibility fallback, or study-only source. It never clones, fetches, opens browsers, starts capture, reads browser storage, or reads secret values. Use `--write --out research/github-repo-research-latest.json --format compact` to persist the current research snapshot under `runs/`; use `--local-only` when network access is not desired.
 
+`status-cache`, `target-worker-pool`, `lightpanda-gate`, and `target-batch` are the speed-system entrypoints described in `docs/speed-systems.md`. `status-cache` persists normalized status JSON under ignored `runs/cache/` with explicit TTL checks. `target-worker-pool` inventories reusable target-pack CDP daemons and returns start/stop commands without starting Chrome. `lightpanda-gate` keeps Lightpanda restricted to public crawl work unless a summarized benchmark or decision proof accepts it. `target-batch` wraps the common target proof capture path in one compact plan/run surface while preserving the existing real-external and auth gates.
+
 `lightpanda-doctor` is read-only. It checks `SBA_LIGHTPANDA_PATH`, `PATH`, the local Lightpanda clone, Zig/Rust/cmake build tools, telemetry posture, and prints install/benchmark commands. Compact output includes clone version, minimum Zig, source commit, remote origin, install-plan approval flags, and public-benchmark safety flags so provider readiness can cite the exact local browser source snapshot and avoid running install commands unattended. Use `--format compact` for low-token agent loops. It does not download binaries, run Homebrew, build from source, or execute Lightpanda against a website.
 
 `lightpanda-decision` turns the doctor evidence into a secret-free adopt/reject record under `runs/provider-benchmarks/` when passed `--write`. Use `--decision reject` when this Mac lacks a usable Lightpanda executable or build prerequisites; `readiness-audit` accepts that record as the current public-crawl decision until a binary is installed and a benchmark can replace it.
@@ -504,6 +511,8 @@ Saved `agent-control-plane-status` compact output also mirrors `agent_task_recom
 `target-auth-watch` is read-only. It repeats `target-auth-check` until the target page is authenticated or the timeout expires, updates `--status-out auth-watch-status.json` under the target pack's `outputs/` directory after each attempt, and never starts proof capture. The status file records the watch-level `waiting`, `authenticated`, or `timed-out` state plus the latest auth-check snapshot, so `objective-status` can distinguish an active watcher from a fresh but terminal one-shot auth check. Use it when one agent should keep a low-token auth status file fresh while the operator finishes login in the already-open dedicated browser.
 
 `target-proof-capture` is read-only by default and prints the post-login proof capture sequence. After an operator has logged into the dedicated real-service profile, pass `--real-external --run` to run auth-check, observe, inspect, scrape, benchmark, and proof write in one command. You can start it while login is still in progress by adding `--wait-auth`; it polls the secret-free auth check until the dedicated profile is usable, then runs the capture. Add `--wait-auth-status-out wait-auth-status.json` to keep a low-token JSON status file updated under the target pack's `outputs/` directory while the CLI waits. Add `--completion-audit` to include the final objective completion gate summary in the same result after a successful capture. Use `--format compact` when another agent only needs status, blocker count, next step, wait-auth state, completion-gate state, the next command, and the preserved one-shot `run_command`. Its report stores command status and short stdout/stderr tails only; it does not include cookies, page text, or CSV rows. If capture starts the target daemon and a later step fails, it stops that daemon by default; pass `--no-cleanup-on-failure` only when you intentionally want to inspect the failed background browser.
+
+`target-batch` is a lower-token wrapper around the proof-capture path. Plan mode does not open a browser or start capture; run mode delegates to `target-proof-capture` and keeps the same real-external/auth gates. Use it when another agent needs one compact status line for observe/inspect/scrape/benchmark/proof progress instead of stepping through every command separately.
 
 `target-login-capture` is the one-command interactive lane for a real service. It opens the dedicated headed login profile and then runs `target-proof-capture --run --wait-auth`, so the operator can finish login in the browser while the CLI waits for the auth-check to pass and continues with proof capture. Its generated capture command writes `outputs/wait-auth-status.json` by default so another agent can poll progress without reading cookies, page text, or browser storage. The operator handoff also includes direct `target-auth-check --cdp-port`, `control-status`, and `secret-run-plan` commands so a second agent can verify login readiness or wrap the same lane with `op run` without reconstructing commands. It still never accepts passwords or copies browser auth files.
 

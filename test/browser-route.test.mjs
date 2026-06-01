@@ -349,6 +349,40 @@ test('browser route exposes Lightpanda and Selenium as task-specific candidates'
   assert.match(formatBrowserRouteCompact(compatRoute), /^selenium_local_smoke_ready: yes$/m);
 });
 
+test('browser route selects Lightpanda only after the public gate is accepted', async () => {
+  const route = await buildBrowserRoute(baseFixtures({
+    task: 'public-crawl',
+    lightpandaDoctor: { readyForPublicBenchmark: true },
+    lightpandaGate: {
+      accepted: true,
+      status: 'accepted',
+      proofRelativePath: 'runs/provider-benchmarks/lightpanda-public.json'
+    }
+  }));
+
+  assert.equal(route.selectedLane, 'lightpanda-public-gated');
+  assert.equal(route.backend, 'lightpanda');
+  assert.equal(route.profileMode, 'public-ephemeral-profile');
+  assert.equal(route.evidence.lightpandaGateAccepted, true);
+  assert.match(formatBrowserRouteCompact(route), /^lightpanda_gate_accepted: yes$/m);
+});
+
+test('browser route rejects stale Lightpanda gate when local binary is not ready', async () => {
+  const route = await buildBrowserRoute(baseFixtures({
+    task: 'public-crawl',
+    lightpandaDoctor: { readyForPublicBenchmark: false },
+    lightpandaGate: {
+      accepted: true,
+      status: 'accepted',
+      proofRelativePath: 'runs/provider-benchmarks/lightpanda-public.json'
+    }
+  }));
+
+  assert.equal(route.selectedLane, 'direct-cdp-public');
+  assert.equal(route.backend, 'direct-cdp-chrome');
+  assert.equal(route.evidence.lightpandaGateAccepted, true);
+});
+
 test('browser route exposes search, analyze, scrape, and operate as first-class workflow tasks', async () => {
   const searchRoute = await buildBrowserRoute(baseFixtures({ task: 'search' }));
   assert.equal(searchRoute.task, 'search');
