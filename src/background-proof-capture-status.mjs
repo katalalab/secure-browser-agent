@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { buildBackgroundProofCapturePlan } from './background-proof-capture-plan.mjs';
+import { sanitizeLogLine } from './policy.mjs';
 
 function compactValue(value, fallback = 'none') {
   const text = String(value ?? '').replace(/\s+/g, ' ').trim();
@@ -112,14 +113,6 @@ function readPidFile(rootDir, relativePath, nowMs) {
     ageSeconds: fileAgeSeconds(filePath, nowMs),
     parseError: valid ? '' : `invalid pid: ${raw}`
   };
-}
-
-function sanitizeLogLine(line) {
-  return String(line || '')
-    .replace(/([?&](?:token|key|code|secret|password|session|auth)=)[^&\s]+/gi, '$1[redacted]')
-    .replace(/\s+/g, ' ')
-    .trim()
-    .slice(0, 500);
 }
 
 function readLogFile(rootDir, relativePath, nowMs, maxLines = 5) {
