@@ -2,6 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { spawn } from 'node:child_process';
 import { buildObjectiveCompletionAudit } from './objective-completion-audit.mjs';
+import { sanitizeLogLine } from './policy.mjs';
 import { buildTargetHandoffResumeWatch } from './target-handoff-run.mjs';
 
 function shellQuote(value) {
@@ -120,15 +121,6 @@ function existingPidStatus(rootDir, pidPath) {
     running: valid ? processAlive(pid) : false,
     parseError: valid ? '' : `invalid pid: ${raw}`
   };
-}
-
-function sanitizeLogLine(line) {
-  return String(line || '')
-    .replace(/([?&](?:token|key|code|secret|password|session|auth)=)[^&\s]+/gi, '$1[redacted]')
-    .replace(/\b((?:token|key|code|secret|password|session|auth)=)[^\s&]+/gi, '$1[redacted]')
-    .replace(/\s+/g, ' ')
-    .trim()
-    .slice(0, 500);
 }
 
 function readLogFile(rootDir, logPath, nowMs, maxLines = 10) {

@@ -73,6 +73,21 @@ export function assertEngineAllowed(engine, profileName, policy) {
   }
 }
 
+// Prefix `(?:[\w.-]*[_.-])?` catches `sba_session=` and `set-cookie:` while a bare
+// suffix match such as `exitcode=` stays readable; the lookbehind stops the key from
+// matching mid-word.
+const LOG_SECRET_ASSIGNMENT = /(?<![\w.-])((?:[\w.-]*[_.-])?(?:authorization|password|passwd|session|secret|cookie|token|auth|code|key|otp)\s*[=:]\s*)(?:(?:bearer|basic)\s+)?[^\s&;]+/gi;
+const LOG_AUTH_SCHEME = /\b(bearer|basic)\s+[a-z0-9._~+/=-]+/gi;
+
+export function sanitizeLogLine(line) {
+  return String(line || '')
+    .replace(LOG_SECRET_ASSIGNMENT, '$1[redacted]')
+    .replace(LOG_AUTH_SCHEME, '$1 [redacted]')
+    .replace(/\s+/g, ' ')
+    .trim()
+    .slice(0, 500);
+}
+
 export function redact(value, policy) {
   const keys = policy.redactKeys || [];
   const visit = (input, key = '') => {

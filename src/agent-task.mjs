@@ -2,6 +2,7 @@ import { spawn, spawnSync } from 'node:child_process';
 import fs from 'node:fs';
 import path from 'node:path';
 import { buildAgentWorkflow } from './agent-workflow.mjs';
+import { sanitizeLogLine } from './policy.mjs';
 import { publicSearchHttp } from './public-search-http.mjs';
 
 const ALLOWED_COMMAND_IDS = new Set([
@@ -165,15 +166,6 @@ function existingPidStatus(rootDir, pidPath) {
     running: valid ? processAlive(pid) : false,
     parseError: valid ? '' : `invalid pid: ${raw}`
   };
-}
-
-function sanitizeLogLine(line) {
-  return String(line || '')
-    .replace(/([?&](?:token|key|code|secret|password|session|auth)=)[^&\s]+/gi, '$1[redacted]')
-    .replace(/\b((?:token|key|code|secret|password|session|auth)=)[^\s&]+/gi, '$1[redacted]')
-    .replace(/\s+/g, ' ')
-    .trim()
-    .slice(0, 500);
 }
 
 function readLogFile(rootDir, logPath, nowMs, maxLines = 10) {
