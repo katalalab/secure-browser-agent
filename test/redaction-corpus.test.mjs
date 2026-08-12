@@ -90,15 +90,20 @@ test('redaction corpus: log line sanitizer neither truncates secrets nor eats di
   assert.equal(sanitizeLogLine(`token=alpha;${FIXTURE.token}`), 'token=[redacted]');
   assert.match(sanitizeLogLine(`set-cookie: sba_session=${FIXTURE.cookie}; Path=/; HttpOnly`), /Path=\//);
 
+  // Every pair of a request cookie header is a secret, unlike set-cookie's attribute tail.
+  assert.equal(sanitizeLogLine(`Cookie: sid=${FIXTURE.cookie}; csrf=${FIXTURE.password}`), 'Cookie: [redacted]');
+
   for (const line of ['exit_code=1', 'status_code=500', 'error-code=EINVAL', 'foreign_key=id']) {
     assert.equal(sanitizeLogLine(line), line);
   }
-  assert.equal(sanitizeLogLine(`api_key=${FIXTURE.token}`), 'api_key=[redacted]');
-  assert.equal(sanitizeLogLine(`access_key=${FIXTURE.token}`), 'access_key=[redacted]');
+  for (const key of ['api_key', 'access_key', 'x-api-key', 'mfa_code', 'otp_code']) {
+    assert.equal(sanitizeLogLine(`${key}=${FIXTURE.token}`), `${key}=[redacted]`);
+  }
 
-  assert.equal(sanitizeLogLine('basic setup complete'), 'basic setup complete');
-  assert.equal(sanitizeLogLine('Bearer process exited'), 'Bearer process exited');
   assert.equal(sanitizeLogLine(`proxy rejected Bearer ${FIXTURE.authHeader}`), 'proxy rejected Bearer [redacted]');
+  // Fail closed: a short credential must not survive just because it is short.
+  assert.equal(sanitizeLogLine('authorization: Basic abc'), 'authorization: [redacted]');
+  assert.equal(sanitizeLogLine('proxy rejected Basic abc'), 'proxy rejected Basic [redacted]');
 });
 
 test('redaction corpus: policy redaction clears secret-keyed values and auth schemes', () => {
