@@ -76,21 +76,24 @@ export function assertEngineAllowed(engine, profileName, policy) {
 // Prefix `(?:[\w.-]*[_.-])?` catches `sba_session=` and `set-cookie:` while a bare
 // suffix match such as `exitcode=` stays readable; the lookbehind stops the key from
 // matching mid-word.
-// Cookie values are `;`-delimited attribute lists so their redaction must stop at the
-// first `;`, but every other secret may contain one (`password=alpha;bravo`) — sharing
-// one value class leaks the tail of the secret, so the two cases are matched separately.
-const LOG_COOKIE_ASSIGNMENT = /(?<![\w.-])((?:[\w.-]*[_.-])?cookie\s*[=:]\s*)[^\s;]+/gi;
-// `code` and `key` are too broad to take an arbitrary prefix: `exit_code=1` and
-// `foreign_key=id` are diagnostics the operator needs, so they only pair with prefixes
-// that are themselves secret-bearing.
-const LOG_SECRET_ASSIGNMENT = /(?<![\w.-])((?:(?:[\w.-]*[_.-])?(?:authorization|password|passwd|session|secret|token|auth|otp)|(?:(?:api|access|secret|private|signing|encryption|auth|refresh)[_.-])?(?:code|key))\s*[=:]\s*)(?:(?:bearer|basic)\s+)?[^\s&]+/gi;
-// A real credential is long; requiring token length keeps `basic setup complete` and
-// `Bearer process exited` readable instead of masking the word after the scheme.
-const LOG_AUTH_SCHEME = /\b(bearer|basic)\s+(?:[a-z0-9._~+/=-]{16,})/gi;
+// `Set-Cookie:` is one pair plus non-secret attributes (Path, HttpOnly), so redaction
+// stops at the first `;`. A request `Cookie:` header is a `;`-separated list where every
+// pair is a secret — stopping at the first `;` there leaves the rest of the pairs visible.
+const LOG_SET_COOKIE = /(?<![\w.-])((?:[\w.-]*[_.-])?set-cookie\s*[=:]\s*)[^\s;]+/gi;
+const LOG_REQUEST_COOKIE = /(?<![\w.-])(cookie\s*[=:]\s*)[^\r\n]+/gi;
+// Non-cookie secrets may legitimately contain `;` (`password=alpha;bravo`), so they run to
+// whitespace. `code`/`key` compounds need a secret-bearing prefix so `exit_code=1` and
+// `foreign_key=id` survive, while `x-api-key` and `mfa_code` still redact; the bare forms
+// stay in because a lone `code=`/`key=` is more often an OAuth code than a diagnostic.
+const LOG_SECRET_ASSIGNMENT = /(?<![\w.-])((?:(?:[\w.-]*[_.-])?(?:authorization|password|passwd|session|secret|token|auth|otp)|(?:[\w.-]*[_.-])?(?:api|access|secret|private|signing|encryption|auth|refresh|mfa|otp|verification|activation|recovery|invite)[_.-](?:code|key)|(?:code|key))\s*[=:]\s*)(?:(?:bearer|basic)\s+)?[^\s&]+/gi;
+// Deliberately fail closed: a length or shape gate here lets `Basic abc` and other short
+// credentials through, and losing the word after `basic` in prose costs only readability.
+const LOG_AUTH_SCHEME = /\b(bearer|basic)\s+[a-z0-9._~+/=-]+/gi;
 
 export function sanitizeLogLine(line) {
   return String(line || '')
-    .replace(LOG_COOKIE_ASSIGNMENT, '$1[redacted]')
+    .replace(LOG_SET_COOKIE, '$1[redacted]')
+    .replace(LOG_REQUEST_COOKIE, '$1[redacted]')
     .replace(LOG_SECRET_ASSIGNMENT, '$1[redacted]')
     .replace(LOG_AUTH_SCHEME, '$1 [redacted]')
     .replace(/\s+/g, ' ')
