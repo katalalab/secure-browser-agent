@@ -76,11 +76,21 @@ export function assertEngineAllowed(engine, profileName, policy) {
 // Prefix `(?:[\w.-]*[_.-])?` catches `sba_session=` and `set-cookie:` while a bare
 // suffix match such as `exitcode=` stays readable; the lookbehind stops the key from
 // matching mid-word.
-const LOG_SECRET_ASSIGNMENT = /(?<![\w.-])((?:[\w.-]*[_.-])?(?:authorization|password|passwd|session|secret|cookie|token|auth|code|key|otp)\s*[=:]\s*)(?:(?:bearer|basic)\s+)?[^\s&;]+/gi;
-const LOG_AUTH_SCHEME = /\b(bearer|basic)\s+[a-z0-9._~+/=-]+/gi;
+// Cookie values are `;`-delimited attribute lists so their redaction must stop at the
+// first `;`, but every other secret may contain one (`password=alpha;bravo`) — sharing
+// one value class leaks the tail of the secret, so the two cases are matched separately.
+const LOG_COOKIE_ASSIGNMENT = /(?<![\w.-])((?:[\w.-]*[_.-])?cookie\s*[=:]\s*)[^\s;]+/gi;
+// `code` and `key` are too broad to take an arbitrary prefix: `exit_code=1` and
+// `foreign_key=id` are diagnostics the operator needs, so they only pair with prefixes
+// that are themselves secret-bearing.
+const LOG_SECRET_ASSIGNMENT = /(?<![\w.-])((?:(?:[\w.-]*[_.-])?(?:authorization|password|passwd|session|secret|token|auth|otp)|(?:(?:api|access|secret|private|signing|encryption|auth|refresh)[_.-])?(?:code|key))\s*[=:]\s*)(?:(?:bearer|basic)\s+)?[^\s&]+/gi;
+// A real credential is long; requiring token length keeps `basic setup complete` and
+// `Bearer process exited` readable instead of masking the word after the scheme.
+const LOG_AUTH_SCHEME = /\b(bearer|basic)\s+(?:[a-z0-9._~+/=-]{16,})/gi;
 
 export function sanitizeLogLine(line) {
   return String(line || '')
+    .replace(LOG_COOKIE_ASSIGNMENT, '$1[redacted]')
     .replace(LOG_SECRET_ASSIGNMENT, '$1[redacted]')
     .replace(LOG_AUTH_SCHEME, '$1 [redacted]')
     .replace(/\s+/g, ' ')

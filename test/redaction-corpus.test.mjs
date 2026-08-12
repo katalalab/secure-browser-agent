@@ -84,6 +84,23 @@ test('redaction corpus: log line sanitizer covers every secret fixture kind', ()
   assert.equal(sanitizeLogLine('exitcode=0 statusCode=200'), 'exitcode=0 statusCode=200');
 });
 
+test('redaction corpus: log line sanitizer neither truncates secrets nor eats diagnostics', () => {
+  // A `;` inside the value ends a cookie attribute but not a password.
+  assert.equal(sanitizeLogLine(`password=alpha;${FIXTURE.password}`), 'password=[redacted]');
+  assert.equal(sanitizeLogLine(`token=alpha;${FIXTURE.token}`), 'token=[redacted]');
+  assert.match(sanitizeLogLine(`set-cookie: sba_session=${FIXTURE.cookie}; Path=/; HttpOnly`), /Path=\//);
+
+  for (const line of ['exit_code=1', 'status_code=500', 'error-code=EINVAL', 'foreign_key=id']) {
+    assert.equal(sanitizeLogLine(line), line);
+  }
+  assert.equal(sanitizeLogLine(`api_key=${FIXTURE.token}`), 'api_key=[redacted]');
+  assert.equal(sanitizeLogLine(`access_key=${FIXTURE.token}`), 'access_key=[redacted]');
+
+  assert.equal(sanitizeLogLine('basic setup complete'), 'basic setup complete');
+  assert.equal(sanitizeLogLine('Bearer process exited'), 'Bearer process exited');
+  assert.equal(sanitizeLogLine(`proxy rejected Bearer ${FIXTURE.authHeader}`), 'proxy rejected Bearer [redacted]');
+});
+
 test('redaction corpus: policy redaction clears secret-keyed values and auth schemes', () => {
   const policy = loadPolicy();
   const output = redact({
