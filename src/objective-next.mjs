@@ -6,6 +6,7 @@ import { buildRegularChromeStatus } from './regular-chrome-refresh.mjs';
 import { buildStartCommandCandidates, compactKey } from './start-commands.mjs';
 import { buildTargetProofNext } from './target-proof.mjs';
 import { buildTargetCandidatePlan } from './target-candidate-plan.mjs';
+import { toPosixPath } from './output.mjs';
 
 function shellQuote(value) {
   return `'${String(value).replaceAll("'", "'\\''")}'`;
@@ -25,7 +26,7 @@ function rootRelativeCommandArg(rootDir, value) {
   const resolvedRoot = path.resolve(rootDir || process.cwd());
   const resolvedValue = path.resolve(text);
   if (resolvedValue === resolvedRoot || resolvedValue.startsWith(`${resolvedRoot}${path.sep}`)) {
-    return path.relative(resolvedRoot, resolvedValue);
+    return toPosixPath(path.relative(resolvedRoot, resolvedValue));
   }
   return text;
 }

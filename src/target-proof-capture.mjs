@@ -4,6 +4,7 @@ import path from 'node:path';
 import { buildTargetProofPlan } from './target-proof.mjs';
 import { buildTargetAuthCheck } from './target-auth-check.mjs';
 import { buildObjectiveCompletionAudit } from './objective-completion-audit.mjs';
+import { toPosixPath } from './output.mjs';
 
 function command(args) {
   return {
@@ -197,7 +198,8 @@ function writeWaitAuthStatus(plan, waitAuth, options = {}) {
   };
   fs.mkdirSync(path.dirname(outputPath), { recursive: true });
   fs.writeFileSync(outputPath, `${JSON.stringify(payload, null, 2)}\n`, 'utf8');
-  return outputPath;
+  const rootDir = plan.rootDir || path.resolve(path.dirname(path.dirname(plan.targetDir)));
+  return toPosixPath(path.relative(path.resolve(rootDir), outputPath));
 }
 
 async function waitForAuthPlan(targetDir, plan, options = {}) {

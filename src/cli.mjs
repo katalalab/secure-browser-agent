@@ -88,6 +88,7 @@ import { buildBackgroundMonitorPlan, formatBackgroundMonitorPlanCompact, formatB
 import { buildBackgroundProofCapturePlan, formatBackgroundProofCapturePlanCompact, formatBackgroundProofCapturePlanMarkdown } from './background-proof-capture-plan.mjs';
 import { buildBackgroundProofCaptureStatus, formatBackgroundProofCaptureStatusCompact, formatBackgroundProofCaptureStatusMarkdown } from './background-proof-capture-status.mjs';
 import { buildBackgroundProofCaptureStart, formatBackgroundProofCaptureStartCompact, formatBackgroundProofCaptureStartMarkdown } from './background-proof-capture-start.mjs';
+import { toPosixPath } from './output.mjs';
 
 function parseArgs(argv) {
   const [command, ...rest] = argv;
@@ -3192,7 +3193,7 @@ Safety:
       engine,
       argv: process.argv.slice(2),
       url,
-      output: target,
+      output: toPosixPath(path.relative(policy.rootDir, target)),
       mimeType: output.mimeType,
       format: output.format,
       fullPage: output.fullPage,
@@ -3290,6 +3291,7 @@ Safety:
     const out = flags.out;
     if (!out) throw new Error('capture-har requires --out file.har');
     const harPath = safeOutputPath(policy, out);
+    const harPathRelative = toPosixPath(path.relative(policy.rootDir, harPath));
     fs.mkdirSync(policy.outputDir, { recursive: true });
     const browserArgs = sessionArgs(policy, profileName, { engine, stateOnly: flags['state-only'], skipAllowedDomains: isDataUrl(url) });
     await runAgentBrowser([...browserArgs, 'network', 'har', 'start']);

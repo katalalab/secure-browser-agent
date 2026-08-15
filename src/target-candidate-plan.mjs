@@ -1,5 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import { toPosixPath } from './output.mjs';
 
 const CANDIDATES = [
   {
@@ -282,9 +283,9 @@ export function buildTargetCandidatePlanStatus(options = {}) {
     'target-candidate-plan-watch',
     '--run',
     '--in',
-    path.relative(path.resolve(rootDir, 'runs'), inPath),
+    toPosixPath(path.relative(path.resolve(rootDir, 'runs'), inPath)),
     '--out',
-    path.relative(path.resolve(rootDir, 'runs'), inPath),
+    toPosixPath(path.relative(path.resolve(rootDir, 'runs'), inPath)),
     ...(plan.selectedCandidate ? ['--candidate', plan.selectedCandidate] : []),
     '--format',
     'compact'
@@ -465,8 +466,8 @@ export function formatTargetCandidatePlanWatchCompact(watch) {
     `run_requested: ${yesNo(watch.runRequested)}`,
     `executed: ${yesNo(watch.executed)}`,
     `status: ${watch.status}`,
-    `input_path: ${path.relative(runsRoot, watch.inputPath) || watch.inputPath}`,
-    `output_path: ${path.relative(runsRoot, watch.outputPath) || watch.outputPath}`,
+    `input_path: ${toPosixPath(path.relative(runsRoot, watch.inputPath) || watch.inputPath)}`,
+    `output_path: ${toPosixPath(path.relative(runsRoot, watch.outputPath) || watch.outputPath)}`,
     `stale: ${yesNo(watch.stale)}`,
     `allowed_to_run: ${yesNo(watch.allowedToRun)}`,
     `blocked_reason: ${watch.blockedReason}`,

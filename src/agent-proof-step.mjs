@@ -4,6 +4,7 @@ import { spawn } from 'node:child_process';
 import { buildObjectiveCompletionAudit } from './objective-completion-audit.mjs';
 import { sanitizeLogLine } from './policy.mjs';
 import { buildTargetHandoffResumeWatch } from './target-handoff-run.mjs';
+import { toPosixPath } from './output.mjs';
 
 function shellQuote(value) {
   return `'${String(value).replaceAll("'", "'\\''")}'`;
@@ -67,7 +68,7 @@ function runsRelativePath(rootDir, filePath) {
   const resolved = path.resolve(filePath);
   const insideRuns = resolved === runsRoot || resolved.startsWith(`${runsRoot}${path.sep}`);
   if (!insideRuns) throw new Error(`invalid agent proof step output path: ${filePath}`);
-  return path.relative(runsRoot, resolved);
+  return toPosixPath(path.relative(runsRoot, resolved));
 }
 
 function writeJson(filePath, value) {

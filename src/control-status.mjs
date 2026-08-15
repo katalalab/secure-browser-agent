@@ -11,6 +11,7 @@ import { buildRegularChromeStatus } from './regular-chrome-refresh.mjs';
 import { buildRunGateAudit } from './run-gate-audit.mjs';
 import { buildTargetCandidatePlan } from './target-candidate-plan.mjs';
 import path from 'node:path';
+import { toPosixPath } from './output.mjs';
 
 function yesNo(value) {
   return value ? 'yes' : 'no';
@@ -42,7 +43,7 @@ function rootRelativeCommandArg(rootDir, value) {
   const resolvedRoot = path.resolve(rootDir);
   const resolvedValue = path.resolve(text);
   if (resolvedValue === resolvedRoot || resolvedValue.startsWith(`${resolvedRoot}${path.sep}`)) {
-    return path.relative(resolvedRoot, resolvedValue);
+    return toPosixPath(path.relative(resolvedRoot, resolvedValue));
   }
   return text;
 }

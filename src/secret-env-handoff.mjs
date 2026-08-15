@@ -2,6 +2,7 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import { buildSecretAudit } from './secret-audit.mjs';
+import { toPosixPath } from './output.mjs';
 
 const DOCS = [
   {
@@ -253,9 +254,9 @@ export function buildSecretEnvHandoffStatus(options = {}) {
     'secret-env-handoff-watch',
     '--run',
     '--in',
-    path.relative(path.resolve(rootDir, 'runs'), inPath),
+    toPosixPath(path.relative(path.resolve(rootDir, 'runs'), inPath)),
     '--out',
-    path.relative(path.resolve(rootDir, 'runs'), inPath),
+    toPosixPath(path.relative(path.resolve(rootDir, 'runs'), inPath)),
     '--format',
     'compact'
   ]);
@@ -437,8 +438,8 @@ export function formatSecretEnvHandoffWatchCompact(watch) {
     `run_requested: ${yesNo(watch.runRequested)}`,
     `executed: ${yesNo(watch.executed)}`,
     `status: ${watch.status}`,
-    `input_path: ${clean(path.relative(path.resolve(path.dirname(watch.inputPath), '..'), watch.inputPath), watch.inputPath)}`,
-    `output_path: ${clean(path.relative(path.resolve(path.dirname(watch.outputPath), '..'), watch.outputPath), watch.outputPath)}`,
+    `input_path: ${clean(toPosixPath(path.relative(path.resolve(path.dirname(watch.inputPath), '..'), watch.inputPath)), watch.inputPath)}`,
+    `output_path: ${clean(toPosixPath(path.relative(path.resolve(path.dirname(watch.outputPath), '..'), watch.outputPath)), watch.outputPath)}`,
     `stale: ${yesNo(watch.stale)}`,
     `allowed_to_run: ${yesNo(watch.allowedToRun)}`,
     `blocked_reason: ${watch.blockedReason}`,

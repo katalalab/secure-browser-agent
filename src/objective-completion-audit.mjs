@@ -4,6 +4,7 @@ import path from 'node:path';
 import { buildReadinessAudit } from './readiness-audit.mjs';
 import { buildObjectiveNext } from './objective-next.mjs';
 import { buildTargetApprovalResume, buildTargetApprovalStatus } from './target-approval-pack.mjs';
+import { toPosixPath } from './output.mjs';
 
 function criterionFromRequirement(item) {
   const proved = item.status === 'proved';
@@ -41,7 +42,7 @@ function rootRelativeCommandArg(rootDir, value) {
   const resolvedRoot = path.resolve(rootDir || process.cwd());
   const resolvedValue = path.resolve(text);
   if (resolvedValue === resolvedRoot || resolvedValue.startsWith(`${resolvedRoot}${path.sep}`)) {
-    return path.relative(resolvedRoot, resolvedValue);
+    return toPosixPath(path.relative(resolvedRoot, resolvedValue));
   }
   return text;
 }
@@ -66,7 +67,7 @@ function runsRelativePath(rootDir, filePath) {
   const resolved = path.resolve(filePath);
   const insideRuns = resolved === runsRoot || resolved.startsWith(`${runsRoot}${path.sep}`);
   if (!insideRuns) throw new Error(`path is outside runs: ${filePath}`);
-  return path.relative(runsRoot, resolved);
+  return toPosixPath(path.relative(runsRoot, resolved));
 }
 
 function writeJson(filePath, value) {

@@ -2,6 +2,7 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import { spawnSync } from 'node:child_process';
+import { toPosixPath } from './output.mjs';
 
 function findExecutable(command, env = process.env) {
   const paths = String(env.PATH || '').split(path.delimiter).filter(Boolean);
@@ -79,7 +80,7 @@ function publicSmokeProofStatus(rootDir) {
     return {
       exists: false,
       ok: false,
-      path: proofPath,
+      path: toPosixPath(path.relative(rootDir, proofPath)),
       headingCount: 0,
       linkCount: 0,
       error: ''
@@ -92,7 +93,7 @@ function publicSmokeProofStatus(rootDir) {
     return {
       exists: true,
       ok: headingCount > 0 || linkCount > 0 || Boolean(proof.title),
-      path: proofPath,
+      path: toPosixPath(path.relative(rootDir, proofPath)),
       headingCount,
       linkCount,
       error: ''
@@ -101,7 +102,7 @@ function publicSmokeProofStatus(rootDir) {
     return {
       exists: true,
       ok: false,
-      path: proofPath,
+      path: toPosixPath(path.relative(rootDir, proofPath)),
       headingCount: 0,
       linkCount: 0,
       error: error instanceof Error ? error.message : String(error)

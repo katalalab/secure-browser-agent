@@ -4,6 +4,7 @@ import { observeWithCdp, observeWithCdpPort } from './cdp-backend.mjs';
 import { safeOutputPath } from './output.mjs';
 import { assertAllowedUrl, loadPolicy, profilePath } from './policy.mjs';
 import { resolveTargetPack } from './target-pack.mjs';
+import { toPosixPath } from './output.mjs';
 
 function writeJson(filePath, value) {
   fs.mkdirSync(path.dirname(filePath), { recursive: true });
@@ -207,6 +208,7 @@ export async function buildTargetAuthCheck(targetDir, options = {}) {
   const statusOutput = statusOut(options);
   if (statusOutput) {
     report.statusPath = safeOutputPath(policy, statusOutput);
+    const statusPathForOutput = toPosixPath(path.relative(policy.rootDir, report.statusPath));
     writeJson(report.statusPath, report);
   }
   if (options.write) {

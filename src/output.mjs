@@ -1,6 +1,13 @@
 import fs from 'node:fs';
 import path from 'node:path';
 
+export function toPosixPath(relativePath) {
+  // Emitted paths are part of the CLI contract: they land in runs/ JSON, get compared across
+  // machines, and get pasted back as arguments. path.relative() yields backslashes on Windows,
+  // which made the same command produce different artifacts per OS.
+  return String(relativePath ?? '').split(path.sep).join('/');
+}
+
 export function safeOutputPath(policy, outPath) {
   if (!outPath) return '';
   const safeName = String(outPath).replace(/^[/\\]+/, '');

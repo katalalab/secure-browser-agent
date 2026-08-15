@@ -18,9 +18,16 @@ concurrency:
 
 jobs:
   verify:
-    name: verify
-    runs-on: ubuntu-latest
+    # Windows-only path-separator failures stayed invisible while CI was ubuntu-only (#25).
+    # The CLI emits paths into runs/ artifacts, so every supported OS has to be exercised.
+    name: verify (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
     timeout-minutes: 10
+
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
 
     steps:
       - name: Checkout

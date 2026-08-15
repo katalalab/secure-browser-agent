@@ -4,6 +4,7 @@ import { buildAgentProofChecklistStatus } from './agent-proof-checklist.mjs';
 import { buildCompletionProofBundle } from './completion-proof-bundle.mjs';
 import { buildObjectiveCompletionAuditStatus } from './objective-completion-audit.mjs';
 import { buildProviderDoctorStatus } from './provider-doctor-status.mjs';
+import { toPosixPath } from './output.mjs';
 
 function yesNo(value) {
   return value ? 'yes' : 'no';
@@ -90,7 +91,7 @@ function runsRelativePath(rootDir, filePath) {
   const resolved = path.resolve(filePath);
   const insideRuns = resolved === runsRoot || resolved.startsWith(`${runsRoot}${path.sep}`);
   if (!insideRuns) throw new Error(`path is outside runs: ${filePath}`);
-  return path.relative(runsRoot, resolved);
+  return toPosixPath(path.relative(runsRoot, resolved));
 }
 
 function rootRelativePath(rootDir, filePath) {
@@ -100,7 +101,7 @@ function rootRelativePath(rootDir, filePath) {
   const resolvedRoot = path.resolve(rootDir || process.cwd());
   const resolvedPath = path.resolve(text);
   if (resolvedPath === resolvedRoot || resolvedPath.startsWith(`${resolvedRoot}${path.sep}`)) {
-    return path.relative(resolvedRoot, resolvedPath) || '.';
+    return toPosixPath(path.relative(resolvedRoot, resolvedPath) || '.');
   }
   return text;
 }

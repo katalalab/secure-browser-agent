@@ -110,21 +110,68 @@ function daemonMetadataPath(profileDir) {
   return path.join(profileDir, 'sba-cdp-daemon.json');
 }
 
+// Chrome lives in a different place on every OS, and the Chrome-for-Testing archive uses a
+// different leaf layout per platform. Hardcoding the macOS paths made every CDP test fail on
+// Windows and Linux while looking like a missing browser rather than a lookup bug.
+function systemChromeCandidates() {
+  const home = os.homedir();
+  if (process.platform === 'darwin') {
+    return [
+      '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
+      path.join(home, 'Applications/Google Chrome.app/Contents/MacOS/Google Chrome')
+    ];
+  }
+  if (process.platform === 'win32') {
+    return [process.env.PROGRAMFILES, process.env['PROGRAMFILES(X86)'], process.env.LOCALAPPDATA]
+      .filter(Boolean)
+      .map((root) => path.join(root, 'Google', 'Chrome', 'Application', 'chrome.exe'));
+  }
+  return [
+    '/usr/bin/google-chrome',
+    '/usr/bin/google-chrome-stable',
+    '/usr/bin/chromium',
+    '/usr/bin/chromium-browser',
+    '/snap/bin/chromium'
+  ];
+}
+
+function testingChromeLeaf() {
+  if (process.platform === 'darwin') {
+    return path.join('chrome-mac-arm64', 'Google Chrome for Testing.app', 'Contents', 'MacOS', 'Google Chrome for Testing');
+  }
+  if (process.platform === 'win32') return path.join('chrome-win64', 'chrome.exe');
+  return path.join('chrome-linux64', 'chrome');
+}
+
 function locateChromeForTesting() {
   if (process.env.SBA_CHROME_PATH) return process.env.SBA_CHROME_PATH;
-  const systemChrome = '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
-  if (fs.existsSync(systemChrome) && process.env.SBA_PREFER_AGENT_BROWSER_CHROME !== '1') return systemChrome;
+  const systemCandidates = systemChromeCandidates();
+  const preferAgentBrowser = process.env.SBA_PREFER_AGENT_BROWSER_CHROME === '1';
+  if (!preferAgentBrowser) {
+    const systemFound = systemCandidates.find((candidate) => fs.existsSync(candidate));
+    if (systemFound) return systemFound;
+  }
   const browserRoot = path.join(os.homedir(), '.agent-browser/browsers');
   if (fs.existsSync(browserRoot)) {
-    const candidates = fs.readdirSync(browserRoot)
+    const versions = fs.readdirSync(browserRoot)
       .filter((name) => name.startsWith('chrome-'))
       .sort()
-      .reverse()
-      .map((name) => path.join(browserRoot, name, 'Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing'));
-    const found = candidates.find((candidate) => fs.existsSync(candidate));
-    if (found) return found;
+      .reverse();
+    // macOS archives were unpacked without the chrome-mac-* wrapper in older agent-browser
+    // versions, so both layouts have to be probed before giving up on the cache.
+    const leaves = [testingChromeLeaf()];
+    if (process.platform === 'darwin') {
+      leaves.push(path.join('Google Chrome for Testing.app', 'Contents', 'MacOS', 'Google Chrome for Testing'));
+    }
+    for (const version of versions) {
+      for (const leaf of leaves) {
+        const candidate = path.join(browserRoot, version, leaf);
+        if (fs.existsSync(candidate)) return candidate;
+      }
+    }
   }
-  return systemChrome;
+  const fallback = systemCandidates.find((candidate) => fs.existsSync(candidate));
+  return fallback || systemCandidates[0] || '';
 }
 
 function pidAlive(pid) {

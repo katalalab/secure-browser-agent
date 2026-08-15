@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { buildCompletionProofBundle } from './completion-proof-bundle.mjs';
+import { toPosixPath } from './output.mjs';
 
 function yesNo(value) {
   return value ? 'yes' : 'no';
@@ -34,7 +35,7 @@ function targetProofPlanCommand(rootDir, candidate, targetDir = '') {
   const runsRoot = path.resolve(rootDir, 'runs');
   const resolvedTargetDir = targetDir ? path.resolve(targetDir) : '';
   const targetArg = resolvedTargetDir && (resolvedTargetDir === runsRoot || resolvedTargetDir.startsWith(`${runsRoot}${path.sep}`))
-    ? path.join('runs', path.relative(runsRoot, resolvedTargetDir))
+    ? 'runs/' + toPosixPath(path.relative(runsRoot, resolvedTargetDir))
     : `runs/target-packs/${candidate}`;
   return command(['node', 'src/cli.mjs', 'target-proof-plan', targetArg, '--real-external', '--format', 'compact']);
 }
@@ -53,7 +54,7 @@ function runsRelativePath(rootDir, filePath) {
   const resolved = path.resolve(filePath);
   const insideRuns = resolved === runsRoot || resolved.startsWith(`${runsRoot}${path.sep}`);
   if (!insideRuns) throw new Error(`path is outside runs: ${filePath}`);
-  return path.relative(runsRoot, resolved);
+  return toPosixPath(path.relative(runsRoot, resolved));
 }
 
 function writeJson(filePath, value) {

@@ -4,6 +4,7 @@ import { spawnSync } from 'node:child_process';
 import { buildTargetBootstrapPlan } from './target-bootstrap-plan.mjs';
 import { buildTargetCandidatePlan } from './target-candidate-plan.mjs';
 import { buildTargetProofInventory } from './target-proof.mjs';
+import { toPosixPath } from './output.mjs';
 
 function yesNo(value) {
   return value ? 'yes' : 'no';
@@ -48,7 +49,7 @@ function runsRelativePath(rootDir, filePath) {
   if (!(resolved === runsRoot || resolved.startsWith(`${runsRoot}${path.sep}`))) {
     throw new Error(`invalid target approval pack path: ${filePath}`);
   }
-  return path.relative(runsRoot, resolved);
+  return toPosixPath(path.relative(runsRoot, resolved));
 }
 
 function readJson(filePath) {
@@ -471,7 +472,7 @@ function targetDirCommandArg(rootDir, targetDir) {
   const resolvedRoot = path.resolve(rootDir);
   const resolvedTarget = path.resolve(text);
   if (resolvedTarget === resolvedRoot || resolvedTarget.startsWith(`${resolvedRoot}${path.sep}`)) {
-    return path.relative(resolvedRoot, resolvedTarget);
+    return toPosixPath(path.relative(resolvedRoot, resolvedTarget));
   }
   return text;
 }

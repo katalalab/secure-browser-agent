@@ -1,5 +1,6 @@
 import path from 'node:path';
 import { buildObjectiveProofPipeline } from './objective-proof-pipeline.mjs';
+import { toPosixPath } from './output.mjs';
 
 function compactValue(value, fallback = 'none') {
   const text = String(value ?? '').replace(/\s+/g, ' ').trim();
@@ -30,7 +31,7 @@ function safeRunRelative(value, fallback) {
   if (normalized.startsWith('..')) {
     throw new Error(`invalid background proof capture path: ${value}`);
   }
-  return normalized;
+  return toPosixPath(normalized);
 }
 
 function backgroundShell({ foreground, logPath, pidPath }) {

@@ -4,6 +4,7 @@ import path from 'node:path';
 import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import { safeOutputPath } from './output.mjs';
+import { toPosixPath } from './output.mjs';
 
 const SEARCH_PROVIDER_ORIGINS = {
   duckduckgo: 'https://html.duckduckgo.com',
@@ -397,7 +398,7 @@ export function resolveTargetPack(targetDir) {
   if (!targetDir) throw new Error('target pack directory is required');
   const dir = path.resolve(targetDir);
   const policy = path.join(dir, 'policy.json');
-  if (!fs.existsSync(policy)) throw new Error(`target policy not found: ${policy}`);
+  if (!fs.existsSync(policy)) throw new Error(`target policy not found: ${toPosixPath(policy)}`);
   const targetPolicy = JSON.parse(fs.readFileSync(policy, 'utf8'));
   const metadataFile = path.join(dir, 'target.json');
   const metadata = fs.existsSync(metadataFile)

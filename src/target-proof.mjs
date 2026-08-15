@@ -5,6 +5,7 @@ import { loadPolicy } from './policy.mjs';
 import { auditTargetPack } from './security-audit.mjs';
 import { buildStartCommandCandidates, compactKey } from './start-commands.mjs';
 import { resolveTargetPack } from './target-pack.mjs';
+import { toPosixPath } from './output.mjs';
 
 function csv(value, fallback = []) {
   if (value === undefined || value === null || value === '') return fallback;
@@ -32,7 +33,7 @@ function rootRelativeCommandArg(rootDir, value) {
   const resolvedRoot = path.resolve(rootDir || process.cwd());
   const resolvedValue = path.resolve(text);
   if (resolvedValue === resolvedRoot || resolvedValue.startsWith(`${resolvedRoot}${path.sep}`)) {
-    return path.relative(resolvedRoot, resolvedValue);
+    return toPosixPath(path.relative(resolvedRoot, resolvedValue));
   }
   return text;
 }
@@ -253,7 +254,7 @@ function summarizeOperatorHandoff(policy, handoffName = 'operator-handoff.json')
 function relativePackPath(packDir, filePath, fallback) {
   if (!filePath) return fallback;
   const relative = path.relative(packDir, filePath);
-  if (relative && !relative.startsWith('..') && !path.isAbsolute(relative)) return relative;
+  if (relative && !relative.startsWith('..') && !path.isAbsolute(relative)) return toPosixPath(relative);
   return fallback;
 }
 
@@ -631,7 +632,7 @@ export async function buildTargetProofPlan(targetDir, options = {}) {
     .filter((item) => !item.exists || item.bytes <= 0)
     .map((item) => item.relativePath);
   const benchmark = summarizeBenchmark(benchmarkFile);
-  const benchmarkRelative = path.relative(pack.dir, benchmarkFile);
+  const benchmarkRelative = toPosixPath(path.relative(pack.dir, benchmarkFile));
   const benchmarkOut = benchmarkRelative && !benchmarkRelative.startsWith('..') && !path.isAbsolute(benchmarkRelative)
     ? benchmarkRelative
     : path.join('proof', 'target-benchmark.json');
@@ -886,7 +887,7 @@ export async function buildTargetProof(targetDir, options = {}) {
   if (options.write) {
     const proofPath = path.join(pack.dir, 'proof', 'target-proof.json');
     writeJson(proofPath, proof);
-    proof.proofPath = proofPath;
+    proof.proofPath = toPosixPath(path.relative(pack.dir, proofPath));
   }
 
   return proof;

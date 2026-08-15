@@ -2,6 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { buildOperatorPack } from './operator-pack.mjs';
 import { buildObjectiveCompletionAuditStatus } from './objective-completion-audit.mjs';
+import { toPosixPath } from './output.mjs';
 
 function compact(value, fallback = 'none') {
   const text = String(value ?? '').replace(/\s+/g, ' ').trim();
@@ -32,7 +33,7 @@ function runsRelativePath(rootDir, filePath) {
   if (!(resolved === runsRoot || resolved.startsWith(`${runsRoot}${path.sep}`))) {
     throw new Error(`invalid operator runbook output path: ${filePath}`);
   }
-  return path.relative(runsRoot, resolved);
+  return toPosixPath(path.relative(runsRoot, resolved));
 }
 
 function rootRelativePath(rootDir, filePath) {
@@ -42,7 +43,7 @@ function rootRelativePath(rootDir, filePath) {
   const resolvedRoot = path.resolve(rootDir || process.cwd());
   const resolvedPath = path.resolve(text);
   if (resolvedPath === resolvedRoot || resolvedPath.startsWith(`${resolvedRoot}${path.sep}`)) {
-    return path.relative(resolvedRoot, resolvedPath) || '.';
+    return toPosixPath(path.relative(resolvedRoot, resolvedPath) || '.');
   }
   return text;
 }

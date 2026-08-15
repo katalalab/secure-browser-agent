@@ -32,6 +32,7 @@ import { buildAgentProofChecklist } from './agent-proof-checklist.mjs';
 import { buildAgentProofCloseout } from './agent-proof-closeout.mjs';
 import { withMonitorOverrides } from './objective-proof-pipeline.mjs';
 import { buildRunGateAudit } from './run-gate-audit.mjs';
+import { toPosixPath } from './output.mjs';
 
 function compactValue(value, fallback = 'none') {
   const text = String(value ?? '').replace(/\s+/g, ' ').trim();
@@ -105,7 +106,7 @@ function runsRelativePath(rootDir, inputPath) {
   const resolved = path.resolve(inputPath);
   const insideRuns = resolved === runsRoot || resolved.startsWith(`${runsRoot}${path.sep}`);
   if (!insideRuns) throw new Error(`invalid runs-relative source path: ${inputPath}`);
-  return path.relative(runsRoot, resolved);
+  return toPosixPath(path.relative(runsRoot, resolved));
 }
 
 function fileSummary(filePath) {

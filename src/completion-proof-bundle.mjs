@@ -8,6 +8,7 @@ import { buildTargetProofPlan } from './target-proof.mjs';
 import { buildCompactCommandAudit } from './compact-command-audit.mjs';
 import { buildObjectiveCompletionAuditStatus } from './objective-completion-audit.mjs';
 import { buildProviderDoctorStatus } from './provider-doctor-status.mjs';
+import { toPosixPath } from './output.mjs';
 
 function yesNo(value) {
   return value ? 'yes' : 'no';
@@ -99,7 +100,7 @@ function targetDirCommandArg(rootDir, targetDir) {
   const resolvedRoot = path.resolve(rootDir);
   const resolvedTarget = path.resolve(text);
   if (resolvedTarget === resolvedRoot || resolvedTarget.startsWith(`${resolvedRoot}${path.sep}`)) {
-    return path.relative(resolvedRoot, resolvedTarget);
+    return toPosixPath(path.relative(resolvedRoot, resolvedTarget));
   }
   return text;
 }
@@ -111,7 +112,7 @@ function rootRelativePath(rootDir, filePath) {
   const resolvedRoot = path.resolve(rootDir || process.cwd());
   const resolvedPath = path.resolve(text);
   if (resolvedPath === resolvedRoot || resolvedPath.startsWith(`${resolvedRoot}${path.sep}`)) {
-    return path.relative(resolvedRoot, resolvedPath) || '.';
+    return toPosixPath(path.relative(resolvedRoot, resolvedPath) || '.');
   }
   return text;
 }
@@ -476,7 +477,7 @@ export function buildCompletionProofBundleStatus(options = {}) {
     : false;
   const candidate = saved?.candidate || options.candidate || 'github';
   const operatorResumeSafety = parseOk ? inferOperatorResumeSafety(saved) : inferOperatorResumeSafety();
-  const inputRelative = path.relative(path.resolve(rootDir, 'runs'), inputPath);
+  const inputRelative = toPosixPath(path.relative(path.resolve(rootDir, 'runs'), inputPath));
   const refreshCommand = watchRefreshCommand({
     in: inputRelative,
     out: inputRelative,
@@ -668,10 +669,10 @@ export async function buildCompletionProofBundleWatch(options = {}) {
   const inputPath = safeRunPath(rootDir, options.in || options.input || 'operator/completion-proof-bundle-latest.json');
   const outputPath = safeRunPath(
     rootDir,
-    options.out || options.output || path.relative(path.resolve(rootDir, 'runs'), inputPath)
+    options.out || options.output || toPosixPath(path.relative(path.resolve(rootDir, 'runs'), inputPath))
   );
-  const inputRelative = path.relative(path.resolve(rootDir, 'runs'), inputPath);
-  const outputRelative = path.relative(path.resolve(rootDir, 'runs'), outputPath);
+  const inputRelative = toPosixPath(path.relative(path.resolve(rootDir, 'runs'), inputPath));
+  const outputRelative = toPosixPath(path.relative(path.resolve(rootDir, 'runs'), outputPath));
   const candidate = options.candidate || 'github';
   const staleAfterSeconds = options.staleAfterSeconds ?? options['stale-after-seconds'];
   const statusBefore = buildCompletionProofBundleStatus({

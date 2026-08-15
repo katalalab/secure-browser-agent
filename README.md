@@ -670,3 +670,14 @@ Example:
   ]
 }
 ```
+
+## License
+
+MIT — [LICENSE](LICENSE)
+
+依拠する第三者ソフトウェアと外部サービスの規約は [THIRD-PARTY-NOTICES.md](THIRD-PARTY-NOTICES.md) に集約している。
+同梱している第三者コードは無い（`dependencies` / `devDependencies` は共に空）。実行エンジンはすべて別プロセスとして呼び出す。
+
+Lightpanda と SearXNG は AGPL-3.0 のため、取り込み・改変・同梱を禁止する境界を
+[THIRD-PARTY-NOTICES.md §4](THIRD-PARTY-NOTICES.md#4-agpl-30-の境界重要) に定めている。
+その境界を越える変更をする場合は、先に同節を更新すること。

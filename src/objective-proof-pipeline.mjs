@@ -1,5 +1,6 @@
 import path from 'node:path';
 import { buildObjectiveCompletionAudit } from './objective-completion-audit.mjs';
+import { toPosixPath } from './output.mjs';
 
 function yesNo(value) {
   return value ? 'yes' : 'no';
@@ -32,7 +33,7 @@ function rootRelativeCommandArg(rootDir, value) {
   const resolvedRoot = path.resolve(rootDir || process.cwd());
   const resolvedValue = path.resolve(text);
   if (resolvedValue === resolvedRoot || resolvedValue.startsWith(`${resolvedRoot}${path.sep}`)) {
-    return path.relative(resolvedRoot, resolvedValue);
+    return toPosixPath(path.relative(resolvedRoot, resolvedValue));
   }
   return text;
 }

@@ -2,6 +2,7 @@ import { spawnSync } from 'node:child_process';
 import fs from 'node:fs';
 import path from 'node:path';
 import { buildControlStatus } from './control-status.mjs';
+import { toPosixPath } from './output.mjs';
 
 const ALLOWED_RUN_COMMAND_IDS = new Set(['auth-watch']);
 
@@ -75,7 +76,7 @@ function runsRelativePath(rootDir, filePath) {
   const resolved = path.resolve(filePath);
   const insideRuns = resolved === runsRoot || resolved.startsWith(`${runsRoot}${path.sep}`);
   if (!insideRuns) throw new Error(`invalid agent loop step status input path: ${filePath}`);
-  return path.relative(runsRoot, resolved);
+  return toPosixPath(path.relative(runsRoot, resolved));
 }
 
 function fileAgeSeconds(filePath, nowMs) {

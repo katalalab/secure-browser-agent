@@ -5,6 +5,7 @@ import { safeOutputPath } from './output.mjs';
 import { assertAllowedUrl, assertEngineAllowed, loadPolicy, profilePath } from './policy.mjs';
 import { resolveTargetLogin } from './target-pack.mjs';
 import { buildTargetProofCapture, formatTargetProofCaptureMarkdown } from './target-proof-capture.mjs';
+import { toPosixPath } from './output.mjs';
 
 function shellQuote(value) {
   return `'${String(value).replaceAll("'", "'\\''")}'`;
@@ -202,7 +203,8 @@ function writeHandoff(policy, result, options = {}) {
   } else {
     throw new Error(`unsupported handoff format: ${format}`);
   }
-  return target;
+  const rootDir = path.resolve(policy.outputDir, '..');
+  return toPosixPath(path.relative(rootDir, target));
 }
 
 function normalizeOptions(options = {}) {

@@ -183,5 +183,9 @@
   "engines": {
     "node": ">=22"
   },
-  "license": "UNLICENSED"
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/katalalab/secure-browser-agent.git"
+  }
 }

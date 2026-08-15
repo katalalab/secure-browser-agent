@@ -3,6 +3,7 @@ import path from 'node:path';
 import { buildAgentTask } from './agent-task.mjs';
 import { buildAgentWorkflow } from './agent-workflow.mjs';
 import { buildBackendMatrix } from './backend-matrix.mjs';
+import { toPosixPath } from './output.mjs';
 
 function shellQuote(value) {
   return `'${String(value).replaceAll("'", "'\\''")}'`;
@@ -61,7 +62,7 @@ function safeRunInputPath(rootDir, inPath, fallback) {
 function runsRelativePath(rootDir, inputPath) {
   const runsRoot = path.resolve(rootDir, 'runs');
   const resolved = path.resolve(inputPath);
-  return resolved.startsWith(`${runsRoot}${path.sep}`) ? path.relative(runsRoot, resolved) : inputPath;
+  return resolved.startsWith(`${runsRoot}${path.sep}`) ? toPosixPath(path.relative(runsRoot, resolved)) : inputPath;
 }
 
 function readSavedBackendMatrix(rootDir, options = {}) {

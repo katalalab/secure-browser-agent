@@ -4,6 +4,7 @@ import { cdpDaemonStatus } from './cdp-backend.mjs';
 import { loadPolicy, profilePath } from './policy.mjs';
 import { doctorTargetPack, resolveTargetAutostart, resolveTargetPack, resolveTargetPermissions, targetAutostartStatus, targetPermissionStatus } from './target-pack.mjs';
 import { profileStatus } from './profile-status.mjs';
+import { toPosixPath } from './output.mjs';
 
 const CONFIG_EXTENSIONS = new Set(['.json', '.md', '.plist', '.txt']);
 const SKIP_DIRS = new Set(['profiles', 'outputs']);
@@ -59,7 +60,7 @@ function scanText(file, text, rootDir) {
     const match = pattern.regex.exec(text);
     if (!match) continue;
     findings.push({
-      file: path.relative(rootDir, file),
+      file: toPosixPath(path.relative(rootDir, file)),
       rule: pattern.name,
       line: lineForOffset(text, match.index),
       sample: '[REDACTED_MATCH]'
@@ -83,7 +84,7 @@ function scanJsonValue(value, file, rootDir, jsonPath = '$') {
     const nextPath = `${jsonPath}.${key}`;
     if (SENSITIVE_KEY.test(key) && valuePresent(next)) {
       findings.push({
-        file: path.relative(rootDir, file),
+        file: toPosixPath(path.relative(rootDir, file)),
         rule: 'sensitive-json-key',
         path: nextPath,
         key,
@@ -109,7 +110,7 @@ export function scanTargetPackForSecrets(targetDir) {
         findings.push(...scanJsonValue(JSON.parse(text), file, rootDir));
       } catch {
         findings.push({
-          file: path.relative(rootDir, file),
+          file: toPosixPath(path.relative(rootDir, file)),
           rule: 'invalid-json',
           sample: '[PARSE_FAILED]'
         });
@@ -166,7 +167,7 @@ export async function auditTargetPack(targetDir, options = {}) {
       launchctl: autostart.launchctl
     },
     secrets: {
-      scannedFiles: configFiles(pack.dir).map((file) => path.relative(pack.dir, file)),
+      scannedFiles: configFiles(pack.dir).map((file) => toPosixPath(path.relative(pack.dir, file))),
       findings: secretFindings
     },
     checks

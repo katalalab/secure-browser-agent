@@ -1,5 +1,6 @@
 import path from 'node:path';
 import { findProviderBenchmarkProofs, lightpandaPublicBenchmarkDecision } from './provider-benchmark.mjs';
+import { toPosixPath } from './output.mjs';
 
 function yesNo(value) {
   return value ? 'yes' : 'no';
@@ -42,7 +43,7 @@ export function buildLightpandaGate(rootDir = process.cwd(), options = {}) {
     status: accepted ? 'accepted' : source ? 'rejected' : 'missing-proof',
     proofCount: proofs.length,
     proofPath: source?.path || '',
-    proofRelativePath: source ? path.relative(rootDir, source.path) : '',
+    proofRelativePath: source ? toPosixPath(path.relative(rootDir, source.path)) : '',
     reason: source?.decision?.reason || 'No Lightpanda public benchmark or decision proof found.',
     benchmarkCommand: command(['node', 'src/cli.mjs', 'benchmark', '--url', 'https://example.com', '--iterations', '1', '--write', '--out', 'provider-benchmarks/lightpanda-public.json', '--format', 'json']),
     decisionCommand: command(['node', 'src/cli.mjs', 'lightpanda-decision', '--decision', 'adopt', '--reason', '<benchmark-result>', '--write', '--format', 'markdown'])

@@ -4,6 +4,7 @@ import path from 'node:path';
 import { buildAgentWorkflow } from './agent-workflow.mjs';
 import { sanitizeLogLine } from './policy.mjs';
 import { publicSearchHttp } from './public-search-http.mjs';
+import { toPosixPath } from './output.mjs';
 
 const ALLOWED_COMMAND_IDS = new Set([
   'public-search',
@@ -108,7 +109,7 @@ function runsRelativePath(rootDir, filePath) {
   const resolved = path.resolve(filePath);
   const insideRuns = resolved === runsRoot || resolved.startsWith(`${runsRoot}${path.sep}`);
   if (!insideRuns) throw new Error(`invalid agent task output path: ${filePath}`);
-  return path.relative(runsRoot, resolved);
+  return toPosixPath(path.relative(runsRoot, resolved));
 }
 
 function safeStatusPath(rootDir, inputPath) {

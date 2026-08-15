@@ -3,6 +3,7 @@ import path from 'node:path';
 import { buildChromeAppleEventsStatus } from './chrome-apple-events-status.mjs';
 import { buildChromeMcpObservationStatus } from './chrome-mcp-observation.mjs';
 import { buildRegularChromeUse } from './regular-chrome-use.mjs';
+import { toPosixPath } from './output.mjs';
 
 function yesNo(value) {
   return value ? 'yes' : 'no';
@@ -57,7 +58,7 @@ function safeRunsPath(rootDir, runPath, fallback, label) {
 }
 
 function runsRelativePath(rootDir, filePath) {
-  return path.relative(path.resolve(rootDir, 'runs'), filePath);
+  return toPosixPath(path.relative(path.resolve(rootDir, 'runs'), filePath));
 }
 
 function readJsonStatus(filePath) {

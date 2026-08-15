@@ -4,6 +4,7 @@ import { buildBrowserRoute } from './browser-route.mjs';
 import { buildProviderReport } from './provider-report.mjs';
 import { buildRegularChromeStatus } from './regular-chrome-refresh.mjs';
 import { buildChromeMcpTimeoutPlanStatus } from './chrome-mcp-timeout-plan.mjs';
+import { toPosixPath } from './output.mjs';
 
 const TASKS = ['search', 'analyze', 'scrape', 'operate', 'existing-tab', 'authenticated-scrape', 'public-crawl', 'compatibility-test'];
 
@@ -62,7 +63,7 @@ function safeRunPath(rootDir, value, fallback, label) {
 }
 
 function runRelativePath(rootDir, filePath) {
-  return path.relative(path.resolve(rootDir, 'runs'), filePath);
+  return toPosixPath(path.relative(path.resolve(rootDir, 'runs'), filePath));
 }
 
 function writeJson(filePath, value) {

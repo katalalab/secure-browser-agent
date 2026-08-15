@@ -5,6 +5,7 @@ import { buildObjectiveProofPipeline } from './objective-proof-pipeline.mjs';
 import { buildProviderDoctorStatus } from './provider-doctor-status.mjs';
 import { buildReadinessAudit } from './readiness-audit.mjs';
 import { buildSecretRunSelect } from './secret-audit.mjs';
+import { toPosixPath } from './output.mjs';
 import {
   agentProofChecklistCommand,
   agentProofChecklistStatusCommand,
@@ -52,7 +53,7 @@ function rootRelativeCommandArg(rootDir, value) {
   const resolvedRoot = path.resolve(rootDir);
   const resolvedValue = path.resolve(text);
   if (resolvedValue === resolvedRoot || resolvedValue.startsWith(`${resolvedRoot}${path.sep}`)) {
-    return path.relative(resolvedRoot, resolvedValue);
+    return toPosixPath(path.relative(resolvedRoot, resolvedValue));
   }
   return text;
 }
@@ -145,7 +146,7 @@ function runsRelativePath(rootDir, filePath) {
   if (!(resolved === runsRoot || resolved.startsWith(`${runsRoot}${path.sep}`))) {
     throw new Error(`invalid agent control plane path: ${filePath}`);
   }
-  return path.relative(runsRoot, resolved);
+  return toPosixPath(path.relative(runsRoot, resolved));
 }
 
 function ageSeconds(filePath, nowMs) {
