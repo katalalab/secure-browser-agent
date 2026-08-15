@@ -164,7 +164,9 @@ export function buildLightpandaDoctor(options = {}) {
   const pathBinary = findExecutable('lightpanda', env);
   const binaryPath = configuredPath || pathBinary;
   const binaryExists = executableExists(binaryPath);
-  const cloneDir = options.cloneDir || path.join(homeDir, 'src/lightpanda-io_browser');
+  // Empty by default: the source clone is optional and its location is machine-specific.
+  // Set SBA_LIGHTPANDA_CLONE (or pass cloneDir) when you actually have one checked out.
+  const cloneDir = options.cloneDir || env.SBA_LIGHTPANDA_CLONE || '';
   const cloneExists = fs.existsSync(cloneDir);
   const downloadUrl = binaryDownloadFor(platform, arch);
   const destination = options.destination || path.join(homeDir, '.local/bin/lightpanda');

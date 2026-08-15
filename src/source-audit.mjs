@@ -1,7 +1,7 @@
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
-import { detectProviderStatus } from './provider-report.mjs';
+import { detectProviderStatus, readCloneMap } from './provider-report.mjs';
 
 export const SOURCE_TARGETS = [
   {
@@ -17,10 +17,7 @@ export const SOURCE_TARGETS = [
     label: 'vercel-labs/agent-browser',
     role: 'fast Chrome/CDP execution engine',
     posture: 'adopt',
-    candidates: ({ homeDir }) => [
-      path.join(homeDir, 'src/vercel-labs__agent-browser'),
-      path.join(homeDir, 'src/vercel-labs_agent-browser')
-    ],
+    candidates: ({ clones, id }) => [clones[id]].filter(Boolean),
     notes: 'Primary low-token browser control substrate; keep direct CDP fallback for tighter security and target-pack behavior.'
   },
   {
@@ -28,9 +25,7 @@ export const SOURCE_TARGETS = [
     label: 'Chrome DevTools MCP',
     role: 'debug and performance companion',
     posture: 'companion',
-    candidates: ({ homeDir }) => [
-      path.join(homeDir, 'work/docs/agent-routing/chrome-devtools-mcp-pilot')
-    ],
+    candidates: ({ clones, id }) => [clones[id]].filter(Boolean),
     notes: 'Use with a dedicated profile or browser URL only; do not attach to a normal Chrome profile by default.'
   },
   {
@@ -38,10 +33,10 @@ export const SOURCE_TARGETS = [
     label: 'microsoft/playwright-mcp',
     role: 'rich automation and test adapter',
     posture: 'adapter',
-    candidates: ({ rootDir, homeDir }) => [
+    candidates: ({ rootDir, clones, id }) => [
       path.resolve(rootDir, '../playwright-mcp'),
-      path.join(homeDir, 'src/microsoft_playwright-mcp')
-    ],
+      clones[id]
+    ].filter(Boolean),
     notes: 'Good for structured tests and accessibility snapshots; storage state remains sensitive.'
   },
   {
@@ -49,9 +44,7 @@ export const SOURCE_TARGETS = [
     label: 'lightpanda-io/browser',
     role: 'public crawl accelerator candidate',
     posture: 'benchmark-before-adopt',
-    candidates: ({ homeDir }) => [
-      path.join(homeDir, 'src/lightpanda-io_browser')
-    ],
+    candidates: ({ clones, id }) => [clones[id]].filter(Boolean),
     notes: 'Keep unauthenticated/public only until binary compatibility and target coverage are proven.'
   },
   {
@@ -59,11 +52,7 @@ export const SOURCE_TARGETS = [
     label: 'lightpanda agent skill',
     role: 'usage patterns for Lightpanda',
     posture: 'study',
-    candidates: ({ homeDir }) => [
-      path.join(homeDir, 'src/lightpanda-io__agent-skill'),
-      path.join(homeDir, 'src/lightpanda-io_agent-skill'),
-      path.join(homeDir, 'work/agent-skills-private/skills/lightpanda')
-    ],
+    candidates: ({ clones, id }) => [clones[id]].filter(Boolean),
     notes: 'Useful for workflow examples, not a credential-bearing browser backend by itself.'
   },
   {
@@ -71,10 +60,7 @@ export const SOURCE_TARGETS = [
     label: 'browser-use/browser-use',
     role: 'agent browser automation reference',
     posture: 'study',
-    candidates: ({ homeDir }) => [
-      path.join(homeDir, 'src/browser-use'),
-      path.join(homeDir, 'src/browser-use_browser-use')
-    ],
+    candidates: ({ clones, id }) => [clones[id]].filter(Boolean),
     notes: 'Study high-level agent patterns; avoid importing broad browser authority into authenticated target packs.'
   },
   {
@@ -82,9 +68,7 @@ export const SOURCE_TARGETS = [
     label: 'BrowserMCP/mcp',
     role: 'browser MCP reference',
     posture: 'study',
-    candidates: ({ homeDir }) => [
-      path.join(homeDir, 'src/BrowserMCP_mcp')
-    ],
+    candidates: ({ clones, id }) => [clones[id]].filter(Boolean),
     notes: 'Reference MCP ergonomics; keep this project tool surface narrower for secrets and profiles.'
   },
   {
@@ -92,9 +76,7 @@ export const SOURCE_TARGETS = [
     label: 'Skyvern-AI/skyvern',
     role: 'workflow automation reference',
     posture: 'study',
-    candidates: ({ homeDir }) => [
-      path.join(homeDir, 'src/Skyvern-AI_skyvern')
-    ],
+    candidates: ({ clones, id }) => [clones[id]].filter(Boolean),
     notes: 'Study task/workflow modeling; too broad to be the default local credential holder.'
   },
   {
@@ -102,9 +84,7 @@ export const SOURCE_TARGETS = [
     label: 'D4Vinci/Scrapling',
     role: 'scraping resilience reference',
     posture: 'study',
-    candidates: ({ homeDir }) => [
-      path.join(homeDir, 'src/D4Vinci_Scrapling')
-    ],
+    candidates: ({ clones, id }) => [clones[id]].filter(Boolean),
     notes: 'Study extraction robustness; authenticated browser state stays in dedicated Chrome profiles.'
   }
 ];
@@ -264,8 +244,10 @@ export function buildSourceAudit(options = {}) {
   const homeDir = options.homeDir || os.homedir();
   const status = options.status || detectProviderStatus({ rootDir, homeDir, env: options.env || process.env });
   const ready = readiness(status);
+  // Keyed by target id so config/local-clones.json decides where each reference clone lives.
+  const clones = options.clones || readCloneMap(rootDir, homeDir);
   const targets = SOURCE_TARGETS.map((target) => {
-    const candidates = target.candidates({ rootDir, homeDir });
+    const candidates = target.candidates({ rootDir, homeDir, clones, id: target.id });
     const paths = candidates.map((candidate) => describeSourcePath(candidate));
     const present = paths.filter((item) => item.exists);
     return {

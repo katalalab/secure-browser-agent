@@ -6,7 +6,7 @@ import path from 'node:path';
 import { buildLightpandaDoctor, formatLightpandaDoctorCompact, formatLightpandaDoctorMarkdown } from '../src/lightpanda-doctor.mjs';
 
 function makeClone(root) {
-  const cloneDir = path.join(root, 'src/lightpanda-io_browser');
+  const cloneDir = path.join(root, 'src/lightpanda');
   fs.mkdirSync(cloneDir, { recursive: true });
   fs.writeFileSync(path.join(cloneDir, 'build.zig.zon'), `
 .{
@@ -23,9 +23,10 @@ function makeClone(root) {
 
 test('lightpanda doctor reports missing binary with install and benchmark commands', () => {
   const homeDir = fs.mkdtempSync(path.join(os.tmpdir(), 'sba-lightpanda-missing-'));
-  makeClone(homeDir);
+  const cloneDir = makeClone(homeDir);
   const report = buildLightpandaDoctor({
     homeDir,
+    cloneDir,
     generatedAt: '2026-05-28T00:00:00.000Z',
     platform: 'darwin',
     arch: 'arm64',

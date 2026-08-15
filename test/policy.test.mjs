@@ -1007,7 +1007,12 @@ test('cdp recipe closes its transient Chrome profile after run', async () => {
   }, dir);
   assert.equal(result.ok, true);
 
-  const ps = spawnSync('ps', ['-axo', 'command='], { encoding: 'utf8', timeout: 3000 });
+  // `ps` does not exist on Windows, so the POSIX form fails before it can assert anything.
+  const ps = process.platform === 'win32'
+    ? spawnSync('powershell', ['-NoProfile', '-Command',
+      'Get-CimInstance Win32_Process | ForEach-Object { $_.CommandLine }'],
+    { encoding: 'utf8', timeout: 30000 })
+    : spawnSync('ps', ['-axo', 'command='], { encoding: 'utf8', timeout: 3000 });
   assert.equal(ps.status, 0);
   assert.equal(String(ps.stdout || '').includes(`--user-data-dir=${dir}`), false);
 });

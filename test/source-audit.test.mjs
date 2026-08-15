@@ -27,8 +27,8 @@ test('source path description reads manifest and git metadata without executing 
 test('source audit inventories known local browser references and readiness signals', () => {
   const homeDir = fs.mkdtempSync(path.join(os.tmpdir(), 'sba-source-home-'));
   const rootDir = path.join(homeDir, 'work/agent-tools/secure-browser-agent');
-  const agentBrowserDir = path.join(homeDir, 'src/vercel-labs__agent-browser');
-  const lightpandaDir = path.join(homeDir, 'src/lightpanda-io_browser');
+  const agentBrowserDir = path.join(homeDir, 'src/agent-browser');
+  const lightpandaDir = path.join(homeDir, 'src/lightpanda');
   writeRepo(rootDir, { name: 'secure-browser-agent', version: '0.1.0', private: true });
   writeRepo(agentBrowserDir, { name: 'agent-browser', version: '0.27.0' });
   fs.mkdirSync(lightpandaDir, { recursive: true });
@@ -39,6 +39,10 @@ test('source audit inventories known local browser references and readiness sign
     homeDir,
     generatedAt: '2026-05-28T00:00:00.000Z',
     env: { PATH: '' },
+    clones: {
+      'agent-browser': agentBrowserDir,
+      'lightpanda-browser': lightpandaDir
+    },
     status: {
       agentBrowser: { exists: true },
       chromeForTesting: { exists: true },

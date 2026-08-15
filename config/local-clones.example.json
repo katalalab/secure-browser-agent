@@ -1,0 +1,10 @@
+{
+  "_comment": "Copy to config/local-clones.json (gitignored) or point SBA_LOCAL_CLONES at your own file. Machine-local reference clones only - never commit real paths, they describe your filesystem.",
+  "roots": [
+    "~/src"
+  ],
+  "paths": [
+    "~/src/playwright-mcp",
+    "~/src/agent-browser"
+  ]
+}

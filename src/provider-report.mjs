@@ -209,6 +209,24 @@ function newestChromeForTesting(homeDir) {
     .find((candidate) => fs.existsSync(candidate)) || '';
 }
 
+export function readCloneMap(rootDir, homeDir) {
+  const configPath = process.env.SBA_LOCAL_CLONES
+    || path.join(rootDir, 'config', 'local-clones.json');
+  if (!fs.existsSync(configPath)) return {};
+  let parsed;
+  try {
+    parsed = JSON.parse(fs.readFileSync(configPath, 'utf8'));
+  } catch {
+    return {};
+  }
+  const entries = parsed.clones && typeof parsed.clones === 'object' ? parsed.clones : {};
+  return Object.fromEntries(Object.entries(entries).map(([key, value]) => {
+    const raw = String(value || '');
+    const fromHome = raw.startsWith('~/') ? path.join(homeDir, raw.slice(2)) : raw;
+    return [key, raw ? path.resolve(fromHome) : ''];
+  }));
+}
+
 export function detectProviderStatus({ rootDir = process.cwd(), homeDir = os.homedir(), env = process.env } = {}) {
   const agentBrowser = commandVersion('agent-browser', ['--version'], env);
   const lightpanda = executableStatus('lightpanda', env.SBA_LIGHTPANDA_PATH || '', env);
@@ -216,14 +234,10 @@ export function detectProviderStatus({ rootDir = process.cwd(), homeDir = os.hom
   const playwrightCore = path.resolve(rootDir, '../playwright-mcp/node_modules/playwright-core/index.js');
   const seleniumWebdriver = path.resolve(rootDir, 'node_modules/selenium-webdriver/package.json');
   const chromeForTesting = newestChromeForTesting(homeDir);
-  const clones = {
-    agentBrowser: path.join(homeDir, 'src/vercel-labs__agent-browser'),
-    browserUse: path.join(homeDir, 'src/browser-use'),
-    lightpanda: path.join(homeDir, 'src/lightpanda-io_browser'),
-    browserMcp: path.join(homeDir, 'src/BrowserMCP_mcp'),
-    skyvern: path.join(homeDir, 'src/Skyvern-AI_skyvern'),
-    scrapling: path.join(homeDir, 'src/D4Vinci_Scrapling')
-  };
+  // Reference-clone locations belong to the machine, not to this tool. They used to be one
+  // developer's absolute paths, so every other checkout reported "clone missing" for all of them.
+  // Shape: { "clones": { "lightpanda": "~/src/lightpanda" } } - see config/local-clones.example.json.
+  const clones = readCloneMap(rootDir, homeDir);
 
   return {
     agentBrowser,

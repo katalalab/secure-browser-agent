@@ -181,26 +181,32 @@ function describeLocalRepo(repoDir) {
   };
 }
 
-function defaultLocalRoots(homeDir) {
-  return [
-    path.join(homeDir, 'src'),
-    path.join(homeDir, 'src')
-  ];
-}
-
-function defaultLocalCandidatePaths(homeDir) {
-  return [
-    path.join(homeDir, 'src/vendor-stars/AgentDeskAI/browser-tools-mcp'),
-    path.join(homeDir, 'src/agent-skill'),
-    path.join(homeDir, 'src/vendor-stars/aghyad97/browserytools'),
-    path.join(homeDir, 'src/browser-use'),
-    path.join(homeDir, 'src/vercel-labs_agent-browser'),
-    path.join(homeDir, 'src/browser-use_browser-use'),
-    path.join(homeDir, 'src/lightpanda-io_browser'),
-    path.join(homeDir, 'src/microsoft_playwright-mcp'),
-    path.join(homeDir, 'src/BrowserMCP_mcp'),
-    path.join(homeDir, 'src/Skyvern-AI_skyvern')
-  ];
+// Where a machine keeps its reference clones is a property of that machine, not of this tool.
+// These used to be one developer's absolute paths, which meant every other checkout scanned
+// directories that do not exist and silently reported "no local clones".
+// Config file shape: { "roots": ["~/src"], "paths": ["~/src/some-repo"] } - see
+// config/local-clones.example.json. Missing or unreadable config means "no local clones
+// configured", which is different from "scanned and found none".
+function readLocalCloneConfig(rootDir, homeDir) {
+  const configPath = process.env.SBA_LOCAL_CLONES
+    || path.join(rootDir, 'config', 'local-clones.json');
+  if (!fs.existsSync(configPath)) return { roots: [], paths: [] };
+  let parsed;
+  try {
+    parsed = JSON.parse(fs.readFileSync(configPath, 'utf8'));
+  } catch {
+    return { roots: [], paths: [] };
+  }
+  const expand = (entry) => {
+    const value = String(entry || '');
+    if (!value) return '';
+    const fromHome = value.startsWith('~/') ? path.join(homeDir, value.slice(2)) : value;
+    return path.resolve(fromHome);
+  };
+  return {
+    roots: (Array.isArray(parsed.roots) ? parsed.roots : []).map(expand).filter(Boolean),
+    paths: (Array.isArray(parsed.paths) ? parsed.paths : []).map(expand).filter(Boolean)
+  };
 }
 
 function localCloneCandidates({ localRoots, localPaths, limit, scanLocalRoots = false }) {
@@ -266,8 +272,9 @@ export function buildGithubRepoResearch(options = {}) {
   const limit = Number(options.limit || 12);
   const queries = options.queries || DEFAULT_QUERIES;
   const runner = options.ghRunner || defaultGhRunner;
-  const localRoots = options.localRoots || defaultLocalRoots(homeDir);
-  const localPaths = options.localPaths || defaultLocalCandidatePaths(homeDir);
+  const localClones = readLocalCloneConfig(rootDir, homeDir);
+  const localRoots = options.localRoots || localClones.roots;
+  const localPaths = options.localPaths || localClones.paths;
   const includeGithub = options.includeGithub !== false;
   const popular = includeGithub ? githubPopularRepos({ queries, limit, runner }) : [];
   const starred = includeGithub ? githubStarredRepos({ limit, runner }) : [];
