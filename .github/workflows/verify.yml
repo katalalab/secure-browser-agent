@@ -17,12 +17,12 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  verify:
+  matrix-verify:
     # Windows-only path-separator failures stayed invisible while CI was ubuntu-only (#25).
     # The CLI emits paths into runs/ artifacts, so every supported OS has to be exercised.
     name: verify (${{ matrix.os }})
     runs-on: ${{ matrix.os }}
-    timeout-minutes: 10
+    timeout-minutes: 15
 
     strategy:
       fail-fast: false
@@ -46,3 +46,19 @@ jobs:
 
       - name: CI verify
         run: npm run verify:ci
+
+  # Branch protection requires a check literally named "verify". Without this aggregate the
+  # matrix would only publish "verify (ubuntu-latest)" and friends, and every PR would stay
+  # blocked forever waiting for a context that no longer exists.
+  verify:
+    name: verify
+    if: always()
+    needs: matrix-verify
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Require every matrix leg to pass
+        run: |
+          result='${{ needs.matrix-verify.result }}'
+          echo "matrix result: $result"
+          test "$result" = "success"

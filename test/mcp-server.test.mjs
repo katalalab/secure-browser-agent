@@ -976,7 +976,11 @@ test('mcp server calls read-only runtime cleanup and Lightpanda doctor tools', a
 });
 
 test('mcp server can return compact text while preserving structured content', async () => {
-  const control = await handleMcpMessage({
+  const testTmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'sba-mcp-server-'));
+  const oldEnv = process.env.SBA_ROOT_DIR;
+  process.env.SBA_ROOT_DIR = testTmpDir;
+  try {
+    const control = await handleMcpMessage({
     jsonrpc: '2.0',
     id: 15,
     method: 'tools/call',
@@ -2080,6 +2084,10 @@ test('mcp server returns compact objective handoff text without dropping structu
   assert.match(response.result.content[0].text, /^primary: primary-action$/m);
   assert.match(response.result.content[0].text, /^secret_values_read: no$/m);
   assert.equal(response.result.structuredContent.safeMode, true);
+  } finally {
+    process.env.SBA_ROOT_DIR = oldEnv;
+    fs.rmSync(testTmpDir, { recursive: true, force: true });
+  }
 });
 
 test('mcp server returns protocol errors for unknown methods and tools', async () => {

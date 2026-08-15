@@ -45,7 +45,7 @@ function safeRunRelativePath(outPath, fallback, label) {
   if (normalized === '..' || normalized.startsWith(`..${path.sep}`) || path.isAbsolute(normalized)) {
     throw new Error(`invalid regular Chrome refresh ${label} path: ${outPath}`);
   }
-  return normalized;
+  return toPosixPath(normalized);
 }
 
 function safeRunsPath(rootDir, runPath, fallback, label) {

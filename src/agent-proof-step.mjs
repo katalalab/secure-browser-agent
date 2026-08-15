@@ -244,7 +244,8 @@ export async function buildAgentProofStep(options = {}) {
     rootDir,
     generatedAt
   });
-  const targetDir = options.targetDir || targetDirFromAudit(audit);
+  const targetDirRaw = options.targetDir || targetDirFromAudit(audit);
+  const targetDir = targetDirRaw && !path.isAbsolute(targetDirRaw) ? path.join(rootDir, targetDirRaw) : targetDirRaw;
   const handoff = options.handoff || valueAfter(audit.nextAction?.command?.args || audit.executionPolicy?.agentSafeCommand?.args || [], '--handoff', 'operator-handoff.json');
   const outPath = safeRunPath(rootDir, options.out || options.output);
   const outRelative = runsRelativePath(rootDir, outPath);
@@ -272,15 +273,15 @@ export async function buildAgentProofStep(options = {}) {
   ]);
   const statusCommand = command(['node', 'src/cli.mjs', 'control-status', ...loopArgs, '--format', 'compact']);
   const watchBuilder = options.handoffResumeWatchBuilder || buildTargetHandoffResumeWatch;
-  const watch = targetDir
-    ? options.handoffResumeWatch || await watchBuilder(targetDir, {
+  const watch = targetDir && !options.handoffResumeWatch && run
+    ? await watchBuilder(targetDir, {
         ...options,
         rootDir,
         generatedAt,
         handoff,
         run: false
       })
-    : null;
+    : options.handoffResumeWatch || null;
   const authWatchUnavailable = audit.executionPolicy?.authWatchHandoffPortReachable === false
     || audit.executionPolicy?.agentSafeCommandBlockedReason === 'handoff-auth-check-port-unreachable';
   const rawSelected = watch?.selectedCommand || {};

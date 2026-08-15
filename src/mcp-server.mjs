@@ -2330,7 +2330,8 @@ export function listMcpTools() {
 }
 
 export async function callMcpTool(name, args = {}) {
-  const rootDir = process.cwd();
+  // Allow tests to override rootDir via env; production uses cwd to prevent test remnants polluting repo
+  const rootDir = process.env.SBA_ROOT_DIR || process.cwd();
   const useCache = canUseReadOnlyMcpCache(args);
 
   if (name === 'sba_control_status') {
