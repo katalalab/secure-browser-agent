@@ -1,6 +1,10 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { handleMcpMessage, listMcpTools, MCP_PROTOCOL_VERSION } from '../src/mcp-server.mjs';
+import fs from 'node:fs';
+import path from 'node:path';
+import os from 'node:os';
+import { scaffoldTargetPack } from '../src/target-pack.mjs';
 
 test('mcp server initializes with tool capability', async () => {
   const response = await handleMcpMessage({
@@ -979,6 +983,16 @@ test('mcp server can return compact text while preserving structured content', a
   const testTmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'sba-mcp-server-'));
   const oldEnv = process.env.SBA_ROOT_DIR;
   process.env.SBA_ROOT_DIR = testTmpDir;
+  const targetPack = scaffoldTargetPack({
+    outputDir: path.join(testTmpDir, 'runs'),
+    redactKeys: ['authorization', 'cookie', 'password', 'token', 'secret'],
+    maxEvalBytes: 12000
+  }, {
+    name: 'github',
+    origins: 'https://github.com',
+    loginUrl: 'https://github.com/login',
+    pageUrl: 'https://github.com/'
+  });
   try {
     const control = await handleMcpMessage({
     jsonrpc: '2.0',
@@ -1485,7 +1499,7 @@ test('mcp server can return compact text while preserving structured content', a
     params: {
       name: 'sba_target_proof_plan',
       arguments: {
-        targetDir: 'runs/target-packs/github',
+        targetDir: targetPack.dir,
         realExternal: true,
         format: 'compact'
       }
@@ -1984,6 +1998,10 @@ test('mcp server can return compact text while preserving structured content', a
   assert.match(proofNext.result.content[0].text, /^missing_artifacts: /m);
   assert.match(proofNext.result.content[0].text, /^secret_values_read: no$/m);
   assert.equal(proofNext.result.structuredContent.safeMode, true);
+  } finally {
+    process.env.SBA_ROOT_DIR = oldEnv;
+    fs.rmSync(testTmpDir, { recursive: true, force: true });
+  }
 });
 
 test('mcp server reuses read-only status cache within ttl', async () => {
@@ -2084,10 +2102,6 @@ test('mcp server returns compact objective handoff text without dropping structu
   assert.match(response.result.content[0].text, /^primary: primary-action$/m);
   assert.match(response.result.content[0].text, /^secret_values_read: no$/m);
   assert.equal(response.result.structuredContent.safeMode, true);
-  } finally {
-    process.env.SBA_ROOT_DIR = oldEnv;
-    fs.rmSync(testTmpDir, { recursive: true, force: true });
-  }
 });
 
 test('mcp server returns protocol errors for unknown methods and tools', async () => {

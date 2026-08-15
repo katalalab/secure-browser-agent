@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { buildProofGateStatus } from './proof-gate-status.mjs';
+import { toPosixPath } from './output.mjs';
 
 function compactValue(value, fallback = 'none') {
   const text = String(value ?? '').replace(/\s+/g, ' ').trim();
@@ -80,7 +81,7 @@ export async function buildProofGateWatch(options = {}) {
   const sleeper = options.sleep || sleep;
   const statusBuilder = options.statusBuilder || buildProofGateStatus;
   const writeWatch = Boolean(options.write || options.out || options.output);
-  const outputPath = writeWatch ? safeRunPath(rootDir, options.out || options.output) : '';
+  const outputPath = writeWatch ? toPosixPath(safeRunPath(rootDir, options.out || options.output)) : '';
   const writeStatus = Boolean(options.writeStatus || options['write-status']);
   const statusOut = options.statusOut || options['status-out'] || 'operator/proof-gate-status-latest.json';
   const startedAtMs = now();
@@ -143,7 +144,7 @@ export function formatProofGateWatchCompact(report) {
     `secret_values_read: ${yesNo(report.secretValuesRead)}`,
     `destructive_actions: ${yesNo(report.destructiveActionsIncluded)}`
   ];
-  if (report.outputPath) lines.push(`output_path: ${report.outputPath}`);
+  if (report.outputPath) lines.push(`output_path: ${toPosixPath(report.outputPath)}`);
   if (report.nextAction?.command?.shell) lines.push(`command: ${report.nextAction.command.shell}`);
   return `${lines.join('\n')}\n`;
 }

@@ -1,6 +1,7 @@
 import { spawnSync } from 'node:child_process';
 import fs from 'node:fs';
 import path from 'node:path';
+import { toPosixPath } from './output.mjs';
 
 function clean(value, fallback = '') {
   const text = String(value ?? '').replace(/\s+/g, ' ').trim();
@@ -414,7 +415,7 @@ export function formatChromeAppleEventsStatusCompact(status) {
     `next_action: ${status.nextAction}`
   ];
   if (status.javascript.error) lines.push(`javascript_error: ${status.javascript.error}`);
-  if (status.outputPath) lines.push(`output: ${status.outputPath}`);
+  if (status.outputPath) lines.push(`output: ${toPosixPath(status.outputPath)}`);
   return `${lines.join('\n')}\n`;
 }
 
@@ -456,7 +457,7 @@ export function formatChromeAppleEventsOutlineCompact(result) {
     `approval_command: ${result.approvalCommand.shell}`
   ];
   if (result.blockedReason) lines.push(`blocked_reason: ${result.blockedReason}`);
-  if (result.outputPath) lines.push(`output: ${result.outputPath}`);
+  if (result.outputPath) lines.push(`output: ${toPosixPath(result.outputPath)}`);
   return `${lines.join('\n')}\n`;
 }
 

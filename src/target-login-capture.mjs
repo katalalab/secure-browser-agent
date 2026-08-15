@@ -203,8 +203,7 @@ function writeHandoff(policy, result, options = {}) {
   } else {
     throw new Error(`unsupported handoff format: ${format}`);
   }
-  const rootDir = path.resolve(policy.outputDir, '..');
-  return toPosixPath(path.relative(rootDir, target));
+  return toPosixPath(target);
 }
 
 function normalizeOptions(options = {}) {
@@ -267,7 +266,7 @@ export async function buildTargetLoginCapture(targetDir, options = {}) {
   fs.mkdirSync(targetProfilePath, { recursive: true });
   const opener = normalized.opener || openCdpProfile;
   const captureBuilder = normalized.captureBuilder || buildTargetProofCapture;
-  result.login = await opener(target.loginUrl, targetProfilePath, { headed: true });
+  result.login = await opener(target.loginUrl, toPosixPath(targetProfilePath), { headed: true });
   if (result.login?.port) {
     result.captureCommand = buildCaptureCommand(target, normalized, ['--auth-check-port', String(result.login.port)]);
     result.handoff = buildHandoff({ ...target, realExternal: normalized.realExternal }, result.captureCommand);

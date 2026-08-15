@@ -5,6 +5,7 @@ import { buildBackgroundProofCapturePlan } from './background-proof-capture-plan
 import { buildBackgroundProofCaptureStart } from './background-proof-capture-start.mjs';
 import { buildTargetHandoffResumeWatch } from './target-handoff-run.mjs';
 import { buildAgentProofStepStart } from './agent-proof-step.mjs';
+import { toPosixPath } from './output.mjs';
 
 function compactValue(value) {
   if (value === undefined || value === null || value === '') return 'none';
@@ -585,6 +586,6 @@ export function formatObjectiveSafeCommandCompact(result) {
     lines.push(`target_approval_resume_watch_command: ${result.targetApproval.resumeWatchCommand.shell}`);
   }
   if (result.targetApproval?.resumeRunCommand?.shell) lines.push(`target_approval_resume_run_command: ${result.targetApproval.resumeRunCommand.shell}`);
-  if (result.outputPath) lines.push(`output: ${result.outputPath}`);
+  if (result.outputPath) lines.push(`output: ${toPosixPath(result.outputPath)}`);
   return `${lines.join('\n')}\n`;
 }

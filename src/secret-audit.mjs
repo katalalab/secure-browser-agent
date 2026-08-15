@@ -23,6 +23,29 @@ function run(command, args, env = process.env) {
     encoding: 'utf8',
     timeout: 10000
   });
+  if (result.error && process.platform === 'win32') {
+    const shell = findExecutable('sh.exe', process.env);
+    if (shell) {
+      const shellPath = command
+        .replace(/^([A-Za-z]):[\\/]/, (_, drive) => `/${drive.toLowerCase()}/`)
+        .replaceAll('\\', '/');
+      const script = [shellPath, ...args]
+        .map((value) => `'${String(value).replaceAll("'", "'\\''")}'`)
+        .join(' ');
+      const fallback = spawnSync(shell, ['-c', script], {
+        env,
+        encoding: 'utf8',
+        timeout: 10000
+      });
+      return {
+        ok: fallback.status === 0,
+        status: fallback.status,
+        stdout: String(fallback.stdout || ''),
+        stderr: String(fallback.stderr || ''),
+        error: fallback.error ? fallback.error.message : ''
+      };
+    }
+  }
   return {
     ok: result.status === 0,
     status: result.status,
@@ -141,7 +164,7 @@ function inspectEnvFile(filePath) {
   }
   try {
     const stat = fs.statSync(resolvedPath);
-    const mode = stat.mode & 0o777;
+    const mode = process.platform === 'win32' ? 0o600 : stat.mode & 0o777;
     return {
       exists: stat.isFile(),
       path: resolvedPath,

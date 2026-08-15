@@ -182,7 +182,7 @@ function writeWaitAuthStatus(plan, waitAuth, options = {}) {
   const out = waitAuthStatusOut(options);
   if (!out) return '';
   const outputPath = targetOutputPath(plan, out);
-  waitAuth.outputPath = outputPath;
+  waitAuth.outputPath = toPosixPath(outputPath);
   const payload = {
     schemaVersion: 1,
     generatedAt: new Date().toISOString(),
@@ -198,7 +198,7 @@ function writeWaitAuthStatus(plan, waitAuth, options = {}) {
   };
   fs.mkdirSync(path.dirname(outputPath), { recursive: true });
   fs.writeFileSync(outputPath, `${JSON.stringify(payload, null, 2)}\n`, 'utf8');
-  const rootDir = plan.rootDir || path.resolve(path.dirname(path.dirname(plan.targetDir)));
+  const rootDir = plan.rootDir || path.resolve(path.dirname(path.dirname(plan.dir)));
   return toPosixPath(path.relative(path.resolve(rootDir), outputPath));
 }
 
