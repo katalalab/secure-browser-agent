@@ -245,7 +245,7 @@ export async function buildAgentProofStep(options = {}) {
     generatedAt
   });
   const targetDirRaw = options.targetDir || targetDirFromAudit(audit);
-  const targetDir = targetDirRaw && !path.isAbsolute(targetDirRaw) ? path.join(rootDir, targetDirRaw) : targetDirRaw;
+  const targetDir = targetDirRaw;
   const handoff = options.handoff || valueAfter(audit.nextAction?.command?.args || audit.executionPolicy?.agentSafeCommand?.args || [], '--handoff', 'operator-handoff.json');
   const outPath = safeRunPath(rootDir, options.out || options.output);
   const outRelative = runsRelativePath(rootDir, outPath);

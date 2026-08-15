@@ -436,7 +436,7 @@ export function resolveTargetRun(targetDir, recipeName = 'outline', options = {}
   return {
     dir: pack.dir,
     policy: pack.policy,
-    recipe,
+    recipe: toPosixPath(recipe),
     recipeName,
     profile: options.profile || pack.targetPolicy.defaultProfile || path.basename(pack.dir),
     out: options.out || defaults.out,

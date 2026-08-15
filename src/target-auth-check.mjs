@@ -207,13 +207,14 @@ export async function buildTargetAuthCheck(targetDir, options = {}) {
   report.nextAction = nextActionFor(report, pack.dir, policy, options);
   const statusOutput = statusOut(options);
   if (statusOutput) {
-    report.statusPath = safeOutputPath(policy, statusOutput);
-    const statusPathForOutput = toPosixPath(path.relative(policy.rootDir, report.statusPath));
-    writeJson(report.statusPath, report);
+    const statusPath = safeOutputPath(policy, statusOutput);
+    report.statusPath = toPosixPath(statusPath);
+    writeJson(statusPath, report);
   }
   if (options.write) {
-    report.proofPath = path.join(pack.dir, 'proof', 'auth-check.json');
-    writeJson(report.proofPath, report);
+    const proofPath = path.join(pack.dir, 'proof', 'auth-check.json');
+    report.proofPath = toPosixPath(proofPath);
+    writeJson(proofPath, report);
   }
   return report;
 }
