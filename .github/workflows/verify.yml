@@ -23,7 +23,9 @@ jobs:
     # into runs/ artifacts and resolves Chrome per platform, so every supported OS runs here.
     name: verify (${{ matrix.os }})
     runs-on: ${{ matrix.os }}
-    timeout-minutes: 15
+    # Windows spends far longer launching Chrome per CDP test than the other two; the run
+    # was being cancelled at exactly 15 minutes while ubuntu finished in one.
+    timeout-minutes: 40
 
     strategy:
       fail-fast: false
