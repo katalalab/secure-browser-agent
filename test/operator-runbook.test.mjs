@@ -3,6 +3,7 @@ import os from 'node:os';
 import path from 'node:path';
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import { toPosixPath } from '../src/output.mjs';
 import { buildOperatorRunbook, buildOperatorRunbookStatus, buildOperatorRunbookWatch, formatOperatorRunbookCompact, formatOperatorRunbookMarkdown, formatOperatorRunbookStatusCompact, formatOperatorRunbookWatchCompact } from '../src/operator-runbook.mjs';
 
 function operatorPackFixture(rootDir) {
@@ -960,14 +961,14 @@ test('operator runbook write refreshes operator pack child files by default', as
       ...packBuilderFixtures(rootDir)
     });
 
-    assert.equal(runbook.files.operatorPack, path.join(rootDir, 'runs/operator/operator-pack-latest.json'));
-    assert.equal(runbook.files.loginHandoffStatus, path.join(rootDir, 'runs/operator/login-handoff-status-latest.json'));
-    assert.equal(runbook.files.browserRoute, path.join(rootDir, 'runs/operator/browser-route-latest.json'));
-    assert.equal(runbook.files.backendMatrix, path.join(rootDir, 'runs/operator/backend-matrix-latest.json'));
-    assert.equal(runbook.files.backgroundProofCapturePlan, path.join(rootDir, 'runs/operator/background-proof-capture-plan-latest.json'));
-    assert.equal(runbook.files.backgroundProofCaptureStatus, path.join(rootDir, 'runs/operator/background-proof-capture-status-latest.json'));
-    assert.equal(runbook.files.agentProofChecklist, path.join(rootDir, 'runs/operator/agent-proof-checklist-latest.json'));
-    assert.equal(runbook.files.agentProofCloseout, path.join(rootDir, 'runs/operator/agent-proof-closeout-latest.json'));
+    assert.equal(runbook.files.operatorPack, toPosixPath(path.join(rootDir, 'runs/operator/operator-pack-latest.json')));
+    assert.equal(runbook.files.loginHandoffStatus, toPosixPath(path.join(rootDir, 'runs/operator/login-handoff-status-latest.json')));
+    assert.equal(runbook.files.browserRoute, toPosixPath(path.join(rootDir, 'runs/operator/browser-route-latest.json')));
+    assert.equal(runbook.files.backendMatrix, toPosixPath(path.join(rootDir, 'runs/operator/backend-matrix-latest.json')));
+    assert.equal(runbook.files.backgroundProofCapturePlan, toPosixPath(path.join(rootDir, 'runs/operator/background-proof-capture-plan-latest.json')));
+    assert.equal(runbook.files.backgroundProofCaptureStatus, toPosixPath(path.join(rootDir, 'runs/operator/background-proof-capture-status-latest.json')));
+    assert.equal(runbook.files.agentProofChecklist, toPosixPath(path.join(rootDir, 'runs/operator/agent-proof-checklist-latest.json')));
+    assert.equal(runbook.files.agentProofCloseout, toPosixPath(path.join(rootDir, 'runs/operator/agent-proof-closeout-latest.json')));
     assert.equal(fs.existsSync(runbook.files.operatorPack), true);
     assert.equal(fs.existsSync(runbook.files.loginHandoffStatus), true);
     assert.equal(fs.existsSync(runbook.files.browserRoute), true);

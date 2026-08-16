@@ -1918,9 +1918,16 @@ export async function buildOperatorPack(options = {}) {
     command: agentNextCommand
   };
 
+  // Reported file paths are CLI contract - they land in runs/ JSON, get compared across
+  // machines and pasted back as arguments - so they are normalised in one place rather than
+  // at each of the two dozen assignment sites. fs still accepts forward slashes on Windows.
+  for (const [key, value] of Object.entries(files)) {
+    if (typeof value === 'string' && value) files[key] = toPosixPath(value);
+  }
+
   if (write) {
     const outputPath = safeRunPath(rootDir, options.out || options.output);
-    files.operatorPack = outputPath;
+    files.operatorPack = toPosixPath(outputPath);
     writeJson(outputPath, pack);
   }
 

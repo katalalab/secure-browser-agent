@@ -2,11 +2,27 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { toPosixPath } from '../src/output.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { buildOperatorPack, buildOperatorPackStatus, formatOperatorPackCompact, formatOperatorPackMarkdown, formatOperatorPackStatusCompact } from '../src/operator-pack.mjs';
 
 const projectRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+
+// Provider detection reads the real machine, so the default backend flipped to
+// agent-browser-chrome on any box without a Chrome for Testing cache. Pin the inputs so the
+// assertions describe this code's behaviour rather than the developer's install state.
+const PROVIDER_OPTIONS = {
+  status: {
+    agentBrowser: { exists: true },
+    chromeForTesting: { exists: true, path: '/pinned/chrome-for-testing' },
+    secureBrowserAgentMcp: { exists: true },
+    playwright: { coreExists: false },
+    lightpanda: { binaryExists: false, binaryPath: '' },
+    selenium: { webdriverPackageExists: false },
+    localClones: {}
+  }
+};
 
 function fixtures(rootDir) {
   const command = {
@@ -34,6 +50,7 @@ function fixtures(rootDir) {
     args: ['node', 'src/cli.mjs', 'agent-loop-step', '--run', '--write', '--out', 'operator/agent-loop-step-latest.json', '--timeout-ms', '300000', '--format', 'compact']
   };
   return {
+    providerOptions: PROVIDER_OPTIONS,
     controlStatus: {
       complete: false,
       safeMode: true,
@@ -701,23 +718,24 @@ test('operator pack summarizes handoff, proof gate, and monitor files without se
     assert.equal(pack.secrets.mutatesOnePasswordNow, false);
     assert.equal(pack.secretValuesRead, false);
     assert.equal(pack.destructiveActionsIncluded, false);
-    assert.equal(pack.files.operatorPack, path.join(rootDir, 'runs/operator/pack.json'));
-    assert.equal(pack.files.loginHandoffStatus, path.join(rootDir, 'runs/operator/login-handoff-status-latest.json'));
-    assert.equal(pack.files.agentLoopStepStatus, path.join(rootDir, 'runs/operator/agent-loop-step-latest.json'));
-    assert.equal(pack.files.browserRoute, path.join(rootDir, 'runs/operator/browser-route-latest.json'));
-    assert.equal(pack.files.backendMatrix, path.join(rootDir, 'runs/operator/backend-matrix-latest.json'));
-    assert.equal(pack.files.chromeExtensionTroubleshoot, path.join(rootDir, 'runs/operator/chrome-extension-troubleshoot-latest.json'));
-    assert.equal(pack.files.chromeExtensionBackendCheckPlan, path.join(rootDir, 'runs/operator/chrome-extension-backend-check-plan-latest.json'));
-    assert.equal(pack.files.chromeExtensionClaimPlan, path.join(rootDir, 'runs/operator/chrome-extension-claim-plan-latest.json'));
-    assert.equal(pack.files.chromeMcpTimeoutPlan, path.join(rootDir, 'runs/operator/chrome-mcp-timeout-plan-latest.json'));
-    assert.equal(pack.files.backgroundProofCapturePlan, path.join(rootDir, 'runs/operator/background-proof-capture-plan-latest.json'));
-    assert.equal(pack.files.backgroundProofCaptureStatus, path.join(rootDir, 'runs/operator/background-proof-capture-status-latest.json'));
-    assert.equal(pack.files.backgroundProofCaptureStart, path.join(rootDir, 'runs/operator/background-proof-capture-start-latest.json'));
-    assert.equal(pack.files.backgroundProofMonitorStart, path.join(rootDir, 'runs/operator/background-auth-monitor-start-latest.json'));
-    assert.equal(pack.files.objectiveProofPipeline, path.join(rootDir, 'runs/operator/objective-proof-pipeline-latest.json'));
-    assert.equal(pack.files.objectiveSafeCommand, path.join(rootDir, 'runs/operator/objective-safe-command-latest.json'));
-    assert.equal(pack.files.agentProofChecklist, path.join(rootDir, 'runs/operator/agent-proof-checklist-latest.json'));
-    assert.equal(pack.files.agentProofCloseout, path.join(rootDir, 'runs/operator/agent-proof-closeout-latest.json'));
+    // Reported paths are POSIX by contract; the same value is still readable by fs below.
+    assert.equal(pack.files.operatorPack, toPosixPath(path.join(rootDir, 'runs/operator/pack.json')));
+    assert.equal(pack.files.loginHandoffStatus, toPosixPath(path.join(rootDir, 'runs/operator/login-handoff-status-latest.json')));
+    assert.equal(pack.files.agentLoopStepStatus, toPosixPath(path.join(rootDir, 'runs/operator/agent-loop-step-latest.json')));
+    assert.equal(pack.files.browserRoute, toPosixPath(path.join(rootDir, 'runs/operator/browser-route-latest.json')));
+    assert.equal(pack.files.backendMatrix, toPosixPath(path.join(rootDir, 'runs/operator/backend-matrix-latest.json')));
+    assert.equal(pack.files.chromeExtensionTroubleshoot, toPosixPath(path.join(rootDir, 'runs/operator/chrome-extension-troubleshoot-latest.json')));
+    assert.equal(pack.files.chromeExtensionBackendCheckPlan, toPosixPath(path.join(rootDir, 'runs/operator/chrome-extension-backend-check-plan-latest.json')));
+    assert.equal(pack.files.chromeExtensionClaimPlan, toPosixPath(path.join(rootDir, 'runs/operator/chrome-extension-claim-plan-latest.json')));
+    assert.equal(pack.files.chromeMcpTimeoutPlan, toPosixPath(path.join(rootDir, 'runs/operator/chrome-mcp-timeout-plan-latest.json')));
+    assert.equal(pack.files.backgroundProofCapturePlan, toPosixPath(path.join(rootDir, 'runs/operator/background-proof-capture-plan-latest.json')));
+    assert.equal(pack.files.backgroundProofCaptureStatus, toPosixPath(path.join(rootDir, 'runs/operator/background-proof-capture-status-latest.json')));
+    assert.equal(pack.files.backgroundProofCaptureStart, toPosixPath(path.join(rootDir, 'runs/operator/background-proof-capture-start-latest.json')));
+    assert.equal(pack.files.backgroundProofMonitorStart, toPosixPath(path.join(rootDir, 'runs/operator/background-auth-monitor-start-latest.json')));
+    assert.equal(pack.files.objectiveProofPipeline, toPosixPath(path.join(rootDir, 'runs/operator/objective-proof-pipeline-latest.json')));
+    assert.equal(pack.files.objectiveSafeCommand, toPosixPath(path.join(rootDir, 'runs/operator/objective-safe-command-latest.json')));
+    assert.equal(pack.files.agentProofChecklist, toPosixPath(path.join(rootDir, 'runs/operator/agent-proof-checklist-latest.json')));
+    assert.equal(pack.files.agentProofCloseout, toPosixPath(path.join(rootDir, 'runs/operator/agent-proof-closeout-latest.json')));
     const written = JSON.parse(fs.readFileSync(pack.files.operatorPack, 'utf8'));
     const writtenRoute = JSON.parse(fs.readFileSync(pack.files.browserRoute, 'utf8'));
     const writtenBackendMatrix = JSON.parse(fs.readFileSync(pack.files.backendMatrix, 'utf8'));

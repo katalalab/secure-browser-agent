@@ -1808,7 +1808,11 @@ test('mcp server can return compact text while preserving structured content', a
     assert.match(objectiveNext.result.content[0].text, /^manual_handoff_resume_watch_starts_capture: yes$/m);
     assert.match(objectiveNext.result.content[0].text, /^manual_handoff_resume_watch_command: .*'--monitor-timeout-ms' '10000'.*'--monitor-interval-ms' '1000'/m);
   } else {
-    assert.match(objectiveNext.result.content[0].text, /^manual_login_capture_wait_requires_operator_approval: yes$/m);
+    // manual_* keys only appear for handoff-capture/handoff-resume states. This fixture is in
+    // waiting-for-login, so assert the approval gate the state actually publishes.
+    assert.match(objectiveNext.result.content[0].text, /^human_action: run-login-capture-wait$/m);
+    assert.match(objectiveNext.result.content[0].text, /^primary_requires_operator_approval: yes$/m);
+    assert.match(objectiveNext.result.content[0].text, /^agent_must_not_run_primary_unattended: yes$/m);
     assert.doesNotMatch(objectiveNext.result.content[0].text, /^manual_handoff_resume_watch_command: /m);
   }
   assert.equal(objectiveNext.result.structuredContent.safeMode, true);
@@ -1828,7 +1832,10 @@ test('mcp server can return compact text while preserving structured content', a
   if (/^manual_handoff_resume_watch_command: /m.test(objectiveHandoff.result.content[0].text)) {
     assert.match(objectiveHandoff.result.content[0].text, /^manual_handoff_resume_watch_command: .*'--monitor-timeout-ms' '10000'.*'--monitor-interval-ms' '1000'/m);
   } else {
-    assert.match(objectiveHandoff.result.content[0].text, /^manual_login_capture_wait_command: /m);
+    // Same reason as above: this fixture never reaches a handoff-* action, so the manual_*
+    // command block is not published. Assert the primary the handoff actually names.
+    assert.match(objectiveHandoff.result.content[0].text, /^human_action: run-login-capture-wait$/m);
+    assert.match(objectiveHandoff.result.content[0].text, /^primary: primary-action$/m);
     assert.doesNotMatch(objectiveHandoff.result.content[0].text, /^manual_handoff_resume_watch_command: /m);
   }
   assert.match(objectiveHandoff.result.structuredContent.commands.find((item) => item.id === 'objective-next').shell, /'--monitor-timeout-ms' '10000'.*'--monitor-interval-ms' '1000'/);
