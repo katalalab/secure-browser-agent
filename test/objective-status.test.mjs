@@ -384,8 +384,14 @@ test('objective status summarizes waiting-for-login state and saved resume', asy
   }, null, 2)}\n`, 'utf8');
 
   const status = await buildObjectiveStatus({
+    // cdpPort below is a fixture value, not a live endpoint. Probing it for real made the
+    // safe-next flip to auth-watch on any host that happened to be listening on 61872.
+    handoffPortReachable: false,
     rootDir,
     generatedAt: '2026-05-28T00:10:00.000Z',
+    // This test asserts a reachable auth-check port. Pin it instead of probing the fixture
+    // port for real, which made the outcome depend on what the host happened to be listening on.
+    handoffPortReachable: true,
     audit: auditFixture(),
     resume: resumeFixture(),
     operatorReadyResume: resumeFixture({
