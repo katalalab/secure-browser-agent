@@ -4,8 +4,9 @@ import { handleMcpMessage } from '../src/mcp-server.mjs';
 
 const TOOL_TIMEOUT_MS = Number(process.env.SBA_MCP_COMPACT_TOOL_TIMEOUT_MS || 240000);
 const TOTAL_TIMEOUT_MS = Number(process.env.SBA_MCP_COMPACT_TOTAL_TIMEOUT_MS || 900000);
-const SHOW_PROGRESS = process.env.SBA_MCP_COMPACT_PROGRESS === '1';
-const FAST_SMOKE = process.env.SBA_MCP_COMPACT_FAST === '1';
+// Flags come from argv as well as env: `VAR=1 node ...` is POSIX-only and fails on cmd.exe.
+const SHOW_PROGRESS = process.env.SBA_MCP_COMPACT_PROGRESS === '1' || process.argv.includes('--progress');
+const FAST_SMOKE = process.env.SBA_MCP_COMPACT_FAST === '1' || process.argv.includes('--fast');
 const COMPACT_AUDIT_SOURCE = FAST_SMOKE ? 'run-gate-audit' : 'all';
 let activeTool = 'startup';
 const startedAt = Date.now();

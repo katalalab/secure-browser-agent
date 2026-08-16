@@ -45,6 +45,15 @@ jobs:
           node --version
           npm --version
 
+      # One test opens a headed browser, which needs a display. The Linux runner has none.
+      - name: Start virtual display (Linux)
+        if: runner.os == 'Linux'
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq xvfb
+          Xvfb :99 -screen 0 1280x1024x24 >/dev/null 2>&1 &
+          echo "DISPLAY=:99" >> "$GITHUB_ENV"
+
       - name: CI verify
         # Chrome's sandbox cannot start in the Linux runner container. Scoped to CI so a
         # workstation never silently loses that boundary.
