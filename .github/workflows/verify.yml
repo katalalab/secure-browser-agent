@@ -18,8 +18,9 @@ concurrency:
 
 jobs:
   matrix-verify:
-    # Windows-only path-separator failures stayed invisible while CI was ubuntu-only (#25).
-    # The CLI emits paths into runs/ artifacts, so every supported OS has to be exercised.
+    # Windows-only path-separator failures stayed invisible while CI was ubuntu-only (#25), and
+    # the same blind spot would return on a single self-hosted Linux runner. The CLI emits paths
+    # into runs/ artifacts and resolves Chrome per platform, so every supported OS runs here.
     name: verify (${{ matrix.os }})
     runs-on: ${{ matrix.os }}
     timeout-minutes: 15
