@@ -176,7 +176,7 @@
     "probe:lightpanda": "node src/cli.mjs extract 'data:text/html,<a href=\"/x\">Link</a>' --selector a --fields text,href --profile public --engine lightpanda",
     "reap:dry-run": "node src/cli.mjs reap-owned",
     "test": "node --test test/*.test.mjs",
-    "test:ci": "node --test test/browser-route.test.mjs test/status-cache.test.mjs test/lightpanda-gate.test.mjs test/target-batch.test.mjs test/target-worker-pool.test.mjs test/provider-benchmark.test.mjs test/provider-doctor-status.test.mjs test/compact-command-audit.test.mjs test/objective-safe-command.test.mjs test/agent-proof-step.test.mjs test/redaction-corpus.test.mjs",
+    "test:ci": "node --test test/*.test.mjs",
     "verify:ci": "node --check src/cli.mjs && npm run test:ci && npm run probe:compact-command-audit-ci && npm run probe:mcp-compact && node src/cli.mjs doctor --offline",
     "verify": "node --test test/*.test.mjs && npm run probe:compact-command-audit-all && npm run probe:mcp-compact && node src/cli.mjs doctor --offline"
   },

@@ -505,7 +505,13 @@ export function analyzeRuntimeState({
 
 export function collectRuntimeState(options = {}) {
   const runner = options.runner || spawnSync;
-  const ps = run('ps', ['-axo', 'pid,ppid,etime,stat,command'], runner);
+  // ps and lsof are POSIX-only. On Windows every one of these returned non-zero, so the audit
+  // reported an empty machine instead of admitting it could not look. commandStatus.ps.ok in
+  // the return value is what tells the two apart.
+  const ps = process.platform === 'win32'
+    ? run('powershell', ['-NoProfile', '-Command',
+      "Get-CimInstance Win32_Process | ForEach-Object { \"$($_.ProcessId) $($_.ParentProcessId) 00:00 R $($_.CommandLine)\" }"], runner)
+    : run('ps', ['-axo', 'pid,ppid,etime,stat,command'], runner);
   const processes = ps.ok ? parseProcessTable(ps.stdout) : [];
   const sessionList = run('agent-browser', ['session', 'list'], runner);
   const sessions = sessionList.ok ? parseAgentBrowserSessions(sessionList.stdout) : [];

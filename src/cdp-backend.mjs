@@ -3,6 +3,7 @@ import http from 'node:http';
 import os from 'node:os';
 import path from 'node:path';
 import { spawn, spawnSync } from 'node:child_process';
+import { listProcessCommandLines } from './process-list.mjs';
 import { buildExtractScript, buildInspectScript, buildObserveScript, buildOutlineScript } from './extract-script.mjs';
 
 const DEFAULT_CDP_LAUNCH_TIMEOUT_MS = 30000;
@@ -307,17 +308,14 @@ function shellToken(value) {
 
 function chromePidsForProfile(profileDir) {
   const resolvedProfileDir = path.resolve(profileDir);
-  const ps = spawnSync('ps', ['-axo', 'pid=,command='], {
-    encoding: 'utf8',
-    timeout: 3000
-  });
-  if (ps.status !== 0) return [];
+  const ps = listProcessCommandLines({ timeoutMs: 15000 });
+  if (!ps.ok) return [];
   const userDataDirFlag = `--user-data-dir=${resolvedProfileDir}`;
   const quotedUserDataDirFlag = `--user-data-dir="${shellToken(resolvedProfileDir)}"`;
   const pids = [];
   for (const line of String(ps.stdout || '').split(/\r?\n/)) {
     if (!line.includes(userDataDirFlag) && !line.includes(quotedUserDataDirFlag)) continue;
-    if (!line.includes('Google Chrome')) continue;
+    if (!/chrom/i.test(line)) continue;
     const pid = Number(line.trim().match(/^(\d+)/)?.[1] || 0);
     if (pid && pidAlive(pid)) pids.push(pid);
   }
@@ -373,16 +371,13 @@ async function waitForCdpVersion(port, timeoutMs) {
 
 async function findExistingCdpProfile(profileDir) {
   const resolvedProfileDir = path.resolve(profileDir);
-  const ps = spawnSync('ps', ['-axo', 'pid=,command='], {
-    encoding: 'utf8',
-    timeout: 3000
-  });
-  if (ps.status !== 0) return null;
+  const ps = listProcessCommandLines({ timeoutMs: 15000 });
+  if (!ps.ok) return null;
   const userDataDirFlag = `--user-data-dir=${resolvedProfileDir}`;
   const quotedUserDataDirFlag = `--user-data-dir="${shellToken(resolvedProfileDir)}"`;
   for (const line of String(ps.stdout || '').split(/\r?\n/)) {
     if (!line.includes(userDataDirFlag) && !line.includes(quotedUserDataDirFlag)) continue;
-    if (!line.includes('Google Chrome')) continue;
+    if (!/chrom/i.test(line)) continue;
     const pid = line.trim().match(/^(\d+)/)?.[1] || '';
     if (!pid || !pidAlive(pid)) continue;
     const port = parseListeningPortForPid(pid);

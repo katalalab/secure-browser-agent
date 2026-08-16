@@ -2,6 +2,7 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import { spawnSync } from 'node:child_process';
+import { listProcessCommandLines } from './process-list.mjs';
 
 function findExecutable(command, env = process.env) {
   const paths = String(env.PATH || '').split(path.delimiter).filter(Boolean);
@@ -70,11 +71,10 @@ function commandStatus(command, args = ['--version'], env = process.env) {
 }
 
 function defaultProcessList() {
-  const result = spawnSync('ps', ['-axo', 'pid,ppid,command'], {
-    encoding: 'utf8',
-    timeout: 10000
-  });
-  return String(result.stdout || '');
+  // An audit that cannot enumerate processes must say so. Returning '' here would make every
+  // count zero and publish a clean bill of health for a machine nobody actually inspected.
+  const listing = listProcessCommandLines({ timeoutMs: 15000 });
+  return { text: listing.ok ? listing.text : '', ok: listing.ok, reason: listing.reason };
 }
 
 function countMatches(text, patterns) {
@@ -187,7 +187,10 @@ function inspectEnvFile(filePath) {
 
 export function buildSecretAudit(options = {}) {
   const env = options.env || process.env;
-  const processList = options.processList ?? defaultProcessList();
+  const processListInput = options.processList ?? defaultProcessList();
+  const processList = typeof processListInput === 'string' ? processListInput : processListInput.text;
+  const processListOk = typeof processListInput === 'string' ? true : processListInput.ok;
+  const processListReason = typeof processListInput === 'string' ? '' : processListInput.reason;
   const op = options.op || commandStatus('op', ['--version'], env);
   const envStatus = buildEnvStatus(env);
   const serviceAccountEnvFile = inspectEnvFile(
@@ -199,7 +202,9 @@ export function buildSecretAudit(options = {}) {
     onePasswordApp: countMatches(processList, [/\/1Password(?:\.app)?\/Contents\/MacOS\/1Password(?:\s|$)/]),
     opDaemon: countMatches(processList, [/(^|\s)op daemon(\s|$)/]),
     onePasswordMcp: countMatches(processList, [/onepassword-mcp/]),
-    browserHelper: countMatches(processList, [/1Password Browser Helper|1Password-BrowserSupport|com\.1password\.browser-helper/])
+    browserHelper: countMatches(processList, [/1Password Browser Helper|1Password-BrowserSupport|com\.1password\.browser-helper/]),
+    listed: processListOk,
+    listingError: processListReason
   };
   const serviceAccountConfigured = envStatus.OP_SERVICE_ACCOUNT_TOKEN;
   const connectConfigured = envStatus.OP_CONNECT_HOST && envStatus.OP_CONNECT_TOKEN;

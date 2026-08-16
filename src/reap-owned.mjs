@@ -1,20 +1,13 @@
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
-import { spawnSync } from 'node:child_process';
+import { listProcesses } from './process-list.mjs';
 
 function readProcessTable() {
-  const result = spawnSync('ps', ['-axo', 'pid,ppid,command'], { encoding: 'utf8' });
-  if (result.status !== 0) throw new Error(result.stderr || 'ps failed');
-  return result.stdout.split('\n').slice(1).map((line) => {
-    const match = line.trim().match(/^(\d+)\s+(\d+)\s+(.*)$/);
-    if (!match) return null;
-    return {
-      pid: Number(match[1]),
-      ppid: Number(match[2]),
-      command: match[3]
-    };
-  }).filter(Boolean);
+  const listing = listProcesses();
+  // Throwing keeps the old contract: reaping must not silently decide there is nothing to reap.
+  if (!listing.ok) throw new Error(`process listing failed: ${listing.reason}`);
+  return listing.processes;
 }
 
 function readSessionPids(sessionNames) {
