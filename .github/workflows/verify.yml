@@ -46,6 +46,10 @@ jobs:
           npm --version
 
       - name: CI verify
+        # Chrome's sandbox cannot start in the Linux runner container. Scoped to CI so a
+        # workstation never silently loses that boundary.
+        env:
+          SBA_CHROME_NO_SANDBOX: ${{ runner.os == 'Linux' && '1' || '' }}
         run: npm run verify:ci
 
   # Branch protection requires a check literally named "verify". Without this aggregate the

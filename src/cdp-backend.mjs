@@ -431,6 +431,10 @@ async function launchChrome(profileDir, {
     initialUrl
   ];
   if (!headed) args.unshift('--headless=new');
+  // Chrome's own sandbox cannot start inside most Linux CI containers ("Chrome exited early: 1").
+  // Opt-in only: disabling it on a workstation would remove a real boundary, so the caller has to
+  // say so explicitly rather than the tool guessing from the environment.
+  if (process.env.SBA_CHROME_NO_SANDBOX === '1') args.unshift('--no-sandbox');
   const chrome = spawn(chromePath, args, { stdio: 'ignore', detached });
 
   const portFile = path.join(profileDir, 'DevToolsActivePort');
