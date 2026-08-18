@@ -441,7 +441,18 @@ async function launchChrome(profileDir, {
   const started = Date.now();
   while (Date.now() - started < timeoutMs) {
     if (fs.existsSync(portFile)) {
-      const [port] = fs.readFileSync(portFile, 'utf8').trim().split('\n');
+      // Chrome creates this file and then writes the port into it, and on Windows a read
+      // landing between those two steps fails with EBUSY rather than returning nothing.
+      // Existence was treated as readiness, so the poll gave up on the first collision
+      // instead of waiting the one tick it needed -- four CI tests died there while the
+      // same code passed on POSIX, where an in-progress write reads back as empty.
+      let contents = null;
+      try {
+        contents = fs.readFileSync(portFile, 'utf8');
+      } catch (error) {
+        if (error.code !== 'EBUSY' && error.code !== 'EACCES' && error.code !== 'EPERM') throw error;
+      }
+      const [port] = (contents ?? '').trim().split('\n');
       if (/^\d+$/.test(port || '')) {
         try {
           await waitForCdpVersion(port, Math.max(1000, timeoutMs - (Date.now() - started)));
