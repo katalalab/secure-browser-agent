@@ -446,6 +446,13 @@ async function launchChrome(profileDir, {
       // Existence was treated as readiness, so the poll gave up on the first collision
       // instead of waiting the one tick it needed -- four CI tests died there while the
       // same code passed on POSIX, where an in-progress write reads back as empty.
+      // EBUSY is the sharing violation itself. EACCES and EPERM are the same collision
+      // reported differently: Windows surfaces a locked file as any of the three depending
+      // on how the handle was opened, and a scanner touching the profile directory produces
+      // them too. Retrying is right for all three because none of them can be permanent
+      // here -- Chrome created this file moments ago in a directory this process owns. A
+      // permission problem that really is permanent still ends the loop, as the timeout
+      // below, rather than as a misleading immediate error.
       let contents = null;
       try {
         contents = fs.readFileSync(portFile, 'utf8');
