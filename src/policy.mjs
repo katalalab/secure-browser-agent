@@ -101,10 +101,21 @@ export function sanitizeLogLine(line) {
     .slice(0, 500);
 }
 
+// Separators carry no meaning in a key name, but substring matching treated them as
+// significant: with 'api_key' in the list, the keys 'api-key' and 'x-api-key' both
+// passed through with their values intact. Header-style names are exactly what browser
+// and API responses use, so the miss landed on the common case rather than an edge one.
+// The default list itself mixes 'set-cookie', 'api_key' and 'apiKey', which is the same
+// observation from the other side.
+function keyShape(name) {
+  return String(name).toLowerCase().replace(/[^a-z0-9]/g, '');
+}
+
 export function redact(value, policy) {
   const keys = policy.redactKeys || [];
+  const needles = keys.map(keyShape).filter(Boolean);
   const visit = (input, key = '') => {
-    if (keys.some((needle) => key.toLowerCase().includes(needle.toLowerCase()))) {
+    if (needles.some((needle) => keyShape(key).includes(needle))) {
       return '[REDACTED]';
     }
     if (Array.isArray(input)) return input.map((item) => visit(item));

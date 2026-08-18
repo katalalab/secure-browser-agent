@@ -434,3 +434,36 @@ test('redaction corpus: operate steps refuse inline OTP and password values', ()
   assertNoFixtureSecret('operate recipe file', fs.readFileSync(pack.recipes.operate, 'utf8'));
   fs.rmSync(dir, { recursive: true, force: true });
 });
+
+test('redaction corpus: key separators do not decide whether a secret is redacted', () => {
+  // Substring matching treated '-' and '_' as significant, so with 'api_key' in the
+  // policy the keys 'api-key' and 'x-api-key' passed through with their values intact.
+  // Header-style names are what browser and API responses actually use, so the miss
+  // landed on the common case. The default policy list mixes 'set-cookie', 'api_key'
+  // and 'apiKey', which is the same observation from the other side.
+  const policy = { redactKeys: ['api_key', 'token', 'authorization', 'set-cookie'] };
+  const output = redact(
+    {
+      'api-key': FIXTURE.token,
+      'x-api-key': FIXTURE.token,
+      api_key: FIXTURE.token,
+      API_KEY: FIXTURE.token,
+      apiKey: FIXTURE.token,
+      'Set-Cookie': FIXTURE.cookie,
+      'x-auth-token': FIXTURE.token,
+      nested: { 'x-api-key': FIXTURE.token },
+      list: [{ 'api-key': FIXTURE.token }],
+      harmless: 'keep-me',
+    },
+    policy,
+  );
+
+  for (const key of ['api-key', 'x-api-key', 'api_key', 'API_KEY', 'apiKey', 'Set-Cookie', 'x-auth-token']) {
+    assert.equal(output[key], '[REDACTED]', `${key} was not redacted`);
+  }
+  assert.equal(output.nested['x-api-key'], '[REDACTED]');
+  assert.equal(output.list[0]['api-key'], '[REDACTED]');
+  // The normalisation must not start swallowing unrelated keys.
+  assert.equal(output.harmless, 'keep-me');
+  assertNoFixtureSecret('separator-insensitive redact', output);
+});
