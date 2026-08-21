@@ -61,6 +61,7 @@ jobs:
         # workstation never silently loses that boundary.
         env:
           SBA_CHROME_NO_SANDBOX: ${{ runner.os == 'Linux' && '1' || '' }}
+          SBA_CDP_LAUNCH_TIMEOUT_MS: ${{ runner.os == 'Linux' && '60000' || '30000' }}
         run: npm run verify:ci
 
   # Branch protection requires a check literally named "verify". Without this aggregate the
