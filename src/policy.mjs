@@ -8,12 +8,14 @@ export function loadPolicy(policyPath = process.env.SBA_POLICY) {
   const source = policyPath ? path.resolve(policyPath) : fileURLToPath(DEFAULT_POLICY_PATH);
   const parsed = JSON.parse(fs.readFileSync(source, 'utf8'));
   const baseDir = path.dirname(source);
+  const rootDir = path.resolve(baseDir, '..');
   return {
     ...parsed,
     source,
     baseDir,
-    outputDir: path.resolve(baseDir, '..', parsed.outputDir || 'runs'),
-    profileDir: path.resolve(baseDir, '..', parsed.profileDir || 'profiles')
+    rootDir,
+    outputDir: path.resolve(rootDir, parsed.outputDir || 'runs'),
+    profileDir: path.resolve(rootDir, parsed.profileDir || 'profiles')
   };
 }
 

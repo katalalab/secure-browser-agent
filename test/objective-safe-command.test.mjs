@@ -280,6 +280,9 @@ test('objective safe command prefers monitor-only auth watch while capture is bl
   assert.match(compact, /^background_proof_status_command: 'node' 'src\/cli\.mjs' 'background-proof-capture-status' '--format' 'compact'$/m);
   assert.match(compact, /^background_proof_no_open_wait_capture_command: 'node' 'src\/cli\.mjs' 'target-handoff-resume' 'runs\/target-packs\/github'.*'--run' '--wait-auth'.*'--wait-auth-interval-ms' '5000'$/m);
   assert.doesNotMatch(compact.match(/^background_proof_no_open_wait_capture_command: .+$/m)[0], /--open-login/);
+  assert.match(compact, /^background_proof_no_open_wait_capture_background_starts_background: yes$/m);
+  assert.match(compact, /^background_proof_no_open_wait_capture_background_requires_operator_approval: yes$/m);
+  assert.match(compact, /^background_proof_no_open_wait_capture_background_agent_may_run_unattended: no$/m);
   assert.match(compact, /^background_proof_no_open_wait_capture_background_command: mkdir -p 'runs\/operator' && nohup /m);
   assert.doesNotMatch(compact.match(/^background_proof_no_open_wait_capture_background_command: .+$/m)[0], /--open-login/);
   assert.match(compact, /^background_proof_capture_start_command: 'node' 'src\/cli\.mjs' 'background-proof-capture-start' '--mode' 'capture' '--timeout-ms' '300000' '--interval-ms' '5000' '--monitor-timeout-ms' '10000' '--monitor-interval-ms' '1000' '--run' '--operator-ok' 'OK' '--format' 'compact'$/m);

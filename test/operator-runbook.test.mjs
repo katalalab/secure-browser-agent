@@ -707,6 +707,7 @@ test('operator runbook writes a safe operator checklist without starting browser
     assert.match(compact, /^background_proof_no_open_wait_capture_agent_may_run_unattended: no$/m);
     assert.match(compact, /^background_proof_no_open_wait_capture_command: 'node' 'src\/cli\.mjs' 'target-handoff-resume'/m);
     assert.doesNotMatch(compact, /^background_proof_no_open_wait_capture_command: .*--open-login/m);
+    assert.match(compact, /^background_proof_no_open_wait_capture_background_starts_background: yes$/m);
     assert.match(compact, /^background_proof_no_open_wait_capture_background_requires_operator_approval: yes$/m);
     assert.match(compact, /^background_proof_no_open_wait_capture_background_agent_may_run_unattended: no$/m);
     assert.match(compact, /^background_proof_no_open_wait_capture_background_command: mkdir -p 'runs\/operator' && nohup /m);
