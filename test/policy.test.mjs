@@ -23,6 +23,12 @@ test('policy accepts configured origins and blocks unknown origins', () => {
   assert.throws(() => assertAllowedUrl('https://evil.example/a', policy), /blocked URL/);
 });
 
+test('policy exposes the shared root used for portable artifact paths', () => {
+  const policy = loadPolicy();
+  assert.equal(policy.rootDir, path.dirname(policy.baseDir));
+  assert.equal(path.relative(policy.rootDir, policy.outputDir), 'runs');
+});
+
 test('redaction removes sensitive keys and bearer-like values', () => {
   const policy = loadPolicy();
   const output = redact({ headers: { authorization: 'Bearer abc.def' }, text: 'Basic xyz' }, policy);

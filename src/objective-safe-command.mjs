@@ -561,7 +561,12 @@ export function formatObjectiveSafeCommandCompact(result) {
   if (result.agentLoopStep?.statusCommand?.shell) lines.push(`agent_loop_step_status_command: ${result.agentLoopStep.statusCommand.shell}`);
   if (result.backgroundProofCapture?.statusCommand?.shell) lines.push(`background_proof_status_command: ${result.backgroundProofCapture.statusCommand.shell}`);
   if (result.backgroundProofCapture?.noOpenWaitCaptureCommand?.shell) lines.push(`background_proof_no_open_wait_capture_command: ${result.backgroundProofCapture.noOpenWaitCaptureCommand.shell}`);
-  if (result.backgroundProofCapture?.backgroundNoOpenWaitCaptureCommand?.shell) lines.push(`background_proof_no_open_wait_capture_background_command: ${result.backgroundProofCapture.backgroundNoOpenWaitCaptureCommand.shell}`);
+  if (result.backgroundProofCapture?.backgroundNoOpenWaitCaptureCommand?.shell) {
+    lines.push('background_proof_no_open_wait_capture_background_starts_background: yes');
+    lines.push('background_proof_no_open_wait_capture_background_requires_operator_approval: yes');
+    lines.push('background_proof_no_open_wait_capture_background_agent_may_run_unattended: no');
+    lines.push(`background_proof_no_open_wait_capture_background_command: ${result.backgroundProofCapture.backgroundNoOpenWaitCaptureCommand.shell}`);
+  }
   if (result.backgroundProofCapture?.captureStartCommand?.shell) lines.push(`background_proof_capture_start_command: ${result.backgroundProofCapture.captureStartCommand.shell}`);
   if (result.backgroundProofCapture?.monitorStartCommand?.shell) lines.push(`background_proof_monitor_start_command: ${result.backgroundProofCapture.monitorStartCommand.shell}`);
   if (result.agentProofStep?.planCommand?.shell) lines.push(`agent_proof_step_plan_command: ${result.agentProofStep.planCommand.shell}`);

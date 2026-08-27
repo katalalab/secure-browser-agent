@@ -1110,6 +1110,7 @@ export function formatOperatorRunbookCompact(runbook) {
   if (backgroundNoOpenWaitCapture?.command) lines.push(`background_proof_no_open_wait_capture_agent_may_run_unattended: no`);
   if (backgroundNoOpenWaitCapture?.command) lines.push(`background_proof_no_open_wait_capture_command: ${backgroundNoOpenWaitCapture.command}`);
   const backgroundNoOpenWaitCaptureBackground = runbook.steps.find((item) => item.id === 'background-proof-no-open-wait-capture-background');
+  if (backgroundNoOpenWaitCaptureBackground?.command) lines.push(`background_proof_no_open_wait_capture_background_starts_background: yes`);
   if (backgroundNoOpenWaitCaptureBackground?.command) lines.push(`background_proof_no_open_wait_capture_background_requires_operator_approval: ${yesNo(backgroundNoOpenWaitCaptureBackground.runAfterUserApproval)}`);
   if (backgroundNoOpenWaitCaptureBackground?.command) lines.push(`background_proof_no_open_wait_capture_background_agent_may_run_unattended: no`);
   if (backgroundNoOpenWaitCaptureBackground?.command) lines.push(`background_proof_no_open_wait_capture_background_command: ${backgroundNoOpenWaitCaptureBackground.command}`);
