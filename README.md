@@ -1,6 +1,10 @@
 # secure-browser-agent
 
-Safe local wrapper around `agent-browser` for authenticated browser analysis and scraping.
+secure-browser-agentは、エージェントによるWebブラウザ操作において、事前に定義したポリシーに基づいて呼び出しを検査するための管理ツールです。ブラウザ自動化エンジンと連携し、指定ドメインのリストによるアクセス先の限定や、プロファイル分離の適用を試みます。
+
+ログインが必要なWebサービスを専用プロファイルで巡回させたい場面や、エージェントがアクセスするURLをあらかじめ定めた対象範囲に絞り込んでブラウザ操作を委ねたい場面に向いています。
+
+本ツールはブラウザ呼び出し時のポリシー検査を行うものであり、すべてのネットワーク通信やリダイレクトの完全な遮断、外部入力に含まれる悪意ある指示の無害化を保証するものではありません。
 
 ## Position
 
@@ -49,7 +53,6 @@ so they work directly from a checkout.
 | [docs/cdp-recipes.md](docs/cdp-recipes.md) | Raw CDP recipes |
 | [docs/PAGE_INTELLIGENCE_DESIGN.md](docs/PAGE_INTELLIGENCE_DESIGN.md) | Page intelligence design notes |
 | [docs/speed-systems.md](docs/speed-systems.md) | Throughput and latency notes |
-| [CONTRIBUTING.md](CONTRIBUTING.md) | Contribution workflow |
 | [THIRD-PARTY-NOTICES.md](THIRD-PARTY-NOTICES.md) | Third-party terms and the AGPL boundary |
 
 ## License
