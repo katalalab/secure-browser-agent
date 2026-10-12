@@ -306,16 +306,20 @@ function shellToken(value) {
   return String(value).replaceAll('\\', '\\\\').replaceAll('"', '\\"');
 }
 
-function chromePidsForProfile(profileDir) {
+function chromeProfileProcessLines(profileDir) {
   const resolvedProfileDir = path.resolve(profileDir);
   const ps = listProcessCommandLines({ timeoutMs: 15000 });
   if (!ps.ok) return [];
   const userDataDirFlag = `--user-data-dir=${resolvedProfileDir}`;
   const quotedUserDataDirFlag = `--user-data-dir="${shellToken(resolvedProfileDir)}"`;
+  return String(ps.text || '')
+    .split(/\r?\n/)
+    .filter((line) => (line.includes(userDataDirFlag) || line.includes(quotedUserDataDirFlag)) && /chrom/i.test(line));
+}
+
+function chromePidsForProfile(profileDir) {
   const pids = [];
-  for (const line of String(ps.stdout || '').split(/\r?\n/)) {
-    if (!line.includes(userDataDirFlag) && !line.includes(quotedUserDataDirFlag)) continue;
-    if (!/chrom/i.test(line)) continue;
+  for (const line of chromeProfileProcessLines(profileDir)) {
     const pid = Number(line.trim().match(/^(\d+)/)?.[1] || 0);
     if (pid && pidAlive(pid)) pids.push(pid);
   }
@@ -370,17 +374,19 @@ async function waitForCdpVersion(port, timeoutMs) {
 }
 
 async function findExistingCdpProfile(profileDir) {
-  const resolvedProfileDir = path.resolve(profileDir);
-  const ps = listProcessCommandLines({ timeoutMs: 15000 });
-  if (!ps.ok) return null;
-  const userDataDirFlag = `--user-data-dir=${resolvedProfileDir}`;
-  const quotedUserDataDirFlag = `--user-data-dir="${shellToken(resolvedProfileDir)}"`;
-  for (const line of String(ps.stdout || '').split(/\r?\n/)) {
-    if (!line.includes(userDataDirFlag) && !line.includes(quotedUserDataDirFlag)) continue;
-    if (!/chrom/i.test(line)) continue;
+  const portPath = path.join(profileDir, 'DevToolsActivePort');
+  let activePort = '';
+  try {
+    const firstLine = fs.readFileSync(portPath, 'utf8').split(/\r?\n/, 1)[0]?.trim() || '';
+    if (/^[1-9]\d*$/.test(firstLine)) activePort = firstLine;
+  } catch {
+    // Chrome may have been started outside this wrapper; the process listener lookup below
+    // remains a fallback when its DevToolsActivePort file is not available.
+  }
+  for (const line of chromeProfileProcessLines(profileDir)) {
     const pid = line.trim().match(/^(\d+)/)?.[1] || '';
     if (!pid || !pidAlive(pid)) continue;
-    const port = parseListeningPortForPid(pid);
+    const port = activePort || parseListeningPortForPid(pid);
     if (!port) continue;
     try {
       await waitForCdpVersion(port, 1000);

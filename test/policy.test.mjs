@@ -789,6 +789,23 @@ test('cdp profile opener leaves a reachable headed login browser', async () => {
   }
 });
 
+test('cdp profile opener reuses the existing browser for the same profile', async () => {
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'sba-cdp-reuse-'));
+  const opened = await openCdpProfile('about:blank', dir, { headed: true });
+  try {
+    const reused = await openCdpProfile('about:blank', dir, { headed: true, launchTimeoutMs: 1500 });
+    assert.equal(reused.reused, true);
+    assert.equal(reused.port, opened.port);
+    assert.equal(reused.pid, opened.pid);
+  } finally {
+    try {
+      process.kill(Number(opened.pid), 'SIGTERM');
+    } catch {
+      // Best-effort cleanup for the headed browser opened by this test.
+    }
+  }
+});
+
 test('cdp backend observes a compact data html page', async () => {
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'sba-observe-'));
   const observe = await observeWithCdp('data:text/html,<main><h1>CDP</h1><a href="/x">Link</a><label>Search<input name="q"></label></main>', dir);
