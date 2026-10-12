@@ -3,12 +3,41 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
+import { spawnSync } from 'node:child_process';
 import { buildSecretAudit, buildSecretRunPlan, buildSecretRunSelect, buildSecretSetupPlan, formatSecretAuditCompact, formatSecretAuditMarkdown, formatSecretRunPlanCompact, formatSecretRunPlanMarkdown, formatSecretRunSelectCompact, formatSecretSetupPlanCompact, formatSecretSetupPlanMarkdown } from '../src/secret-audit.mjs';
 
 function makeExecutable(filePath, body = '#!/bin/sh\necho "2.34.0-test"\n') {
   fs.mkdirSync(path.dirname(filePath), { recursive: true });
   fs.writeFileSync(filePath, body);
   fs.chmodSync(filePath, 0o755);
+}
+
+function setWindowsEnvFileAcl(filePath, { everyoneRead = false } = {}) {
+  const identity = spawnSync('whoami.exe', ['/user', '/fo', 'csv', '/nh'], {
+    encoding: 'utf8',
+    windowsHide: true
+  });
+  assert.equal(identity.status, 0, identity.stderr || identity.error?.message || 'whoami failed');
+  const currentSid = identity.stdout.match(/S-\d-\d+(?:-\d+)+/)?.[0];
+  assert.ok(currentSid, `current user SID missing from whoami output: ${identity.stdout}`);
+
+  const restricted = spawnSync('icacls.exe', [
+    filePath,
+    '/inheritance:r',
+    '/grant:r',
+    `*${currentSid}:(F)`,
+    '*S-1-5-18:(F)',
+    '*S-1-5-32-544:(F)'
+  ], { encoding: 'utf8', windowsHide: true });
+  assert.equal(restricted.status, 0, restricted.stderr || restricted.stdout || restricted.error?.message || 'icacls restrict failed');
+
+  if (everyoneRead) {
+    const broadened = spawnSync('icacls.exe', [filePath, '/grant', '*S-1-1-0:(R)', '*S-1-5-11:(R)'], {
+      encoding: 'utf8',
+      windowsHide: true
+    });
+    assert.equal(broadened.status, 0, broadened.stderr || broadened.stdout || broadened.error?.message || 'icacls grant failed');
+  }
 }
 
 test('secret audit reports no headless mode without service or connect env', () => {
@@ -102,6 +131,7 @@ test('secret audit detects a local service account env file without reading it',
   const rootDir = fs.mkdtempSync(path.join(os.tmpdir(), 'sba-secret-audit-env-file-'));
   const envFile = path.join(rootDir, '1password.env');
   fs.writeFileSync(envFile, 'OP_SERVICE_ACCOUNT_TOKEN=do-not-read-this\n', { mode: 0o600 });
+  if (process.platform === 'win32') setWindowsEnvFileAcl(envFile);
 
   const report = buildSecretAudit({
     generatedAt: '2026-05-28T00:00:00.000Z',
@@ -117,7 +147,7 @@ test('secret audit detects a local service account env file without reading it',
   assert.equal(report.capabilities.serviceAccountEnvFileStrict, true);
   assert.equal(report.capabilities.serviceAccountEnvFileUsable, true);
   assert.equal(report.serviceAccountEnvFile.path, envFile);
-  assert.equal(report.serviceAccountEnvFile.mode, '600');
+  assert.equal(report.serviceAccountEnvFile.mode, process.platform === 'win32' ? 'restricted-acl' : '600');
   assert.equal(JSON.stringify(report).includes('do-not-read-this'), false);
   assert.match(formatSecretAuditCompact(report), /^service_account_env_file: yes/m);
   assert.match(formatSecretAuditCompact(report), /^headless_config_available: yes/m);
@@ -141,6 +171,104 @@ test('secret audit detects a local service account env file without reading it',
   assert.match(formatSecretRunPlanCompact(runPlan), /1password\.env/);
   assert.match(formatSecretRunPlanCompact(runPlan), /source the local env file inline/);
   assert.doesNotMatch(formatSecretRunPlanCompact(runPlan), /do-not-read-this/);
+});
+
+test('secret audit rejects a Windows env file when its ACL grants access to other principals', { skip: process.platform !== 'win32' }, () => {
+  const rootDir = fs.mkdtempSync(path.join(os.tmpdir(), 'sba-secret-audit-acl-open-'));
+  try {
+    const envFile = path.join(rootDir, '1password.env');
+    fs.writeFileSync(envFile, 'OP_SERVICE_ACCOUNT_TOKEN=synthetic-test-token\n');
+    setWindowsEnvFileAcl(envFile, { everyoneRead: true });
+
+    const originalPath = process.env.PATH;
+    let audit;
+    try {
+      process.env.PATH = '';
+      audit = buildSecretAudit({
+        env: { PATH: '' },
+        op: { exists: true, path: 'op', version: '2.34.0-test' },
+        processList: '',
+        serviceAccountEnvFile: envFile
+      });
+    } finally {
+      if (originalPath === undefined) delete process.env.PATH;
+      else process.env.PATH = originalPath;
+    }
+    assert.equal(audit.serviceAccountEnvFile.exists, true);
+    assert.equal(audit.serviceAccountEnvFile.strictPermissions, false);
+    assert.equal(audit.serviceAccountEnvFile.mode, 'unrestricted-acl');
+    assert.equal(audit.capabilities.serviceAccountEnvFileUsable, false);
+    assert.equal(audit.headlessConfigAvailable, false);
+    assert.equal(JSON.stringify(audit).includes('synthetic-test-token'), false);
+
+    const selection = buildSecretRunSelect({ audit });
+    assert.equal(selection.selectedCandidate, 'service-account');
+    assert.equal(selection.readyToRunNow, false);
+    assert.equal(selection.serviceAccountEnvFileUsable, false);
+    assert.doesNotMatch(selection.command.shell, /1password\.env/);
+    assert.equal(selection.setupPlan.commands.some((item) => item.id === 'source-service-account-env-file'), false);
+  } finally {
+    fs.rmSync(rootDir, { recursive: true, force: true });
+  }
+});
+
+test('secret audit rejects a Windows env file when the current user cannot read it', () => {
+  const rootDir = fs.mkdtempSync(path.join(os.tmpdir(), 'sba-secret-audit-acl-unreadable-'));
+  try {
+    const envFile = path.join(rootDir, '1password.env');
+    fs.writeFileSync(envFile, 'OP_SERVICE_ACCOUNT_TOKEN=synthetic-test-token\n');
+    const audit = buildSecretAudit({
+      env: {},
+      op: { exists: true, path: 'op', version: '2.34.0-test' },
+      processList: '',
+      serviceAccountEnvFile: envFile,
+      platform: 'win32',
+      windowsAclReader: () => ({
+        ownerSid: 'S-1-5-21-1000',
+        currentSid: 'S-1-5-21-1000',
+        hasDacl: true,
+        canRead: false,
+        rules: []
+      })
+    });
+
+    assert.equal(audit.serviceAccountEnvFile.strictPermissions, false);
+    assert.equal(audit.serviceAccountEnvFile.mode, 'acl-unverified');
+    assert.equal(audit.capabilities.serviceAccountEnvFileUsable, false);
+    const selection = buildSecretRunSelect({ audit });
+    assert.equal(selection.selectedCandidate, 'service-account');
+    assert.equal(selection.readyToRunNow, false);
+    assert.doesNotMatch(selection.command.shell, /1password\.env/);
+  } finally {
+    fs.rmSync(rootDir, { recursive: true, force: true });
+  }
+});
+
+test('secret audit fails closed when Windows ACL inspection is unavailable', () => {
+  const rootDir = fs.mkdtempSync(path.join(os.tmpdir(), 'sba-secret-audit-acl-unknown-'));
+  try {
+    const envFile = path.join(rootDir, '1password.env');
+    fs.writeFileSync(envFile, 'OP_SERVICE_ACCOUNT_TOKEN=synthetic-test-token\n');
+    const audit = buildSecretAudit({
+      env: { PATH: '' },
+      op: { exists: true, path: 'op', version: '2.34.0-test' },
+      processList: '',
+      serviceAccountEnvFile: envFile,
+      platform: 'win32',
+      windowsAclReader: () => { throw new Error('ACL inspection failed'); }
+    });
+
+    assert.equal(audit.serviceAccountEnvFile.exists, true);
+    assert.equal(audit.serviceAccountEnvFile.strictPermissions, false);
+    assert.equal(audit.serviceAccountEnvFile.mode, 'acl-unverified');
+    assert.equal(audit.capabilities.serviceAccountEnvFileUsable, false);
+    const selection = buildSecretRunSelect({ audit });
+    assert.equal(selection.selectedCandidate, 'service-account');
+    assert.equal(selection.readyToRunNow, false);
+    assert.doesNotMatch(selection.command.shell, /1password\.env/);
+  } finally {
+    fs.rmSync(rootDir, { recursive: true, force: true });
+  }
 });
 
 test('secret setup plan builds service account commands without exposing token values', () => {
@@ -301,6 +429,7 @@ test('secret run selector chooses connect, service account, env file, or setup w
     makeExecutable(path.join(binDir, 'op'));
     const envFile = path.join(rootDir, '1password.env');
     fs.writeFileSync(envFile, 'OP_SERVICE_ACCOUNT_TOKEN=do-not-read-this\n', { mode: 0o600 });
+    if (process.platform === 'win32') setWindowsEnvFileAcl(envFile);
 
     const connect = buildSecretRunSelect({
       generatedAt: '2026-05-30T00:00:00.000Z',
