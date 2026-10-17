@@ -271,6 +271,41 @@ test('secret audit fails closed when Windows ACL inspection is unavailable', () 
   }
 });
 
+test('secret audit fails closed when Windows ACL contains an unsupported callback ACE', () => {
+  const rootDir = fs.mkdtempSync(path.join(os.tmpdir(), 'sba-secret-audit-acl-callback-'));
+  try {
+    const envFile = path.join(rootDir, '1password.env');
+    fs.writeFileSync(envFile, 'OP_SERVICE_ACCOUNT_TOKEN=synthetic-test-token\n');
+    const audit = buildSecretAudit({
+      env: {},
+      op: { exists: true, path: 'op', version: '2.34.0-test' },
+      processList: '',
+      serviceAccountEnvFile: envFile,
+      platform: 'win32',
+      windowsAclReader: () => ({
+        ownerSid: 'S-1-5-21-1000',
+        currentSid: 'S-1-5-21-1000',
+        hasDacl: true,
+        canRead: true,
+        rules: [{
+          sid: 'S-1-1-0',
+          type: 'Allow',
+          rights: 1,
+          aceType: 'AccessAllowedCallback',
+          isCallback: true
+        }]
+      })
+    });
+
+    assert.equal(audit.serviceAccountEnvFile.strictPermissions, false);
+    assert.equal(audit.serviceAccountEnvFile.mode, 'acl-unverified');
+    assert.equal(audit.capabilities.serviceAccountEnvFileUsable, false);
+    assert.equal(JSON.stringify(audit).includes('synthetic-test-token'), false);
+  } finally {
+    fs.rmSync(rootDir, { recursive: true, force: true });
+  }
+});
+
 test('secret setup plan builds service account commands without exposing token values', () => {
   const plan = buildSecretSetupPlan({
     generatedAt: '2026-05-28T00:00:00.000Z',

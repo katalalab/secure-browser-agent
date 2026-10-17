@@ -155,7 +155,7 @@ const WINDOWS_SECRET_ACL_SCRIPT = [
   "$ProgressPreference = 'SilentlyContinue'",
   '$fileAcl = [System.IO.File]::GetAccessControl($env:SBA_SECRET_AUDIT_ENV_FILE)',
   '$descriptor = [System.Security.AccessControl.RawSecurityDescriptor]::new($fileAcl.GetSecurityDescriptorBinaryForm(), 0)',
-  '$rules = @($fileAcl.GetAccessRules($true, $true, [System.Security.Principal.SecurityIdentifier]) | ForEach-Object { [pscustomobject]@{ sid = $_.IdentityReference.Value; type = $_.AccessControlType.ToString(); rights = [long]$_.FileSystemRights } })',
+  '$rules = @($descriptor.DiscretionaryAcl | ForEach-Object { $ace = $_; $sid = ""; $type = ""; $rights = -1L; $isCallback = $false; if ($ace -is [System.Security.AccessControl.QualifiedAce]) { $sid = $ace.SecurityIdentifier.Value; $rights = [long]$ace.AccessMask; $type = switch ($ace.AceQualifier.ToString()) { "AccessAllowed" { "Allow" } "AccessDenied" { "Deny" } default { "" } }; $isCallback = $ace.IsCallback }; [pscustomobject]@{ sid = $sid; type = $type; rights = $rights; aceType = $ace.AceType.ToString(); isCallback = $isCallback } })',
   '$canRead = $false; try { $stream = [System.IO.File]::Open($env:SBA_SECRET_AUDIT_ENV_FILE, [System.IO.FileMode]::Open, [System.IO.FileAccess]::Read, [System.IO.FileShare]::ReadWrite); $stream.Dispose(); $canRead = $true } catch { $canRead = $false }',
   '[pscustomobject]@{ ownerSid = $fileAcl.GetOwner([System.Security.Principal.SecurityIdentifier]).Value; currentSid = [System.Security.Principal.WindowsIdentity]::GetCurrent().User.Value; hasDacl = ($null -ne $descriptor.DiscretionaryAcl); canRead = $canRead; rules = $rules } | ConvertTo-Json -Compress -Depth 4'
 ].join('; ');
@@ -210,6 +210,7 @@ function windowsEnvFilePermissionStatus(acl) {
   const trustedSids = new Set([acl.currentSid, 'S-1-5-18', 'S-1-5-32-544']);
   for (const rule of rules) {
     if (!rule || typeof rule.sid !== 'string' || !['Allow', 'Deny'].includes(rule.type)) return 'acl-unverified';
+    if (rule.isCallback === true || !['AccessAllowed', 'AccessDenied'].includes(rule.aceType)) return 'acl-unverified';
     const rights = Number(rule.rights);
     if (!Number.isSafeInteger(rights) || rights < 0) return 'acl-unverified';
     if (rule.type === 'Allow' && rights !== 0 && !trustedSids.has(rule.sid)) return 'unrestricted-acl';
