@@ -770,6 +770,72 @@ test('cdp version wait retries until DevTools HTTP endpoint is reachable', async
   }
 });
 
+test('cdp process matching compares normalized complete Chrome profile paths', () => {
+  const matchesProfile = cdpBackendTest.chromeProfileProcessMatches;
+  assert.equal(cdpBackendTest.normalizeChromeProfileDir('C:/', 'win32'), 'c:\\');
+  assert.equal(matchesProfile(
+    '1234 "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe" "--user-data-dir=C:/Profiles/Alice"',
+    'c:\\profiles\\alice',
+    'win32'
+  ), true);
+  assert.equal(matchesProfile(
+    '1234 "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe" "--user-data-dir=C:\\Profiles\\Alice Team"',
+    'C:/Profiles/Alice Team',
+    'win32'
+  ), true);
+  assert.equal(matchesProfile(
+    '1234 "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe" --user-data-dir "C:/Profiles/Alice"',
+    'C:\\Profiles\\Alice',
+    'win32'
+  ), true);
+  assert.equal(matchesProfile(
+    '1234 "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe" --user-data-dir=C:\\Profiles\\Alice-backup',
+    'C:\\Profiles\\Alice',
+    'win32'
+  ), false);
+  assert.equal(matchesProfile(
+    '42 /usr/bin/google-chrome --user-data-dir="/tmp/profiles/alice team"',
+    '/tmp/profiles/alice team',
+    'linux'
+  ), true);
+});
+
+test('cdp validates active-port identity and falls back to listeners owned by the profile process', async () => {
+  const activePort = cdpBackendTest.parseDevToolsActivePort('9222\n/devtools/browser/browser-id-123\n');
+  assert.deepEqual(activePort, { port: '9222', websocketPath: '/devtools/browser/browser-id-123' });
+  assert.equal(cdpBackendTest.parseDevToolsActivePort('9222\n'), null);
+  assert.equal(cdpBackendTest.activePortEndpointMatches({
+    webSocketDebuggerUrl: 'ws://127.0.0.1:9222/devtools/browser/browser-id-123'
+  }, activePort), true);
+  assert.equal(cdpBackendTest.activePortEndpointMatches({
+    webSocketDebuggerUrl: 'ws://127.0.0.1:9222/devtools/browser/another-browser-id'
+  }, activePort), false);
+  assert.equal(cdpBackendTest.activePortEndpointMatches({
+    webSocketDebuggerUrl: 'ws://127.0.0.1:9223/devtools/browser/browser-id-123'
+  }, activePort), false);
+  assert.equal(await cdpBackendTest.findCdpPortForPid(1234, activePort, {
+    readVersion: async () => ({
+      webSocketDebuggerUrl: 'ws://127.0.0.1:9222/devtools/browser/browser-id-123'
+    }),
+    readListeningPorts: () => ['9222']
+  }), '9222');
+  assert.equal(await cdpBackendTest.findCdpPortForPid(1234, activePort, {
+    readVersion: async (port) => ({
+      webSocketDebuggerUrl: port === '9222'
+        ? 'ws://127.0.0.1:9222/devtools/browser/another-browser-id'
+        : 'ws://127.0.0.1:9223/devtools/browser/current-browser-id'
+    }),
+    readListeningPorts: (pid) => {
+      assert.equal(pid, 1234);
+      return ['9223'];
+    }
+  }), '9223');
+  assert.deepEqual(cdpBackendTest.parseWindowsListeningPorts([
+    '  TCP    127.0.0.1:9222       0.0.0.0:0              LISTENING       1234',
+    '  TCP    127.0.0.1:9223       0.0.0.0:0              LISTENING       4321'
+  ].join('\n'), 1234), ['9222']);
+});
+
 test('cdp profile opener leaves a reachable headed login browser', async () => {
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'sba-cdp-open-'));
   const opened = await openCdpProfile('about:blank', dir, { headed: true });
