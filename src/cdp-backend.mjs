@@ -43,7 +43,13 @@ function recipeCanRetryAfterTransientCdpClose(recipe = {}) {
 export const __test = {
   isCdpSocketClosedError,
   recipeCanRetryAfterTransientCdpClose,
-  waitForCdpVersion
+  waitForCdpVersion,
+  chromeProfileProcessMatches,
+  normalizeChromeProfileDir,
+  parseDevToolsActivePort,
+  activePortEndpointMatches,
+  parseWindowsListeningPorts,
+  findCdpPortForPid
 };
 
 function waitForChildExit(child, timeoutMs) {
@@ -302,20 +308,152 @@ class CdpClient {
   }
 }
 
-function shellToken(value) {
-  return String(value).replaceAll('\\', '\\\\').replaceAll('"', '\\"');
+function windowsCommandLineArgs(commandLine) {
+  const source = String(commandLine || '');
+  const args = [];
+  let index = 0;
+  while (index < source.length) {
+    while (/\s/.test(source[index] || '')) index += 1;
+    if (index >= source.length) break;
+    let argument = '';
+    let quoted = false;
+    while (index < source.length) {
+      if (!quoted && /\s/.test(source[index])) break;
+      if (source[index] === '\\') {
+        let end = index;
+        while (source[end] === '\\') end += 1;
+        const slashCount = end - index;
+        if (source[end] === '"') {
+          argument += '\\'.repeat(Math.floor(slashCount / 2));
+          if (slashCount % 2 === 1) {
+            argument += '"';
+            index = end + 1;
+          } else if (quoted && source[end + 1] === '"') {
+            argument += '"';
+            index = end + 2;
+          } else {
+            quoted = !quoted;
+            index = end + 1;
+          }
+        } else {
+          argument += '\\'.repeat(slashCount);
+          index = end;
+        }
+        continue;
+      }
+      if (source[index] === '"') {
+        if (quoted && source[index + 1] === '"') {
+          argument += '"';
+          index += 2;
+        } else {
+          quoted = !quoted;
+          index += 1;
+        }
+        continue;
+      }
+      argument += source[index];
+      index += 1;
+    }
+    args.push(argument);
+    while (/\s/.test(source[index] || '')) index += 1;
+  }
+  return args;
 }
 
-function chromePidsForProfile(profileDir) {
+function posixCommandLineArgs(commandLine) {
+  const source = String(commandLine || '');
+  const args = [];
+  let argument = '';
+  let quote = '';
+  let escaped = false;
+  let started = false;
+  for (const character of source) {
+    if (escaped) {
+      argument += character;
+      escaped = false;
+      started = true;
+      continue;
+    }
+    if (character === '\\' && quote !== "'") {
+      escaped = true;
+      started = true;
+      continue;
+    }
+    if (quote) {
+      if (character === quote) quote = '';
+      else argument += character;
+      started = true;
+      continue;
+    }
+    if (character === '"' || character === "'") {
+      quote = character;
+      started = true;
+      continue;
+    }
+    if (/\s/.test(character)) {
+      if (started) args.push(argument);
+      argument = '';
+      started = false;
+      continue;
+    }
+    argument += character;
+    started = true;
+  }
+  if (escaped) argument += '\\';
+  if (started) args.push(argument);
+  return args;
+}
+
+function normalizeChromeProfileDir(profileDir, platform = process.platform) {
+  const value = String(profileDir || '');
+  if (!value) return '';
+  const pathApi = platform === 'win32' ? path.win32 : path.posix;
+  const normalized = pathApi.normalize(pathApi.resolve(value));
+  if (platform === 'win32') {
+    const root = path.win32.parse(normalized).root;
+    const trimmed = normalized.replace(/[\\/]+$/, '');
+    return (trimmed.length < root.length ? root : trimmed).toLowerCase();
+  }
+  return normalized.replace(/\/+$/, '') || '/';
+}
+
+function chromeProfileProcessMatches(processLine, profileDir, platform = process.platform) {
+  const line = String(processLine || '').trim();
+  const match = line.match(/^\d+\s+(.+)$/);
+  if (!match) return false;
+  const args = platform === 'win32'
+    ? windowsCommandLineArgs(match[1])
+    : posixCommandLineArgs(match[1]);
+  const pathApi = platform === 'win32' ? path.win32 : path.posix;
+  if (!args.length) return false;
+  if (platform === 'win32') {
+    if (!/chrom/i.test(pathApi.basename(args[0]))) return false;
+  } else {
+    const profileFlagIndex = match[1].search(/(?:^|\s)--user-data-dir(?:=|\s)/i);
+    if (profileFlagIndex < 0 || !/chrom/i.test(match[1].slice(0, profileFlagIndex))) return false;
+  }
+
+  let userDataDir = '';
+  for (let index = 0; index < args.length; index += 1) {
+    if (args[index].startsWith('--user-data-dir=')) userDataDir = args[index].slice('--user-data-dir='.length);
+    else if (args[index] === '--user-data-dir' && index + 1 < args.length) userDataDir = args[index + 1];
+  }
+  return Boolean(userDataDir)
+    && normalizeChromeProfileDir(userDataDir, platform) === normalizeChromeProfileDir(profileDir, platform);
+}
+
+function chromeProfileProcessLines(profileDir) {
   const resolvedProfileDir = path.resolve(profileDir);
   const ps = listProcessCommandLines({ timeoutMs: 15000 });
   if (!ps.ok) return [];
-  const userDataDirFlag = `--user-data-dir=${resolvedProfileDir}`;
-  const quotedUserDataDirFlag = `--user-data-dir="${shellToken(resolvedProfileDir)}"`;
+  return String(ps.text || '')
+    .split(/\r?\n/)
+    .filter((line) => chromeProfileProcessMatches(line, resolvedProfileDir));
+}
+
+function chromePidsForProfile(profileDir) {
   const pids = [];
-  for (const line of String(ps.stdout || '').split(/\r?\n/)) {
-    if (!line.includes(userDataDirFlag) && !line.includes(quotedUserDataDirFlag)) continue;
-    if (!/chrom/i.test(line)) continue;
+  for (const line of chromeProfileProcessLines(profileDir)) {
     const pid = Number(line.trim().match(/^(\d+)/)?.[1] || 0);
     if (pid && pidAlive(pid)) pids.push(pid);
   }
@@ -341,17 +479,35 @@ function signalChromeProfile(profileDir, signal) {
   }
 }
 
-function parseListeningPortForPid(pid) {
+function parseWindowsListeningPorts(output, pid) {
+  const ports = new Set();
+  for (const line of String(output || '').split(/\r?\n/)) {
+    const match = line.match(/^\s*TCP\s+\S+:(\d+)\s+\S+:(?:\d+|\*)\s+LISTENING\s+(\d+)\s*$/i);
+    if (match && Number(match[2]) === Number(pid)) ports.add(match[1]);
+  }
+  return [...ports];
+}
+
+function listeningPortsForPid(pid) {
+  if (process.platform === 'win32') {
+    const result = spawnSync('netstat.exe', ['-ano', '-p', 'tcp'], {
+      encoding: 'utf8',
+      timeout: 3000,
+      windowsHide: true
+    });
+    return result.status === 0 ? parseWindowsListeningPorts(result.stdout, pid) : [];
+  }
   const result = spawnSync('lsof', ['-nP', '-a', '-p', String(pid), '-iTCP', '-sTCP:LISTEN'], {
     encoding: 'utf8',
     timeout: 3000
   });
-  if (result.status !== 0) return '';
+  if (result.status !== 0) return [];
+  const ports = new Set();
   for (const line of String(result.stdout || '').split(/\r?\n/).slice(1)) {
-    const match = line.match(/(?:127\.0\.0\.1|localhost):(\d+)\s+\(LISTEN\)/);
-    if (match) return match[1];
+    const match = line.match(/:(\d+)\s+\(LISTEN\)/);
+    if (match) ports.add(match[1]);
   }
-  return '';
+  return [...ports];
 }
 
 async function waitForCdpVersion(port, timeoutMs) {
@@ -369,25 +525,71 @@ async function waitForCdpVersion(port, timeoutMs) {
   throw new Error(`Chrome CDP endpoint did not become reachable after ${timeoutMs}ms${message}`);
 }
 
+function parseDevToolsActivePort(contents) {
+  const [port = '', websocketPath = ''] = String(contents || '').split(/\r?\n/);
+  const normalizedPort = port.trim();
+  const normalizedPath = websocketPath.trim();
+  if (!/^[1-9]\d*$/.test(normalizedPort) || !/^\/devtools\/browser\/[A-Za-z0-9_-]+$/.test(normalizedPath)) return null;
+  return { port: normalizedPort, websocketPath: normalizedPath };
+}
+
+function cdpEndpointMatchesPort(version, port) {
+  if (!version || typeof version.webSocketDebuggerUrl !== 'string') return false;
+  try {
+    const endpoint = new URL(version.webSocketDebuggerUrl);
+    return endpoint.protocol === 'ws:'
+      && ['127.0.0.1', 'localhost', '::1', '[::1]'].includes(endpoint.hostname.toLowerCase())
+      && endpoint.port === String(port)
+      && /^\/devtools\/browser\/[A-Za-z0-9_-]+$/.test(endpoint.pathname);
+  } catch {
+    return false;
+  }
+}
+
+function activePortEndpointMatches(version, activePort) {
+  return Boolean(activePort)
+    && cdpEndpointMatchesPort(version, activePort.port)
+    && new URL(version.webSocketDebuggerUrl).pathname === activePort.websocketPath;
+}
+
+async function findCdpPortForPid(pid, activePort, {
+  readVersion = waitForCdpVersion,
+  readListeningPorts = listeningPortsForPid
+} = {}) {
+  const listeningPorts = readListeningPorts(pid).map(String);
+  if (activePort && listeningPorts.includes(String(activePort.port))) {
+    try {
+      const version = await readVersion(activePort.port, 1000);
+      if (activePortEndpointMatches(version, activePort)) return activePort.port;
+    } catch {
+      // The file may be stale or its port may have been reused by another Chrome process.
+    }
+  }
+  for (const port of listeningPorts) {
+    try {
+      const version = await readVersion(port, 1000);
+      if (cdpEndpointMatchesPort(version, port)) return String(port);
+    } catch {
+      // Try the next listener owned by this exact profile process.
+    }
+  }
+  return '';
+}
+
 async function findExistingCdpProfile(profileDir) {
-  const resolvedProfileDir = path.resolve(profileDir);
-  const ps = listProcessCommandLines({ timeoutMs: 15000 });
-  if (!ps.ok) return null;
-  const userDataDirFlag = `--user-data-dir=${resolvedProfileDir}`;
-  const quotedUserDataDirFlag = `--user-data-dir="${shellToken(resolvedProfileDir)}"`;
-  for (const line of String(ps.stdout || '').split(/\r?\n/)) {
-    if (!line.includes(userDataDirFlag) && !line.includes(quotedUserDataDirFlag)) continue;
-    if (!/chrom/i.test(line)) continue;
+  const portPath = path.join(profileDir, 'DevToolsActivePort');
+  let activePort = null;
+  try {
+    activePort = parseDevToolsActivePort(fs.readFileSync(portPath, 'utf8'));
+  } catch {
+    // Chrome may have been started outside this wrapper; the process listener lookup below
+    // remains a fallback when its DevToolsActivePort file is not available.
+  }
+  for (const line of chromeProfileProcessLines(profileDir)) {
     const pid = line.trim().match(/^(\d+)/)?.[1] || '';
     if (!pid || !pidAlive(pid)) continue;
-    const port = parseListeningPortForPid(pid);
-    if (!port) continue;
-    try {
-      await waitForCdpVersion(port, 1000);
-      return { pid: Number(pid), port };
-    } catch {
-      continue;
-    }
+    const port = await findCdpPortForPid(pid, activePort);
+    if (port) return { pid: Number(pid), port };
   }
   return null;
 }

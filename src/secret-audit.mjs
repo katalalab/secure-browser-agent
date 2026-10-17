@@ -150,7 +150,84 @@ function defaultServiceAccountEnvFile() {
   return path.join(os.homedir(), '.config/ai-secret/1password.env');
 }
 
-function inspectEnvFile(filePath) {
+const WINDOWS_SECRET_ACL_SCRIPT = [
+  "$ErrorActionPreference = 'Stop'",
+  "$ProgressPreference = 'SilentlyContinue'",
+  '$fileAcl = [System.IO.File]::GetAccessControl($env:SBA_SECRET_AUDIT_ENV_FILE)',
+  '$descriptor = [System.Security.AccessControl.RawSecurityDescriptor]::new($fileAcl.GetSecurityDescriptorBinaryForm(), 0)',
+  '$rules = @($descriptor.DiscretionaryAcl | ForEach-Object { $ace = $_; $sid = ""; $type = ""; $rights = -1L; $isCallback = $false; if ($ace -is [System.Security.AccessControl.QualifiedAce]) { $sid = $ace.SecurityIdentifier.Value; $rights = [long]$ace.AccessMask; $type = switch ($ace.AceQualifier.ToString()) { "AccessAllowed" { "Allow" } "AccessDenied" { "Deny" } default { "" } }; $isCallback = $ace.IsCallback }; [pscustomobject]@{ sid = $sid; type = $type; rights = $rights; aceType = $ace.AceType.ToString(); isCallback = $isCallback } })',
+  '$canRead = $false; try { $stream = [System.IO.File]::Open($env:SBA_SECRET_AUDIT_ENV_FILE, [System.IO.FileMode]::Open, [System.IO.FileAccess]::Read, [System.IO.FileShare]::ReadWrite); $stream.Dispose(); $canRead = $true } catch { $canRead = $false }',
+  '[pscustomobject]@{ ownerSid = $fileAcl.GetOwner([System.Security.Principal.SecurityIdentifier]).Value; currentSid = [System.Security.Principal.WindowsIdentity]::GetCurrent().User.Value; hasDacl = ($null -ne $descriptor.DiscretionaryAcl); canRead = $canRead; rules = $rules } | ConvertTo-Json -Compress -Depth 4'
+].join('; ');
+
+function readWindowsEnvFileAcl(filePath) {
+  const systemRoot = process.env.SystemRoot || process.env.WINDIR;
+  if (!systemRoot || !path.win32.isAbsolute(systemRoot)) return null;
+  const tempPath = process.env.TEMP || process.env.TMP || os.tmpdir();
+  const powershellModules = [
+    path.win32.join(systemRoot, 'System32', 'WindowsPowerShell', 'v1.0', 'Modules'),
+    path.win32.join(process.env.ProgramFiles || 'C:\\Program Files', 'WindowsPowerShell', 'Modules')
+  ].join(path.win32.delimiter);
+  const powershellPath = path.win32.join(
+    systemRoot,
+    'System32',
+    'WindowsPowerShell',
+    'v1.0',
+    'powershell.exe'
+  );
+  const result = spawnSync(powershellPath, [
+    '-NoLogo',
+    '-NoProfile',
+    '-NonInteractive',
+    '-Command',
+    WINDOWS_SECRET_ACL_SCRIPT
+  ], {
+    env: {
+      SystemRoot: systemRoot,
+      WINDIR: systemRoot,
+      TEMP: tempPath,
+      TMP: process.env.TMP || tempPath,
+      PSModulePath: powershellModules,
+      SBA_SECRET_AUDIT_ENV_FILE: filePath
+    },
+    encoding: 'utf8',
+    timeout: 30000,
+    windowsHide: true,
+    maxBuffer: 256 * 1024
+  });
+  if (result.error || result.status !== 0) return null;
+  try {
+    return JSON.parse(String(result.stdout || '').trim());
+  } catch {
+    return null;
+  }
+}
+
+function windowsEnvFilePermissionStatus(acl) {
+  if (!acl || typeof acl !== 'object' || typeof acl.ownerSid !== 'string' || typeof acl.currentSid !== 'string') {
+    return 'acl-unverified';
+  }
+  if (acl.canRead !== true) return 'acl-unverified';
+  if (acl.hasDacl === false) return 'unrestricted-acl';
+  if (acl.hasDacl !== true) return 'acl-unverified';
+  const rules = Array.isArray(acl.rules) ? acl.rules : (acl.rules ? [acl.rules] : null);
+  if (!rules) return 'acl-unverified';
+
+  // SYSTEM and local Administrators are privileged Windows principals; all other
+  // access must be limited to the account that runs the audit.
+  const trustedSids = new Set([acl.currentSid, 'S-1-5-18', 'S-1-5-32-544']);
+  if (!trustedSids.has(acl.ownerSid)) return 'acl-unverified';
+  for (const rule of rules) {
+    if (!rule || typeof rule.sid !== 'string' || !['Allow', 'Deny'].includes(rule.type)) return 'acl-unverified';
+    if (rule.isCallback === true || !['AccessAllowed', 'AccessDenied'].includes(rule.aceType)) return 'acl-unverified';
+    const rights = Number(rule.rights);
+    if (!Number.isSafeInteger(rights) || rights < 0) return 'acl-unverified';
+    if (rule.type === 'Allow' && rights !== 0 && !trustedSids.has(rule.sid)) return 'unrestricted-acl';
+  }
+  return 'restricted-acl';
+}
+
+function inspectEnvFile(filePath, options = {}) {
   const resolvedPath = String(filePath || '');
   if (!resolvedPath) {
     return {
@@ -164,7 +241,25 @@ function inspectEnvFile(filePath) {
   }
   try {
     const stat = fs.statSync(resolvedPath);
-    const mode = process.platform === 'win32' ? 0o600 : stat.mode & 0o777;
+    const platform = options.platform || process.platform;
+    if (platform === 'win32') {
+      let permissionStatus = 'acl-unverified';
+      try {
+        const reader = options.windowsAclReader || readWindowsEnvFileAcl;
+        permissionStatus = windowsEnvFilePermissionStatus(reader(resolvedPath));
+      } catch {
+        // An unavailable ACL inspector must never imply that the env file is private.
+      }
+      return {
+        exists: stat.isFile(),
+        path: resolvedPath,
+        strictPermissions: permissionStatus === 'restricted-acl',
+        sizeBytes: stat.size,
+        mode: permissionStatus,
+        modifiedAt: stat.mtime.toISOString()
+      };
+    }
+    const mode = stat.mode & 0o777;
     return {
       exists: stat.isFile(),
       path: resolvedPath,
@@ -196,7 +291,8 @@ export function buildSecretAudit(options = {}) {
   const serviceAccountEnvFile = inspectEnvFile(
     options.serviceAccountEnvFile === undefined
       ? defaultServiceAccountEnvFile()
-      : options.serviceAccountEnvFile
+      : options.serviceAccountEnvFile,
+    options
   );
   const processes = {
     onePasswordApp: countMatches(processList, [/\/1Password(?:\.app)?\/Contents\/MacOS\/1Password(?:\s|$)/]),
@@ -619,7 +715,6 @@ export function buildSecretRunSelect(options = {}) {
   ];
   const selected = candidates.find((item) => item.ready)
     || candidates.find((item) => item.configured)
-    || candidates.find((item) => item.id === 'service-account-env-file')
     || candidates.find((item) => item.id === 'service-account');
   const selectedRunPlan = buildSecretRunPlan({
     ...options,
