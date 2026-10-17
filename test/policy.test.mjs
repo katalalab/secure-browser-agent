@@ -798,6 +798,11 @@ test('cdp process matching compares normalized complete Chrome profile paths', (
     '/tmp/profiles/alice team',
     'linux'
   ), true);
+  assert.equal(matchesProfile(
+    '42 /Users/runner/.agent-browser/browsers/chrome-foo/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing --user-data-dir=/tmp/profiles/alice',
+    '/tmp/profiles/alice',
+    'darwin'
+  ), true);
 });
 
 test('cdp validates active-port identity and falls back to listeners owned by the profile process', async () => {

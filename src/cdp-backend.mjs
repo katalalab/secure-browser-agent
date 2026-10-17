@@ -425,7 +425,13 @@ function chromeProfileProcessMatches(processLine, profileDir, platform = process
     ? windowsCommandLineArgs(match[1])
     : posixCommandLineArgs(match[1]);
   const pathApi = platform === 'win32' ? path.win32 : path.posix;
-  if (!args.length || !/chrom/i.test(pathApi.basename(args[0]))) return false;
+  if (!args.length) return false;
+  if (platform === 'win32') {
+    if (!/chrom/i.test(pathApi.basename(args[0]))) return false;
+  } else {
+    const profileFlagIndex = match[1].search(/(?:^|\s)--user-data-dir(?:=|\s)/i);
+    if (profileFlagIndex < 0 || !/chrom/i.test(match[1].slice(0, profileFlagIndex))) return false;
+  }
 
   let userDataDir = '';
   for (let index = 0; index < args.length; index += 1) {
