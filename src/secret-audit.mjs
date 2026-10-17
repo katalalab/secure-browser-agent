@@ -209,13 +209,14 @@ function windowsEnvFilePermissionStatus(acl) {
   }
   if (acl.canRead !== true) return 'acl-unverified';
   if (acl.hasDacl === false) return 'unrestricted-acl';
-  if (acl.hasDacl !== true || acl.ownerSid !== acl.currentSid) return 'acl-unverified';
+  if (acl.hasDacl !== true) return 'acl-unverified';
   const rules = Array.isArray(acl.rules) ? acl.rules : (acl.rules ? [acl.rules] : null);
   if (!rules) return 'acl-unverified';
 
   // SYSTEM and local Administrators are privileged Windows principals; all other
-  // access must be limited to the account that owns and runs the audit.
+  // access must be limited to the account that runs the audit.
   const trustedSids = new Set([acl.currentSid, 'S-1-5-18', 'S-1-5-32-544']);
+  if (!trustedSids.has(acl.ownerSid)) return 'acl-unverified';
   for (const rule of rules) {
     if (!rule || typeof rule.sid !== 'string' || !['Allow', 'Deny'].includes(rule.type)) return 'acl-unverified';
     if (rule.isCallback === true || !['AccessAllowed', 'AccessDenied'].includes(rule.aceType)) return 'acl-unverified';

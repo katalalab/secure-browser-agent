@@ -271,6 +271,39 @@ test('secret audit fails closed when Windows ACL inspection is unavailable', () 
   }
 });
 
+test('secret audit accepts a trusted Windows administrator as the env file owner', () => {
+  const rootDir = fs.mkdtempSync(path.join(os.tmpdir(), 'sba-secret-audit-acl-admin-owner-'));
+  try {
+    const envFile = path.join(rootDir, '1password.env');
+    fs.writeFileSync(envFile, 'OP_SERVICE_ACCOUNT_TOKEN=synthetic-test-token\n');
+    const audit = buildSecretAudit({
+      env: {},
+      op: { exists: true, path: 'op', version: '2.34.0-test' },
+      processList: '',
+      serviceAccountEnvFile: envFile,
+      platform: 'win32',
+      windowsAclReader: () => ({
+        ownerSid: 'S-1-5-32-544',
+        currentSid: 'S-1-5-21-1000',
+        hasDacl: true,
+        canRead: true,
+        rules: [
+          { sid: 'S-1-5-21-1000', type: 'Allow', rights: 2032127, aceType: 'AccessAllowed', isCallback: false },
+          { sid: 'S-1-5-18', type: 'Allow', rights: 2032127, aceType: 'AccessAllowed', isCallback: false },
+          { sid: 'S-1-5-32-544', type: 'Allow', rights: 2032127, aceType: 'AccessAllowed', isCallback: false }
+        ]
+      })
+    });
+
+    assert.equal(audit.serviceAccountEnvFile.strictPermissions, true);
+    assert.equal(audit.serviceAccountEnvFile.mode, 'restricted-acl');
+    assert.equal(audit.capabilities.serviceAccountEnvFileUsable, true);
+    assert.equal(JSON.stringify(audit).includes('synthetic-test-token'), false);
+  } finally {
+    fs.rmSync(rootDir, { recursive: true, force: true });
+  }
+});
+
 test('secret audit fails closed when Windows ACL contains an unsupported callback ACE', () => {
   const rootDir = fs.mkdtempSync(path.join(os.tmpdir(), 'sba-secret-audit-acl-callback-'));
   try {
