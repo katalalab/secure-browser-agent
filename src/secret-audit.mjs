@@ -163,6 +163,11 @@ const WINDOWS_SECRET_ACL_SCRIPT = [
 function readWindowsEnvFileAcl(filePath) {
   const systemRoot = process.env.SystemRoot || process.env.WINDIR;
   if (!systemRoot || !path.win32.isAbsolute(systemRoot)) return null;
+  const tempPath = process.env.TEMP || process.env.TMP || os.tmpdir();
+  const powershellModules = [
+    path.win32.join(systemRoot, 'System32', 'WindowsPowerShell', 'v1.0', 'Modules'),
+    path.win32.join(process.env.ProgramFiles || 'C:\\Program Files', 'WindowsPowerShell', 'Modules')
+  ].join(path.win32.delimiter);
   const powershellPath = path.win32.join(
     systemRoot,
     'System32',
@@ -180,6 +185,9 @@ function readWindowsEnvFileAcl(filePath) {
     env: {
       SystemRoot: systemRoot,
       WINDIR: systemRoot,
+      TEMP: tempPath,
+      TMP: process.env.TMP || tempPath,
+      PSModulePath: powershellModules,
       SBA_SECRET_AUDIT_ENV_FILE: filePath
     },
     encoding: 'utf8',
