@@ -183,7 +183,7 @@ function readWindowsEnvFileAcl(filePath) {
       SBA_SECRET_AUDIT_ENV_FILE: filePath
     },
     encoding: 'utf8',
-    timeout: 15000,
+    timeout: 30000,
     windowsHide: true,
     maxBuffer: 256 * 1024
   });
