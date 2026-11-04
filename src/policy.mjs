@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { createHash } from 'node:crypto';
 
 export const DEFAULT_POLICY_PATH = new URL('../config/example-policy.json', import.meta.url);
 
@@ -46,10 +47,109 @@ export function assertAllowedUrl(rawUrl, policy) {
   throw new Error(`blocked URL by policy: ${origin}`);
 }
 
+const PROFILE_NAMESPACE = '.sba-profile-v2';
+const PROFILE_MARKER = '.sba-owner.json';
+
+function profileNameFor(policy, name) {
+  const value = String(name || policy.defaultProfile || 'default');
+  if (!/^[a-z0-9][a-z0-9._-]{0,63}$/.test(value) || value.endsWith('.') || /^(?:con|prn|aux|nul|com[1-9]|lpt[1-9])(?:\.|$)/.test(value)) {
+    throw new Error('invalid profile name: use a lowercase portable name');
+  }
+  return value;
+}
+
+function canonicalProfileRoot(policy) {
+  let current = path.resolve(policy.profileDir);
+  const remaining = [];
+  while (true) {
+    try {
+      const info = fs.lstatSync(current);
+      if (info.isSymbolicLink()) throw new Error('profile root symlink is not supported');
+      return path.join(fs.realpathSync(current), ...remaining);
+    } catch (error) {
+      if (error.code !== 'ENOENT') throw error;
+      const parent = path.dirname(current);
+      if (parent === current) throw error;
+      remaining.unshift(path.basename(current));
+      current = parent;
+    }
+  }
+}
+
+function expectedIdentity(policy, name) {
+  return { version: 2, root: canonicalProfileRoot(policy), name: profileNameFor(policy, name) };
+}
+
+function verifyDirectory(dir, expected) {
+  let stat;
+  try { stat = fs.lstatSync(dir); } catch (error) {
+    if (error.code === 'ENOENT') return false;
+    throw error;
+  }
+  if (!stat.isDirectory() || stat.isSymbolicLink()) throw new Error('unowned profile directory');
+  let marker;
+  try { marker = JSON.parse(fs.readFileSync(path.join(dir, PROFILE_MARKER), 'utf8')); } catch {
+    throw new Error('unowned profile directory or invalid marker');
+  }
+  if (JSON.stringify(marker) !== JSON.stringify(expected)) throw new Error('profile marker mismatch');
+  return true;
+}
+
+function createOwnedDirectory(dir, identity) {
+  try {
+    fs.mkdirSync(dir);
+  } catch (error) {
+    if (error.code !== 'EEXIST') throw error;
+    if (!verifyDirectory(dir, identity)) throw new Error('profile creation race: directory disappeared');
+    return;
+  }
+  fs.writeFileSync(path.join(dir, PROFILE_MARKER), JSON.stringify(identity), { flag: 'wx' });
+}
+
 export function profilePath(policy, profileName) {
-  const safeName = String(profileName || policy.defaultProfile || 'default').replace(/[^a-zA-Z0-9_.-]/g, '_');
-  if (safeName === '.' || safeName === '..') throw new Error('invalid profile name');
-  return path.join(policy.profileDir, safeName);
+  const identity = expectedIdentity(policy, profileName);
+  const namespace = path.join(identity.root, PROFILE_NAMESPACE);
+  if (verifyDirectory(namespace, { version: 2, root: identity.root, kind: 'namespace' })) {
+    verifyDirectory(path.join(namespace, identity.name), identity);
+  }
+  return path.join(namespace, identity.name);
+}
+
+export function initializeProfile(policy, profileName) {
+  const identity = expectedIdentity(policy, profileName);
+  const existing = profilePath(policy, profileName);
+  let alreadyCreated = false;
+  try { fs.lstatSync(existing); alreadyCreated = true; } catch (error) {
+    if (error.code !== 'ENOENT') throw error;
+  }
+  if (!alreadyCreated && policy.allowFreshV2Profile !== true) {
+    try {
+      fs.lstatSync(path.join(identity.root, identity.name));
+      throw new Error('legacy profile exists; explicit allowFreshV2Profile is required to create a separate fresh profile');
+    } catch (error) {
+      if (error.code !== 'ENOENT') throw error;
+    }
+  }
+  fs.mkdirSync(identity.root, { recursive: true });
+  const namespace = path.join(identity.root, PROFILE_NAMESPACE);
+  createOwnedDirectory(namespace, { version: 2, root: identity.root, kind: 'namespace' });
+  const dir = path.join(namespace, identity.name);
+  createOwnedDirectory(dir, identity);
+  return profilePath(policy, profileName);
+}
+
+export function requireOwnedProfile(policy, profileName) {
+  const dir = profilePath(policy, profileName);
+  try { fs.lstatSync(dir); } catch (error) {
+    if (error.code === 'ENOENT') throw new Error('profile has not been initialized');
+    throw error;
+  }
+  return dir;
+}
+
+export function profileSessionId(policy, profileName) {
+  const identity = expectedIdentity(policy, profileName);
+  return `sba-v2-${createHash('sha256').update(JSON.stringify(identity)).digest('hex')}`;
 }
 
 export function statePath(policy, profileName) {

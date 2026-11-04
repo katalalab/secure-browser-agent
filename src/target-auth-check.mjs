@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { observeWithCdp, observeWithCdpPort } from './cdp-backend.mjs';
 import { safeOutputPath } from './output.mjs';
-import { assertAllowedUrl, loadPolicy, profilePath } from './policy.mjs';
+import { assertAllowedUrl, initializeProfile, loadPolicy, profilePath } from './policy.mjs';
 import { resolveTargetPack } from './target-pack.mjs';
 import { toPosixPath } from './output.mjs';
 
@@ -176,6 +176,7 @@ export async function buildTargetAuthCheck(targetDir, options = {}) {
     textLimit: 0
   };
   const cdpPort = options.cdpPort || options['cdp-port'] || handoffAuthCheckPort(policy, options);
+  if (!options.observe && !cdpPort) initializeProfile(policy, profile);
   const observe = options.observe || (cdpPort
     ? await observeWithCdpPort(pageUrl, Number(cdpPort), observeOptions)
     : await observeWithCdp(pageUrl, profilePath(policy, profile), observeOptions));

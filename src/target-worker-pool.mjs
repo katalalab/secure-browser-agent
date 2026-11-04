@@ -47,6 +47,8 @@ export async function buildTargetWorkerPool(rootDir = process.cwd(), options = {
         target: pack.metadata.target || path.basename(pack.dir),
         dir: pack.dir,
         profile,
+        managedIdentity: 'v2',
+        legacyStatus: 'not_checked',
         profileDir,
         daemonRunning: Boolean(daemon.ok),
         pid: daemon.pid || null,
@@ -84,6 +86,8 @@ export function formatTargetWorkerPoolCompact(pool) {
     `status_only: ${yesNo(pool.statusOnly)}`,
     `destructive_actions: ${yesNo(pool.destructiveActionsIncluded)}`,
     `secret_values_read: ${yesNo(pool.secretValuesRead)}`,
+    'managed_identity: v2',
+    'legacy_status: not_checked',
     `workers: ${pool.workerCount}`,
     `running: ${pool.runningCount}`,
     `errors: ${pool.errors.length}`

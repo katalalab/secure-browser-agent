@@ -6,7 +6,7 @@ import { actionWithCdp, analyzeWithCdp, cdpDaemonStatus, consoleSummaryWithCdp, 
 import { runAgentBrowser, sessionArgs } from './agent-browser.mjs';
 import { summarizeHarFile } from './har.mjs';
 import { outlineWithPlaywright } from './playwright-adapter.mjs';
-import { assertAllowedUrl, assertEngineAllowed, loadPolicy, profilePath, redact, statePath } from './policy.mjs';
+import { assertAllowedUrl, assertEngineAllowed, initializeProfile, loadPolicy, profilePath, profileSessionId, redact, requireOwnedProfile, statePath } from './policy.mjs';
 import { applyOwnedReap, planOwnedReap } from './reap-owned.mjs';
 import { buildExtractScript, buildObserveScript, buildOutlineScript } from './extract-script.mjs';
 import { safeOutputPath, writeOutput } from './output.mjs';
@@ -114,9 +114,8 @@ function parseArgs(argv) {
 }
 
 function ensureDirs(policy, profileName) {
-  const profile = profilePath(policy, profileName);
+  initializeProfile(policy, profileName);
   fs.mkdirSync(policy.outputDir, { recursive: true });
-  fs.mkdirSync(profile, { recursive: true });
 }
 
 function printJson(value) {
@@ -2961,8 +2960,8 @@ Safety:
   }
 
   if (command === 'close-session') {
-    profilePath(policy, profileName);
-    const result = await runAgentBrowser(['--session', profileName, 'close'], { timeoutMs: 5000 });
+    requireOwnedProfile(policy, profileName);
+    const result = await runAgentBrowser(['--session', profileSessionId(policy, profileName), 'close'], { timeoutMs: 5000 });
     process.stdout.write(result.stdout);
     return;
   }

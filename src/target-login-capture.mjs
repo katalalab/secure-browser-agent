@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { openCdpProfile } from './cdp-backend.mjs';
 import { safeOutputPath } from './output.mjs';
-import { assertAllowedUrl, assertEngineAllowed, loadPolicy, profilePath } from './policy.mjs';
+import { assertAllowedUrl, assertEngineAllowed, initializeProfile, loadPolicy, profilePath } from './policy.mjs';
 import { resolveTargetLogin } from './target-pack.mjs';
 import { buildTargetProofCapture, formatTargetProofCaptureMarkdown } from './target-proof-capture.mjs';
 import { toPosixPath } from './output.mjs';
@@ -262,8 +262,8 @@ export async function buildTargetLoginCapture(targetDir, options = {}) {
     return result;
   }
 
+  initializeProfile(policy, target.profile);
   fs.mkdirSync(policy.outputDir, { recursive: true });
-  fs.mkdirSync(targetProfilePath, { recursive: true });
   const opener = normalized.opener || openCdpProfile;
   const captureBuilder = normalized.captureBuilder || buildTargetProofCapture;
   result.login = await opener(target.loginUrl, toPosixPath(targetProfilePath), { headed: true });

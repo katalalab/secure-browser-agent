@@ -2,6 +2,7 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import { listProcesses } from './process-list.mjs';
+import { profilePath, profileSessionId, requireOwnedProfile } from './policy.mjs';
 
 function readProcessTable() {
   const listing = listProcesses();
@@ -10,32 +11,40 @@ function readProcessTable() {
   return listing.processes;
 }
 
-function readSessionPids(sessionNames) {
-  const dir = path.join(os.homedir(), '.agent-browser');
-  return sessionNames.flatMap((name) => {
-    const pidFile = path.join(dir, `${name}.pid`);
+function readSessionPids(sessions, homeDir) {
+  const dir = path.join(homeDir, '.agent-browser');
+  return sessions.flatMap(({ name, id }) => {
+    const pidFile = path.join(dir, `${id}.pid`);
     if (!fs.existsSync(pidFile)) return [];
     const pid = Number(fs.readFileSync(pidFile, 'utf8').trim());
     return Number.isFinite(pid) ? [{ pid, reason: `agent-browser session ${name}`, session: name }] : [];
   });
 }
 
-export function planOwnedReap(policy, { includePublic = true } = {}) {
+export function planOwnedReap(policy, { includePublic = true, processTable, homeDir = os.homedir() } = {}) {
   const profileRoot = policy.profileDir;
-  const profileNames = fs.existsSync(profileRoot)
-    ? fs.readdirSync(profileRoot).filter((name) => {
+  const namespace = path.dirname(profilePath(policy, 'public'));
+  const profileNames = fs.existsSync(namespace)
+    ? fs.readdirSync(namespace).filter((name) => {
       if (includePublic && name === 'public') return true;
       if (name === 'pw-probe') return true;
       return /^verify-\d+$/.test(name);
-    })
+    }).filter((name) => { requireOwnedProfile(policy, name); return true; })
     : [];
-  const table = readProcessTable();
+  const table = processTable || readProcessTable();
   const byPid = new Map(table.map((proc) => [proc.pid, proc]));
 
-  const sessionTargets = readSessionPids(profileNames);
-  const profileTargets = table
-    .filter((proc) => proc.command.includes(profileRoot))
-    .map((proc) => ({ pid: proc.pid, reason: 'process using secure-browser-agent profile', session: null }));
+  const sessions = profileNames.map((name) => ({ name, id: profileSessionId(policy, name) }));
+  const sessionTargets = readSessionPids(sessions, homeDir).filter((target) => {
+    const proc = byPid.get(target.pid);
+    const id = profileSessionId(policy, target.session);
+    return proc && proc.command.includes('agent-browser') && proc.command.includes(id);
+  });
+  const ownedPaths = profileNames.map((name) => requireOwnedProfile(policy, name));
+  const profileTargets = table.flatMap((proc) => {
+    const index = ownedPaths.findIndex((dir) => proc.command.includes(`--user-data-dir=${dir}`));
+    return index < 0 ? [] : [{ pid: proc.pid, reason: 'process using secure-browser-agent profile', session: null, profile: profileNames[index] }];
+  });
 
   const targets = new Map();
   for (const target of [...sessionTargets, ...profileTargets]) {
@@ -49,7 +58,7 @@ export function planOwnedReap(policy, { includePublic = true } = {}) {
 
   const verifyProfiles = profileNames
     .filter((name) => /^verify-\d+$/.test(name))
-    .map((name) => path.join(profileRoot, name));
+    .map((name) => requireOwnedProfile(policy, name));
 
   return {
     profileRoot,
@@ -60,17 +69,13 @@ export function planOwnedReap(policy, { includePublic = true } = {}) {
 }
 
 export function applyOwnedReap(plan) {
-  const killed = [];
-  for (const target of plan.processTargets) {
-    try {
-      process.kill(target.pid, 'SIGTERM');
-      killed.push(target.pid);
-    } catch (error) {
-      if (error.code !== 'ESRCH') throw error;
-    }
-  }
+  const policy = { profileDir: plan.profileRoot };
+  for (const name of plan.profileNames) requireOwnedProfile(policy, name);
   for (const dir of plan.verifyProfiles) {
-    fs.rmSync(dir, { recursive: true, force: true });
+    const name = path.basename(dir);
+    if (!/^verify-\d+$/.test(name) || requireOwnedProfile(policy, name) !== dir) throw new Error('unowned profile in reap plan');
   }
-  return { killed, removedProfiles: plan.verifyProfiles };
+  if (plan.processTargets.length) throw new Error('reap cannot safely verify live process identity; no changes made');
+  if (plan.verifyProfiles.length) throw new Error('reap cannot prove profiles are unused; no changes made');
+  return { killed: [], removedProfiles: [] };
 }

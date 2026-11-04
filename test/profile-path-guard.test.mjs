@@ -67,10 +67,10 @@ test('invalid profile names do not create the output directory', () => {
   }
 });
 
-test('normal profile names and existing sanitized names retain their paths', () => {
+test('portable profile names use v2 and ambiguous sanitized names are rejected', () => {
   const policy = { profileDir: path.resolve('synthetic-profiles'), allowedOrigins: [] };
-  for (const [name, expected] of [['target.example', 'target.example'], ['team/test', 'team_test']]) {
-    assert.equal(profilePath(policy, name), path.join(policy.profileDir, expected));
-    assert.equal(statePath(policy, name), path.join(policy.profileDir, expected, 'state.json'));
-  }
+  const expected = path.join(policy.profileDir, '.sba-profile-v2', 'target.example');
+  assert.equal(profilePath(policy, 'target.example'), expected);
+  assert.equal(statePath(policy, 'target.example'), path.join(expected, 'state.json'));
+  assert.throws(() => profilePath(policy, 'team/test'), /invalid profile name/);
 });

@@ -1,7 +1,7 @@
 import fs from 'node:fs';
 import readline from 'node:readline';
 import { analyzeWithCdp, cdpDaemonStatus, runRecipeWithCdp, scrapeWithCdp, startCdpDaemon, stopCdpDaemon } from './cdp-backend.mjs';
-import { assertAllowedUrl, assertEngineAllowed, loadPolicy, profilePath, redact } from './policy.mjs';
+import { assertAllowedUrl, assertEngineAllowed, initializeProfile, loadPolicy, profilePath, redact } from './policy.mjs';
 import { writeOutput } from './output.mjs';
 import { addTargetOperateStep, applyTargetPermissions, buildTargetRunStatus, formatTargetRunStatusCompact, resolveTargetDaemon, resolveTargetPack, resolveTargetPermissions, resolveTargetRun, resolveTargetScrape, targetPermissionStatus, writeTargetPermissions } from './target-pack.mjs';
 import { profileStatus } from './profile-status.mjs';
@@ -78,9 +78,8 @@ import { buildBackgroundProofCaptureStart, formatBackgroundProofCaptureStartComp
 export const MCP_PROTOCOL_VERSION = '2025-06-18';
 
 function ensureDirs(policy, profileName) {
-  const profile = profilePath(policy, profileName);
+  initializeProfile(policy, profileName);
   fs.mkdirSync(policy.outputDir, { recursive: true });
-  fs.mkdirSync(profile, { recursive: true });
 }
 
 function csv(value) {

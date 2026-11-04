@@ -5,7 +5,7 @@ import http from 'node:http';
 import os from 'node:os';
 import path from 'node:path';
 import { spawnSync } from 'node:child_process';
-import { allowedDomains, assertAllowedUrl, assertEngineAllowed, loadPolicy, profilePath, redact, statePath } from '../src/policy.mjs';
+import { allowedDomains, assertAllowedUrl, assertEngineAllowed, loadPolicy, profilePath, profileSessionId, redact, statePath } from '../src/policy.mjs';
 import { buildExtractScript, buildInspectScript, buildObserveScript, buildOutlineScript } from '../src/extract-script.mjs';
 import { summarizeHarFile } from '../src/har.mjs';
 import { sessionArgs } from '../src/agent-browser.mjs';
@@ -70,7 +70,7 @@ test('inspect script includes scraping candidate features', () => {
 test('session args use dedicated profile path and state path', () => {
   const policy = loadPolicy();
   const args = sessionArgs(policy, 'target.example');
-  assert.equal(args[args.indexOf('--session') + 1], 'target.example');
+  assert.equal(args[args.indexOf('--session') + 1], profileSessionId(policy, 'target.example'));
   assert.equal(args[args.indexOf('--profile') + 1], profilePath(policy, 'target.example'));
   assert.equal(args.includes('--state'), false);
   assert.ok(args.includes('--allowed-domains'));

@@ -2,6 +2,7 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import { runAgentBrowser, sessionArgs } from './agent-browser.mjs';
+import { initializeProfile, profileSessionId } from './policy.mjs';
 import { observeWithCdp, startCdpDaemon, stopCdpDaemon } from './cdp-backend.mjs';
 import { buildObserveScript } from './extract-script.mjs';
 import { outlineWithPlaywright } from './playwright-adapter.mjs';
@@ -174,6 +175,7 @@ function failed(provider, error) {
 }
 
 async function runAgentBrowserObserve({ url, profileName, policy, engine = 'chrome', executablePath = '' }) {
+  initializeProfile(policy, profileName);
   const args = sessionArgs(policy, profileName, {
     engine,
     executablePath,
@@ -187,7 +189,7 @@ async function runAgentBrowserObserve({ url, profileName, policy, engine = 'chro
     });
     return JSON.parse(result.stdout);
   } finally {
-    await runAgentBrowser(['--session', profileName, 'close'], { timeoutMs: 5000 }).catch(() => {});
+    await runAgentBrowser(['--session', profileSessionId(policy, profileName), 'close'], { timeoutMs: 5000 }).catch(() => {});
   }
 }
 

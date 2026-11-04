@@ -1,7 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { runRecipeWithCdp, startCdpDaemon, stopCdpDaemon } from './cdp-backend.mjs';
-import { assertAllowedUrl, loadPolicy, profilePath } from './policy.mjs';
+import { assertAllowedUrl, initializeProfile, loadPolicy, profilePath } from './policy.mjs';
 import { auditTargetPack } from './security-audit.mjs';
 import { resolveTargetPack, resolveTargetRun } from './target-pack.mjs';
 import { summarizeDurations } from './provider-benchmark.mjs';
@@ -166,7 +166,7 @@ export async function runTargetBenchmark(targetDir, options = {}) {
     throw new Error(auditErrorMessage(preflight));
   }
 
-  fs.mkdirSync(targetProfileDir, { recursive: true });
+  initializeProfile(policy, profile);
   if (pack.metadata.pageUrl) assertAllowedUrl(pack.metadata.pageUrl, policy);
 
   const recipes = loadRecipes(pack.dir, recipeNames, { profile });

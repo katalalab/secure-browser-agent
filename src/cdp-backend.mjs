@@ -49,7 +49,8 @@ export const __test = {
   parseDevToolsActivePort,
   activePortEndpointMatches,
   parseWindowsListeningPorts,
-  findCdpPortForPid
+  findCdpPortForPid,
+  closeTransientChrome
 };
 
 function waitForChildExit(child, timeoutMs) {
@@ -76,13 +77,13 @@ async function waitForExit(child, timeoutMs = 3000) {
   try {
     child.kill('SIGTERM');
   } catch {
-    return true;
+    return false;
   }
   if (await waitForChildExit(child, 1000)) return true;
   try {
     child.kill('SIGKILL');
   } catch {
-    return true;
+    return false;
   }
   return waitForChildExit(child, 1000);
 }
@@ -594,15 +595,8 @@ async function findExistingCdpProfile(profileDir) {
   return null;
 }
 
-async function closeTransientChrome(chrome, profileDir, { gracefulMs = 3000, signalMs = 1000 } = {}) {
-  const exited = await waitForExit(chrome, gracefulMs);
-  if (exited && await waitForNoChromeProfile(profileDir, signalMs)) return true;
-
-  signalChromeProfile(profileDir, 'SIGTERM');
-  if (await waitForNoChromeProfile(profileDir, signalMs)) return true;
-
-  signalChromeProfile(profileDir, 'SIGKILL');
-  return waitForNoChromeProfile(profileDir, signalMs);
+async function closeTransientChrome(chrome, _profileDir, { gracefulMs = 3000 } = {}) {
+  return waitForExit(chrome, gracefulMs);
 }
 
 async function launchChrome(profileDir, {
@@ -614,11 +608,9 @@ async function launchChrome(profileDir, {
 } = {}) {
   timeoutMs = cdpLaunchTimeoutMs(timeoutMs);
   fs.mkdirSync(profileDir, { recursive: true });
-  if (reuseExisting) {
-    const existing = await findExistingCdpProfile(profileDir);
-    if (existing) return { chrome: null, port: String(existing.port), chromePath: '', pid: existing.pid, reused: true };
+  if (fs.existsSync(path.join(profileDir, 'DevToolsActivePort'))) {
+    throw new Error('existing Chrome profile state cannot be verified; stop and inspect it manually');
   }
-  fs.rmSync(path.join(profileDir, 'DevToolsActivePort'), { force: true });
   const chromePath = locateChromeForTesting();
   const args = [
     '--remote-debugging-port=0',
@@ -673,10 +665,6 @@ async function launchChrome(profileDir, {
       }
     }
     if (chrome.exitCode !== null) {
-      if (reuseExisting) {
-        const existing = await findExistingCdpProfile(profileDir);
-        if (existing) return { chrome: null, port: String(existing.port), chromePath, pid: existing.pid, reused: true };
-      }
       throw new Error(`Chrome exited early: ${chrome.exitCode}`);
     }
     await sleep(100);
@@ -751,9 +739,10 @@ export async function cdpDaemonStatus(profileDir) {
   const metadata = readDaemonMetadata(profileDir);
   const status = {
     ok: false,
+    legacyStatus: 'not_checked',
     profileDir,
     metadataPath,
-    metadataExists: Boolean(metadata),
+    metadataExists: fs.existsSync(metadataPath),
     pid: metadata?.pid || null,
     port: metadata?.port || null,
     headed: Boolean(metadata?.headed),
@@ -764,20 +753,7 @@ export async function cdpDaemonStatus(profileDir) {
     cdpReachable: false,
     version: null
   };
-  status.pidAlive = pidAlive(status.pid);
-  if (status.pidAlive && status.port) {
-    try {
-      const version = await httpJson(`http://127.0.0.1:${status.port}/json/version`);
-      status.cdpReachable = true;
-      status.version = {
-        browser: version.Browser || '',
-        protocolVersion: version['Protocol-Version'] || ''
-      };
-    } catch {
-      status.cdpReachable = false;
-    }
-  }
-  status.ok = status.pidAlive && status.cdpReachable;
+  if (status.metadataExists) status.reason = 'daemon identity cannot be verified';
   return status;
 }
 
@@ -788,13 +764,7 @@ export async function startCdpDaemon(profileDir, {
 } = {}) {
   timeoutMs = cdpLaunchTimeoutMs(timeoutMs);
   const current = await cdpDaemonStatus(profileDir);
-  if (current.ok) {
-    return {
-      ...current,
-      reused: true,
-      started: false
-    };
-  }
+  if (current.metadataExists) throw new Error('existing daemon identity cannot be verified');
 
   fs.mkdirSync(profileDir, { recursive: true });
   const { chrome, port, chromePath } = await launchChrome(profileDir, {
@@ -814,67 +784,26 @@ export async function startCdpDaemon(profileDir, {
     startedAt: new Date().toISOString()
   };
   fs.writeFileSync(daemonMetadataPath(profileDir), `${JSON.stringify(metadata, null, 2)}\n`, 'utf8');
-  const status = await cdpDaemonStatus(profileDir);
   return {
-    ...status,
+    ...metadata,
+    ok: true,
+    metadataExists: true,
+    legacyStatus: 'not_checked',
     reused: false,
     started: true
   };
 }
 
-export async function stopCdpDaemon(profileDir, { timeoutMs = 5000 } = {}) {
-  const status = await cdpDaemonStatus(profileDir);
-  if (!status.metadataExists) return { ...status, stopped: false, reason: 'no daemon metadata' };
-
-  let closeMethod = 'none';
-  if (status.cdpReachable && status.port) {
-    try {
-      const version = await httpJson(`http://127.0.0.1:${status.port}/json/version`);
-      if (version.webSocketDebuggerUrl) {
-        const client = new CdpClient(version.webSocketDebuggerUrl);
-        await client.ready();
-        await client.send('Browser.close', {}, 1000);
-        client.close();
-        closeMethod = 'Browser.close';
-      }
-    } catch {
-      closeMethod = 'cdp-close-failed';
-    }
-  }
-
-  if (status.pidAlive && closeMethod !== 'Browser.close') {
-    try {
-      process.kill(Number(status.pid), 'SIGTERM');
-      closeMethod = 'SIGTERM';
-    } catch {
-      closeMethod = 'signal-failed';
-    }
-  }
-
-  let exited = status.pid ? await waitForPidExit(status.pid, timeoutMs) : true;
-  if (!exited && status.pidAlive) {
-    try {
-      process.kill(Number(status.pid), 'SIGTERM');
-      closeMethod = closeMethod === 'Browser.close' ? 'Browser.close+SIGTERM' : 'SIGTERM';
-    } catch {
-      closeMethod = 'signal-failed';
-    }
-    exited = await waitForPidExit(status.pid, timeoutMs);
-  }
-  if (!exited && pidAlive(status.pid)) {
-    try {
-      process.kill(Number(status.pid), 'SIGKILL');
-      closeMethod = `${closeMethod}+SIGKILL`;
-    } catch {
-      closeMethod = 'sigkill-failed';
-    }
-    exited = await waitForPidExit(status.pid, timeoutMs);
-  }
-  if (exited) fs.rmSync(daemonMetadataPath(profileDir), { force: true });
+export async function stopCdpDaemon(profileDir) {
+  const metadataExists = fs.existsSync(daemonMetadataPath(profileDir));
   return {
-    ...status,
-    stopped: exited,
-    closeMethod
+    ok: false,
+    profileDir,
+    metadataExists,
+    legacyStatus: 'not_checked',
+    stopped: false,
+    closeMethod: 'none',
+    reason: metadataExists ? 'daemon identity cannot be verified' : 'no daemon metadata'
   };
 }
 

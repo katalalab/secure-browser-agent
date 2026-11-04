@@ -41,6 +41,8 @@ export function profileStatus(policy, profileName) {
   const lastModifiedAt = newestMtime(artifacts);
   return {
     profile: profileName,
+    managedIdentity: 'v2',
+    legacyStatus: 'not_checked',
     profilePath: profile,
     statePath: statePath(policy, profileName),
     policy: policy.source,

@@ -1,5 +1,5 @@
 import { spawn } from 'node:child_process';
-import { allowedDomains, profilePath, statePath } from './policy.mjs';
+import { allowedDomains, profilePath, profileSessionId, statePath } from './policy.mjs';
 
 export function lightpandaExecutablePath(policy = {}, options = {}) {
   return options.executablePath
@@ -63,11 +63,12 @@ export function runAgentBrowser(args, options = {}) {
 }
 
 export function sessionArgs(policy, profileName, options = {}) {
+  const session = profileSessionId(policy, profileName);
   const args = [
     '--session',
-    profileName,
+    session,
     '--session-name',
-    profileName
+    session
   ];
   if (options.engine === 'lightpanda') {
     // Lightpanda is a fast public-page backend; agent-browser does not support Chrome profiles there.
