@@ -78,8 +78,9 @@ import { buildBackgroundProofCaptureStart, formatBackgroundProofCaptureStartComp
 export const MCP_PROTOCOL_VERSION = '2025-06-18';
 
 function ensureDirs(policy, profileName) {
+  const profile = profilePath(policy, profileName);
   fs.mkdirSync(policy.outputDir, { recursive: true });
-  fs.mkdirSync(profilePath(policy, profileName), { recursive: true });
+  fs.mkdirSync(profile, { recursive: true });
 }
 
 function csv(value) {

@@ -48,6 +48,7 @@ export function assertAllowedUrl(rawUrl, policy) {
 
 export function profilePath(policy, profileName) {
   const safeName = String(profileName || policy.defaultProfile || 'default').replace(/[^a-zA-Z0-9_.-]/g, '_');
+  if (safeName === '.' || safeName === '..') throw new Error('invalid profile name');
   return path.join(policy.profileDir, safeName);
 }
 

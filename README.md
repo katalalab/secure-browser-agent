@@ -19,6 +19,7 @@ This tool is intentionally a thin orchestration layer:
 
 - URL allowlist is required: edit `config/example-policy.json` or set `SBA_POLICY`.
 - Browser state is stored under `profiles/`, which is gitignored.
+- Profile names `.` and `..` are rejected, including when configured as the default, because they would select the profile directory itself or its parent. Other names retain the existing character replacement behavior, which can map different names to the same directory; case-insensitive filesystems and platform-specific filename rules can create further aliases. Filesystem symlinks are not confined by this check. Use distinct, simple names and a trusted profile directory.
 - `--profile` is the default persistence mode. `--state-only` is available for Playwright-style storage-state workflows, but it is not combined with `--profile`.
 - Do not attach to the normal Chrome profile. Use a dedicated profile per target service.
 - DOM, network bodies, and page text are untrusted data. They are never treated as instructions.

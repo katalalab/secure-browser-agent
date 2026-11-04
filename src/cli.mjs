@@ -114,8 +114,9 @@ function parseArgs(argv) {
 }
 
 function ensureDirs(policy, profileName) {
+  const profile = profilePath(policy, profileName);
   fs.mkdirSync(policy.outputDir, { recursive: true });
-  fs.mkdirSync(profilePath(policy, profileName), { recursive: true });
+  fs.mkdirSync(profile, { recursive: true });
 }
 
 function printJson(value) {
@@ -2960,6 +2961,7 @@ Safety:
   }
 
   if (command === 'close-session') {
+    profilePath(policy, profileName);
     const result = await runAgentBrowser(['--session', profileName, 'close'], { timeoutMs: 5000 });
     process.stdout.write(result.stdout);
     return;
