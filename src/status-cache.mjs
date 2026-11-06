@@ -26,10 +26,14 @@ export function statusCachePath(rootDir, key) {
 
 function readJson(filePath) {
   try {
-    return JSON.parse(fs.readFileSync(filePath, 'utf8'));
-  } catch (error) {
-    return { __parseError: error instanceof Error ? error.message : String(error) };
+    return { parsed: JSON.parse(fs.readFileSync(filePath, 'utf8')), error: '' };
+  } catch {
+    return { parsed: null, error: 'status cache is not readable JSON' };
   }
+}
+
+function isStatusObject(value) {
+  return value !== null && typeof value === 'object' && !Array.isArray(value);
 }
 
 export function readStatusCache(rootDir, key, options = {}) {
@@ -48,8 +52,10 @@ export function readStatusCache(rootDir, key, options = {}) {
       error: ''
     };
   }
-  const parsed = readJson(filePath);
-  const parseOk = !parsed.__parseError;
+  const { parsed, error: readError } = readJson(filePath);
+  const value = isStatusObject(parsed) && Object.hasOwn(parsed, 'value') ? parsed.value : parsed;
+  const error = readError || (isStatusObject(value) ? '' : 'status cache must contain a JSON object');
+  const parseOk = !error;
   const stat = fs.statSync(filePath);
   const generatedAt = parseOk ? parsed.generatedAt || parsed.cachedAt || stat.mtime.toISOString() : stat.mtime.toISOString();
   const generatedMs = Date.parse(generatedAt);
@@ -62,8 +68,8 @@ export function readStatusCache(rootDir, key, options = {}) {
     stale: !parseOk || ageSeconds === null || ageSeconds > staleAfterSeconds,
     ageSeconds,
     staleAfterSeconds,
-    value: parseOk ? parsed.value ?? parsed : null,
-    error: parseOk ? '' : parsed.__parseError
+    value: parseOk ? value : null,
+    error
   };
 }
 
