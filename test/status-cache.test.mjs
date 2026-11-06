@@ -49,3 +49,45 @@ test('status cache marks stale and parse-broken entries', () => {
     fs.rmSync(root, { recursive: true, force: true });
   }
 });
+
+test('non-object status cache entries miss and can be refreshed', async (t) => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'sba-status-cache-shape-'));
+  t.after(() => fs.rmSync(root, { recursive: true, force: true }));
+  const file = statusCachePath(root, 'probe');
+  fs.mkdirSync(path.dirname(file), { recursive: true });
+
+  for (const raw of ['null', '[]', '17', '"text"', '{"value":[]}', '{"value":null}']) {
+    fs.writeFileSync(file, raw, 'utf8');
+    const report = await buildStatusCache(root, 'probe');
+    assert.equal(report.cacheHit, false, raw);
+    assert.equal(report.cache.parseOk, false, raw);
+    assert.equal(report.cache.stale, true, raw);
+    assert.equal(report.value, null, raw);
+  }
+
+  fs.writeFileSync(file, 'null', 'utf8');
+  const refreshed = await buildStatusCache(root, 'probe', { probe: () => ({ ok: true }) }, { write: true });
+  assert.equal(refreshed.refreshed, true);
+  assert.deepEqual(refreshed.cache.value, { ok: true });
+
+  fs.writeFileSync(file, '{"ok":true}', 'utf8');
+  const legacy = await buildStatusCache(root, 'probe');
+  assert.equal(legacy.cacheHit, true);
+  assert.deepEqual(legacy.value, { ok: true });
+});
+
+test('parse errors do not expose bytes from the cache', async (t) => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'sba-status-cache-parse-'));
+  t.after(() => fs.rmSync(root, { recursive: true, force: true }));
+  const file = statusCachePath(root, 'probe');
+  fs.mkdirSync(path.dirname(file), { recursive: true });
+  const marker = 'notjsonFixtureValue';
+  fs.writeFileSync(file, marker, 'utf8');
+
+  const report = await buildStatusCache(root, 'probe');
+
+  assert.equal(report.cache.parseOk, false);
+  assert.ok(report.cache.error);
+  assert.ok(!JSON.stringify(report).includes(marker));
+  assert.ok(!formatStatusCacheCompact(report).includes(marker));
+});
