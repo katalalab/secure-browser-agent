@@ -1,10 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { buildProofGateStatus } from './proof-gate-status.mjs';
-
-function shellQuote(value) {
-  return `'${String(value).replaceAll("'", "'\\''")}'`;
-}
+import { shellQuote } from './output.mjs';
 
 function command(args) {
   return {

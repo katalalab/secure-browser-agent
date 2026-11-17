@@ -2,7 +2,7 @@ import { spawnSync } from 'node:child_process';
 import fs from 'node:fs';
 import path from 'node:path';
 import { buildControlStatus } from './control-status.mjs';
-import { toPosixPath } from './output.mjs';
+import { toPosixPath, shellQuote } from './output.mjs';
 
 const ALLOWED_RUN_COMMAND_IDS = new Set(['auth-watch']);
 
@@ -12,10 +12,6 @@ function yesNo(value) {
 
 function clean(value) {
   return String(value ?? '').replace(/\s+/g, ' ').trim();
-}
-
-function shellQuote(value) {
-  return `'${String(value).replaceAll("'", "'\\''")}'`;
 }
 
 function command(args) {

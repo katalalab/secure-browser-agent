@@ -8,7 +8,7 @@ import { buildTargetProofPlan } from './target-proof.mjs';
 import { buildCompactCommandAudit } from './compact-command-audit.mjs';
 import { buildObjectiveCompletionAuditStatus } from './objective-completion-audit.mjs';
 import { buildProviderDoctorStatus } from './provider-doctor-status.mjs';
-import { toPosixPath } from './output.mjs';
+import { toPosixPath, shellQuote } from './output.mjs';
 
 function yesNo(value) {
   return value ? 'yes' : 'no';
@@ -17,10 +17,6 @@ function yesNo(value) {
 function compact(value, fallback = 'none') {
   const text = String(value ?? '').replace(/\s+/g, ' ').trim();
   return text || fallback;
-}
-
-function shellQuote(value) {
-  return `'${String(value).replaceAll("'", "'\\''")}'`;
 }
 
 function command(args) {

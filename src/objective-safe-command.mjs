@@ -5,7 +5,7 @@ import { buildBackgroundProofCapturePlan } from './background-proof-capture-plan
 import { buildBackgroundProofCaptureStart } from './background-proof-capture-start.mjs';
 import { buildTargetHandoffResumeWatch } from './target-handoff-run.mjs';
 import { buildAgentProofStepStart } from './agent-proof-step.mjs';
-import { toPosixPath } from './output.mjs';
+import { toPosixPath, shellQuote } from './output.mjs';
 
 function compactValue(value) {
   if (value === undefined || value === null || value === '') return 'none';
@@ -14,10 +14,6 @@ function compactValue(value) {
 
 function yesNo(value) {
   return value ? 'yes' : 'no';
-}
-
-function shellQuote(value) {
-  return `'${String(value).replaceAll("'", "'\\''")}'`;
 }
 
 function command(args) {

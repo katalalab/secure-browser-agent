@@ -3,10 +3,7 @@ import net from 'node:net';
 import path from 'node:path';
 import { buildObjectiveCompletionAudit } from './objective-completion-audit.mjs';
 import { buildObjectiveResume } from './objective-resume.mjs';
-
-function shellQuote(value) {
-  return `'${String(value).replaceAll("'", "'\\''")}'`;
-}
+import { shellQuote } from './output.mjs';
 
 function command(args) {
   return {

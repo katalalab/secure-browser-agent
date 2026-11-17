@@ -4,11 +4,7 @@ import { spawn } from 'node:child_process';
 import { buildObjectiveCompletionAudit } from './objective-completion-audit.mjs';
 import { sanitizeLogLine } from './policy.mjs';
 import { buildTargetHandoffResumeWatch } from './target-handoff-run.mjs';
-import { toPosixPath } from './output.mjs';
-
-function shellQuote(value) {
-  return `'${String(value).replaceAll("'", "'\\''")}'`;
-}
+import { toPosixPath, shellQuote } from './output.mjs';
 
 function command(args) {
   return {

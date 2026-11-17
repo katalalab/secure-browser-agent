@@ -4,7 +4,7 @@ import { spawnSync } from 'node:child_process';
 import { buildTargetBootstrapPlan } from './target-bootstrap-plan.mjs';
 import { buildTargetCandidatePlan } from './target-candidate-plan.mjs';
 import { buildTargetProofInventory } from './target-proof.mjs';
-import { toPosixPath } from './output.mjs';
+import { toPosixPath, shellQuote } from './output.mjs';
 
 function yesNo(value) {
   return value ? 'yes' : 'no';
@@ -17,10 +17,6 @@ function compact(value, fallback = 'none') {
 
 function shell(command) {
   return command?.shell || '';
-}
-
-function shellQuote(value) {
-  return `'${String(value).replaceAll("'", "'\\''")}'`;
 }
 
 function command(args) {

@@ -2,6 +2,7 @@ import { buildBrowserRoute } from './browser-route.mjs';
 import { buildProofGateStatus } from './proof-gate-status.mjs';
 import { buildProviderReport } from './provider-report.mjs';
 import { resolveTargetPack } from './target-pack.mjs';
+import { shellQuote } from './output.mjs';
 
 const TASK_ALIASES = new Map([
   ['auto', 'auto'],
@@ -31,10 +32,6 @@ const TASK_ALIASES = new Map([
 
 function normalizeTask(task) {
   return TASK_ALIASES.get(String(task || 'auto')) || 'auto';
-}
-
-function shellQuote(value) {
-  return `'${String(value).replaceAll("'", "'\\''")}'`;
 }
 
 function command(args) {

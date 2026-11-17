@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { spawnSync } from 'node:child_process';
+import { shellQuote } from './output.mjs';
 
 const CHROME_DEVTOOLS_LABELS = [
   'com.s30519.agent-chrome-devtools',
@@ -356,10 +357,6 @@ function staleAgentBrowserSessions(sessions) {
 
 function recommendation(level, name, detail, commands = []) {
   return { level, name, detail, commands };
-}
-
-function shellQuote(value) {
-  return `'${String(value).replaceAll("'", "'\\''")}'`;
 }
 
 function shellCommand(args) {

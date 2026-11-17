@@ -5,7 +5,7 @@ import { loadPolicy } from './policy.mjs';
 import { auditTargetPack } from './security-audit.mjs';
 import { buildStartCommandCandidates, compactKey } from './start-commands.mjs';
 import { resolveTargetPack } from './target-pack.mjs';
-import { toPosixPath } from './output.mjs';
+import { toPosixPath, shellQuote } from './output.mjs';
 
 function csv(value, fallback = []) {
   if (value === undefined || value === null || value === '') return fallback;
@@ -307,10 +307,6 @@ function buildTargetMissingArtifacts(plan) {
 
 function check(level, name, ok, detail = '') {
   return { level: ok ? 'pass' : level, name, ok, detail };
-}
-
-function shellQuote(value) {
-  return `'${String(value).replaceAll("'", "'\\''")}'`;
 }
 
 function command(args) {

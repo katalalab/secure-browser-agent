@@ -4,7 +4,7 @@ import path from 'node:path';
 import { buildReadinessAudit } from './readiness-audit.mjs';
 import { buildObjectiveNext } from './objective-next.mjs';
 import { buildTargetApprovalResume, buildTargetApprovalStatus } from './target-approval-pack.mjs';
-import { toPosixPath } from './output.mjs';
+import { toPosixPath, shellQuote } from './output.mjs';
 
 function criterionFromRequirement(item) {
   const proved = item.status === 'proved';
@@ -22,10 +22,6 @@ function criterionFromRequirement(item) {
 function argAfter(args, flag) {
   const index = Array.isArray(args) ? args.indexOf(flag) : -1;
   return index >= 0 ? args[index + 1] || '' : '';
-}
-
-function shellQuote(value) {
-  return `'${String(value).replaceAll("'", "'\\''")}'`;
 }
 
 function command(args) {

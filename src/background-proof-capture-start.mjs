@@ -2,6 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { spawn } from 'node:child_process';
 import { buildBackgroundProofCapturePlan } from './background-proof-capture-plan.mjs';
+import { shellQuote } from './output.mjs';
 
 function compactValue(value, fallback = 'none') {
   const text = String(value ?? '').replace(/\s+/g, ' ').trim();
@@ -10,10 +11,6 @@ function compactValue(value, fallback = 'none') {
 
 function yesNo(value) {
   return value ? 'yes' : 'no';
-}
-
-function shellQuote(value) {
-  return `'${String(value).replaceAll("'", "'\\''")}'`;
 }
 
 function command(args) {

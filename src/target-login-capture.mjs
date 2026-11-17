@@ -1,15 +1,11 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { openCdpProfile } from './cdp-backend.mjs';
-import { safeOutputPath } from './output.mjs';
+import { safeOutputPath, shellQuote } from './output.mjs';
 import { assertAllowedUrl, assertEngineAllowed, loadPolicy, profilePath } from './policy.mjs';
 import { resolveTargetLogin } from './target-pack.mjs';
 import { buildTargetProofCapture, formatTargetProofCaptureMarkdown } from './target-proof-capture.mjs';
 import { toPosixPath } from './output.mjs';
-
-function shellQuote(value) {
-  return `'${String(value).replaceAll("'", "'\\''")}'`;
-}
 
 function command(args) {
   return {

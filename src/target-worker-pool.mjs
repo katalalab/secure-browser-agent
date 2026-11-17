@@ -3,6 +3,7 @@ import path from 'node:path';
 import { cdpDaemonStatus } from './cdp-backend.mjs';
 import { loadPolicy, profilePath } from './policy.mjs';
 import { resolveTargetPack } from './target-pack.mjs';
+import { shellQuote } from './output.mjs';
 
 function yesNo(value) {
   return value ? 'yes' : 'no';
@@ -11,10 +12,6 @@ function yesNo(value) {
 function compactValue(value) {
   if (value === undefined || value === null || value === '') return 'none';
   return String(value).replace(/\s+/g, ' ').trim() || 'none';
-}
-
-function shellQuote(value) {
-  return `'${String(value).replaceAll("'", "'\\''")}'`;
 }
 
 function command(args) {

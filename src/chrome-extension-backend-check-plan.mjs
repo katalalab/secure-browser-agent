@@ -1,4 +1,5 @@
 import { buildChromeExtensionStatus } from './chrome-extension-status.mjs';
+import { shellQuote } from './output.mjs';
 
 function yesNo(value) {
   return value ? 'yes' : 'no';
@@ -13,10 +14,6 @@ function boolFromFlag(value) {
   if (value === true || value === 'yes') return true;
   if (value === false || value === 'no') return false;
   return null;
-}
-
-function shellQuote(value) {
-  return `'${String(value).replaceAll("'", "'\\''")}'`;
 }
 
 function command(args) {

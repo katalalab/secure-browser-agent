@@ -1,6 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
-import { toPosixPath } from './output.mjs';
+import { toPosixPath, shellQuote } from './output.mjs';
 
 const CANDIDATES = [
   {
@@ -37,10 +37,6 @@ const CANDIDATES = [
     permissions: ['clipboard']
   }
 ];
-
-function shellQuote(value) {
-  return `'${String(value).replaceAll("'", "'\\''")}'`;
-}
 
 function command(args) {
   return {

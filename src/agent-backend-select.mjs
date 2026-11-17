@@ -3,11 +3,7 @@ import path from 'node:path';
 import { buildAgentTask } from './agent-task.mjs';
 import { buildAgentWorkflow } from './agent-workflow.mjs';
 import { buildBackendMatrix } from './backend-matrix.mjs';
-import { toPosixPath } from './output.mjs';
-
-function shellQuote(value) {
-  return `'${String(value).replaceAll("'", "'\\''")}'`;
-}
+import { toPosixPath, shellQuote } from './output.mjs';
 
 function command(args) {
   return {

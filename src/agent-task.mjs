@@ -4,7 +4,7 @@ import path from 'node:path';
 import { buildAgentWorkflow } from './agent-workflow.mjs';
 import { sanitizeLogLine } from './policy.mjs';
 import { publicSearchHttp } from './public-search-http.mjs';
-import { toPosixPath } from './output.mjs';
+import { toPosixPath, shellQuote } from './output.mjs';
 
 const ALLOWED_COMMAND_IDS = new Set([
   'public-search',
@@ -78,10 +78,6 @@ function operatorApprovalReasons(route = {}) {
   if (route.commandOpensBrowser) next.push('command-opens-browser');
   if (route.approvalCommandOpensBrowser) next.push('approval-command-opens-browser');
   return next;
-}
-
-function shellQuote(value) {
-  return `'${String(value).replaceAll("'", "'\\''")}'`;
 }
 
 function command(args) {

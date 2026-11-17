@@ -1,10 +1,7 @@
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
-
-function shellQuote(value) {
-  return `'${String(value).replaceAll("'", "'\\''")}'`;
-}
+import { shellQuote } from './output.mjs';
 
 function command(args) {
   return {

@@ -3,6 +3,7 @@ import net from 'node:net';
 import path from 'node:path';
 import { buildObjectiveStatus } from './objective-status.mjs';
 import { buildTargetProofNext } from './target-proof.mjs';
+import { shellQuote } from './output.mjs';
 
 function compactValue(value, fallback = 'none') {
   const text = String(value ?? '').replace(/\s+/g, ' ').trim();
@@ -20,10 +21,6 @@ function yesNo(value) {
 function yesNoUnknown(value) {
   if (value === null || value === undefined) return 'unknown';
   return value ? 'yes' : 'no';
-}
-
-function shellQuote(value) {
-  return `'${String(value).replaceAll("'", "'\\''")}'`;
 }
 
 function buildCommand(args) {

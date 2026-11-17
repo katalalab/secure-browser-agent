@@ -8,6 +8,11 @@ export function toPosixPath(relativePath) {
   return String(relativePath ?? '').split(path.sep).join('/');
 }
 
+// POSIX single-quote escaping for commands this tool prints for an operator to paste.
+export function shellQuote(value) {
+  return `'${String(value).replaceAll("'", "'\\''")}'`;
+}
+
 export function safeOutputPath(policy, outPath) {
   if (!outPath) return '';
   const safeName = String(outPath).replace(/^[/\\]+/, '');

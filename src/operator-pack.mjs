@@ -32,7 +32,7 @@ import { buildAgentProofChecklist } from './agent-proof-checklist.mjs';
 import { buildAgentProofCloseout } from './agent-proof-closeout.mjs';
 import { withMonitorOverrides } from './objective-proof-pipeline.mjs';
 import { buildRunGateAudit } from './run-gate-audit.mjs';
-import { toPosixPath } from './output.mjs';
+import { toPosixPath, shellQuote } from './output.mjs';
 
 function compactValue(value, fallback = 'none') {
   const text = String(value ?? '').replace(/\s+/g, ' ').trim();
@@ -66,10 +66,6 @@ function safeRunPath(rootDir, outPath) {
 function writeJson(filePath, value) {
   fs.mkdirSync(path.dirname(filePath), { recursive: true });
   fs.writeFileSync(filePath, `${JSON.stringify(value, null, 2)}\n`, 'utf8');
-}
-
-function shellQuote(value) {
-  return `'${String(value).replaceAll("'", "'\\''")}'`;
 }
 
 function command(args) {
