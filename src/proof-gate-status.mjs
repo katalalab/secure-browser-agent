@@ -3,7 +3,7 @@ import net from 'node:net';
 import path from 'node:path';
 import { buildObjectiveStatus } from './objective-status.mjs';
 import { buildTargetProofNext } from './target-proof.mjs';
-import { shellQuote } from './output.mjs';
+import { shellQuote, resolveRunsPath } from './output.mjs';
 
 function compactValue(value, fallback = 'none') {
   const text = String(value ?? '').replace(/\s+/g, ' ').trim();
@@ -45,12 +45,7 @@ function noBrowserSafeNext(id, commandValue, blockedReason = 'none') {
 }
 
 function safeRunPath(rootDir, outPath) {
-  const runsRoot = path.resolve(rootDir, 'runs');
-  const relative = String(outPath || 'operator/proof-gate-status-latest.json').replace(/^[/\\]+/, '');
-  const outputPath = path.resolve(runsRoot, relative);
-  const insideRuns = outputPath === runsRoot || outputPath.startsWith(`${runsRoot}${path.sep}`);
-  if (!insideRuns) throw new Error(`invalid proof gate status output path: ${outPath}`);
-  return outputPath;
+  return resolveRunsPath(rootDir, outPath, 'operator/proof-gate-status-latest.json', 'proof gate status output path');
 }
 
 function missingOutputFiles(missingArtifacts) {

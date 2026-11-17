@@ -2,7 +2,7 @@ import { execFileSync } from 'node:child_process';
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
-import { shellQuote } from './output.mjs';
+import { shellQuote, resolveRunsPath } from './output.mjs';
 
 const DEFAULT_QUERIES = [
   'browser automation',
@@ -248,12 +248,7 @@ function toFinding(item) {
 }
 
 function safeRunPath(rootDir, outPath) {
-  const runsRoot = path.resolve(rootDir, 'runs');
-  const relative = String(outPath || 'research/github-repo-research-latest.json').replace(/^[/\\]+/, '');
-  const outputPath = path.resolve(runsRoot, relative);
-  const insideRuns = outputPath === runsRoot || outputPath.startsWith(`${runsRoot}${path.sep}`);
-  if (!insideRuns) throw new Error(`invalid github repo research output path: ${outPath}`);
-  return outputPath;
+  return resolveRunsPath(rootDir, outPath, 'research/github-repo-research-latest.json', 'github repo research output path');
 }
 
 export function writeGithubRepoResearch(rootDir, report, outPath = 'research/github-repo-research-latest.json') {

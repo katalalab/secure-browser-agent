@@ -4,7 +4,7 @@ import path from 'node:path';
 import { buildReadinessAudit } from './readiness-audit.mjs';
 import { buildObjectiveNext } from './objective-next.mjs';
 import { buildTargetApprovalResume, buildTargetApprovalStatus } from './target-approval-pack.mjs';
-import { toPosixPath, shellQuote } from './output.mjs';
+import { toPosixPath, shellQuote, resolveRunsPath } from './output.mjs';
 
 function criterionFromRequirement(item) {
   const proved = item.status === 'proved';
@@ -50,12 +50,7 @@ function commandDisplayShell(rootDir, commandValue) {
 }
 
 function safeRunPath(rootDir, outPath, fallback = 'operator/objective-completion-audit-latest.json') {
-  const runsRoot = path.resolve(rootDir, 'runs');
-  const relative = String(outPath || fallback).replace(/^[/\\]+/, '');
-  const outputPath = path.resolve(runsRoot, relative);
-  const insideRuns = outputPath === runsRoot || outputPath.startsWith(`${runsRoot}${path.sep}`);
-  if (!insideRuns) throw new Error(`invalid objective completion audit path: ${outPath}`);
-  return outputPath;
+  return resolveRunsPath(rootDir, outPath, fallback, 'objective completion audit path');
 }
 
 function runsRelativePath(rootDir, filePath) {

@@ -4,7 +4,7 @@ import { spawnSync } from 'node:child_process';
 import { buildTargetBootstrapPlan } from './target-bootstrap-plan.mjs';
 import { buildTargetCandidatePlan } from './target-candidate-plan.mjs';
 import { buildTargetProofInventory } from './target-proof.mjs';
-import { toPosixPath, shellQuote } from './output.mjs';
+import { toPosixPath, shellQuote, resolveRunsPath } from './output.mjs';
 
 function yesNo(value) {
   return value ? 'yes' : 'no';
@@ -31,12 +31,7 @@ function commandById(plan, id) {
 }
 
 function safeRunsPath(rootDir, value, fallback) {
-  const runsRoot = path.resolve(rootDir, 'runs');
-  const relative = String(value || fallback).replace(/^[/\\]+/, '');
-  const filePath = path.resolve(runsRoot, relative);
-  const insideRuns = filePath === runsRoot || filePath.startsWith(`${runsRoot}${path.sep}`);
-  if (!insideRuns) throw new Error(`invalid target approval pack output path: ${value}`);
-  return filePath;
+  return resolveRunsPath(rootDir, value, fallback, 'target approval pack output path');
 }
 
 function runsRelativePath(rootDir, filePath) {

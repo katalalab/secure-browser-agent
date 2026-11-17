@@ -4,7 +4,7 @@ import { buildBrowserRoute } from './browser-route.mjs';
 import { buildProviderReport } from './provider-report.mjs';
 import { buildRegularChromeStatus } from './regular-chrome-refresh.mjs';
 import { buildChromeMcpTimeoutPlanStatus } from './chrome-mcp-timeout-plan.mjs';
-import { toPosixPath } from './output.mjs';
+import { toPosixPath, resolveRunsPath } from './output.mjs';
 
 const TASKS = ['search', 'analyze', 'scrape', 'operate', 'existing-tab', 'authenticated-scrape', 'public-crawl', 'compatibility-test'];
 
@@ -54,12 +54,7 @@ function mcpObservationArgsFrom(options = {}) {
 }
 
 function safeRunPath(rootDir, value, fallback, label) {
-  const runsRoot = path.resolve(rootDir, 'runs');
-  const relative = String(value || fallback).replace(/^[/\\]+/, '');
-  const filePath = path.resolve(runsRoot, relative);
-  const insideRuns = filePath === runsRoot || filePath.startsWith(`${runsRoot}${path.sep}`);
-  if (!insideRuns) throw new Error(`invalid backend matrix ${label}: ${value}`);
-  return filePath;
+  return resolveRunsPath(rootDir, value, fallback, `backend matrix ${label}`);
 }
 
 function runRelativePath(rootDir, filePath) {

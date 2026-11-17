@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { buildBrowserRoute } from './browser-route.mjs';
+import { resolveRunsPath } from './output.mjs';
 
 function yesNo(value) {
   return value ? 'yes' : 'no';
@@ -48,12 +49,7 @@ function safeEnvName(value) {
 }
 
 function safeRunInputPath(rootDir, inPath) {
-  const runsRoot = path.resolve(rootDir, 'runs');
-  const relative = String(inPath || '').replace(/^[/\\]+/, '');
-  const inputPath = path.resolve(runsRoot, relative);
-  const insideRuns = inputPath === runsRoot || inputPath.startsWith(`${runsRoot}${path.sep}`);
-  if (!insideRuns) throw new Error(`invalid Chrome MCP handoff observation input path: ${inPath}`);
-  return inputPath;
+  return resolveRunsPath(rootDir, inPath, '', 'Chrome MCP handoff observation input path');
 }
 
 function readObservationFlagsFromFile(options = {}) {

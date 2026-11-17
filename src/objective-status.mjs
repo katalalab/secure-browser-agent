@@ -3,7 +3,7 @@ import net from 'node:net';
 import path from 'node:path';
 import { buildObjectiveCompletionAudit } from './objective-completion-audit.mjs';
 import { buildObjectiveResume } from './objective-resume.mjs';
-import { shellQuote } from './output.mjs';
+import { shellQuote, resolveRunsPath } from './output.mjs';
 
 function command(args) {
   return {
@@ -57,12 +57,7 @@ function targetDirFromAction(action) {
 }
 
 function safeRunPath(rootDir, outPath) {
-  const runsRoot = path.resolve(rootDir, 'runs');
-  const relative = String(outPath || 'operator/objective-status-latest.json').replace(/^[/\\]+/, '');
-  const outputPath = path.resolve(runsRoot, relative);
-  const insideRuns = outputPath === runsRoot || outputPath.startsWith(`${runsRoot}${path.sep}`);
-  if (!insideRuns) throw new Error(`invalid status output path: ${outPath}`);
-  return outputPath;
+  return resolveRunsPath(rootDir, outPath, 'operator/objective-status-latest.json', 'status output path');
 }
 
 function readSavedResume(rootDir, resumePath = '') {

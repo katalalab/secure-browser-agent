@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import { buildSecretAudit } from './secret-audit.mjs';
-import { toPosixPath, shellQuote } from './output.mjs';
+import { toPosixPath, shellQuote, resolveRunsPath } from './output.mjs';
 
 const DOCS = [
   {
@@ -36,12 +36,7 @@ function command(args) {
 }
 
 function safeRunPath(rootDir, outPath) {
-  const runsRoot = path.resolve(rootDir, 'runs');
-  const relative = String(outPath || 'operator/secret-env-handoff.json').replace(/^[/\\]+/, '');
-  const outputPath = path.resolve(runsRoot, relative);
-  const insideRuns = outputPath === runsRoot || outputPath.startsWith(`${runsRoot}${path.sep}`);
-  if (!insideRuns) throw new Error(`invalid secret env handoff output path: ${outPath}`);
-  return outputPath;
+  return resolveRunsPath(rootDir, outPath, 'operator/secret-env-handoff.json', 'secret env handoff output path');
 }
 
 function writeJson(filePath, value) {

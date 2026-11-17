@@ -1,7 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { buildProofGateStatus } from './proof-gate-status.mjs';
-import { shellQuote } from './output.mjs';
+import { shellQuote, resolveRunsPath } from './output.mjs';
 
 function command(args) {
   return {
@@ -39,12 +39,7 @@ function yesNoUnknown(value) {
 }
 
 function safeRunPath(rootDir, outPath) {
-  const runsRoot = path.resolve(rootDir, 'runs');
-  const relative = String(outPath || 'operator/login-handoff-status-latest.json').replace(/^[/\\]+/, '');
-  const outputPath = path.resolve(runsRoot, relative);
-  const insideRuns = outputPath === runsRoot || outputPath.startsWith(`${runsRoot}${path.sep}`);
-  if (!insideRuns) throw new Error(`invalid login handoff status output path: ${outPath}`);
-  return outputPath;
+  return resolveRunsPath(rootDir, outPath, 'operator/login-handoff-status-latest.json', 'login handoff status output path');
 }
 
 function deriveNextAction(gate) {

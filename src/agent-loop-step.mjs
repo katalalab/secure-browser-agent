@@ -2,7 +2,7 @@ import { spawnSync } from 'node:child_process';
 import fs from 'node:fs';
 import path from 'node:path';
 import { buildControlStatus } from './control-status.mjs';
-import { toPosixPath, shellQuote } from './output.mjs';
+import { toPosixPath, shellQuote, resolveRunsPath } from './output.mjs';
 
 const ALLOWED_RUN_COMMAND_IDS = new Set(['auth-watch']);
 
@@ -50,21 +50,11 @@ function linePreview(text, maxLines = 40) {
 }
 
 function safeRunPath(rootDir, outPath) {
-  const runsRoot = path.resolve(rootDir, 'runs');
-  const relative = String(outPath || 'operator/agent-loop-step-latest.json').replace(/^[/\\]+/, '');
-  const outputPath = path.resolve(runsRoot, relative);
-  const insideRuns = outputPath === runsRoot || outputPath.startsWith(`${runsRoot}${path.sep}`);
-  if (!insideRuns) throw new Error(`invalid agent loop step output path: ${outPath}`);
-  return outputPath;
+  return resolveRunsPath(rootDir, outPath, 'operator/agent-loop-step-latest.json', 'agent loop step output path');
 }
 
 function safeStatusPath(rootDir, inputPath) {
-  const runsRoot = path.resolve(rootDir, 'runs');
-  const relative = String(inputPath || 'operator/agent-loop-step-latest.json').replace(/^[/\\]+/, '');
-  const filePath = path.resolve(runsRoot, relative);
-  const insideRuns = filePath === runsRoot || filePath.startsWith(`${runsRoot}${path.sep}`);
-  if (!insideRuns) throw new Error(`invalid agent loop step status input path: ${inputPath}`);
-  return filePath;
+  return resolveRunsPath(rootDir, inputPath, 'operator/agent-loop-step-latest.json', 'agent loop step status input path');
 }
 
 function runsRelativePath(rootDir, filePath) {

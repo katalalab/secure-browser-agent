@@ -1,7 +1,7 @@
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
-import { shellQuote } from './output.mjs';
+import { shellQuote, resolveRunsPath } from './output.mjs';
 
 function command(args) {
   return {
@@ -76,12 +76,7 @@ function safeLabel(value) {
 }
 
 function safeRunPath(rootDir, outPath) {
-  const runsRoot = path.resolve(rootDir || process.cwd(), 'runs');
-  const relative = String(outPath || 'operator/chrome-mcp-autostart-plan-latest.json').replace(/^[/\\]+/, '');
-  const outputPath = path.resolve(runsRoot, relative);
-  const insideRuns = outputPath === runsRoot || outputPath.startsWith(`${runsRoot}${path.sep}`);
-  if (!insideRuns) throw new Error(`invalid Chrome MCP autostart output path: ${outPath}`);
-  return outputPath;
+  return resolveRunsPath(rootDir || process.cwd(), outPath, 'operator/chrome-mcp-autostart-plan-latest.json', 'Chrome MCP autostart output path');
 }
 
 function writeJson(filePath, value) {

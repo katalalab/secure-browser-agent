@@ -1,6 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
-import { toPosixPath, shellQuote } from './output.mjs';
+import { toPosixPath, shellQuote, resolveRunsPath } from './output.mjs';
 
 const CANDIDATES = [
   {
@@ -50,12 +50,7 @@ function yesNo(value) {
 }
 
 function safeRunPath(rootDir, outPath) {
-  const runsRoot = path.resolve(rootDir, 'runs');
-  const relative = String(outPath || 'operator/target-candidate-plan-latest.json').replace(/^[/\\]+/, '');
-  const outputPath = path.resolve(runsRoot, relative);
-  const insideRuns = outputPath === runsRoot || outputPath.startsWith(`${runsRoot}${path.sep}`);
-  if (!insideRuns) throw new Error(`invalid target candidate plan output path: ${outPath}`);
-  return outputPath;
+  return resolveRunsPath(rootDir, outPath, 'operator/target-candidate-plan-latest.json', 'target candidate plan output path');
 }
 
 function writeJson(filePath, value) {

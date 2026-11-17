@@ -5,7 +5,7 @@ import { buildObjectiveProofPipeline } from './objective-proof-pipeline.mjs';
 import { buildProviderDoctorStatus } from './provider-doctor-status.mjs';
 import { buildReadinessAudit } from './readiness-audit.mjs';
 import { buildSecretRunSelect } from './secret-audit.mjs';
-import { toPosixPath } from './output.mjs';
+import { toPosixPath, resolveRunsPath } from './output.mjs';
 import {
   agentProofChecklistCommand,
   agentProofChecklistStatusCommand,
@@ -132,12 +132,7 @@ function operatorApprovalReasons(safety = {}) {
 }
 
 function safeRunsPath(rootDir, value, fallback, label) {
-  const runsRoot = path.resolve(rootDir, 'runs');
-  const relative = String(value || fallback).replace(/^[/\\]+/, '');
-  const filePath = path.resolve(runsRoot, relative);
-  const insideRuns = filePath === runsRoot || filePath.startsWith(`${runsRoot}${path.sep}`);
-  if (!insideRuns) throw new Error(`invalid agent control plane ${label}: ${value}`);
-  return filePath;
+  return resolveRunsPath(rootDir, value, fallback, `agent control plane ${label}`);
 }
 
 function runsRelativePath(rootDir, filePath) {

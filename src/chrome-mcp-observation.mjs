@@ -1,6 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
-import { toPosixPath } from './output.mjs';
+import { toPosixPath, resolveRunsPath } from './output.mjs';
 
 function yesNo(value) {
   return value ? 'yes' : 'no';
@@ -102,12 +102,7 @@ function command(args) {
 }
 
 function safeRunPath(rootDir, outPath) {
-  const runsRoot = path.resolve(rootDir, 'runs');
-  const relative = String(outPath || 'operator/chrome-mcp-observation-latest.json').replace(/^[/\\]+/, '');
-  const outputPath = path.resolve(runsRoot, relative);
-  const insideRuns = outputPath === runsRoot || outputPath.startsWith(`${runsRoot}${path.sep}`);
-  if (!insideRuns) throw new Error(`invalid Chrome MCP observation output path: ${outPath}`);
-  return outputPath;
+  return resolveRunsPath(rootDir, outPath, 'operator/chrome-mcp-observation-latest.json', 'Chrome MCP observation output path');
 }
 
 function runsRelativePath(rootDir, filePath) {

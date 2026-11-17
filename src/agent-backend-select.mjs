@@ -3,7 +3,7 @@ import path from 'node:path';
 import { buildAgentTask } from './agent-task.mjs';
 import { buildAgentWorkflow } from './agent-workflow.mjs';
 import { buildBackendMatrix } from './backend-matrix.mjs';
-import { toPosixPath, shellQuote } from './output.mjs';
+import { toPosixPath, shellQuote, resolveRunsPath } from './output.mjs';
 
 function command(args) {
   return {
@@ -47,12 +47,7 @@ function operatorApprovalReasons(safety = {}) {
 }
 
 function safeRunInputPath(rootDir, inPath, fallback) {
-  const runsRoot = path.resolve(rootDir, 'runs');
-  const relative = String(inPath || fallback).replace(/^[/\\]+/, '');
-  const inputPath = path.resolve(runsRoot, relative);
-  const insideRuns = inputPath === runsRoot || inputPath.startsWith(`${runsRoot}${path.sep}`);
-  if (!insideRuns) throw new Error(`invalid agent backend selector matrix input path: ${inPath}`);
-  return inputPath;
+  return resolveRunsPath(rootDir, inPath, fallback, 'agent backend selector matrix input path');
 }
 
 function runsRelativePath(rootDir, inputPath) {
