@@ -34,10 +34,6 @@ function readJson(filePath) {
   }
 }
 
-function hasAll(value, needles) {
-  return needles.every((needle) => value.includes(needle));
-}
-
 function statusFrom(pass, partial = false) {
   if (pass) return 'proved';
   if (partial) return 'partial';

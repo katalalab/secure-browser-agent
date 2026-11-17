@@ -62,19 +62,6 @@ function operatorApprovalReasons(route = {}) {
   return reasons;
 }
 
-function recipeForTask(task) {
-  if (task === 'search') return 'search';
-  if (task === 'observe') return 'observe';
-  if (task === 'inspect') return 'inspect';
-  if (task === 'analyze') return 'inspect';
-  if (task === 'operate') return 'operate';
-  if (task === 'screenshot') return 'screenshot';
-  if (task === 'diagnose') return 'diagnose';
-  if (task === 'crawl') return 'crawl';
-  if (task === 'links') return 'links';
-  return '';
-}
-
 function routeTaskForWorkflow(task, hasTarget) {
   if (task === 'existing-tab') return 'existing-tab';
   if (task === 'public-crawl' || (!hasTarget && task === 'search')) return 'public-crawl';

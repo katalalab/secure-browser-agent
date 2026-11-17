@@ -1,13 +1,10 @@
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
-import { fileURLToPath } from 'node:url';
 import { toPosixPath } from '../src/output.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { buildOperatorPack, buildOperatorPackStatus, formatOperatorPackCompact, formatOperatorPackMarkdown, formatOperatorPackStatusCompact } from '../src/operator-pack.mjs';
-
-const projectRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 
 // Provider detection reads the real machine, so the default backend flipped to
 // agent-browser-chrome on any box without a Chrome for Testing cache. Pin the inputs so the

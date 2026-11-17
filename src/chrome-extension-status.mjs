@@ -20,14 +20,6 @@ function clean(value) {
   return String(value ?? '').replace(/\s+/g, ' ').trim();
 }
 
-function readJsonSafe(filePath) {
-  try {
-    return JSON.parse(fs.readFileSync(filePath, 'utf8'));
-  } catch {
-    return null;
-  }
-}
-
 function compareVersionPath(left, right) {
   return String(left).localeCompare(String(right), undefined, { numeric: true, sensitivity: 'base' });
 }

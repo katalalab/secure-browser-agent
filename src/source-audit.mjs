@@ -113,10 +113,6 @@ function readJson(filePath) {
   }
 }
 
-function firstLine(value) {
-  return String(value || '').split(/\r?\n/)[0].trim();
-}
-
 function parseTomlField(contents, field) {
   const match = contents.match(new RegExp(`^\\s*${field}\\s*=\\s*["']([^"']+)["']`, 'm'));
   return match ? match[1] : '';
