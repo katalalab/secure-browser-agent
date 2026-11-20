@@ -4,7 +4,7 @@ import path from 'node:path';
 import { buildAgentWorkflow } from './agent-workflow.mjs';
 import { sanitizeLogLine } from './policy.mjs';
 import { publicSearchHttp } from './public-search-http.mjs';
-import { toPosixPath } from './output.mjs';
+import { toPosixPath, shellQuote, resolveRunsPath } from './output.mjs';
 
 const ALLOWED_COMMAND_IDS = new Set([
   'public-search',
@@ -80,10 +80,6 @@ function operatorApprovalReasons(route = {}) {
   return next;
 }
 
-function shellQuote(value) {
-  return `'${String(value).replaceAll("'", "'\\''")}'`;
-}
-
 function command(args) {
   return {
     args,
@@ -96,12 +92,7 @@ function linePreview(text, maxLines = 20) {
 }
 
 function safeRunPath(rootDir, outPath) {
-  const runsRoot = path.resolve(rootDir, 'runs');
-  const relative = String(outPath || 'operator/agent-task-latest.json').replace(/^[/\\]+/, '');
-  const outputPath = path.resolve(runsRoot, relative);
-  const insideRuns = outputPath === runsRoot || outputPath.startsWith(`${runsRoot}${path.sep}`);
-  if (!insideRuns) throw new Error(`invalid agent task output path: ${outPath}`);
-  return outputPath;
+  return resolveRunsPath(rootDir, outPath, 'operator/agent-task-latest.json', 'agent task output path');
 }
 
 function runsRelativePath(rootDir, filePath) {
@@ -113,12 +104,7 @@ function runsRelativePath(rootDir, filePath) {
 }
 
 function safeStatusPath(rootDir, inputPath) {
-  const runsRoot = path.resolve(rootDir, 'runs');
-  const relative = String(inputPath || 'operator/agent-task-latest.json').replace(/^[/\\]+/, '');
-  const filePath = path.resolve(runsRoot, relative);
-  const insideRuns = filePath === runsRoot || filePath.startsWith(`${runsRoot}${path.sep}`);
-  if (!insideRuns) throw new Error(`invalid agent task status input path: ${inputPath}`);
-  return filePath;
+  return resolveRunsPath(rootDir, inputPath, 'operator/agent-task-latest.json', 'agent task status input path');
 }
 
 function fileAgeSeconds(filePath, nowMs) {
@@ -128,12 +114,7 @@ function fileAgeSeconds(filePath, nowMs) {
 }
 
 function safeRunsPath(rootDir, value, defaultValue, label) {
-  const runsRoot = path.resolve(rootDir, 'runs');
-  const relative = String(value || defaultValue).replace(/^[/\\]+/, '');
-  const filePath = path.resolve(runsRoot, relative);
-  const insideRuns = filePath === runsRoot || filePath.startsWith(`${runsRoot}${path.sep}`);
-  if (!insideRuns) throw new Error(`invalid agent task watch ${label}: ${value}`);
-  return filePath;
+  return resolveRunsPath(rootDir, value, defaultValue, `agent task watch ${label}`);
 }
 
 function processAlive(pid) {

@@ -6,11 +6,7 @@ import { buildRegularChromeStatus } from './regular-chrome-refresh.mjs';
 import { buildStartCommandCandidates, compactKey } from './start-commands.mjs';
 import { buildTargetProofNext } from './target-proof.mjs';
 import { buildTargetCandidatePlan } from './target-candidate-plan.mjs';
-import { toPosixPath } from './output.mjs';
-
-function shellQuote(value) {
-  return `'${String(value).replaceAll("'", "'\\''")}'`;
-}
+import { toPosixPath, shellQuote } from './output.mjs';
 
 function command(args) {
   return {

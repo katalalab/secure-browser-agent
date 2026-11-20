@@ -1,8 +1,5 @@
 import { buildTargetCandidatePlan } from './target-candidate-plan.mjs';
-
-function shellQuote(value) {
-  return `'${String(value).replaceAll("'", "'\\''")}'`;
-}
+import { shellQuote } from './output.mjs';
 
 export function command(args) {
   return {

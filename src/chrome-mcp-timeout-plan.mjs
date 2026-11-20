@@ -2,7 +2,7 @@ import { buildChromeMcpStatus } from './chrome-mcp-status.mjs';
 import { buildRuntimeCleanupPlan } from './runtime-audit.mjs';
 import fs from 'node:fs';
 import path from 'node:path';
-import { toPosixPath } from './output.mjs';
+import { toPosixPath, resolveRunsPath } from './output.mjs';
 
 function yesNo(value) {
   return value ? 'yes' : 'no';
@@ -64,12 +64,7 @@ function withBackgroundTabArgs(commandValue, options = {}) {
 }
 
 function safeRunPath(rootDir, outPath) {
-  const runsRoot = path.resolve(rootDir || process.cwd(), 'runs');
-  const relative = String(outPath || 'operator/chrome-mcp-timeout-plan-latest.json').replace(/^[/\\]+/, '');
-  const outputPath = path.resolve(runsRoot, relative);
-  const insideRuns = outputPath === runsRoot || outputPath.startsWith(`${runsRoot}${path.sep}`);
-  if (!insideRuns) throw new Error(`invalid Chrome MCP timeout plan output path: ${outPath}`);
-  return outputPath;
+  return resolveRunsPath(rootDir || process.cwd(), outPath, 'operator/chrome-mcp-timeout-plan-latest.json', 'Chrome MCP timeout plan output path');
 }
 
 function runsRelativePath(rootDir, filePath) {

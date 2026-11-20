@@ -2,6 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { buildRuntimeAudit } from './runtime-audit.mjs';
 import { buildChromeExtensionStatus } from './chrome-extension-status.mjs';
+import { shellQuote } from './output.mjs';
 
 const REMOTE_DEBUGGING_SOURCE = {
   title: 'Changes to remote debugging switches to improve security',
@@ -12,10 +13,6 @@ const REMOTE_DEBUGGING_SOURCE = {
 
 function yesNo(value) {
   return value ? 'yes' : 'no';
-}
-
-function shellQuote(value) {
-  return `'${String(value).replaceAll("'", "'\\''")}'`;
 }
 
 function command(args) {

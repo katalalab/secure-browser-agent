@@ -1,6 +1,6 @@
 import path from 'node:path';
 import { buildObjectiveCompletionAudit } from './objective-completion-audit.mjs';
-import { toPosixPath } from './output.mjs';
+import { toPosixPath, shellQuote } from './output.mjs';
 
 function yesNo(value) {
   return value ? 'yes' : 'no';
@@ -13,10 +13,6 @@ function compactValue(value) {
 
 function candidateById(nextAction, id) {
   return (nextAction?.manualCommandCandidates || []).find((item) => item.id === id) || null;
-}
-
-function shellQuote(value) {
-  return `'${String(value).replaceAll("'", "'\\''")}'`;
 }
 
 function command(args) {

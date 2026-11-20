@@ -1,14 +1,11 @@
 import { safeTargetName } from './target-pack.mjs';
 import { isRealExternalOrigin } from './target-proof.mjs';
+import { shellQuote } from './output.mjs';
 
 function csv(value) {
   if (!value) return [];
   if (Array.isArray(value)) return value;
   return String(value).split(',').map((item) => item.trim()).filter(Boolean);
-}
-
-function shellQuote(value) {
-  return `'${String(value).replaceAll("'", "'\\''")}'`;
 }
 
 function command(args) {

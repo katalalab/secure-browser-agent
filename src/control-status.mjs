@@ -11,7 +11,7 @@ import { buildRegularChromeStatus } from './regular-chrome-refresh.mjs';
 import { buildRunGateAudit } from './run-gate-audit.mjs';
 import { buildTargetCandidatePlan } from './target-candidate-plan.mjs';
 import path from 'node:path';
-import { toPosixPath } from './output.mjs';
+import { toPosixPath, shellQuote } from './output.mjs';
 
 function yesNo(value) {
   return value ? 'yes' : 'no';
@@ -23,10 +23,6 @@ function clean(value) {
 
 function commandShell(command) {
   return command?.shell || '';
-}
-
-function shellQuote(value) {
-  return `'${String(value).replaceAll("'", "'\\''")}'`;
 }
 
 function command(args) {

@@ -1,7 +1,7 @@
 import { spawnSync } from 'node:child_process';
 import fs from 'node:fs';
 import path from 'node:path';
-import { toPosixPath } from './output.mjs';
+import { toPosixPath, resolveRunsPath } from './output.mjs';
 
 function clean(value, fallback = '') {
   const text = String(value ?? '').replace(/\s+/g, ' ').trim();
@@ -20,12 +20,7 @@ function command(args) {
 }
 
 function safeRunPath(rootDir, outPath, fallback) {
-  const runsRoot = path.resolve(rootDir, 'runs');
-  const relative = String(outPath || fallback).replace(/^[/\\]+/, '');
-  const outputPath = path.resolve(runsRoot, relative);
-  const insideRuns = outputPath === runsRoot || outputPath.startsWith(`${runsRoot}${path.sep}`);
-  if (!insideRuns) throw new Error(`invalid Chrome Apple Events output path: ${outPath}`);
-  return outputPath;
+  return resolveRunsPath(rootDir, outPath, fallback, 'Chrome Apple Events output path');
 }
 
 function writeJson(filePath, value) {

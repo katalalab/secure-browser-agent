@@ -1,7 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { observeWithCdp, observeWithCdpPort } from './cdp-backend.mjs';
-import { safeOutputPath } from './output.mjs';
+import { safeOutputPath, shellQuote } from './output.mjs';
 import { assertAllowedUrl, loadPolicy, profilePath } from './policy.mjs';
 import { resolveTargetPack } from './target-pack.mjs';
 import { toPosixPath } from './output.mjs';
@@ -43,10 +43,6 @@ function loginLikeSignal(observe, loginUrl) {
     hasPassword,
     hasSignInTitle
   };
-}
-
-function shellQuote(value) {
-  return `'${String(value).replaceAll("'", "'\\''")}'`;
 }
 
 function command(args) {

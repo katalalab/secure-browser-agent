@@ -1,7 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { buildCompletionProofBundle } from './completion-proof-bundle.mjs';
-import { toPosixPath } from './output.mjs';
+import { toPosixPath, shellQuote, resolveRunsPath } from './output.mjs';
 
 function yesNo(value) {
   return value ? 'yes' : 'no';
@@ -10,10 +10,6 @@ function yesNo(value) {
 function compact(value, fallback = 'none') {
   const text = String(value ?? '').replace(/\s+/g, ' ').trim();
   return text || fallback;
-}
-
-function shellQuote(value) {
-  return `'${String(value).replaceAll("'", "'\\''")}'`;
 }
 
 function command(args) {
@@ -41,12 +37,7 @@ function targetProofPlanCommand(rootDir, candidate, targetDir = '') {
 }
 
 function safeRunPath(rootDir, outPath, fallback = 'operator/agent-proof-checklist-latest.json') {
-  const runsRoot = path.resolve(rootDir, 'runs');
-  const relative = String(outPath || fallback).replace(/^[/\\]+/, '');
-  const outputPath = path.resolve(runsRoot, relative);
-  const insideRuns = outputPath === runsRoot || outputPath.startsWith(`${runsRoot}${path.sep}`);
-  if (!insideRuns) throw new Error(`invalid agent proof checklist output path: ${outPath}`);
-  return outputPath;
+  return resolveRunsPath(rootDir, outPath, fallback, 'agent proof checklist output path');
 }
 
 function runsRelativePath(rootDir, filePath) {

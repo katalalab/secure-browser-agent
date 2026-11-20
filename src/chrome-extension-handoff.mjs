@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { buildChromeExtensionStatus } from './chrome-extension-status.mjs';
+import { shellQuote, resolveRunsPath } from './output.mjs';
 
 function yesNo(value) {
   return value ? 'yes' : 'no';
@@ -11,10 +12,6 @@ function compact(value, fallback = 'none') {
   return text || fallback;
 }
 
-function shellQuote(value) {
-  return `'${String(value).replaceAll("'", "'\\''")}'`;
-}
-
 function command(args) {
   return {
     args,
@@ -23,12 +20,7 @@ function command(args) {
 }
 
 function safeRunPath(rootDir, outPath) {
-  const runsRoot = path.resolve(rootDir, 'runs');
-  const relative = String(outPath || 'operator/chrome-extension-handoff.json').replace(/^[/\\]+/, '');
-  const outputPath = path.resolve(runsRoot, relative);
-  const insideRuns = outputPath === runsRoot || outputPath.startsWith(`${runsRoot}${path.sep}`);
-  if (!insideRuns) throw new Error(`invalid chrome extension handoff output path: ${outPath}`);
-  return outputPath;
+  return resolveRunsPath(rootDir, outPath, 'operator/chrome-extension-handoff.json', 'chrome extension handoff output path');
 }
 
 function writeJson(filePath, value) {

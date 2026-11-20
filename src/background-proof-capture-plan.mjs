@@ -1,6 +1,6 @@
 import path from 'node:path';
 import { buildObjectiveProofPipeline } from './objective-proof-pipeline.mjs';
-import { toPosixPath } from './output.mjs';
+import { toPosixPath, shellQuote } from './output.mjs';
 
 function compactValue(value, fallback = 'none') {
   const text = String(value ?? '').replace(/\s+/g, ' ').trim();
@@ -9,10 +9,6 @@ function compactValue(value, fallback = 'none') {
 
 function yesNo(value) {
   return value ? 'yes' : 'no';
-}
-
-function shellQuote(value) {
-  return `'${String(value).replaceAll("'", "'\\''")}'`;
 }
 
 function command(args) {

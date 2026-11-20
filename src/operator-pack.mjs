@@ -32,7 +32,7 @@ import { buildAgentProofChecklist } from './agent-proof-checklist.mjs';
 import { buildAgentProofCloseout } from './agent-proof-closeout.mjs';
 import { withMonitorOverrides } from './objective-proof-pipeline.mjs';
 import { buildRunGateAudit } from './run-gate-audit.mjs';
-import { toPosixPath } from './output.mjs';
+import { toPosixPath, shellQuote, resolveRunsPath } from './output.mjs';
 
 function compactValue(value, fallback = 'none') {
   const text = String(value ?? '').replace(/\s+/g, ' ').trim();
@@ -55,21 +55,12 @@ function boolFromFlag(value) {
 }
 
 function safeRunPath(rootDir, outPath) {
-  const runsRoot = path.resolve(rootDir, 'runs');
-  const relative = String(outPath || 'operator/operator-pack-latest.json').replace(/^[/\\]+/, '');
-  const outputPath = path.resolve(runsRoot, relative);
-  const insideRuns = outputPath === runsRoot || outputPath.startsWith(`${runsRoot}${path.sep}`);
-  if (!insideRuns) throw new Error(`invalid operator pack output path: ${outPath}`);
-  return outputPath;
+  return resolveRunsPath(rootDir, outPath, 'operator/operator-pack-latest.json', 'operator pack output path');
 }
 
 function writeJson(filePath, value) {
   fs.mkdirSync(path.dirname(filePath), { recursive: true });
   fs.writeFileSync(filePath, `${JSON.stringify(value, null, 2)}\n`, 'utf8');
-}
-
-function shellQuote(value) {
-  return `'${String(value).replaceAll("'", "'\\''")}'`;
 }
 
 function command(args) {
@@ -93,12 +84,7 @@ function childPath(value) {
 }
 
 function safeRunInputPath(rootDir, inPath, fallback) {
-  const runsRoot = path.resolve(rootDir, 'runs');
-  const relative = String(inPath || fallback).replace(/^[/\\]+/, '');
-  const inputPath = path.resolve(runsRoot, relative);
-  const insideRuns = inputPath === runsRoot || inputPath.startsWith(`${runsRoot}${path.sep}`);
-  if (!insideRuns) throw new Error(`invalid operator pack input path: ${inPath}`);
-  return inputPath;
+  return resolveRunsPath(rootDir, inPath, fallback, 'operator pack input path');
 }
 
 function runsRelativePath(rootDir, inputPath) {

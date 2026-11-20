@@ -8,7 +8,7 @@ import { buildTargetProofPlan } from './target-proof.mjs';
 import { buildCompactCommandAudit } from './compact-command-audit.mjs';
 import { buildObjectiveCompletionAuditStatus } from './objective-completion-audit.mjs';
 import { buildProviderDoctorStatus } from './provider-doctor-status.mjs';
-import { toPosixPath } from './output.mjs';
+import { toPosixPath, shellQuote, resolveRunsPath } from './output.mjs';
 
 function yesNo(value) {
   return value ? 'yes' : 'no';
@@ -19,10 +19,6 @@ function compact(value, fallback = 'none') {
   return text || fallback;
 }
 
-function shellQuote(value) {
-  return `'${String(value).replaceAll("'", "'\\''")}'`;
-}
-
 function command(args) {
   return {
     args,
@@ -31,12 +27,7 @@ function command(args) {
 }
 
 function safeRunPath(rootDir, outPath, fallback = 'operator/completion-proof-bundle-latest.json') {
-  const runsRoot = path.resolve(rootDir, 'runs');
-  const relative = String(outPath || fallback).replace(/^[/\\]+/, '');
-  const outputPath = path.resolve(runsRoot, relative);
-  const insideRuns = outputPath === runsRoot || outputPath.startsWith(`${runsRoot}${path.sep}`);
-  if (!insideRuns) throw new Error(`invalid completion proof bundle output path: ${outPath}`);
-  return outputPath;
+  return resolveRunsPath(rootDir, outPath, fallback, 'completion proof bundle output path');
 }
 
 function writeJson(filePath, value) {

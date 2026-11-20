@@ -2,6 +2,7 @@ import { buildBrowserRoute } from './browser-route.mjs';
 import { buildProofGateStatus } from './proof-gate-status.mjs';
 import { buildProviderReport } from './provider-report.mjs';
 import { resolveTargetPack } from './target-pack.mjs';
+import { shellQuote } from './output.mjs';
 
 const TASK_ALIASES = new Map([
   ['auto', 'auto'],
@@ -33,10 +34,6 @@ function normalizeTask(task) {
   return TASK_ALIASES.get(String(task || 'auto')) || 'auto';
 }
 
-function shellQuote(value) {
-  return `'${String(value).replaceAll("'", "'\\''")}'`;
-}
-
 function command(args) {
   return {
     args,
@@ -60,19 +57,6 @@ function operatorApprovalReasons(route = {}) {
   if (route.commandOpensBrowser) reasons.push('command-opens-browser');
   if (route.approvalCommandOpensBrowser) reasons.push('approval-command-opens-browser');
   return reasons;
-}
-
-function recipeForTask(task) {
-  if (task === 'search') return 'search';
-  if (task === 'observe') return 'observe';
-  if (task === 'inspect') return 'inspect';
-  if (task === 'analyze') return 'inspect';
-  if (task === 'operate') return 'operate';
-  if (task === 'screenshot') return 'screenshot';
-  if (task === 'diagnose') return 'diagnose';
-  if (task === 'crawl') return 'crawl';
-  if (task === 'links') return 'links';
-  return '';
 }
 
 function routeTaskForWorkflow(task, hasTarget) {

@@ -5,7 +5,7 @@ import { buildBackgroundProofCapturePlan } from './background-proof-capture-plan
 import { buildBackgroundProofCaptureStart } from './background-proof-capture-start.mjs';
 import { buildTargetHandoffResumeWatch } from './target-handoff-run.mjs';
 import { buildAgentProofStepStart } from './agent-proof-step.mjs';
-import { toPosixPath } from './output.mjs';
+import { toPosixPath, shellQuote, resolveRunsPath } from './output.mjs';
 
 function compactValue(value) {
   if (value === undefined || value === null || value === '') return 'none';
@@ -14,10 +14,6 @@ function compactValue(value) {
 
 function yesNo(value) {
   return value ? 'yes' : 'no';
-}
-
-function shellQuote(value) {
-  return `'${String(value).replaceAll("'", "'\\''")}'`;
 }
 
 function command(args) {
@@ -234,12 +230,7 @@ async function buildHandoffResumeWatchSummary({ rootDir, generatedAt, audit, opt
 }
 
 function safeRunPath(rootDir, outPath) {
-  const runsRoot = path.resolve(rootDir, 'runs');
-  const relative = String(outPath || 'operator/objective-safe-command-latest.json').replace(/^[/\\]+/, '');
-  const outputPath = path.resolve(runsRoot, relative);
-  const insideRuns = outputPath === runsRoot || outputPath.startsWith(`${runsRoot}${path.sep}`);
-  if (!insideRuns) throw new Error(`invalid objective safe command output path: ${outPath}`);
-  return outputPath;
+  return resolveRunsPath(rootDir, outPath, 'operator/objective-safe-command-latest.json', 'objective safe command output path');
 }
 
 function writeJson(filePath, value) {

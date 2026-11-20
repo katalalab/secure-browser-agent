@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { buildChromeAppleEventsStatus } from './chrome-apple-events-status.mjs';
+import { resolveRunsPath } from './output.mjs';
 
 const OFFICIAL_HELP_URL = 'https://support.google.com/chrome/?p=applescript';
 
@@ -21,12 +22,7 @@ function command(args) {
 }
 
 function safeRunPath(rootDir, outPath, fallback) {
-  const runsRoot = path.resolve(rootDir, 'runs');
-  const relative = String(outPath || fallback).replace(/^[/\\]+/, '');
-  const outputPath = path.resolve(runsRoot, relative);
-  const insideRuns = outputPath === runsRoot || outputPath.startsWith(`${runsRoot}${path.sep}`);
-  if (!insideRuns) throw new Error(`invalid Chrome Apple Events enable plan output path: ${outPath}`);
-  return outputPath;
+  return resolveRunsPath(rootDir, outPath, fallback, 'Chrome Apple Events enable plan output path');
 }
 
 function writeJson(filePath, value) {

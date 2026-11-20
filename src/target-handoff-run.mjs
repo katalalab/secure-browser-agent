@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import net from 'node:net';
 import path from 'node:path';
 import { spawnSync } from 'node:child_process';
-import { safeOutputPath } from './output.mjs';
+import { safeOutputPath, shellQuote } from './output.mjs';
 import { loadPolicy } from './policy.mjs';
 import { buildTargetAuthCheck } from './target-auth-check.mjs';
 import { buildTargetLoginCapture } from './target-login-capture.mjs';
@@ -95,10 +95,6 @@ function summarizeRun(result) {
     loginLike: typeof parsedStdout?.loginLike === 'boolean' ? parsedStdout.loginLike : (loginLikeLine ? loginLikeLine === 'yes' : null),
     sameOrigin: typeof parsedStdout?.sameOrigin === 'boolean' ? parsedStdout.sameOrigin : (sameOriginLine ? sameOriginLine === 'yes' : null)
   };
-}
-
-function shellQuote(value) {
-  return `'${String(value).replaceAll("'", "'\\''")}'`;
 }
 
 function compactValue(value) {

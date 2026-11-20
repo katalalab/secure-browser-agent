@@ -8,6 +8,22 @@ export function toPosixPath(relativePath) {
   return String(relativePath ?? '').split(path.sep).join('/');
 }
 
+// POSIX single-quote escaping for commands this tool prints for an operator to paste.
+export function shellQuote(value) {
+  return `'${String(value).replaceAll("'", "'\\''")}'`;
+}
+
+// Resolves a runs/-relative path (or the fallback when none is given) and refuses any result
+// outside <rootDir>/runs, so caller-supplied paths cannot read or write elsewhere.
+export function resolveRunsPath(rootDir, runPath, fallback, label) {
+  const runsRoot = path.resolve(rootDir, 'runs');
+  const relative = String(runPath || fallback).replace(/^[/\\]+/, '');
+  const resolved = path.resolve(runsRoot, relative);
+  const insideRuns = resolved === runsRoot || resolved.startsWith(`${runsRoot}${path.sep}`);
+  if (!insideRuns) throw new Error(`invalid ${label}: ${runPath}`);
+  return resolved;
+}
+
 export function safeOutputPath(policy, outPath) {
   if (!outPath) return '';
   const safeName = String(outPath).replace(/^[/\\]+/, '');

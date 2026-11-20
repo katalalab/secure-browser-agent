@@ -4,11 +4,7 @@ import { spawn } from 'node:child_process';
 import { buildObjectiveCompletionAudit } from './objective-completion-audit.mjs';
 import { sanitizeLogLine } from './policy.mjs';
 import { buildTargetHandoffResumeWatch } from './target-handoff-run.mjs';
-import { toPosixPath } from './output.mjs';
-
-function shellQuote(value) {
-  return `'${String(value).replaceAll("'", "'\\''")}'`;
-}
+import { toPosixPath, shellQuote, resolveRunsPath } from './output.mjs';
 
 function command(args) {
   return {
@@ -55,12 +51,7 @@ function monitorArgs(options = {}) {
 }
 
 function safeRunPath(rootDir, outPath) {
-  const runsRoot = path.resolve(rootDir, 'runs');
-  const relative = String(outPath || 'operator/agent-proof-step-latest.json').replace(/^[/\\]+/, '');
-  const outputPath = path.resolve(runsRoot, relative);
-  const insideRuns = outputPath === runsRoot || outputPath.startsWith(`${runsRoot}${path.sep}`);
-  if (!insideRuns) throw new Error(`invalid agent proof step output path: ${outPath}`);
-  return outputPath;
+  return resolveRunsPath(rootDir, outPath, 'operator/agent-proof-step-latest.json', 'agent proof step output path');
 }
 
 function runsRelativePath(rootDir, filePath) {
@@ -77,12 +68,7 @@ function writeJson(filePath, value) {
 }
 
 function safeRunsPath(rootDir, value, defaultValue, label) {
-  const runsRoot = path.resolve(rootDir, 'runs');
-  const relative = String(value || defaultValue).replace(/^[/\\]+/, '');
-  const filePath = path.resolve(runsRoot, relative);
-  const insideRuns = filePath === runsRoot || filePath.startsWith(`${runsRoot}${path.sep}`);
-  if (!insideRuns) throw new Error(`invalid agent proof step ${label}: ${value}`);
-  return filePath;
+  return resolveRunsPath(rootDir, value, defaultValue, `agent proof step ${label}`);
 }
 
 function fileAgeSeconds(filePath, nowMs) {

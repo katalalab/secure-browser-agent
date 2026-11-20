@@ -3,6 +3,7 @@ import os from 'node:os';
 import path from 'node:path';
 import { spawnSync } from 'node:child_process';
 import { listProcessCommandLines } from './process-list.mjs';
+import { shellQuote } from './output.mjs';
 
 function findExecutable(command, env = process.env) {
   const paths = String(env.PATH || '').split(path.delimiter).filter(Boolean);
@@ -416,10 +417,6 @@ export function buildSecretAudit(options = {}) {
 
 function yesNo(value) {
   return value ? 'yes' : 'no';
-}
-
-function shellQuote(value) {
-  return `'${String(value).replaceAll("'", "'\\''")}'`;
 }
 
 function command(args) {

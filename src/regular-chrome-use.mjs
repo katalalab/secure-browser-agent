@@ -4,6 +4,7 @@ import { buildChromeExtensionHandoff } from './chrome-extension-handoff.mjs';
 import { buildChromeExtensionStatus } from './chrome-extension-status.mjs';
 import { buildChromeMcpHandoff } from './chrome-mcp-handoff.mjs';
 import { buildChromeMcpObservation } from './chrome-mcp-observation.mjs';
+import { resolveRunsPath } from './output.mjs';
 
 function yesNo(value) {
   return value ? 'yes' : 'no';
@@ -26,21 +27,11 @@ function command(args) {
 }
 
 function safeRunPath(rootDir, outPath) {
-  const runsRoot = path.resolve(rootDir, 'runs');
-  const relative = String(outPath || 'operator/regular-chrome-use-latest.json').replace(/^[/\\]+/, '');
-  const outputPath = path.resolve(runsRoot, relative);
-  const insideRuns = outputPath === runsRoot || outputPath.startsWith(`${runsRoot}${path.sep}`);
-  if (!insideRuns) throw new Error(`invalid regular Chrome use output path: ${outPath}`);
-  return outputPath;
+  return resolveRunsPath(rootDir, outPath, 'operator/regular-chrome-use-latest.json', 'regular Chrome use output path');
 }
 
 function safeRunInputPath(rootDir, inPath) {
-  const runsRoot = path.resolve(rootDir, 'runs');
-  const relative = String(inPath || '').replace(/^[/\\]+/, '');
-  const inputPath = path.resolve(runsRoot, relative);
-  const insideRuns = inputPath === runsRoot || inputPath.startsWith(`${runsRoot}${path.sep}`);
-  if (!insideRuns) throw new Error(`invalid regular Chrome use input path: ${inPath}`);
-  return inputPath;
+  return resolveRunsPath(rootDir, inPath, '', 'regular Chrome use input path');
 }
 
 function readJsonIfExists(filePath) {

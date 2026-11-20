@@ -1,6 +1,6 @@
 import path from 'node:path';
 import { findProviderBenchmarkProofs, lightpandaPublicBenchmarkDecision } from './provider-benchmark.mjs';
-import { toPosixPath } from './output.mjs';
+import { toPosixPath, shellQuote } from './output.mjs';
 
 function yesNo(value) {
   return value ? 'yes' : 'no';
@@ -9,10 +9,6 @@ function yesNo(value) {
 function compactValue(value) {
   if (value === undefined || value === null || value === '') return 'none';
   return String(value).replace(/\s+/g, ' ').trim() || 'none';
-}
-
-function shellQuote(value) {
-  return `'${String(value).replaceAll("'", "'\\''")}'`;
 }
 
 function command(args) {

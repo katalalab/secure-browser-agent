@@ -4,6 +4,7 @@ import path from 'node:path';
 import { buildObjectiveNext } from './objective-next.mjs';
 import { buildTargetAuthCheck } from './target-auth-check.mjs';
 import { buildTargetHandoffRun } from './target-handoff-run.mjs';
+import { shellQuote } from './output.mjs';
 
 function defaultRunner(args, options = {}) {
   const result = spawnSync(args[0], args.slice(1), {
@@ -127,10 +128,6 @@ function selectAction(next, options = {}) {
     },
     selectionBlocker: ''
   };
-}
-
-function shellQuote(value) {
-  return `'${String(value).replaceAll("'", "'\\''")}'`;
 }
 
 function compactValue(value) {
