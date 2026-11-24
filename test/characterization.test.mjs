@@ -21,7 +21,13 @@ const includeSandboxTier = process.env.SBA_CHARACTERIZE_SANDBOX === '1' && proce
 
 // Functions listed here were intentionally restructured; their source text may change
 // while their name, kind and length (and, for listMcpTools, their output) may not.
-const SOURCE_MAY_CHANGE = new Set([]);
+// buildReadinessAudit now reads the entry files plus their split parts (cli-*.mjs, mcp-*.mjs);
+// its output is pinned by the bare:readiness-audit and mcp:sba_readiness_audit cases.
+const SOURCE_MAY_CHANGE = new Set([
+  'src/mcp-server.mjs#callMcpTool',
+  'src/mcp-server.mjs#listMcpTools',
+  'src/readiness-audit.mjs#buildReadinessAudit'
+]);
 
 test('CLI and MCP outputs match the recorded digests', { skip: platformSkip, timeout: 900000 }, async () => {
   const selected = cases.filter((testCase) => testCase.tier === 'safe' || includeSandboxTier);
