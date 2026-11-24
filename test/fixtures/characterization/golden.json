@@ -1,0 +1,4847 @@
+{
+ "meta": {
+  "platform": "darwin",
+  "nodeMajor": 24,
+  "recordedBy": "scripts/record-characterization.mjs"
+ },
+ "cases": {
+  "bare:agent-backend-select": [
+   {
+    "argv": "agent-backend-select",
+    "exit": 0,
+    "stdoutBytes": 8795,
+    "stdoutSha256": "311e191470b841a3295c75798f796f51321b4d40f91f8eacda9f57ad1be3b389",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "bare:agent-browser-doctor": [
+   {
+    "argv": "agent-browser-doctor",
+    "exit": 0,
+    "stdoutBytes": 1133,
+    "stdoutSha256": "0ac5248480ecfddd8dbb4ea5f67c03718ccd3f53053d6783a7b687e572e18468",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "bare:agent-control-plane": [
+   {
+    "argv": "agent-control-plane",
+    "exit": 0,
+    "stdoutBytes": 29518,
+    "stdoutSha256": "b56f19e3d0fb0e3eb3bd9daaa055a3ca364c16107b0167517a51cc0b422b7bce",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "bare:agent-control-plane-status": [
+   {
+    "argv": "agent-control-plane-status",
+    "exit": 0,
+    "stdoutBytes": 1509,
+    "stdoutSha256": "55acd895e1ca58828546c9364bdfdc773a14eacac833c3b38d3c00430ad6ada1",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "bare:agent-control-plane-watch": [
+   {
+    "argv": "agent-control-plane-watch",
+    "exit": 0,
+    "stdoutBytes": 2767,
+    "stdoutSha256": "9761f21bca2d2a59be840b8b18e86e53c4e861f999cf917b4636cb0840517c46",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "bare:agent-loop-step": [
+   {
+    "argv": "agent-loop-step",
+    "exit": 0,
+    "stdoutBytes": 2350,
+    "stdoutSha256": "aa2a8b5661375ae8e11aa4b2fbc8e42bf24c450fc4fbe737fa8b82bd71e04a81",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "bare:agent-loop-step-status": [
+   {
+    "argv": "agent-loop-step-status",
+    "exit": 0,
+    "stdoutBytes": 2645,
+    "stdoutSha256": "851f146d062e6494f8bb2add0687c6c6ca132814e0890b0da210280702f05763",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "bare:agent-next": [
+   {
+    "argv": "agent-next",
+    "exit": 0,
+    "stdoutBytes": 8445,
+    "stdoutSha256": "a0db4716f588b7f8e1df3766fcb211ada6c993802f6d1b79246e11ce3f210a68",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "bare:agent-preflight": [
+   {
+    "argv": "agent-preflight",
+    "exit": 0,
+    "stdoutBytes": 8928,
+    "stdoutSha256": "761beff520cc8e362b614b4900641600ed0b1eb5ec23fe2bad4817d1ff8208d8",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "bare:agent-proof-checklist": [
+   {
+    "argv": "agent-proof-checklist",
+    "exit": 0,
+    "stdoutBytes": 5216,
+    "stdoutSha256": "8187ab5860f47888aef4b4489b0b621bf04e65d2464ad50426c110776fe68c52",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "bare:agent-proof-checklist-status": [
+   {
+    "argv": "agent-proof-checklist-status",
+    "exit": 0,
+    "stdoutBytes": 2921,
+    "stdoutSha256": "879d3fa96397a5a497c12702171b2b4c2d0e0c23c8e33639d0a2c66af930e4b0",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "bare:agent-proof-closeout": [
+   {
+    "argv": "agent-proof-closeout",
+    "exit": 0,
+    "stdoutBytes": 13690,
+    "stdoutSha256": "913a1bbcc840fa723c3c20236d6c5fae3d87c7d9267c0da11d34aaeaabfc8896",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "bare:agent-proof-closeout-status": [
+   {
+    "argv": "agent-proof-closeout-status",
+    "exit": 0,
+    "stdoutBytes": 8508,
+    "stdoutSha256": "28489ea0220ce5d9e8024ed1640d79317bf10c29ce3524731ead56c26187b3a7",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "bare:agent-proof-step": [
+   {
+    "argv": "agent-proof-step",
+    "exit": 0,
+    "stdoutBytes": 1263,
+    "stdoutSha256": "056b6683cf44bcac528178489a303de4cdff537e206a30b8ed6434f3d5a34806",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "bare:agent-proof-step-start": [
+   {
+    "argv": "agent-proof-step-start",
+    "exit": 0,
+    "stdoutBytes": 3875,
+    "stdoutSha256": "7b1d4e4376832a6e564fcae1c6d7b72ff1ed30cae7a5b3d4696a153a43dce2a5",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "bare:agent-proof-step-status": [
+   {
+    "argv": "agent-proof-step-status",
+    "exit": 0,
+    "stdoutBytes": 2273,
+    "stdoutSha256": "85a3393f232409286e583df2e38feebcac5f5b7e97927bee0d3798e7043547c7",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "bare:agent-task": [
+   {
+    "argv": "agent-task",
+    "exit": 0,
+    "stdoutBytes": 6394,
+    "stdoutSha256": "db1f79fee843b86700adf8a8dfaa5cf5ee8175c84bd21d0b71352bbfef86fc17",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "bare:agent-task-loop": [
+   {
+    "argv": "agent-task-loop",
+    "exit": 0,
+    "stdoutBytes": 4894,
+    "stdoutSha256": "f2684cbbe8482a36b32f2b941e18f851f29c978a5a06fc7ad947f92d14cf8d45",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "bare:agent-task-status": [
+   {
+    "argv": "agent-task-status",
+    "exit": 0,
+    "stdoutBytes": 3097,
+    "stdoutSha256": "a0cf7f0064bfefb5e29c6ce2cbe9a8ecfbd58a0a38661c7b91bf3754525ae997",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "bare:agent-task-watch": [
+   {
+    "argv": "agent-task-watch",
+    "exit": 0,
+    "stdoutBytes": 4334,
+    "stdoutSha256": "eb8ee18a844bcd7688fc880851718cad6b51e00a78b86568065a8f4051b92b3e",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "bare:agent-task-watch-start": [
+   {
+    "argv": "agent-task-watch-start",
+    "exit": 0,
+    "stdoutBytes": 2358,
+    "stdoutSha256": "71f6fcf0cb4a9d5d355cd80fd52aaeeee6e0a81da8a87eb15fb01f6560176920",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "bare:agent-task-watch-status": [
+   {
+    "argv": "agent-task-watch-status",
+    "exit": 0,
+    "stdoutBytes": 4717,
+    "stdoutSha256": "6525539a9a257fea1a8175a726a921815c846ff85aede63ac58e6232d6afc193",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "bare:agent-workflow": [
+   {
+    "argv": "agent-workflow",
+    "exit": 0,
+    "stdoutBytes": 3072,
+    "stdoutSha256": "61eb0793867b14f4d48cb084a3ce3e7e6fd6a94d251958a8dd2164a327ffab21",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "bare:analyze-cdp": [
+   {
+    "argv": "analyze-cdp",
+    "exit": 1,
+    "stdoutBytes": 0,
+    "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrBytes": 12,
+    "stderrSha256": "453676ffe5eb0db119dccb07a56680f480cbf0f117ebd6dbe5e3689b6ce1116d"
+   }
+  ],
+  "bare:backend-matrix": [
+   {
+    "argv": "backend-matrix",
+    "exit": 0,
+    "stdoutBytes": 18163,
+    "stdoutSha256": "25651a1f375f098b937cfbee5fa53124d8b4f6350ebb8cde683fd5c03029087f",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "bare:backend-matrix-status": [
+   {
+    "argv": "backend-matrix-status",
+    "exit": 0,
+    "stdoutBytes": 11140,
+    "stdoutSha256": "98672678134c01d3d800dfb3e91569b4a91b9e490dde2e1de1185e8b8211fbd4",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "bare:background-monitor-plan": [
+   {
+    "argv": "background-monitor-plan",
+    "exit": 0,
+    "stdoutBytes": 2513,
+    "stdoutSha256": "07fedf715145712de17015f9da1a4b997eb22138084e33bc43443dad23303449",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "bare:background-proof-capture-plan": [
+   {
+    "argv": "background-proof-capture-plan",
+    "exit": 0,
+    "stdoutBytes": 5103,
+    "stdoutSha256": "d1fb647264a7b6f09ebf33ad7d5da77181e380318f53f366cf36cc30c64a3a1d",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "bare:background-proof-capture-start": [
+   {
+    "argv": "background-proof-capture-start",
+    "exit": 0,
+    "stdoutBytes": 3038,
+    "stdoutSha256": "4e12f6ae3a63fad2ed45263ce1f413fcd8d8bc35d056d0ff30ae3f9cfd627869",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "bare:background-proof-capture-status": [
+   {
+    "argv": "background-proof-capture-status",
+    "exit": 0,
+    "stdoutBytes": 4728,
+    "stdoutSha256": "1758a795cd877973403d65c5eaf9115d53b241a981e5bd162d07a5c330b06cca",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "bare:benchmark": [
+   {
+    "argv": "benchmark",
+    "exit": 0,
+    "stdoutBytes": 2660,
+    "stdoutSha256": "3c9a3bb8b5fba57cb21c8d087801c9fed58a6b1013e337c4ea755247e7386e49",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "bare:browser-route": [
+   {
+    "argv": "browser-route",
+    "exit": 0,
+    "stdoutBytes": 3706,
+    "stdoutSha256": "2360d6295b09e33b46deba16e7788e2e6770ddce0aa4e3646eab75608d754155",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "bare:capture-har": [
+   {
+    "argv": "capture-har",
+    "exit": 1,
+    "stdoutBytes": 0,
+    "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrBytes": 36,
+    "stderrSha256": "b1c7968ccb422ba1d7d25206a06129465adbe6a1b50dd922c136b0e171edd61c"
+   }
+  ],
+  "bare:cdp-start": [
+   {
+    "argv": "cdp-start",
+    "exit": 1,
+    "stdoutBytes": 0,
+    "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrBytes": 12,
+    "stderrSha256": "453676ffe5eb0db119dccb07a56680f480cbf0f117ebd6dbe5e3689b6ce1116d"
+   }
+  ],
+  "bare:cdp-status": [
+   {
+    "argv": "cdp-status",
+    "exit": 0,
+    "stdoutBytes": 327,
+    "stdoutSha256": "26f4fb86c83ce7e681644af78e6938f52bc7b9e0a182690a866139aa157c2064",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "bare:cdp-stop": [
+   {
+    "argv": "cdp-stop",
+    "exit": 0,
+    "stdoutBytes": 381,
+    "stdoutSha256": "41c3e8867614f087bb98d594c2369ed76075ec2ab3e6267cf4cb9594d6e5f599",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "bare:chrome-apple-events-enable-plan": [
+   {
+    "argv": "chrome-apple-events-enable-plan",
+    "exit": 0,
+    "stdoutBytes": 4308,
+    "stdoutSha256": "d077dbd2650efe6266c3cc37cea7284ec2b2752561b1c860b1cdf9a7cf19caf9",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "bare:chrome-apple-events-outline": [
+   {
+    "argv": "chrome-apple-events-outline",
+    "exit": 0,
+    "stdoutBytes": 3097,
+    "stdoutSha256": "40292e0532d3fd6069917d58903de09b2f4883edb28878901ac06095a9444cd1",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "bare:chrome-apple-events-status": [
+   {
+    "argv": "chrome-apple-events-status",
+    "exit": 0,
+    "stdoutBytes": 1619,
+    "stdoutSha256": "b4d3ece52d52d3a1eceb49e6db0ad4c200b55c71af05c4b8bc49fd20e73d2bc2",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "bare:chrome-control-plan": [
+   {
+    "argv": "chrome-control-plan",
+    "exit": 0,
+    "stdoutBytes": 3419,
+    "stdoutSha256": "5e62d43f997da6009fdfeaf3548cb8ffbe1f235a2643bfdf91235737e2f90d54",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "bare:chrome-extension-backend-check-plan": [
+   {
+    "argv": "chrome-extension-backend-check-plan",
+    "exit": 0,
+    "stdoutBytes": 5000,
+    "stdoutSha256": "0d4ec10efc8cd50883559abb2ea297796923c5912ee7dc214aa14d2b89d5ae35",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "bare:chrome-extension-claim-plan": [
+   {
+    "argv": "chrome-extension-claim-plan",
+    "exit": 0,
+    "stdoutBytes": 3664,
+    "stdoutSha256": "cd72315380cb07dc04b12ad33796442f29087747092bf536681900e0c6a0fc00",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "bare:chrome-extension-handoff": [
+   {
+    "argv": "chrome-extension-handoff",
+    "exit": 0,
+    "stdoutBytes": 2988,
+    "stdoutSha256": "ceb965d6a31898abe251ebcd5d5c847d5d8b356b48eb3f8f90ebeae885d26550",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "bare:chrome-extension-resume": [
+   {
+    "argv": "chrome-extension-resume",
+    "exit": 0,
+    "stdoutBytes": 4335,
+    "stdoutSha256": "58ae0ae5423df93342c5f1088f64b0b7b7c1c739feb3e6cdc9cf36b13c87cb5e",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "bare:chrome-extension-status": [
+   {
+    "argv": "chrome-extension-status",
+    "exit": 0,
+    "stdoutBytes": 1625,
+    "stdoutSha256": "dbfc2b4b489f403f40baa66ab9365eaf67e8678bdde24b8eaba08f9897ef927d",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "bare:chrome-extension-troubleshoot": [
+   {
+    "argv": "chrome-extension-troubleshoot",
+    "exit": 0,
+    "stdoutBytes": 6843,
+    "stdoutSha256": "758c4564bf6bce8811d645325570b666cd6e8033370866c270ec146e05a8f570",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "bare:chrome-mcp-autostart-plan": [
+   {
+    "argv": "chrome-mcp-autostart-plan",
+    "exit": 0,
+    "stdoutBytes": 4542,
+    "stdoutSha256": "02a7fd513b45440aedc49ff3bc99b0adce23ecc76b5044b7716e644685b58184",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "bare:chrome-mcp-autostart-plan-status": [
+   {
+    "argv": "chrome-mcp-autostart-plan-status",
+    "exit": 0,
+    "stdoutBytes": 1041,
+    "stdoutSha256": "bc25f774cbc0b42ecb3bf9c783f81ddd90a58ddad5a8f952ffcf237d51133811",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "bare:chrome-mcp-handoff": [
+   {
+    "argv": "chrome-mcp-handoff",
+    "exit": 0,
+    "stdoutBytes": 2171,
+    "stdoutSha256": "97f509b805b02af144ff48749348eb4692d5e8b25e79b0ccb82ae4f435618559",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "bare:chrome-mcp-observation": [
+   {
+    "argv": "chrome-mcp-observation",
+    "exit": 0,
+    "stdoutBytes": 2333,
+    "stdoutSha256": "16e88262b5de605d9bbefc0feca295a50557f13af154aa0d978b8e5725f67a66",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "bare:chrome-mcp-observation-status": [
+   {
+    "argv": "chrome-mcp-observation-status",
+    "exit": 0,
+    "stdoutBytes": 3382,
+    "stdoutSha256": "3539ddd159a253046dfb9446b4b1484ccbf8198dc0633a824545595e1f6d2082",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "bare:chrome-mcp-status": [
+   {
+    "argv": "chrome-mcp-status",
+    "exit": 0,
+    "stdoutBytes": 1425,
+    "stdoutSha256": "4b111079a9838d2c446c91cc63c861608f0e7b20a57aba9caa8d9ff45beba4e1",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "bare:chrome-mcp-timeout-plan": [
+   {
+    "argv": "chrome-mcp-timeout-plan",
+    "exit": 0,
+    "stdoutBytes": 3173,
+    "stdoutSha256": "8cc9a65a13324957b3273a87b35e0ef609834653b790c22642adaebad669c181",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "bare:chrome-mcp-timeout-plan-status": [
+   {
+    "argv": "chrome-mcp-timeout-plan-status",
+    "exit": 0,
+    "stdoutBytes": 2745,
+    "stdoutSha256": "d9b4b84a0017f3cf4291afc15306b2b98403c49a2bcac2313cb394af0e7191ad",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "bare:click-cdp": [
+   {
+    "argv": "click-cdp",
+    "exit": 1,
+    "stdoutBytes": 0,
+    "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrBytes": 30,
+    "stderrSha256": "7276e45f2015b1f9fea3567239d6ad2d9af4c3a5b625876f35e1ff34b84780ce"
+   }
+  ],
+  "bare:close-session": [
+   {
+    "argv": "close-session",
+    "exit": 1,
+    "stdoutBytes": 0,
+    "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrBytes": 27,
+    "stderrSha256": "4dd86ede006de28ac83204d8f76a394ea4a00cd142bc85dafa24099792de6e1e"
+   }
+  ],
+  "bare:compact-command-audit": [
+   {
+    "argv": "compact-command-audit",
+    "exit": 0,
+    "stdoutBytes": 48152,
+    "stdoutSha256": "0fbadd3c4feec10a4ae900e9470f4c57493f0a9106bcc513e7d468a35fdc56e0",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "bare:completion-proof-bundle": [
+   {
+    "argv": "completion-proof-bundle",
+    "exit": 0,
+    "stdoutBytes": 13469,
+    "stdoutSha256": "c974edc4bd8a7d6d5006a242e5853a7f3deb1f69101afdd7bab20a303aeb21d6",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "bare:completion-proof-bundle-status": [
+   {
+    "argv": "completion-proof-bundle-status",
+    "exit": 0,
+    "stdoutBytes": 7466,
+    "stdoutSha256": "afe3966786878fd88b60fa91ddabd81d05f5d3a89a41087edde7cd8059006c4b",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "bare:completion-proof-bundle-watch": [
+   {
+    "argv": "completion-proof-bundle-watch",
+    "exit": 0,
+    "stdoutBytes": 9042,
+    "stdoutSha256": "bc2b0249f63ea12aba486ab92b36d654fcb500ee133dbff0f3cffce0303ea93d",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "bare:console-cdp": [
+   {
+    "argv": "console-cdp",
+    "exit": 1,
+    "stdoutBytes": 0,
+    "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrBytes": 12,
+    "stderrSha256": "453676ffe5eb0db119dccb07a56680f480cbf0f117ebd6dbe5e3689b6ce1116d"
+   }
+  ],
+  "bare:control-status": [
+   {
+    "argv": "control-status",
+    "exit": 0,
+    "stdoutBytes": 35954,
+    "stdoutSha256": "1ccf196022bc7871bfc8b424219c2a4688d6e1ac3c918ae41ade31660d4847f6",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "bare:doctor": [
+   {
+    "argv": "doctor",
+    "exit": 0,
+    "stdoutBytes": 1042,
+    "stdoutSha256": "5e4ecd56dd95659c3dca255668c673ef69a5d83d58f3e4ec3983ae4a15e46a91",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "bare:extract": [
+   {
+    "argv": "extract",
+    "exit": 1,
+    "stdoutBytes": 0,
+    "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrBytes": 27,
+    "stderrSha256": "4dd86ede006de28ac83204d8f76a394ea4a00cd142bc85dafa24099792de6e1e"
+   }
+  ],
+  "bare:extract-cdp": [
+   {
+    "argv": "extract-cdp",
+    "exit": 1,
+    "stdoutBytes": 0,
+    "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrBytes": 12,
+    "stderrSha256": "453676ffe5eb0db119dccb07a56680f480cbf0f117ebd6dbe5e3689b6ce1116d"
+   }
+  ],
+  "bare:fill-cdp": [
+   {
+    "argv": "fill-cdp",
+    "exit": 1,
+    "stdoutBytes": 0,
+    "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrBytes": 29,
+    "stderrSha256": "396e755f85795b377c02fd102fb7bce247ebd0e8a97ecbd170b5a9890cadd587"
+   }
+  ],
+  "bare:github-repo-research": [
+   {
+    "argv": "github-repo-research",
+    "exit": 1,
+    "stdoutBytes": 0,
+    "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrBytes": 20,
+    "stderrSha256": "a1cfbd50104f6615a8ed3146a92005003382762b50d5fb7965f8af3b5fecb595"
+   }
+  ],
+  "bare:har-summary": [
+   {
+    "argv": "har-summary",
+    "exit": 1,
+    "stdoutBytes": 0,
+    "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrBytes": 32,
+    "stderrSha256": "68912cde13e7aea1e6cc1425cc09b9a3260ba5e1ba8f2df6745a9b0b0527aece"
+   }
+  ],
+  "bare:inspect-cdp": [
+   {
+    "argv": "inspect-cdp",
+    "exit": 1,
+    "stdoutBytes": 0,
+    "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrBytes": 12,
+    "stderrSha256": "453676ffe5eb0db119dccb07a56680f480cbf0f117ebd6dbe5e3689b6ce1116d"
+   }
+  ],
+  "bare:lightpanda-decision": [
+   {
+    "argv": "lightpanda-decision",
+    "exit": 0,
+    "stdoutBytes": 1731,
+    "stdoutSha256": "b7b75bcb9f8decd29d9ff456bb8625babecbdab7dca713ddb99d9378473f59f0",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "bare:lightpanda-doctor": [
+   {
+    "argv": "lightpanda-doctor",
+    "exit": 0,
+    "stdoutBytes": 3165,
+    "stdoutSha256": "80963708a62b810c536e4fa6dac30565da5fbc8b91c87ef21006a8971b284956",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "bare:lightpanda-gate": [
+   {
+    "argv": "lightpanda-gate",
+    "exit": 0,
+    "stdoutBytes": 1273,
+    "stdoutSha256": "4a8e75b62b9b43deed7ad6ed19af0ba6463bfe944dda1fc4705b80083440ac52",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "bare:login": [
+   {
+    "argv": "login",
+    "exit": 1,
+    "stdoutBytes": 0,
+    "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrBytes": 27,
+    "stderrSha256": "4dd86ede006de28ac83204d8f76a394ea4a00cd142bc85dafa24099792de6e1e"
+   }
+  ],
+  "bare:login-cdp": [
+   {
+    "argv": "login-cdp",
+    "exit": 1,
+    "stdoutBytes": 0,
+    "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrBytes": 12,
+    "stderrSha256": "453676ffe5eb0db119dccb07a56680f480cbf0f117ebd6dbe5e3689b6ce1116d"
+   }
+  ],
+  "bare:login-handoff-status": [
+   {
+    "argv": "login-handoff-status",
+    "exit": 0,
+    "stdoutBytes": 2826,
+    "stdoutSha256": "989a644bd7384892b2b5d3c9f5fee49f7bc8b47b3305aeda3fffe6776c968331",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "bare:mcp-stdio": [
+   {
+    "argv": "mcp-stdio",
+    "exit": 0,
+    "stdoutBytes": 0,
+    "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "bare:network-cdp": [
+   {
+    "argv": "network-cdp",
+    "exit": 1,
+    "stdoutBytes": 0,
+    "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrBytes": 12,
+    "stderrSha256": "453676ffe5eb0db119dccb07a56680f480cbf0f117ebd6dbe5e3689b6ce1116d"
+   }
+  ],
+  "bare:objective-completion-audit": [
+   {
+    "argv": "objective-completion-audit",
+    "exit": 0,
+    "stdoutBytes": 58928,
+    "stdoutSha256": "de9b4f7522df2f6f25d2b6e32577c21c1c7cd7abae1d747b3b0bde77f93b2441",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "bare:objective-completion-audit-status": [
+   {
+    "argv": "objective-completion-audit-status",
+    "exit": 0,
+    "stdoutBytes": 3121,
+    "stdoutSha256": "34be5ee5fef054a2ae5e12a74b3ab629f38f10b7a6380f8dc628473e9a3b7950",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "bare:objective-completion-audit-watch": [
+   {
+    "argv": "objective-completion-audit-watch",
+    "exit": 0,
+    "stdoutBytes": 7006,
+    "stdoutSha256": "4a13dd41420cfabbaab2b189b317074a150f548097f24fc467c1f0af64ac1585",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "bare:objective-handoff": [
+   {
+    "argv": "objective-handoff",
+    "exit": 0,
+    "stdoutBytes": 3259,
+    "stdoutSha256": "c47dd9b7a520cee44ad8f4a6632504c3145fcaee53320abeb9931890143808a2",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "bare:objective-next": [
+   {
+    "argv": "objective-next",
+    "exit": 0,
+    "stdoutBytes": 65639,
+    "stdoutSha256": "c3b8ed336600c500a9bc020d53644fed1a05133aced2fb8b927eac88c6bc2c4e",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "bare:objective-proof-pipeline": [
+   {
+    "argv": "objective-proof-pipeline",
+    "exit": 0,
+    "stdoutBytes": 3344,
+    "stdoutSha256": "60d300c391dfb02303347607e52ebfc4f49b226b795b826bfc262f5307718baf",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "bare:objective-resume": [
+   {
+    "argv": "objective-resume",
+    "exit": 0,
+    "stdoutBytes": 31271,
+    "stdoutSha256": "e18643bfd2f3e978a3975810b46113cd60be59c96b2202f26e8e6fbf181c8dbb",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "bare:objective-safe-command": [
+   {
+    "argv": "objective-safe-command",
+    "exit": 0,
+    "stdoutBytes": 11898,
+    "stdoutSha256": "9863925ec8adeadaff52adc2b3198e4151ff32a54c3b3fd00bd7f56e96c361d0",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "bare:objective-status": [
+   {
+    "argv": "objective-status",
+    "exit": 0,
+    "stdoutBytes": 5673,
+    "stdoutSha256": "df2dd077cca6190b78be6edc0c3e36a1c87cb8abc2f8573daa5cb9e1f08a6617",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "bare:observe": [
+   {
+    "argv": "observe",
+    "exit": 1,
+    "stdoutBytes": 0,
+    "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrBytes": 27,
+    "stderrSha256": "4dd86ede006de28ac83204d8f76a394ea4a00cd142bc85dafa24099792de6e1e"
+   }
+  ],
+  "bare:observe-cdp": [
+   {
+    "argv": "observe-cdp",
+    "exit": 1,
+    "stdoutBytes": 0,
+    "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrBytes": 12,
+    "stderrSha256": "453676ffe5eb0db119dccb07a56680f480cbf0f117ebd6dbe5e3689b6ce1116d"
+   }
+  ],
+  "bare:open": [
+   {
+    "argv": "open",
+    "exit": 1,
+    "stdoutBytes": 0,
+    "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrBytes": 27,
+    "stderrSha256": "4dd86ede006de28ac83204d8f76a394ea4a00cd142bc85dafa24099792de6e1e"
+   }
+  ],
+  "bare:operator-pack": [
+   {
+    "argv": "operator-pack",
+    "exit": 0,
+    "stdoutBytes": 263694,
+    "stdoutSha256": "8f7bac54108a6e3f617d572a6e379c13e5d271481775b80c8e45beff6e4cb47c",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "bare:operator-pack-status": [
+   {
+    "argv": "operator-pack-status",
+    "exit": 0,
+    "stdoutBytes": 2456,
+    "stdoutSha256": "011fcddcc731a67570845a62da7d05824ffe1fba7b82c8ae14fe5f0a543fe7b0",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "bare:operator-runbook": [
+   {
+    "argv": "operator-runbook",
+    "exit": 0,
+    "stdoutBytes": 64449,
+    "stdoutSha256": "24bf1b1a1cbcda4a0840d794b0e31b1aa0748fb2c8950905e8c99ce36ff0e89d",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "bare:operator-runbook-status": [
+   {
+    "argv": "operator-runbook-status",
+    "exit": 0,
+    "stdoutBytes": 2364,
+    "stdoutSha256": "fc8a78933665a0e0583beddc429c0d65bb4495f2a40e5f9fad16e7bff144d4d9",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "bare:operator-runbook-watch": [
+   {
+    "argv": "operator-runbook-watch",
+    "exit": 0,
+    "stdoutBytes": 736,
+    "stdoutSha256": "435e4edeb68c97f035680076167fbd003b9379aaf77db56a7272eec07ec8fa65",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "bare:outline": [
+   {
+    "argv": "outline",
+    "exit": 1,
+    "stdoutBytes": 0,
+    "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrBytes": 27,
+    "stderrSha256": "4dd86ede006de28ac83204d8f76a394ea4a00cd142bc85dafa24099792de6e1e"
+   }
+  ],
+  "bare:outline-cdp": [
+   {
+    "argv": "outline-cdp",
+    "exit": 1,
+    "stdoutBytes": 0,
+    "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrBytes": 12,
+    "stderrSha256": "453676ffe5eb0db119dccb07a56680f480cbf0f117ebd6dbe5e3689b6ce1116d"
+   }
+  ],
+  "bare:outline-playwright": [
+   {
+    "argv": "outline-playwright",
+    "exit": 1,
+    "stdoutBytes": 0,
+    "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrBytes": 84,
+    "stderrSha256": "8d2953cdccc9076f0193b02bfb7bdaf567ab2bb34a5f5ba78eafbd5426002210"
+   }
+  ],
+  "bare:playwright-doctor": [
+   {
+    "argv": "playwright-doctor",
+    "exit": 0,
+    "stdoutBytes": 3111,
+    "stdoutSha256": "ec00301aed6be163e83c084282b87d8986d73fd28d875902ea098e606c8ba5d4",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "bare:profile-info": [
+   {
+    "argv": "profile-info",
+    "exit": 0,
+    "stdoutBytes": 173,
+    "stdoutSha256": "965cbc8f4d2fc0d8f5f8b181d3d17b6b51520f061ffe74323aed1dc103f50e3f",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "bare:profile-status": [
+   {
+    "argv": "profile-status",
+    "exit": 0,
+    "stdoutBytes": 1000,
+    "stdoutSha256": "97acb86b57eb3edf7f38cbd76541d854356e533d0cfe1326955e8284333ee088",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "bare:proof-gate-status": [
+   {
+    "argv": "proof-gate-status",
+    "exit": 0,
+    "stdoutBytes": 3793,
+    "stdoutSha256": "8e6d6893a2b05cc0a0b550d8a9ab0ddc0ca6b4f5e9d5e11243920719006cabbf",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "bare:proof-gate-watch": [
+   {
+    "argv": "proof-gate-watch",
+    "exit": "timeout",
+    "stdoutBytes": 0,
+    "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "bare:provider-doctor-status": [
+   {
+    "argv": "provider-doctor-status",
+    "exit": 0,
+    "stdoutBytes": 5989,
+    "stdoutSha256": "9760c7f8f56c66b540af6a0b696ffcfacd968e07a9042e7a91bea0c29545151f",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "bare:provider-status": [
+   {
+    "argv": "provider-status",
+    "exit": 0,
+    "stdoutBytes": 10967,
+    "stdoutSha256": "27c938f3931138c3200e895ee51f97316540737810d758473a7076e9f34db1c3",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "bare:providers": [
+   {
+    "argv": "providers",
+    "exit": 0,
+    "stdoutBytes": 10967,
+    "stdoutSha256": "27c938f3931138c3200e895ee51f97316540737810d758473a7076e9f34db1c3",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "bare:readiness-audit": [
+   {
+    "argv": "readiness-audit",
+    "exit": 0,
+    "stdoutBytes": 13900,
+    "stdoutSha256": "9265f8c433ba95b9828bc2c3b495c2426bb9fd8e8e1a9494574cfacfb22234ce",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "bare:reap-owned": [
+   {
+    "argv": "reap-owned",
+    "exit": 1,
+    "stdoutBytes": 0,
+    "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrBytes": 44,
+    "stderrSha256": "52912fc3087894984eb51b46438568ac6d2da32aece0755b674b293866357922"
+   }
+  ],
+  "bare:regular-chrome-refresh": [
+   {
+    "argv": "regular-chrome-refresh",
+    "exit": 0,
+    "stdoutBytes": 2359,
+    "stdoutSha256": "3c94a3a2422b4ac5f8922a8680137904b6ec8bf68a92e2d72fda519614de405c",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "bare:regular-chrome-status": [
+   {
+    "argv": "regular-chrome-status",
+    "exit": 0,
+    "stdoutBytes": 5526,
+    "stdoutSha256": "2ce5bd2845e84e7b52e54cdc2a57b5e6621e2112c1924072d05cbf222913b5da",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "bare:regular-chrome-use": [
+   {
+    "argv": "regular-chrome-use",
+    "exit": 0,
+    "stdoutBytes": 4243,
+    "stdoutSha256": "918edbb7c453876ecce9521078a6022572c7db405fa16e33dcdf828a94461737",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "bare:regular-chrome-watch": [
+   {
+    "argv": "regular-chrome-watch",
+    "exit": 0,
+    "stdoutBytes": 6901,
+    "stdoutSha256": "1e164b24e5c39586b6188bfce8e7cbe5e450e74cedaada8a5984ce704d05e1ca",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "bare:run-cdp": [
+   {
+    "argv": "run-cdp",
+    "exit": 1,
+    "stdoutBytes": 0,
+    "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrBytes": 27,
+    "stderrSha256": "4356f1d43760171a644b19fb1435230064b60a9f5491069e2288c916c1411dce"
+   }
+  ],
+  "bare:run-gate-audit": [
+   {
+    "argv": "run-gate-audit",
+    "exit": 0,
+    "stdoutBytes": 11564,
+    "stdoutSha256": "5d4c63e8270344dbf11aa2bab035ef2c1e90a861c8a40b2f24bd7f71daa42184",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "bare:runtime-audit": [
+   {
+    "argv": "runtime-audit",
+    "exit": 0,
+    "stdoutBytes": 6022,
+    "stdoutSha256": "6bef1c4ab9c9b94eae53e35ef5c3572e8f24f65010b45d5530db3ca34e9cd63f",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "bare:runtime-cleanup-plan": [
+   {
+    "argv": "runtime-cleanup-plan",
+    "exit": 0,
+    "stdoutBytes": 2220,
+    "stdoutSha256": "d70a316d738c48b25e911756fdcc4386b3e46e5e6aff967636663143a41929cd",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "bare:scaffold-target": [
+   {
+    "argv": "scaffold-target",
+    "exit": 1,
+    "stdoutBytes": 0,
+    "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrBytes": 24,
+    "stderrSha256": "76847fa0d447ca7e4a8239d38dfa0cfc5684818cb0f87df70b55d85013fc3247"
+   }
+  ],
+  "bare:scrape-cdp": [
+   {
+    "argv": "scrape-cdp",
+    "exit": 1,
+    "stdoutBytes": 0,
+    "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrBytes": 12,
+    "stderrSha256": "453676ffe5eb0db119dccb07a56680f480cbf0f117ebd6dbe5e3689b6ce1116d"
+   }
+  ],
+  "bare:screenshot-cdp": [
+   {
+    "argv": "screenshot-cdp",
+    "exit": 1,
+    "stdoutBytes": 0,
+    "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrBytes": 39,
+    "stderrSha256": "9cb1fd2b2c2c35e05b60a1fada5bbd2c694c6f76c5a5eee5056a993fef472374"
+   }
+  ],
+  "bare:search": [
+   {
+    "argv": "search",
+    "exit": 1,
+    "stdoutBytes": 0,
+    "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrBytes": 27,
+    "stderrSha256": "4dd86ede006de28ac83204d8f76a394ea4a00cd142bc85dafa24099792de6e1e"
+   }
+  ],
+  "bare:search-cdp": [
+   {
+    "argv": "search-cdp",
+    "exit": 1,
+    "stdoutBytes": 0,
+    "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrBytes": 12,
+    "stderrSha256": "453676ffe5eb0db119dccb07a56680f480cbf0f117ebd6dbe5e3689b6ce1116d"
+   }
+  ],
+  "bare:search-http": [
+   {
+    "argv": "search-http",
+    "exit": 1,
+    "stdoutBytes": 0,
+    "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrBytes": 13,
+    "stderrSha256": "73bb55f31c7cdeee3f8338db03f024ff6838ddbf99da2e6e9b4cc9648594ca2c"
+   }
+  ],
+  "bare:secret-audit": [
+   {
+    "argv": "secret-audit",
+    "exit": 0,
+    "stdoutBytes": 3183,
+    "stdoutSha256": "0cae5043b4a565f1b0959f8aee115165a725626b7605e98e4ad008d44ab2ad38",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "bare:secret-env-handoff": [
+   {
+    "argv": "secret-env-handoff",
+    "exit": 0,
+    "stdoutBytes": 4684,
+    "stdoutSha256": "018dffb13998c58d3d56f1506568b47838bd0fbcda34b48154a2cfe159935d91",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "bare:secret-env-handoff-status": [
+   {
+    "argv": "secret-env-handoff-status",
+    "exit": 0,
+    "stdoutBytes": 1436,
+    "stdoutSha256": "af8248de525bce7924977a4be1e57525547346fc1ef5271d8c3586486e6e775b",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "bare:secret-env-handoff-watch": [
+   {
+    "argv": "secret-env-handoff-watch",
+    "exit": 0,
+    "stdoutBytes": 1252,
+    "stdoutSha256": "9a8821339b88dd1c2f62a305cddee0027f199c756acef287ce7f6eed5a8134b2",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "bare:secret-run-plan": [
+   {
+    "argv": "secret-run-plan",
+    "exit": 0,
+    "stdoutBytes": 1844,
+    "stdoutSha256": "ef7a90d136f4e388f449f41b317fc5b5396d826bb453006a0478798eb010b9f0",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "bare:secret-run-select": [
+   {
+    "argv": "secret-run-select",
+    "exit": 0,
+    "stdoutBytes": 6475,
+    "stdoutSha256": "8da8586ac1249ff7d2a9e5c9c60f122fc2fde4afed9ca31b1c0b9fd18344da22",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "bare:secret-setup-plan": [
+   {
+    "argv": "secret-setup-plan",
+    "exit": 0,
+    "stdoutBytes": 2274,
+    "stdoutSha256": "8f9330b6aaecb878b8f936d2dfcd4af13f13faae837feb0143c2cf4955e5e0e7",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "bare:selenium-doctor": [
+   {
+    "argv": "selenium-doctor",
+    "exit": 0,
+    "stdoutBytes": 2983,
+    "stdoutSha256": "0547ecfe4fa716dea030b40375d84ba7507e22080b23bef3f47c4a760537ca96",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "bare:snapshot": [
+   {
+    "argv": "snapshot",
+    "exit": 1,
+    "stdoutBytes": 0,
+    "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrBytes": 27,
+    "stderrSha256": "4dd86ede006de28ac83204d8f76a394ea4a00cd142bc85dafa24099792de6e1e"
+   }
+  ],
+  "bare:source-audit": [
+   {
+    "argv": "source-audit",
+    "exit": 0,
+    "stdoutBytes": 6455,
+    "stdoutSha256": "b23fe5f01346ae7f5c8a570031cf197b794454361c53f14dd5454312d132cb1c",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "bare:status-cache": [
+   {
+    "argv": "status-cache",
+    "exit": 0,
+    "stdoutBytes": 788,
+    "stdoutSha256": "d8d0d44b1d79d49a845a210e0a80bf7959ded0c45cd4e84db5c50b342eaee35f",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "bare:target-add-url": [
+   {
+    "argv": "target-add-url",
+    "exit": 1,
+    "stdoutBytes": 0,
+    "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrBytes": 48,
+    "stderrSha256": "8791d386b5c9f139f427dc6bd5e920e60c966ca9dce6cd9e2d1431acbc59ff5d"
+   }
+  ],
+  "bare:target-approval-pack": [
+   {
+    "argv": "target-approval-pack",
+    "exit": 0,
+    "stdoutBytes": 7676,
+    "stdoutSha256": "a1e8e17b109b73ee8325a4ccf78f291f3d72549b5e61ac46722fe6f05076f26d",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "bare:target-approval-preflight": [
+   {
+    "argv": "target-approval-preflight",
+    "exit": 0,
+    "stdoutBytes": 8928,
+    "stdoutSha256": "761beff520cc8e362b614b4900641600ed0b1eb5ec23fe2bad4817d1ff8208d8",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "bare:target-approval-resume": [
+   {
+    "argv": "target-approval-resume",
+    "exit": 0,
+    "stdoutBytes": 5388,
+    "stdoutSha256": "ec128481c4fe792e8cb59634ec62918824a9a27b993810570795dce544f6cdfa",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "bare:target-approval-resume-status": [
+   {
+    "argv": "target-approval-resume-status",
+    "exit": 0,
+    "stdoutBytes": 4905,
+    "stdoutSha256": "0c380e78485fbdafd28f01532cdbc28025dc27e20141c62b6ac639d7b89ebd05",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "bare:target-approval-resume-watch": [
+   {
+    "argv": "target-approval-resume-watch",
+    "exit": 0,
+    "stdoutBytes": 808,
+    "stdoutSha256": "1234216c0c923fc1dbf9d74f328793bed489877d48a5252d38aee3b2b79d1bf0",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "bare:target-approval-status": [
+   {
+    "argv": "target-approval-status",
+    "exit": 0,
+    "stdoutBytes": 8898,
+    "stdoutSha256": "9e94301d711fa7322204960e4ff826d0cdfa1bc4f4760a04c269b51dcb818e2a",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "bare:target-audit": [
+   {
+    "argv": "target-audit",
+    "exit": 1,
+    "stdoutBytes": 0,
+    "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrBytes": 34,
+    "stderrSha256": "7314dae5135d31987d260862e617f592fc8a1508ce7911bf3e8affd63fd871b4"
+   }
+  ],
+  "bare:target-auth-check": [
+   {
+    "argv": "target-auth-check",
+    "exit": 1,
+    "stdoutBytes": 0,
+    "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrBytes": 34,
+    "stderrSha256": "7314dae5135d31987d260862e617f592fc8a1508ce7911bf3e8affd63fd871b4"
+   }
+  ],
+  "bare:target-auth-watch": [
+   {
+    "argv": "target-auth-watch",
+    "exit": 1,
+    "stdoutBytes": 0,
+    "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrBytes": 34,
+    "stderrSha256": "7314dae5135d31987d260862e617f592fc8a1508ce7911bf3e8affd63fd871b4"
+   }
+  ],
+  "bare:target-autostart": [
+   {
+    "argv": "target-autostart",
+    "exit": 1,
+    "stdoutBytes": 0,
+    "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrBytes": 50,
+    "stderrSha256": "d42427695c7baf0d4e54d53be7aa01a648f25cf1c76cef1329a00b11a8a48a1e"
+   }
+  ],
+  "bare:target-batch": [
+   {
+    "argv": "target-batch",
+    "exit": 1,
+    "stdoutBytes": 0,
+    "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrBytes": 34,
+    "stderrSha256": "7314dae5135d31987d260862e617f592fc8a1508ce7911bf3e8affd63fd871b4"
+   }
+  ],
+  "bare:target-benchmark": [
+   {
+    "argv": "target-benchmark",
+    "exit": 1,
+    "stdoutBytes": 0,
+    "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrBytes": 34,
+    "stderrSha256": "7314dae5135d31987d260862e617f592fc8a1508ce7911bf3e8affd63fd871b4"
+   }
+  ],
+  "bare:target-bootstrap-plan": [
+   {
+    "argv": "target-bootstrap-plan",
+    "exit": 0,
+    "stdoutBytes": 8530,
+    "stdoutSha256": "39a55378441b8e72a2ad31c3d3ac09127a01b35ab625944b82b640dcdf270cca",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "bare:target-candidate-plan": [
+   {
+    "argv": "target-candidate-plan",
+    "exit": 0,
+    "stdoutBytes": 8996,
+    "stdoutSha256": "073b854ba4425447ab7abbecddd04b99bc99e885ff714bd3fd97b60c8f84bee4",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "bare:target-candidate-plan-status": [
+   {
+    "argv": "target-candidate-plan-status",
+    "exit": 0,
+    "stdoutBytes": 1399,
+    "stdoutSha256": "7c726353685d73537733d542b244565ea18b16f3354f1daac6961231974a8329",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "bare:target-candidate-plan-watch": [
+   {
+    "argv": "target-candidate-plan-watch",
+    "exit": 0,
+    "stdoutBytes": 1278,
+    "stdoutSha256": "2fe704d8fd512bdc1c146262f9d95327ce990587bd812b699c8a5d308871bc12",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "bare:target-daemon": [
+   {
+    "argv": "target-daemon",
+    "exit": 1,
+    "stdoutBytes": 0,
+    "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrBytes": 47,
+    "stderrSha256": "6df5b05ad66125f32472737cc94094da340d37b53ab595979f4fb18b4be42a97"
+   }
+  ],
+  "bare:target-doctor": [
+   {
+    "argv": "target-doctor",
+    "exit": 1,
+    "stdoutBytes": 175,
+    "stdoutSha256": "6bf2439569079769297af66e261ab1011a065276fb0ae8b2523e49b2078ed5ff",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "bare:target-handoff-resume": [
+   {
+    "argv": "target-handoff-resume",
+    "exit": 1,
+    "stdoutBytes": 0,
+    "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrBytes": 34,
+    "stderrSha256": "7314dae5135d31987d260862e617f592fc8a1508ce7911bf3e8affd63fd871b4"
+   }
+  ],
+  "bare:target-handoff-resume-status": [
+   {
+    "argv": "target-handoff-resume-status",
+    "exit": 1,
+    "stdoutBytes": 0,
+    "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrBytes": 34,
+    "stderrSha256": "7314dae5135d31987d260862e617f592fc8a1508ce7911bf3e8affd63fd871b4"
+   }
+  ],
+  "bare:target-handoff-resume-watch": [
+   {
+    "argv": "target-handoff-resume-watch",
+    "exit": 1,
+    "stdoutBytes": 0,
+    "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrBytes": 34,
+    "stderrSha256": "7314dae5135d31987d260862e617f592fc8a1508ce7911bf3e8affd63fd871b4"
+   }
+  ],
+  "bare:target-handoff-run": [
+   {
+    "argv": "target-handoff-run",
+    "exit": 1,
+    "stdoutBytes": 0,
+    "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrBytes": 34,
+    "stderrSha256": "7314dae5135d31987d260862e617f592fc8a1508ce7911bf3e8affd63fd871b4"
+   }
+  ],
+  "bare:target-handoff-status": [
+   {
+    "argv": "target-handoff-status",
+    "exit": 1,
+    "stdoutBytes": 0,
+    "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrBytes": 34,
+    "stderrSha256": "7314dae5135d31987d260862e617f592fc8a1508ce7911bf3e8affd63fd871b4"
+   }
+  ],
+  "bare:target-info": [
+   {
+    "argv": "target-info",
+    "exit": 1,
+    "stdoutBytes": 0,
+    "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrBytes": 34,
+    "stderrSha256": "7314dae5135d31987d260862e617f592fc8a1508ce7911bf3e8affd63fd871b4"
+   }
+  ],
+  "bare:target-login": [
+   {
+    "argv": "target-login",
+    "exit": 1,
+    "stdoutBytes": 0,
+    "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrBytes": 46,
+    "stderrSha256": "cc21ca0b2dc60cb3d36df4385fe4c92a25b2caca050e7b677ce3c85d908b573d"
+   }
+  ],
+  "bare:target-login-capture": [
+   {
+    "argv": "target-login-capture",
+    "exit": 1,
+    "stdoutBytes": 0,
+    "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrBytes": 46,
+    "stderrSha256": "cc21ca0b2dc60cb3d36df4385fe4c92a25b2caca050e7b677ce3c85d908b573d"
+   }
+  ],
+  "bare:target-operate-add": [
+   {
+    "argv": "target-operate-add",
+    "exit": 1,
+    "stdoutBytes": 0,
+    "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrBytes": 52,
+    "stderrSha256": "ad150965422f431145a45805905b1cd1980e699b97daa9a31950b4b0b6a8535d"
+   }
+  ],
+  "bare:target-permissions": [
+   {
+    "argv": "target-permissions",
+    "exit": 1,
+    "stdoutBytes": 0,
+    "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrBytes": 52,
+    "stderrSha256": "81e3c289c2160cc978011768860ff1bb96cb954ef0000ad8d6c3f3321b123138"
+   }
+  ],
+  "bare:target-proof": [
+   {
+    "argv": "target-proof",
+    "exit": 1,
+    "stdoutBytes": 0,
+    "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrBytes": 34,
+    "stderrSha256": "7314dae5135d31987d260862e617f592fc8a1508ce7911bf3e8affd63fd871b4"
+   }
+  ],
+  "bare:target-proof-capture": [
+   {
+    "argv": "target-proof-capture",
+    "exit": 1,
+    "stdoutBytes": 0,
+    "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrBytes": 34,
+    "stderrSha256": "7314dae5135d31987d260862e617f592fc8a1508ce7911bf3e8affd63fd871b4"
+   }
+  ],
+  "bare:target-proof-inventory": [
+   {
+    "argv": "target-proof-inventory",
+    "exit": 0,
+    "stdoutBytes": 448,
+    "stdoutSha256": "db00c1673c94011db917ce8fef7dee065dca879071cf0ae0904ea20ac084c888",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "bare:target-proof-next": [
+   {
+    "argv": "target-proof-next",
+    "exit": 0,
+    "stdoutBytes": 28949,
+    "stdoutSha256": "e6ed5f4a8b2c7a64b49e984cbe785a913dd790ba05d24a812872f1279e6265f9",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "bare:target-proof-plan": [
+   {
+    "argv": "target-proof-plan",
+    "exit": 1,
+    "stdoutBytes": 0,
+    "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrBytes": 34,
+    "stderrSha256": "7314dae5135d31987d260862e617f592fc8a1508ce7911bf3e8affd63fd871b4"
+   }
+  ],
+  "bare:target-run": [
+   {
+    "argv": "target-run",
+    "exit": 1,
+    "stdoutBytes": 0,
+    "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrBytes": 44,
+    "stderrSha256": "8e85b0fb2d9fad1e052806b5506d2ddec744edbbe7b93608a185b99eaf9f3eee"
+   }
+  ],
+  "bare:target-run-status": [
+   {
+    "argv": "target-run-status",
+    "exit": 1,
+    "stdoutBytes": 0,
+    "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrBytes": 44,
+    "stderrSha256": "8e85b0fb2d9fad1e052806b5506d2ddec744edbbe7b93608a185b99eaf9f3eee"
+   }
+  ],
+  "bare:target-scrape": [
+   {
+    "argv": "target-scrape",
+    "exit": 1,
+    "stdoutBytes": 0,
+    "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrBytes": 47,
+    "stderrSha256": "c2afdb2c084a3bbd843ddccf71908b96c196241226ca924d57867a9c07d810e4"
+   }
+  ],
+  "bare:target-status": [
+   {
+    "argv": "target-status",
+    "exit": 1,
+    "stdoutBytes": 0,
+    "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrBytes": 34,
+    "stderrSha256": "7314dae5135d31987d260862e617f592fc8a1508ce7911bf3e8affd63fd871b4"
+   }
+  ],
+  "bare:target-worker-pool": [
+   {
+    "argv": "target-worker-pool",
+    "exit": 0,
+    "stdoutBytes": 257,
+    "stdoutSha256": "e23e2c06c3bae267a90c2995ce1dd4b91c2bb7213b1e338dbbce56f13e36e818",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "bare:wait-cdp": [
+   {
+    "argv": "wait-cdp",
+    "exit": 1,
+    "stdoutBytes": 0,
+    "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrBytes": 12,
+    "stderrSha256": "453676ffe5eb0db119dccb07a56680f480cbf0f117ebd6dbe5e3689b6ce1116d"
+   }
+  ],
+  "mcp:handshake": [
+   {
+    "argv": "mcp-stdio",
+    "exit": 0,
+    "stdoutBytes": 115229,
+    "stdoutSha256": "7904a615085f24be3b47249e6933980d6398b61396ca5eb682e225f35955985f",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "mcp:sba_agent_backend_select": [
+   {
+    "argv": "mcp-stdio",
+    "exit": 0,
+    "stdoutBytes": 16760,
+    "stdoutSha256": "ff01092ae3f1cfaa7badcb650975e4821400fbfa31b6f4f047b8760ea545693d",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "mcp:sba_agent_browser_doctor": [
+   {
+    "argv": "mcp-stdio",
+    "exit": 0,
+    "stdoutBytes": 2702,
+    "stdoutSha256": "7fca5cbf9d625dc38d1be77c2bd9996d1992a68303a289b539c30c196fb4c455",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "mcp:sba_agent_control_plane": [
+   {
+    "argv": "mcp-stdio",
+    "exit": 0,
+    "stdoutBytes": 55398,
+    "stdoutSha256": "292f119bcbdafcef86e60f6223e80bf1f3262b5715c2dc18316c3a2ae12b9a6f",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "mcp:sba_agent_control_plane_status": [
+   {
+    "argv": "mcp-stdio",
+    "exit": 0,
+    "stdoutBytes": 3396,
+    "stdoutSha256": "02077d58a63c06f7e97506c7f53dd20e0a85d16b37ed7ac7ace6732f52bc6000",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "mcp:sba_agent_control_plane_watch": [
+   {
+    "argv": "mcp-stdio",
+    "exit": 0,
+    "stdoutBytes": 5616,
+    "stdoutSha256": "a0c9e87da4049d63bb55417b554274b5cc5fab28b8cb067e44f166087e1741b3",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "mcp:sba_agent_loop_step": [
+   {
+    "argv": "mcp-stdio",
+    "exit": 0,
+    "stdoutBytes": 4959,
+    "stdoutSha256": "120871082213d64b921ca290de8b62256d46d769c8f859addda08cafcdc2d716",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "mcp:sba_agent_loop_step_status": [
+   {
+    "argv": "mcp-stdio",
+    "exit": 0,
+    "stdoutBytes": 5572,
+    "stdoutSha256": "967215ca971e413156709a5a368317de6fb15e79c50ff232dc25b2ef6af703c4",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "mcp:sba_agent_next": [
+   {
+    "argv": "mcp-stdio",
+    "exit": 0,
+    "stdoutBytes": 16880,
+    "stdoutSha256": "c4477af44835251d5ced72927fd7cc1633427b72823277d0a35708f8f7269291",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "mcp:sba_agent_preflight": [
+   {
+    "argv": "mcp-stdio",
+    "exit": 0,
+    "stdoutBytes": 17540,
+    "stdoutSha256": "f8879485f2e80c1dd57bc6b3df297706c878e6bded329a6553070a2feaa7852e",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "mcp:sba_agent_proof_checklist": [
+   {
+    "argv": "mcp-stdio",
+    "exit": 0,
+    "stdoutBytes": 10188,
+    "stdoutSha256": "d2fae6a4837a79378a86dfd887056ce13eca2e79358bef100c75daa44f6a756c",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "mcp:sba_agent_proof_checklist_status": [
+   {
+    "argv": "mcp-stdio",
+    "exit": 0,
+    "stdoutBytes": 6088,
+    "stdoutSha256": "bda011e1e4356c2dc0c18db66e18fd71cef3e1d56d38333fdf83aced28c3b37f",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "mcp:sba_agent_proof_closeout": [
+   {
+    "argv": "mcp-stdio",
+    "exit": 0,
+    "stdoutBytes": 26379,
+    "stdoutSha256": "329cdbb196cbff8bdccb6130913656dbd3397ff710df316c54245a0280d2c96e",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "mcp:sba_agent_proof_closeout_status": [
+   {
+    "argv": "mcp-stdio",
+    "exit": 0,
+    "stdoutBytes": 17046,
+    "stdoutSha256": "89fcbd7b0769abc94bc28b9cd943d350e2d8ce8a0c64d6c188d2fe3b24788c49",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "mcp:sba_agent_proof_step": [
+   {
+    "argv": "mcp-stdio",
+    "exit": 0,
+    "stdoutBytes": 2923,
+    "stdoutSha256": "fcaa5cd7b987a3a72c5f62a00739047e1d66b7b9653bfb44d0e79be8218997f1",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "mcp:sba_agent_proof_step_start": [
+   {
+    "argv": "mcp-stdio",
+    "exit": 0,
+    "stdoutBytes": 7755,
+    "stdoutSha256": "723bcbb85abae802e2872ee8e917c3a7b6dc5f32e265a5636080adf587cf4679",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "mcp:sba_agent_proof_step_status": [
+   {
+    "argv": "mcp-stdio",
+    "exit": 0,
+    "stdoutBytes": 4776,
+    "stdoutSha256": "4b96d890a356364e43835fd05e8fdaa5e093640193b34120330be3da51f69bde",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "mcp:sba_agent_task": [
+   {
+    "argv": "mcp-stdio",
+    "exit": 0,
+    "stdoutBytes": 12461,
+    "stdoutSha256": "c1322d9e126e65f377536deaac3dd3b4c10e51a7854fe9993673f8a35a4db756",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "mcp:sba_agent_task_loop": [
+   {
+    "argv": "mcp-stdio",
+    "exit": 0,
+    "stdoutBytes": 9644,
+    "stdoutSha256": "8c91f068de49ac215fdc4925721be6ba662441dc3131ed1277827995620d72ca",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "mcp:sba_agent_task_status": [
+   {
+    "argv": "mcp-stdio",
+    "exit": 0,
+    "stdoutBytes": 6469,
+    "stdoutSha256": "e0524a96014440ce189673511aeac2c76701f1b5ce848ab657b53f698d691292",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "mcp:sba_agent_task_watch": [
+   {
+    "argv": "mcp-stdio",
+    "exit": 0,
+    "stdoutBytes": 8665,
+    "stdoutSha256": "8b9a81a00f8eb624e3e728066a8d9f0ae0965a5738d8a6f59a5b0ea5f628ad0f",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "mcp:sba_agent_task_watch_start": [
+   {
+    "argv": "mcp-stdio",
+    "exit": 0,
+    "stdoutBytes": 4902,
+    "stdoutSha256": "4d561440c1f04666010e6658b9b3e64fd53f38829aace8a4eb6d996667fe58a0",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "mcp:sba_agent_task_watch_status": [
+   {
+    "argv": "mcp-stdio",
+    "exit": 0,
+    "stdoutBytes": 9298,
+    "stdoutSha256": "334dc1487723ad295ac786fad9b34f3243f05671da6c0864eca606cdf8faec26",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "mcp:sba_agent_workflow": [
+   {
+    "argv": "mcp-stdio",
+    "exit": 0,
+    "stdoutBytes": 6282,
+    "stdoutSha256": "6b62c63316da043b95f37e9be284df7c197ad87ac21f48a148bd61d5b867805c",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "mcp:sba_backend_matrix": [
+   {
+    "argv": "mcp-stdio",
+    "exit": 0,
+    "stdoutBytes": 34015,
+    "stdoutSha256": "c9c0881c235b67c356e76424f166fe3daacae29ae88a2e2695cf26df3336a9dc",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "mcp:sba_backend_matrix_status": [
+   {
+    "argv": "mcp-stdio",
+    "exit": 0,
+    "stdoutBytes": 20926,
+    "stdoutSha256": "a603d09210cdda24785860420e14422aefc0e73751e2fcc97a9eb3db2c57fc5f",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "mcp:sba_background_monitor_plan": [
+   {
+    "argv": "mcp-stdio",
+    "exit": 0,
+    "stdoutBytes": 5270,
+    "stdoutSha256": "57e1408806853f0853dbaa9af2dd88a6ffa5ab22169bc596434ced17329a49d3",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "mcp:sba_background_proof_capture_plan": [
+   {
+    "argv": "mcp-stdio",
+    "exit": 0,
+    "stdoutBytes": 9958,
+    "stdoutSha256": "cb0d4e5598b5e3f10c0bf03452d320f52467c6cf804df1a0394d20c4f873fed6",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "mcp:sba_background_proof_capture_start": [
+   {
+    "argv": "mcp-stdio",
+    "exit": 0,
+    "stdoutBytes": 6128,
+    "stdoutSha256": "a2f59d90bcf41e9cf03a782e82b3305f5e642990c2dd74be968f80cfe9acd1e4",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "mcp:sba_background_proof_capture_status": [
+   {
+    "argv": "mcp-stdio",
+    "exit": 0,
+    "stdoutBytes": 9279,
+    "stdoutSha256": "91a11eee4295c59f1cfad9540d000fb788400163138af9434eea60dbe1029e6c",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "mcp:sba_browser_route": [
+   {
+    "argv": "mcp-stdio",
+    "exit": 0,
+    "stdoutBytes": 7433,
+    "stdoutSha256": "a6c54dda5701e70f6204863cd937072cab6016904f8b2ac01937773b74255e5d",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "mcp:sba_cdp_analyze": [
+   {
+    "argv": "mcp-stdio",
+    "exit": 0,
+    "stdoutBytes": 443,
+    "stdoutSha256": "a4301f02d2e5342625eff0da5234ca317b550f3a9be22d2947f49a885a03798f",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "mcp:sba_chrome_apple_events_enable_plan": [
+   {
+    "argv": "mcp-stdio",
+    "exit": 0,
+    "stdoutBytes": 8704,
+    "stdoutSha256": "ae30d3fb0d9d66efd325520af1b06718187f57a554a5f62f2a09a11241a0b8e1",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "mcp:sba_chrome_apple_events_outline": [
+   {
+    "argv": "mcp-stdio",
+    "exit": 0,
+    "stdoutBytes": 6398,
+    "stdoutSha256": "777654f3b2b1654003b463961d50c610f86a4cb42aee69053071cb6009bd61cc",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "mcp:sba_chrome_apple_events_status": [
+   {
+    "argv": "mcp-stdio",
+    "exit": 0,
+    "stdoutBytes": 3628,
+    "stdoutSha256": "442d58167916ace281cfb22aa5fc81c67575e6ed1ab7ff05bb153374b4500871",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "mcp:sba_chrome_control_plan": [
+   {
+    "argv": "mcp-stdio",
+    "exit": 0,
+    "stdoutBytes": 6973,
+    "stdoutSha256": "7b852a76128b9cd92dbe12fe4d4e89968b7b1b849012b10345ebd006ac3c20b4",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "mcp:sba_chrome_extension_backend_check_plan": [
+   {
+    "argv": "mcp-stdio",
+    "exit": 0,
+    "stdoutBytes": 9826,
+    "stdoutSha256": "856f2176d8caa79a251f38656fc2595cb1aa37adf8d3d2df9c4e165bc977e4d5",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "mcp:sba_chrome_extension_claim_plan": [
+   {
+    "argv": "mcp-stdio",
+    "exit": 0,
+    "stdoutBytes": 7382,
+    "stdoutSha256": "21c6150d7a25c91ead2ae526d49ecb23861576439f5faebaea2fb8bc29b36fbf",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "mcp:sba_chrome_extension_handoff": [
+   {
+    "argv": "mcp-stdio",
+    "exit": 0,
+    "stdoutBytes": 6137,
+    "stdoutSha256": "5f02f566baa9a3122507266d1e3327e2bea839d467f24c46bd0cb1f3136e442c",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "mcp:sba_chrome_extension_resume": [
+   {
+    "argv": "mcp-stdio",
+    "exit": 0,
+    "stdoutBytes": 8706,
+    "stdoutSha256": "6f0873afc006d531ca1c4cdb5cac3b06e8f73f63d7eb77e5c095539e55b27dee",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "mcp:sba_chrome_extension_status": [
+   {
+    "argv": "mcp-stdio",
+    "exit": 0,
+    "stdoutBytes": 3627,
+    "stdoutSha256": "bb312fa10a5c10cc15651e15f25b874776e475554da8ec292f8826d150919510",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "mcp:sba_chrome_extension_troubleshoot": [
+   {
+    "argv": "mcp-stdio",
+    "exit": 0,
+    "stdoutBytes": 13445,
+    "stdoutSha256": "7e5cd33bcf2f1e56ca7758d5c150dcb8b69008df186d8534f1c9bf1593245c45",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "mcp:sba_chrome_mcp_autostart_plan": [
+   {
+    "argv": "mcp-stdio",
+    "exit": 0,
+    "stdoutBytes": 9296,
+    "stdoutSha256": "3ab41383014d95edc47f9f10530c126c027b06c0277d34d6024cea8b9f48b05f",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "mcp:sba_chrome_mcp_autostart_plan_status": [
+   {
+    "argv": "mcp-stdio",
+    "exit": 0,
+    "stdoutBytes": 2509,
+    "stdoutSha256": "24a5b8de658a4875bc1bf7b751f225adc0f20ae6d9ec81e207ff9b017f05f23c",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "mcp:sba_chrome_mcp_handoff": [
+   {
+    "argv": "mcp-stdio",
+    "exit": 0,
+    "stdoutBytes": 4684,
+    "stdoutSha256": "7788f52781457325b7fec6d252006ca4924e365f041215bd52a9f6325cbf5afb",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "mcp:sba_chrome_mcp_observation": [
+   {
+    "argv": "mcp-stdio",
+    "exit": 0,
+    "stdoutBytes": 4757,
+    "stdoutSha256": "21a309a643f4751446178550004a36822d75703b86028fa9a0d83fc81e0ddb9e",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "mcp:sba_chrome_mcp_observation_status": [
+   {
+    "argv": "mcp-stdio",
+    "exit": 0,
+    "stdoutBytes": 6869,
+    "stdoutSha256": "f011b720c249c1dbefbb5fd3bc3c45f175e6acb8fc924789460d5ef9719dfd4d",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "mcp:sba_chrome_mcp_status": [
+   {
+    "argv": "mcp-stdio",
+    "exit": 0,
+    "stdoutBytes": 3232,
+    "stdoutSha256": "dbc003037556210080849283f7c7c3e6775d3a3e7af0a06ca14dad76fb722ab3",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "mcp:sba_chrome_mcp_timeout_plan": [
+   {
+    "argv": "mcp-stdio",
+    "exit": 0,
+    "stdoutBytes": 6329,
+    "stdoutSha256": "508ed105410586b159f4fa074f01523b6049e585d925c9a257fd06d211ea1336",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "mcp:sba_chrome_mcp_timeout_plan_status": [
+   {
+    "argv": "mcp-stdio",
+    "exit": 0,
+    "stdoutBytes": 5739,
+    "stdoutSha256": "973d8f9db18277318de097979151f5218f797875cf92f5642312f5207e81d9ab",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "mcp:sba_compact_command_audit": [
+   {
+    "argv": "mcp-stdio",
+    "exit": 0,
+    "stdoutBytes": 90562,
+    "stdoutSha256": "53009cd2c5a94a5621aeb39d2b275c1e8eb3d9780f5917da98c68404589dab06",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "mcp:sba_completion_proof_bundle": [
+   {
+    "argv": "mcp-stdio",
+    "exit": 0,
+    "stdoutBytes": 26044,
+    "stdoutSha256": "6280ccc3cb2253898b86706294637626e9dedf973215da2ef82247feabe7f18b",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "mcp:sba_completion_proof_bundle_status": [
+   {
+    "argv": "mcp-stdio",
+    "exit": 0,
+    "stdoutBytes": 15103,
+    "stdoutSha256": "9fc1267be79a8a1bc6c5ef7c42aae5c29701e3c974499917c505a7926b8781c2",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "mcp:sba_completion_proof_bundle_watch": [
+   {
+    "argv": "mcp-stdio",
+    "exit": 0,
+    "stdoutBytes": 17791,
+    "stdoutSha256": "ed923a60731f365e9add27ec871a01d50d356daaf94cdb27312c6ce9eace819b",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "mcp:sba_control_status": [
+   {
+    "argv": "mcp-stdio",
+    "exit": 0,
+    "stdoutBytes": 66676,
+    "stdoutSha256": "d4dd20b87cea1dcd40a01be0e1c23a63d5d2c32b8578d8cb91ad1ff82e6c8948",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "mcp:sba_lightpanda_decision": [
+   {
+    "argv": "mcp-stdio",
+    "exit": 0,
+    "stdoutBytes": 3708,
+    "stdoutSha256": "8a00e8a700bab2d7bff51d3eada834c96a140020618dbf98d5e0ea3d9be4057d",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "mcp:sba_lightpanda_doctor": [
+   {
+    "argv": "mcp-stdio",
+    "exit": 0,
+    "stdoutBytes": 6587,
+    "stdoutSha256": "4a468a54f121e01784e77b44cb4c16fd57c701e00fc2288225f8383d9638fc25",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "mcp:sba_login_handoff_status": [
+   {
+    "argv": "mcp-stdio",
+    "exit": 0,
+    "stdoutBytes": 5809,
+    "stdoutSha256": "96bca2dfc208435df560fff999cf81077ff8d479d96feaaa707ae3a7e5e88345",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "mcp:sba_objective_completion_audit": [
+   {
+    "argv": "mcp-stdio",
+    "exit": 0,
+    "stdoutBytes": 107509,
+    "stdoutSha256": "45eafd82dc29d3fba13682e507ff636741d43590e3107506175452c82c9bddbb",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "mcp:sba_objective_completion_audit_status": [
+   {
+    "argv": "mcp-stdio",
+    "exit": 0,
+    "stdoutBytes": 6566,
+    "stdoutSha256": "70a56cdeb04e821b3706c145cafbd12b8cac78bdc991264a8771a22616bda640",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "mcp:sba_objective_completion_audit_watch": [
+   {
+    "argv": "mcp-stdio",
+    "exit": 0,
+    "stdoutBytes": 13801,
+    "stdoutSha256": "2c73d249d2c074735a4085f132f09b2153c406b208031a34c3ba393ff34132a0",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "mcp:sba_objective_handoff": [
+   {
+    "argv": "mcp-stdio",
+    "exit": 0,
+    "stdoutBytes": 6799,
+    "stdoutSha256": "ca6026875b352a229231e3984373710133d184afd391093e43aec47f47c7c02c",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "mcp:sba_objective_next": [
+   {
+    "argv": "mcp-stdio",
+    "exit": 0,
+    "stdoutBytes": 114802,
+    "stdoutSha256": "653f5750f4620c2c667a5a362bfbaee0c59ba346cfad27d94ce7d06a3f528ccc",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "mcp:sba_objective_proof_pipeline": [
+   {
+    "argv": "mcp-stdio",
+    "exit": 0,
+    "stdoutBytes": 6694,
+    "stdoutSha256": "5fc8fd37ff1dbfadebfcc104426bd409345f057cda04ea242902df2ed4726374",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "mcp:sba_objective_resume": [
+   {
+    "argv": "mcp-stdio",
+    "exit": 0,
+    "stdoutBytes": 55564,
+    "stdoutSha256": "5c742866f4151097575239b1b5f4e9a01a8b5aa677602de676bad17ffe8c0993",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "mcp:sba_objective_safe_command": [
+   {
+    "argv": "mcp-stdio",
+    "exit": 0,
+    "stdoutBytes": 22712,
+    "stdoutSha256": "68cc4f5de52619a2ec0fcc2bf5cc5ade02e048741e8a5417b7a07302cf74f16e",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "mcp:sba_objective_status": [
+   {
+    "argv": "mcp-stdio",
+    "exit": 0,
+    "stdoutBytes": 11081,
+    "stdoutSha256": "d4ea296ab0971b9fd692d1e99d0ffa38781aed08dfbc497faccf6afa15c0d1e8",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "mcp:sba_operator_pack": [
+   {
+    "argv": "mcp-stdio",
+    "exit": 0,
+    "stdoutBytes": 470819,
+    "stdoutSha256": "b381c8e53365c2ca934cedd7aa10e59f8f4211f2c50c0e878c5e8f4bbdb53ea0",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "mcp:sba_operator_pack_status": [
+   {
+    "argv": "mcp-stdio",
+    "exit": 0,
+    "stdoutBytes": 5245,
+    "stdoutSha256": "c0057756c6954b6cce69ef03920d0c89a14974440a4b2c686e2f9fdec304a153",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "mcp:sba_operator_runbook": [
+   {
+    "argv": "mcp-stdio",
+    "exit": 0,
+    "stdoutBytes": 118688,
+    "stdoutSha256": "cb55fe6cc3b3559ebae81a0f77194278ca24c636cd8114ca80567760b817e11d",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "mcp:sba_operator_runbook_status": [
+   {
+    "argv": "mcp-stdio",
+    "exit": 0,
+    "stdoutBytes": 5080,
+    "stdoutSha256": "d3f7135dead6b93ef7417a4a12232631953a915e5fe41c7c96e2e612e04e1c97",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "mcp:sba_operator_runbook_watch": [
+   {
+    "argv": "mcp-stdio",
+    "exit": 0,
+    "stdoutBytes": 1942,
+    "stdoutSha256": "26c3e34af0673d70dd70c585df1ef05fe2b7507edaff64dc9d75cf7056b1f81e",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "mcp:sba_playwright_doctor": [
+   {
+    "argv": "mcp-stdio",
+    "exit": 0,
+    "stdoutBytes": 6476,
+    "stdoutSha256": "40d166c3bc6cd9a09ebc5289bd04ac227c598b0b9ed42bc74ee5b97ea5ae9344",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "mcp:sba_profile_status": [
+   {
+    "argv": "mcp-stdio",
+    "exit": 0,
+    "stdoutBytes": 2365,
+    "stdoutSha256": "94c8d873de754efee30d6943468b51259c1d586e5f68f63bc4b648b107c22994",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "mcp:sba_proof_gate_status": [
+   {
+    "argv": "mcp-stdio",
+    "exit": 0,
+    "stdoutBytes": 7676,
+    "stdoutSha256": "cf68c37850cf293645d9c36b16f5382eaa6fd342ee87128ef4b452f90df2cbb3",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "mcp:sba_proof_gate_watch": [
+   {
+    "argv": "mcp-stdio",
+    "exit": "timeout",
+    "stdoutBytes": 370,
+    "stdoutSha256": "b0bc12e335c0749b11a5fe45bd69bbc0bcc8b2b8b0f6831f43b52c787b9923e8",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "mcp:sba_provider_benchmark": [
+   {
+    "argv": "mcp-stdio",
+    "exit": 0,
+    "stdoutBytes": 5506,
+    "stdoutSha256": "517445f429d529f071c7bf73fd4e24cf614ec9a74174679e27a1177a445b0a76",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "mcp:sba_provider_doctor_status": [
+   {
+    "argv": "mcp-stdio",
+    "exit": 0,
+    "stdoutBytes": 12134,
+    "stdoutSha256": "3090fa0ba8fc9214aa5d84d0d60c7139d4ebf147119929fb446e0cf68c5d64b1",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "mcp:sba_providers": [
+   {
+    "argv": "mcp-stdio",
+    "exit": 0,
+    "stdoutBytes": 21714,
+    "stdoutSha256": "aeab7a4b3c09aeda53471e0484276e947a416e4fd6419dd2d143dd3f7b5e399e",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "mcp:sba_readiness_audit": [
+   {
+    "argv": "mcp-stdio",
+    "exit": 0,
+    "stdoutBytes": 26937,
+    "stdoutSha256": "fd660cba84157f9266b2a6d92a4e62f3b02eec468757090e7c902d65264fba21",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "mcp:sba_regular_chrome_refresh": [
+   {
+    "argv": "mcp-stdio",
+    "exit": 0,
+    "stdoutBytes": 4965,
+    "stdoutSha256": "52128317988ba847ea11129264a35e76de0ec80b5a53c26b71034167bcb2af9f",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "mcp:sba_regular_chrome_status": [
+   {
+    "argv": "mcp-stdio",
+    "exit": 0,
+    "stdoutBytes": 10964,
+    "stdoutSha256": "e817d81d0dc5ec4f27eb3dfa9b6bd339fead6e2cda7ebb5141996863fd39d786",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "mcp:sba_regular_chrome_use": [
+   {
+    "argv": "mcp-stdio",
+    "exit": 0,
+    "stdoutBytes": 8602,
+    "stdoutSha256": "8bd4fbd6e8379a3f5e00822b57cd51c0a9e3d74d03091766f0ea673346b041fc",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "mcp:sba_regular_chrome_watch": [
+   {
+    "argv": "mcp-stdio",
+    "exit": 0,
+    "stdoutBytes": 13320,
+    "stdoutSha256": "d4aae6f7d331deda6ff88d1347e9d4e1a6f88dff17e8434dbb91e6649c553352",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "mcp:sba_run_gate_audit": [
+   {
+    "argv": "mcp-stdio",
+    "exit": 0,
+    "stdoutBytes": 22455,
+    "stdoutSha256": "a0dee99841bb252ee025f6008b66114823326e8e767b4a89ca37b2783e0b63eb",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "mcp:sba_runtime_audit": [
+   {
+    "argv": "mcp-stdio",
+    "exit": 0,
+    "stdoutBytes": 11194,
+    "stdoutSha256": "fdf3ad5abbd6563854457c81cdece32447aee14bab43d8498958d4ff056cc992",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "mcp:sba_runtime_cleanup_plan": [
+   {
+    "argv": "mcp-stdio",
+    "exit": 0,
+    "stdoutBytes": 4845,
+    "stdoutSha256": "794cbe5b355d1b131ec6a85345005d89cea8268d63ac70cdaac97efc9ca8a543",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "mcp:sba_secret_audit": [
+   {
+    "argv": "mcp-stdio",
+    "exit": 0,
+    "stdoutBytes": 6573,
+    "stdoutSha256": "d75026b3773189d6407407f22da8eef9d537ab40b63913a1fd7276f431cc2cfe",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "mcp:sba_secret_env_handoff": [
+   {
+    "argv": "mcp-stdio",
+    "exit": 0,
+    "stdoutBytes": 9240,
+    "stdoutSha256": "53505540b4766b9a7441ba355da80330c9f04bf57b6f4d4067dd6e23c9c402c0",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "mcp:sba_secret_env_handoff_status": [
+   {
+    "argv": "mcp-stdio",
+    "exit": 0,
+    "stdoutBytes": 3281,
+    "stdoutSha256": "c360a56411f378e998ed5e8f3de557e346e74a22f888c428359248f392af1022",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "mcp:sba_secret_env_handoff_watch": [
+   {
+    "argv": "mcp-stdio",
+    "exit": 0,
+    "stdoutBytes": 2916,
+    "stdoutSha256": "4b6c59159963d626d5883dd2d5b38e15c9e82cd489387c8974808df8bdb764eb",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "mcp:sba_secret_run_plan": [
+   {
+    "argv": "mcp-stdio",
+    "exit": 0,
+    "stdoutBytes": 3928,
+    "stdoutSha256": "2aebfabc4b583c888b17c2db2c3ac1d2a9d45282081c5a0f91a16d0ccb8b66e8",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "mcp:sba_secret_run_select": [
+   {
+    "argv": "mcp-stdio",
+    "exit": 0,
+    "stdoutBytes": 12364,
+    "stdoutSha256": "f60a8a55efaa4037ca22b7c2228a91aa33d44875050a6f9f19895dbdea393bda",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "mcp:sba_secret_setup_plan": [
+   {
+    "argv": "mcp-stdio",
+    "exit": 0,
+    "stdoutBytes": 4735,
+    "stdoutSha256": "5075132df37d09856da35112c360dcb154ce02f767945a794be92216ed4646be",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "mcp:sba_selenium_doctor": [
+   {
+    "argv": "mcp-stdio",
+    "exit": 0,
+    "stdoutBytes": 6127,
+    "stdoutSha256": "37c736946ed5dcfb6287071d2c2a4ba49f69677387096d39ad712057847eec6c",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "mcp:sba_source_audit": [
+   {
+    "argv": "mcp-stdio",
+    "exit": 0,
+    "stdoutBytes": 12377,
+    "stdoutSha256": "ff365691997fc76ae6470079f13f7748428efb03d00b6e076e55c37241755ddd",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "mcp:sba_target_approval_pack": [
+   {
+    "argv": "mcp-stdio",
+    "exit": 0,
+    "stdoutBytes": 14568,
+    "stdoutSha256": "62bc2a65fcc595270b4574114fcd83c7adc2535f292343ba35c905f1d8dab95f",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "mcp:sba_target_approval_preflight": [
+   {
+    "argv": "mcp-stdio",
+    "exit": 0,
+    "stdoutBytes": 17540,
+    "stdoutSha256": "f8879485f2e80c1dd57bc6b3df297706c878e6bded329a6553070a2feaa7852e",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "mcp:sba_target_approval_resume": [
+   {
+    "argv": "mcp-stdio",
+    "exit": 0,
+    "stdoutBytes": 10789,
+    "stdoutSha256": "eb5fe96bcab2bab8dac32551aeda6835a9786b545bcffe8848312242b49eb844",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "mcp:sba_target_approval_resume_status": [
+   {
+    "argv": "mcp-stdio",
+    "exit": 0,
+    "stdoutBytes": 9914,
+    "stdoutSha256": "5eff91551168c7580c6ba89163fbedfb62e26804ce8891c21eea720055c96191",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "mcp:sba_target_approval_resume_watch": [
+   {
+    "argv": "mcp-stdio",
+    "exit": 0,
+    "stdoutBytes": 2085,
+    "stdoutSha256": "8d1ac3d2775ded9afd2a3ce1f172f976d90c08928d4e29ab4da1d450690d2f65",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "mcp:sba_target_approval_status": [
+   {
+    "argv": "mcp-stdio",
+    "exit": 0,
+    "stdoutBytes": 17112,
+    "stdoutSha256": "986c8886d96ff1bc27ee5e73cd0f198e3779510a67aea9697eb6a0cf08752c9e",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "mcp:sba_target_audit": [
+   {
+    "argv": "mcp-stdio",
+    "exit": 0,
+    "stdoutBytes": 465,
+    "stdoutSha256": "744195c535a9d815e8fc8d5367c328d2df8c19307ca10a670e600d9f20d9fdb7",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "mcp:sba_target_auth_check": [
+   {
+    "argv": "mcp-stdio",
+    "exit": 0,
+    "stdoutBytes": 465,
+    "stdoutSha256": "744195c535a9d815e8fc8d5367c328d2df8c19307ca10a670e600d9f20d9fdb7",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "mcp:sba_target_auth_watch": [
+   {
+    "argv": "mcp-stdio",
+    "exit": 0,
+    "stdoutBytes": 465,
+    "stdoutSha256": "744195c535a9d815e8fc8d5367c328d2df8c19307ca10a670e600d9f20d9fdb7",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "mcp:sba_target_benchmark": [
+   {
+    "argv": "mcp-stdio",
+    "exit": 0,
+    "stdoutBytes": 465,
+    "stdoutSha256": "744195c535a9d815e8fc8d5367c328d2df8c19307ca10a670e600d9f20d9fdb7",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "mcp:sba_target_bootstrap_plan": [
+   {
+    "argv": "mcp-stdio",
+    "exit": 0,
+    "stdoutBytes": 15989,
+    "stdoutSha256": "1ad90a740db59d904d6442d3d34f6dbb843e6dc6441cbea58b5075f7463e74e1",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "mcp:sba_target_candidate_plan": [
+   {
+    "argv": "mcp-stdio",
+    "exit": 0,
+    "stdoutBytes": 16851,
+    "stdoutSha256": "8a477cce9daac6b4bd298f25e5b6fc79902f6535d385a630aa5aa2324ddbdf16",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "mcp:sba_target_candidate_plan_status": [
+   {
+    "argv": "mcp-stdio",
+    "exit": 0,
+    "stdoutBytes": 3210,
+    "stdoutSha256": "85251275b56f576b16701f4f01a1472d3567aca7a387d56c8f0439c1468cd1dc",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "mcp:sba_target_candidate_plan_watch": [
+   {
+    "argv": "mcp-stdio",
+    "exit": 0,
+    "stdoutBytes": 2969,
+    "stdoutSha256": "0584e1116d17fd41a18dcfb22f7827a2f0baf16207861b6154869795b046d4ba",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "mcp:sba_target_daemon": [
+   {
+    "argv": "mcp-stdio",
+    "exit": 0,
+    "stdoutBytes": 478,
+    "stdoutSha256": "f2f9fd6342a436b34e13fb0b1fbe701861e153166e4924c27717a729d0e8fcc9",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "mcp:sba_target_handoff_resume": [
+   {
+    "argv": "mcp-stdio",
+    "exit": 0,
+    "stdoutBytes": 465,
+    "stdoutSha256": "744195c535a9d815e8fc8d5367c328d2df8c19307ca10a670e600d9f20d9fdb7",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "mcp:sba_target_handoff_resume_status": [
+   {
+    "argv": "mcp-stdio",
+    "exit": 0,
+    "stdoutBytes": 465,
+    "stdoutSha256": "744195c535a9d815e8fc8d5367c328d2df8c19307ca10a670e600d9f20d9fdb7",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "mcp:sba_target_handoff_resume_watch": [
+   {
+    "argv": "mcp-stdio",
+    "exit": 0,
+    "stdoutBytes": 465,
+    "stdoutSha256": "744195c535a9d815e8fc8d5367c328d2df8c19307ca10a670e600d9f20d9fdb7",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "mcp:sba_target_handoff_run": [
+   {
+    "argv": "mcp-stdio",
+    "exit": 0,
+    "stdoutBytes": 465,
+    "stdoutSha256": "744195c535a9d815e8fc8d5367c328d2df8c19307ca10a670e600d9f20d9fdb7",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "mcp:sba_target_handoff_status": [
+   {
+    "argv": "mcp-stdio",
+    "exit": 0,
+    "stdoutBytes": 465,
+    "stdoutSha256": "744195c535a9d815e8fc8d5367c328d2df8c19307ca10a670e600d9f20d9fdb7",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "mcp:sba_target_login_capture": [
+   {
+    "argv": "mcp-stdio",
+    "exit": 0,
+    "stdoutBytes": 477,
+    "stdoutSha256": "26b10503cc22385536526a6cbaf42e77d9a986ef310d81a633ee9d766b56fbcb",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "mcp:sba_target_operate_add": [
+   {
+    "argv": "mcp-stdio",
+    "exit": 0,
+    "stdoutBytes": 483,
+    "stdoutSha256": "5cc92e5887edae6e4b5710263f1666bf31c3548f5112ae80053261455c80898e",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "mcp:sba_target_permissions": [
+   {
+    "argv": "mcp-stdio",
+    "exit": 0,
+    "stdoutBytes": 483,
+    "stdoutSha256": "3977f3fed23dd75b1c38c1858a1fcc219e11aa8409a344a2b34008f78a5deab1",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "mcp:sba_target_proof": [
+   {
+    "argv": "mcp-stdio",
+    "exit": 0,
+    "stdoutBytes": 465,
+    "stdoutSha256": "744195c535a9d815e8fc8d5367c328d2df8c19307ca10a670e600d9f20d9fdb7",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "mcp:sba_target_proof_capture": [
+   {
+    "argv": "mcp-stdio",
+    "exit": 0,
+    "stdoutBytes": 465,
+    "stdoutSha256": "744195c535a9d815e8fc8d5367c328d2df8c19307ca10a670e600d9f20d9fdb7",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "mcp:sba_target_proof_inventory": [
+   {
+    "argv": "mcp-stdio",
+    "exit": 0,
+    "stdoutBytes": 1343,
+    "stdoutSha256": "3ce8a62de9e2d976900f6f0069063e9623cd3a10c47e1d9e0e3ac0519281793e",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "mcp:sba_target_proof_next": [
+   {
+    "argv": "mcp-stdio",
+    "exit": 0,
+    "stdoutBytes": 52710,
+    "stdoutSha256": "e5499651e32525d73bcaa3028f54d1610f0223338e23adf5e4f19b8592d14cd4",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "mcp:sba_target_proof_plan": [
+   {
+    "argv": "mcp-stdio",
+    "exit": 0,
+    "stdoutBytes": 465,
+    "stdoutSha256": "744195c535a9d815e8fc8d5367c328d2df8c19307ca10a670e600d9f20d9fdb7",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "mcp:sba_target_run": [
+   {
+    "argv": "mcp-stdio",
+    "exit": 0,
+    "stdoutBytes": 475,
+    "stdoutSha256": "3eec9d3f749e4b1bb8db690d3ec432807b0f6c294708aed27107a6d158d93971",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "mcp:sba_target_run_status": [
+   {
+    "argv": "mcp-stdio",
+    "exit": 0,
+    "stdoutBytes": 475,
+    "stdoutSha256": "3eec9d3f749e4b1bb8db690d3ec432807b0f6c294708aed27107a6d158d93971",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "mcp:sba_target_scrape": [
+   {
+    "argv": "mcp-stdio",
+    "exit": 0,
+    "stdoutBytes": 478,
+    "stdoutSha256": "94bd5f4ef34e8877c1f2baf95f9920f988ac2c0902c05bdafbd677d79c965b33",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "mcp:sba_target_status": [
+   {
+    "argv": "mcp-stdio",
+    "exit": 0,
+    "stdoutBytes": 465,
+    "stdoutSha256": "744195c535a9d815e8fc8d5367c328d2df8c19307ca10a670e600d9f20d9fdb7",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "misc:bad-engine": [
+   {
+    "argv": "doctor --engine bogus --offline",
+    "exit": 1,
+    "stdoutBytes": 0,
+    "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrBytes": 32,
+    "stderrSha256": "7726c50611aebcdbe358e6b64b0b544d564a3c8df9c4b42f9666ac641b8d5649"
+   }
+  ],
+  "misc:help": [
+   {
+    "argv": "help",
+    "exit": 0,
+    "stdoutBytes": 29333,
+    "stdoutSha256": "5c894d4ef891563a69fee9c3930a1d955585655717158c888f1577c2511ad96f",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "misc:missing-policy": [
+   {
+    "argv": "doctor --policy no-such-policy.json --offline",
+    "exit": 1,
+    "stdoutBytes": 0,
+    "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrBytes": 69,
+    "stderrSha256": "1b4bb259c18cf8dfbd7c063937409dcd5bc4202a54cca4a2ff1bf21279808f57"
+   }
+  ],
+  "misc:no-args": [
+   {
+    "argv": "",
+    "exit": 0,
+    "stdoutBytes": 29333,
+    "stdoutSha256": "5c894d4ef891563a69fee9c3930a1d955585655717158c888f1577c2511ad96f",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "misc:unknown-command": [
+   {
+    "argv": "no-such-command",
+    "exit": 1,
+    "stdoutBytes": 0,
+    "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrBytes": 33,
+    "stderrSha256": "b85c81dc242389455e066c1112e735e75ee45e3e52c0e3bbdfaff66c162c9b7b"
+   }
+  ],
+  "probe:agent-backend-select": [
+   {
+    "argv": "agent-backend-select --task existing-tab --chrome-mcp-connected yes --chrome-mcp",
+    "exit": 0,
+    "stdoutBytes": 3438,
+    "stdoutSha256": "bf659085fe7fa510259dd4d8250e65c54676a1ef9a0e43d4bb650c6a66653f5a",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "probe:agent-browser-doctor": [
+   {
+    "argv": "agent-browser-doctor --format compact",
+    "exit": 0,
+    "stdoutBytes": 1042,
+    "stdoutSha256": "5e4ecd56dd95659c3dca255668c673ef69a5d83d58f3e4ec3983ae4a15e46a91",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "probe:agent-control-plane": [
+   {
+    "argv": "agent-control-plane --write --task existing-tab --chrome-mcp-connected yes --chr",
+    "exit": 0,
+    "stdoutBytes": 15621,
+    "stdoutSha256": "d5ac0fca431955626d5ae370cd56718af8f237b7d4c9220ccbee88aea9b5c133",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "probe:agent-control-plane-status": [
+   {
+    "argv": "agent-control-plane-status --format compact",
+    "exit": 0,
+    "stdoutBytes": 3218,
+    "stdoutSha256": "ed2a25f7d5e6a218a17bcc030a65c62298a7fd031bb113fc1f7730c79769c3b6",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "probe:agent-control-plane-watch": [
+   {
+    "argv": "agent-control-plane-watch --run --format compact",
+    "exit": 0,
+    "stdoutBytes": 823,
+    "stdoutSha256": "12ede1ff7f711b695ea20329d9c60d561f9b0c37633028f53b2aab8740e91964",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "probe:agent-loop-step": [
+   {
+    "argv": "agent-loop-step --format compact",
+    "exit": 0,
+    "stdoutBytes": 1052,
+    "stdoutSha256": "40a7c6c5ef4ea942bac33c3d83e1ce7dd058710e36f81dba78f84ad345cf9c0d",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "probe:agent-loop-step-status": [
+   {
+    "argv": "agent-loop-step-status --format compact",
+    "exit": 0,
+    "stdoutBytes": 1340,
+    "stdoutSha256": "b8babac4e9cbcf04558d76a1fbfdede68cce2fc9fc912757b4059b96177411be",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "probe:agent-loop-step-status-short": [
+   {
+    "argv": "agent-loop-step-status --monitor-timeout-ms 10000 --monitor-interval-ms 1000 --f",
+    "exit": 0,
+    "stdoutBytes": 1533,
+    "stdoutSha256": "d809357cea2d69b8111565f516d2c8ff72d7567ef662d2d108ca8004da9557ee",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "probe:agent-next": [
+   {
+    "argv": "agent-next --format compact",
+    "exit": 0,
+    "stdoutBytes": 5810,
+    "stdoutSha256": "c988e90736f9de8a5ec41f6d2e0b787883fc79b164a19cd720342c123da25046",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "probe:agent-preflight": [
+   {
+    "argv": "agent-preflight --format compact",
+    "exit": 0,
+    "stdoutBytes": 4666,
+    "stdoutSha256": "eb5481d46c5a7ae6ee6aef9f78bced2f4493a4129aee57ea08ffd38c69d3ca1a",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "probe:agent-proof-checklist": [
+   {
+    "argv": "agent-proof-checklist --format compact",
+    "exit": 0,
+    "stdoutBytes": 2544,
+    "stdoutSha256": "91d3071f2dd72b559e8b377507a2336e55f787908cc4515ff81743b78d6f9af3",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "probe:agent-proof-checklist-status": [
+   {
+    "argv": "agent-proof-checklist-status --format compact",
+    "exit": 0,
+    "stdoutBytes": 1523,
+    "stdoutSha256": "1aa1cc9aff34719052f06f7056abcc9b0fce0e6735e31f7266c9a664bd6b8ddd",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "probe:agent-proof-closeout": [
+   {
+    "argv": "agent-proof-closeout --include-compact-command-audit --format compact",
+    "exit": 0,
+    "stdoutBytes": 8411,
+    "stdoutSha256": "0641c8415d9cfa21fb4c3d073c7fe482911f6b70e77709d98515a8425712c908",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "probe:agent-proof-closeout-status": [
+   {
+    "argv": "agent-proof-closeout --include-compact-command-audit --write --out operator/agen",
+    "exit": 0,
+    "stdoutBytes": 8471,
+    "stdoutSha256": "c84c4d83e8d2315e1a887662687600d12652e0fd257fbfc4e25d3d4fecaeb96a",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   {
+    "argv": "agent-proof-closeout-status --format compact",
+    "exit": 0,
+    "stdoutBytes": 7583,
+    "stdoutSha256": "8ae1dc4d7fd975d909efb56088085b3a5be104ae6efb441b76fce86f9c6c5323",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "probe:agent-proof-step": [
+   {
+    "argv": "agent-proof-step --format compact",
+    "exit": 0,
+    "stdoutBytes": 601,
+    "stdoutSha256": "ce2f8895bc958d18469d5c238a49cb2e3850a4a4f853fdce4a7102e934ee98c5",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "probe:agent-proof-step-start": [
+   {
+    "argv": "agent-proof-step-start --format compact",
+    "exit": 0,
+    "stdoutBytes": 995,
+    "stdoutSha256": "84da700abfd65379defe0b1ee24bdf170c4d4271a4c9ef046ac5083350cf2edf",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "probe:agent-proof-step-status": [
+   {
+    "argv": "agent-proof-step-status --format compact",
+    "exit": 0,
+    "stdoutBytes": 1257,
+    "stdoutSha256": "e726b8e7694965999049a147a09a99bdffff545683d494e7ed21a7c455a4c676",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "probe:agent-workflow-existing-tab": [
+   {
+    "argv": "agent-workflow --task existing-tab --intent inspect --match-origin https://githu",
+    "exit": 0,
+    "stdoutBytes": 2916,
+    "stdoutSha256": "1cc8d87942fd3b24d0cb63249e723b3996d3be9dd6d130e8e978d40a425b5a08",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "probe:analyze-cdp": [
+   {
+    "argv": "analyze-cdp data:text/html,<main><h1>Catalog</h1><script>console.log(\"ready\")</s",
+    "exit": 1,
+    "stdoutBytes": 0,
+    "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrBytes": 12,
+    "stderrSha256": "453676ffe5eb0db119dccb07a56680f480cbf0f117ebd6dbe5e3689b6ce1116d"
+   }
+  ],
+  "probe:backend-matrix": [
+   {
+    "argv": "backend-matrix --format compact",
+    "exit": 0,
+    "stdoutBytes": 6891,
+    "stdoutSha256": "f193c7b81452028722bb56e80bf347118f8e201a2792f2d9fa5c439b8372c6e4",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "probe:backend-matrix-status": [
+   {
+    "argv": "backend-matrix-status --format compact",
+    "exit": 0,
+    "stdoutBytes": 4947,
+    "stdoutSha256": "c5bfc534b2e5ad08f3d1802d53c34876d4eb4abe1baec072bd696efe28c85c82",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "probe:background-monitor-plan": [
+   {
+    "argv": "background-monitor-plan --timeout-ms 120000 --interval-ms 2500 --format compact",
+    "exit": 0,
+    "stdoutBytes": 1428,
+    "stdoutSha256": "5ce511cb902830a88b934949585d5bb5320c15823eb02592b65c2d5af69c6218",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "probe:background-proof-capture-plan": [
+   {
+    "argv": "background-proof-capture-plan --timeout-ms 120000 --interval-ms 2500 --format co",
+    "exit": 0,
+    "stdoutBytes": 2424,
+    "stdoutSha256": "1a064b1101f017fb6368467dc259994fae01c19017ffe60080f8c46b0d54c57e",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "probe:background-proof-capture-start": [
+   {
+    "argv": "background-proof-capture-start --mode capture --format compact",
+    "exit": 0,
+    "stdoutBytes": 1172,
+    "stdoutSha256": "7ac184338d32ea8a4ea5d457bd0dacdfb14007d210c63bd9b4a076155e2f8f43",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "probe:background-proof-capture-status": [
+   {
+    "argv": "background-proof-capture-status --format compact",
+    "exit": 0,
+    "stdoutBytes": 2531,
+    "stdoutSha256": "bab07587d685de0d6736688045d834dfc22beb033e9174b65ec25d65bb224a50",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "probe:benchmark": [
+   {
+    "argv": "benchmark --quick --iterations 1 --format markdown",
+    "exit": 0,
+    "stdoutBytes": 526,
+    "stdoutSha256": "10659172f3faa1650740bf7ac6c7833e98471a46a0bd83bf85fc0e4666ff975a",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "probe:browser-route": [
+   {
+    "argv": "browser-route --format compact",
+    "exit": 0,
+    "stdoutBytes": 1418,
+    "stdoutSha256": "d6808efc9da3c518ef6bf91f4f8de8c628a82ff56bdff6d0c9420550664a5eab",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "probe:cdp": [
+   {
+    "argv": "outline-cdp data:text/html,<h1>CDP</h1><a href=\"/cdp\">Link</a> --profile cdp-pro",
+    "exit": 1,
+    "stdoutBytes": 0,
+    "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrBytes": 12,
+    "stderrSha256": "453676ffe5eb0db119dccb07a56680f480cbf0f117ebd6dbe5e3689b6ce1116d"
+   }
+  ],
+  "probe:cdp-daemon": [
+   {
+    "argv": "cdp-start --profile cdp-daemon-probe",
+    "exit": 1,
+    "stdoutBytes": 0,
+    "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrBytes": 12,
+    "stderrSha256": "453676ffe5eb0db119dccb07a56680f480cbf0f117ebd6dbe5e3689b6ce1116d"
+   },
+   {
+    "argv": "outline-cdp data:text/html,<h1>Daemon</h1> --profile cdp-daemon-probe --daemon",
+    "exit": 1,
+    "stdoutBytes": 0,
+    "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrBytes": 12,
+    "stderrSha256": "453676ffe5eb0db119dccb07a56680f480cbf0f117ebd6dbe5e3689b6ce1116d"
+   },
+   {
+    "argv": "cdp-stop --profile cdp-daemon-probe",
+    "exit": 0,
+    "stdoutBytes": 399,
+    "stdoutSha256": "5b2980df7b64c644dc07f8ed0bcbe49b3215a4ae75625226c74c711d55fbe14e",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "probe:chrome": [
+   {
+    "argv": "extract data:text/html,<a href=\"/x\">Link</a> --selector a --fields text,href --p",
+    "exit": 1,
+    "stdoutBytes": 0,
+    "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrBytes": 27,
+    "stderrSha256": "4dd86ede006de28ac83204d8f76a394ea4a00cd142bc85dafa24099792de6e1e"
+   }
+  ],
+  "probe:chrome-apple-events-enable-plan": [
+   {
+    "argv": "chrome-apple-events-enable-plan --format compact",
+    "exit": 0,
+    "stdoutBytes": 1309,
+    "stdoutSha256": "608435810d25e78fd15d8d1da99d22689ebbd81a79bd78808c160bf68d4080d6",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "probe:chrome-apple-events-outline": [
+   {
+    "argv": "chrome-apple-events-outline --format compact",
+    "exit": 0,
+    "stdoutBytes": 1011,
+    "stdoutSha256": "1f42185af22f0bd3bd77570850051e53ef64fe35b1f081e6577c96336d623d93",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "probe:chrome-apple-events-status": [
+   {
+    "argv": "chrome-apple-events-status --format compact",
+    "exit": 0,
+    "stdoutBytes": 697,
+    "stdoutSha256": "0f6d461274034942d1a43c7b2947e88915927e37697b130c75379b4d4f76127f",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "probe:chrome-control-plan": [
+   {
+    "argv": "chrome-control-plan --format compact",
+    "exit": 0,
+    "stdoutBytes": 1275,
+    "stdoutSha256": "d4be8c73c098b1d8853b3ca22f541521cdbb06abd5863165592036697170b21d",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "probe:chrome-extension-backend-check-plan": [
+   {
+    "argv": "chrome-extension-backend-check-plan --format compact",
+    "exit": 0,
+    "stdoutBytes": 1493,
+    "stdoutSha256": "3db4a8e40e05cc573efd81e5445cb381e91c3bd5b6ba7d7cad1de8e3e184a89f",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "probe:chrome-extension-claim-plan": [
+   {
+    "argv": "chrome-extension-claim-plan --backend-ready yes --intent inspect --match-origin ",
+    "exit": 0,
+    "stdoutBytes": 1033,
+    "stdoutSha256": "dccc706aa7206f4e0ed196bb2430095cf787d96cd13a23fb3a8acd9783c6a9b5",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "probe:chrome-extension-handoff": [
+   {
+    "argv": "chrome-extension-handoff --format compact",
+    "exit": 0,
+    "stdoutBytes": 497,
+    "stdoutSha256": "19ad7954da2fb15bf4f6f61482d408a70164e5ae1bcd2daf7a3058e91910c273",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "probe:chrome-extension-resume": [
+   {
+    "argv": "chrome-extension-resume --format compact",
+    "exit": 0,
+    "stdoutBytes": 543,
+    "stdoutSha256": "357fa8fdbcf37404be4c6081410224d6b9fe243d18ca64ac3534ec9ea6823602",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "probe:chrome-extension-status": [
+   {
+    "argv": "chrome-extension-status --format compact",
+    "exit": 0,
+    "stdoutBytes": 733,
+    "stdoutSha256": "eca680b4cab3945c21d2aae0717f50d18fb8844c87ea3e79c9cd80c8338f211b",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "probe:chrome-extension-troubleshoot": [
+   {
+    "argv": "chrome-extension-troubleshoot --backend-available no --backend-last-error Browse",
+    "exit": 0,
+    "stdoutBytes": 1071,
+    "stdoutSha256": "776a28161450966e9ac3fb818f2e3d08ddce6568344e20c7f0fba18c9f0e83fa",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "probe:chrome-extension-troubleshoot-after-retry": [
+   {
+    "argv": "chrome-extension-troubleshoot --backend-available no --backend-last-error Transp",
+    "exit": 0,
+    "stdoutBytes": 1053,
+    "stdoutSha256": "a60991b873e4bf748f670202566b6b6525960736903437b58c298e386160c372",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "probe:chrome-mcp-handoff": [
+   {
+    "argv": "chrome-mcp-handoff --format compact",
+    "exit": 0,
+    "stdoutBytes": 1058,
+    "stdoutSha256": "4c46a3443de5d8b5f67e10cf64d7dcb831feafce1b936fcd05fce8e11e6c183a",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "probe:chrome-mcp-observation": [
+   {
+    "argv": "chrome-mcp-observation --status-text Chrome DevTools MCP Status\n\nConnected: yes\n",
+    "exit": 0,
+    "stdoutBytes": 1611,
+    "stdoutSha256": "deed53ace01ed341df8742c4d81d3ac0443d54d1882020c2653964cbdb3d33ac",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "probe:chrome-mcp-observation-flags": [
+   {
+    "argv": "chrome-mcp-observation --observed-connected yes --observed-tools 29 --observed-p",
+    "exit": 0,
+    "stdoutBytes": 1842,
+    "stdoutSha256": "a83b4496a4b32bc086dbe57bbc299fb3332ab6f2831a85f862a972c5cd8f13cb",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "probe:chrome-mcp-observation-status": [
+   {
+    "argv": "chrome-mcp-observation-status --format compact",
+    "exit": 0,
+    "stdoutBytes": 1747,
+    "stdoutSha256": "46d4794c525c384e3c783305acdd1bee8e41fd06e58187fb9e035c6d6d150c96",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "probe:chrome-mcp-status": [
+   {
+    "argv": "chrome-mcp-status --format compact",
+    "exit": 0,
+    "stdoutBytes": 820,
+    "stdoutSha256": "22b1f89ca167c18912baa7332ad4b0538197ebcc0c761944df74a5c669032b0d",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "probe:chrome-mcp-timeout-plan": [
+   {
+    "argv": "chrome-mcp-timeout-plan --write --observed-connected yes --observed-tools 29 --o",
+    "exit": 0,
+    "stdoutBytes": 1947,
+    "stdoutSha256": "aab97694a95e91ef9df2b838f92f2404e0ab5be39b9b6ed35bf3e4751595c2d2",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "probe:chrome-mcp-timeout-plan-status": [
+   {
+    "argv": "chrome-mcp-timeout-plan-status --format compact",
+    "exit": 0,
+    "stdoutBytes": 1591,
+    "stdoutSha256": "63640bfff8153d97ac4b1776bf43ea904ad986df9b77a1f9486f3e3159ac7eeb",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "probe:compact-command-audit": [
+   {
+    "argv": "compact-command-audit --format compact",
+    "exit": 0,
+    "stdoutBytes": 326,
+    "stdoutSha256": "a6dbb611fdb2285af51566183f58e3c217289adadc5c51cfe80635186f27763d",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "probe:compact-command-audit-all": [
+   {
+    "argv": "compact-command-audit --source all --strict --format compact",
+    "exit": 0,
+    "stdoutBytes": 5323,
+    "stdoutSha256": "c3516e5bf458aa9813bdd19c58811e945c888b0f1e479b8c97c05fc044408474",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "probe:compact-command-audit-ci": [
+   {
+    "argv": "compact-command-audit --source run-gate-audit --format compact",
+    "exit": 0,
+    "stdoutBytes": 327,
+    "stdoutSha256": "b5db86b3dc0f536a19d9430a1af729c30715f1c1162fb303268b92aa8e2d14fa",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "probe:completion-proof-bundle": [
+   {
+    "argv": "completion-proof-bundle --include-compact-command-audit --format compact",
+    "exit": 0,
+    "stdoutBytes": 8937,
+    "stdoutSha256": "df2641a7e1c869e46e2cdfd6626bba0c82e4f002aef8237a02bcd4d57ceb33f6",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "probe:completion-proof-bundle-audit": [
+   {
+    "argv": "completion-proof-bundle --include-compact-command-audit --format compact",
+    "exit": 0,
+    "stdoutBytes": 8937,
+    "stdoutSha256": "df2641a7e1c869e46e2cdfd6626bba0c82e4f002aef8237a02bcd4d57ceb33f6",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "probe:completion-proof-bundle-status": [
+   {
+    "argv": "completion-proof-bundle --include-compact-command-audit --write --out operator/c",
+    "exit": 0,
+    "stdoutBytes": 8996,
+    "stdoutSha256": "df75984b8ad2bf9d2ba205c3c17e235149e7a30019180f5a4b38b759a97dcf13",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   {
+    "argv": "completion-proof-bundle-status --format compact",
+    "exit": 0,
+    "stdoutBytes": 7693,
+    "stdoutSha256": "303ef2ae39aa7e974e8b0f6771c680908ca93c0b18e5d6fe11b6447ebea3dd92",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "probe:completion-proof-bundle-watch": [
+   {
+    "argv": "completion-proof-bundle-watch --run --in operator/completion-proof-bundle-latest",
+    "exit": 0,
+    "stdoutBytes": 896,
+    "stdoutSha256": "bb47c6b0f54a6e75adfe2452987a309ff92825eeb362ed5b9aac03cb35922bbb",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "probe:console-cdp": [
+   {
+    "argv": "console-cdp data:text/html,<script>console.log(\"hello\",42);console.error(\"bad\");",
+    "exit": 1,
+    "stdoutBytes": 0,
+    "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrBytes": 12,
+    "stderrSha256": "453676ffe5eb0db119dccb07a56680f480cbf0f117ebd6dbe5e3689b6ce1116d"
+   }
+  ],
+  "probe:control-status": [
+   {
+    "argv": "control-status --format compact",
+    "exit": 0,
+    "stdoutBytes": 17357,
+    "stdoutSha256": "393073c4b5c791a8956ca20b09a1f8760b6a369e301cebe0737294c6494bfe6c",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "probe:control-status-short": [
+   {
+    "argv": "control-status --monitor-timeout-ms 10000 --monitor-interval-ms 1000 --format co",
+    "exit": 0,
+    "stdoutBytes": 17791,
+    "stdoutSha256": "a2afea73c7f5b1513d0ce477077cefbfc4bff13403742323b9a1857b9e552815",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "probe:github-repo-research": [
+   {
+    "argv": "github-repo-research --limit 8 --format compact",
+    "exit": 1,
+    "stdoutBytes": 0,
+    "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrBytes": 20,
+    "stderrSha256": "a1cfbd50104f6615a8ed3146a92005003382762b50d5fb7965f8af3b5fecb595"
+   }
+  ],
+  "probe:inspect-cdp": [
+   {
+    "argv": "inspect-cdp data:text/html,<main><h1>Catalog</h1><ul><li class=\"item\"><a href=\"/",
+    "exit": 1,
+    "stdoutBytes": 0,
+    "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrBytes": 12,
+    "stderrSha256": "453676ffe5eb0db119dccb07a56680f480cbf0f117ebd6dbe5e3689b6ce1116d"
+   }
+  ],
+  "probe:lightpanda": [
+   {
+    "argv": "extract data:text/html,<a href=\"/x\">Link</a> --selector a --fields text,href --p",
+    "exit": 1,
+    "stdoutBytes": 0,
+    "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrBytes": 27,
+    "stderrSha256": "4dd86ede006de28ac83204d8f76a394ea4a00cd142bc85dafa24099792de6e1e"
+   }
+  ],
+  "probe:lightpanda-decision": [
+   {
+    "argv": "lightpanda-decision --decision reject --format markdown",
+    "exit": 0,
+    "stdoutBytes": 836,
+    "stdoutSha256": "98dc217f905d73c0dee9fe8ea36b7f112590adb46f570e5024f276165a8b3c98",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "probe:lightpanda-doctor": [
+   {
+    "argv": "lightpanda-doctor --format compact",
+    "exit": 0,
+    "stdoutBytes": 1400,
+    "stdoutSha256": "34caf90cb7ebd41ea8e9b4b9e5d6e4db4cd76a990d92b95ab8c36466c2517673",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "probe:lightpanda-gate": [
+   {
+    "argv": "lightpanda-gate --format compact",
+    "exit": 0,
+    "stdoutBytes": 569,
+    "stdoutSha256": "640ca66f914d706c55203a04389d27fe82d759c068b7c4da24685480dd80a6ee",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "probe:login-handoff-status": [
+   {
+    "argv": "login-handoff-status --format compact",
+    "exit": 0,
+    "stdoutBytes": 1316,
+    "stdoutSha256": "791615bf5106849ea4072d6f5b0985a566d56dea5aaebb0f0a3bc55775f31af0",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "probe:objective-completion-audit": [
+   {
+    "argv": "objective-completion-audit --format markdown",
+    "exit": 0,
+    "stdoutBytes": 16328,
+    "stdoutSha256": "b9ef4adbd1dafaae9454bd5800d4c9aca181ec2607c9f6e203e623a4a0874642",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "probe:objective-completion-audit-status": [
+   {
+    "argv": "objective-completion-audit-status --format compact",
+    "exit": 0,
+    "stdoutBytes": 1880,
+    "stdoutSha256": "9d904c594b77eec798e666e94b6cd737bb63c047a71ffe9db97b6dd80b95f3dc",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "probe:objective-completion-audit-watch": [
+   {
+    "argv": "objective-completion-audit-watch --run --format compact",
+    "exit": 0,
+    "stdoutBytes": 839,
+    "stdoutSha256": "919c2b5e0ac1f21125be344e9b760de6cb8c40c5c54c9151a88eca38209f7e26",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "probe:objective-handoff": [
+   {
+    "argv": "objective-handoff --format markdown",
+    "exit": 0,
+    "stdoutBytes": 2438,
+    "stdoutSha256": "0eb012d0a0f9a5d0765d505e330be14c733df7cb86a7e39adc6a2cf283c1184c",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "probe:objective-next": [
+   {
+    "argv": "objective-next --format compact",
+    "exit": 0,
+    "stdoutBytes": 7800,
+    "stdoutSha256": "a56ab4e6083b5b55ca423947191c47ed8707b3e27aa9c0542ffb417a3a8cbadf",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "probe:objective-proof-pipeline": [
+   {
+    "argv": "objective-proof-pipeline --format compact",
+    "exit": 0,
+    "stdoutBytes": 1582,
+    "stdoutSha256": "c76b8fb1004d7bf1aaa250ae670eb3a204779c92d00b72d6ea0f18e11b118071",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "probe:objective-resume": [
+   {
+    "argv": "objective-resume --format markdown",
+    "exit": 0,
+    "stdoutBytes": 907,
+    "stdoutSha256": "6614d1339cbef9de2e6a64e3c854f84c0d24a3f967ebec725871c30c00cd2dc3",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "probe:objective-status": [
+   {
+    "argv": "objective-status --format markdown",
+    "exit": 0,
+    "stdoutBytes": 1862,
+    "stdoutSha256": "aad822e4a7a258f5f9a94c17943cb0e966be2b46ba32e14b2d50f95d97d6ae2b",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "probe:observe-cdp": [
+   {
+    "argv": "observe-cdp data:text/html,<main><h1>CDP</h1><a href=\"/cdp\">Link</a><label>Searc",
+    "exit": 1,
+    "stdoutBytes": 0,
+    "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrBytes": 12,
+    "stderrSha256": "453676ffe5eb0db119dccb07a56680f480cbf0f117ebd6dbe5e3689b6ce1116d"
+   }
+  ],
+  "probe:operate-cdp": [
+   {
+    "argv": "click-cdp data:text/html,<h1>Before</h1><button id=\"go\" onclick=\"document.queryS",
+    "exit": 1,
+    "stdoutBytes": 0,
+    "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrBytes": 12,
+    "stderrSha256": "453676ffe5eb0db119dccb07a56680f480cbf0f117ebd6dbe5e3689b6ce1116d"
+   }
+  ],
+  "probe:operator-pack": [
+   {
+    "argv": "operator-pack --format compact",
+    "exit": 0,
+    "stdoutBytes": 33286,
+    "stdoutSha256": "98c2e31ecd4960a6bbba56fe18f6b31315070b84bc4a6570109661e737fe4e12",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "probe:operator-pack-apple-events": [
+   {
+    "argv": "operator-pack --chrome-mcp-connected yes --chrome-mcp-page-list-ok no --chrome-m",
+    "exit": 0,
+    "stdoutBytes": 33560,
+    "stdoutSha256": "e4fbfeba05d7e76b4cc18beee4971ae02616913c6ad317e5a77e42a91ef9d6aa",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "probe:operator-runbook": [
+   {
+    "argv": "operator-runbook --format compact",
+    "exit": 0,
+    "stdoutBytes": 19086,
+    "stdoutSha256": "97fd5a14b9958b8f0ef89dab171a05f0e5b33589c59e67b44d7ebac3abba1ddc",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "probe:operator-runbook-status": [
+   {
+    "argv": "operator-runbook-status --format compact",
+    "exit": 0,
+    "stdoutBytes": 1538,
+    "stdoutSha256": "8045974ebf0afc7e6219ba42f424bcc8ccfaebbd205ed5541535c8699505e075",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "probe:operator-runbook-watch": [
+   {
+    "argv": "operator-runbook-watch --run --format compact",
+    "exit": 0,
+    "stdoutBytes": 528,
+    "stdoutSha256": "8529deeadf4964783a0a2e8a59919ebbe8cdc1a81a57f6a5fc42a6e505094cc3",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "probe:outline": [
+   {
+    "argv": "outline data:text/html,<h1>Title</h1><form action=\"/login\"><label>Email<input na",
+    "exit": 1,
+    "stdoutBytes": 0,
+    "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrBytes": 27,
+    "stderrSha256": "4dd86ede006de28ac83204d8f76a394ea4a00cd142bc85dafa24099792de6e1e"
+   }
+  ],
+  "probe:playwright": [
+   {
+    "argv": "outline-playwright data:text/html,<h1>PW</h1><a href=\"/pw\">Link</a>",
+    "exit": 1,
+    "stdoutBytes": 0,
+    "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrBytes": 84,
+    "stderrSha256": "8d2953cdccc9076f0193b02bfb7bdaf567ab2bb34a5f5ba78eafbd5426002210"
+   }
+  ],
+  "probe:playwright-doctor": [
+   {
+    "argv": "playwright-doctor --format compact",
+    "exit": 0,
+    "stdoutBytes": 1419,
+    "stdoutSha256": "2e25fba700522623b439f485de7493e821a05e0f62f233e161d15d07a8ea9252",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "probe:profile-status": [
+   {
+    "argv": "profile-status --profile public",
+    "exit": 0,
+    "stdoutBytes": 991,
+    "stdoutSha256": "77583df67b8e68b8bcba3823b07f6929129306190d48a439c93a1bedef2fa6d3",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "probe:proof-gate-status": [
+   {
+    "argv": "proof-gate-status --format markdown",
+    "exit": 0,
+    "stdoutBytes": 1067,
+    "stdoutSha256": "d242beeaa241fc67fd244bd0c7029d554b063df1c60738c059c5695493c95cf6",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "probe:proof-gate-watch": [
+   {
+    "argv": "proof-gate-watch --timeout-ms 0 --interval-ms 1 --format compact",
+    "exit": 0,
+    "stdoutBytes": 501,
+    "stdoutSha256": "ac0d3efa21aa362860f54b8e23f1ccf586616164f2964a54e9888688f50f93fc",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "probe:provider-doctor-status": [
+   {
+    "argv": "provider-doctor-status --format compact",
+    "exit": 0,
+    "stdoutBytes": 6000,
+    "stdoutSha256": "a662480f58d5beaa1cd42679a740af943d0035cacf4f8b926cf6b5b22b7f96ed",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "probe:providers": [
+   {
+    "argv": "providers --format markdown",
+    "exit": 0,
+    "stdoutBytes": 5197,
+    "stdoutSha256": "4c2ed3834a2998e1e6372e3d15af6263498415512e12fa8331aab36b1a2923cf",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "probe:readiness": [
+   {
+    "argv": "readiness-audit --format markdown",
+    "exit": 0,
+    "stdoutBytes": 13107,
+    "stdoutSha256": "93d2bd28db357f949bb369bc573ae7281946dfa5d825b894d9861e74f7262021",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "probe:readiness-compact": [
+   {
+    "argv": "readiness-audit --format compact",
+    "exit": 0,
+    "stdoutBytes": 4836,
+    "stdoutSha256": "e94b96c8f4e4f15cfe78fb6452002080f7f4b6586ebfef0ef71cee8cd67642dc",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "probe:recipe-cdp": [
+   {
+    "argv": "run-cdp examples/cdp-form-recipe.json --profile cdp-recipe-probe",
+    "exit": 1,
+    "stdoutBytes": 0,
+    "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrBytes": 12,
+    "stderrSha256": "453676ffe5eb0db119dccb07a56680f480cbf0f117ebd6dbe5e3689b6ce1116d"
+   }
+  ],
+  "probe:recipe-csv": [
+   {
+    "argv": "run-cdp examples/cdp-form-recipe.json --profile cdp-recipe-csv-probe --out recip",
+    "exit": 1,
+    "stdoutBytes": 0,
+    "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrBytes": 12,
+    "stderrSha256": "453676ffe5eb0db119dccb07a56680f480cbf0f117ebd6dbe5e3689b6ce1116d"
+   }
+  ],
+  "probe:recipe-screenshot": [
+   {
+    "argv": "run-cdp examples/cdp-screenshot-recipe.json --profile cdp-recipe-screenshot-prob",
+    "exit": 1,
+    "stdoutBytes": 0,
+    "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrBytes": 12,
+    "stderrSha256": "453676ffe5eb0db119dccb07a56680f480cbf0f117ebd6dbe5e3689b6ce1116d"
+   }
+  ],
+  "probe:recipe-wait": [
+   {
+    "argv": "run-cdp examples/cdp-wait-recipe.json --profile cdp-recipe-wait-probe",
+    "exit": 1,
+    "stdoutBytes": 0,
+    "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrBytes": 12,
+    "stderrSha256": "453676ffe5eb0db119dccb07a56680f480cbf0f117ebd6dbe5e3689b6ce1116d"
+   }
+  ],
+  "probe:regular-chrome-use": [
+   {
+    "argv": "regular-chrome-use --intent inspect --mcp-observation-in operator/chrome-mcp-obs",
+    "exit": 0,
+    "stdoutBytes": 2545,
+    "stdoutSha256": "a5db03440a90d15967b20b97104e3f7675aaaad04ae6cf75954ec92aaa0b3c00",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "probe:regular-chrome-use-apple-events": [
+   {
+    "argv": "regular-chrome-use --intent inspect --chrome-mcp-connected yes --chrome-mcp-page",
+    "exit": 0,
+    "stdoutBytes": 2806,
+    "stdoutSha256": "e26131e78965b3d8764ab91e1aad54aea1148dd7f6e235cfa5c6b8d41fbb53f8",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "probe:regular-chrome-use-extension-reinstall": [
+   {
+    "argv": "regular-chrome-use --intent inspect --status-text Chrome DevTools MCP Status\n\nCo",
+    "exit": 0,
+    "stdoutBytes": 2875,
+    "stdoutSha256": "03e775572a922a0b3139a2d65b432c7a997c8090278fea469931257a35b00a24",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "probe:regular-chrome-use-write": [
+   {
+    "argv": "regular-chrome-use --intent inspect --mcp-observation-in operator/chrome-mcp-obs",
+    "exit": 0,
+    "stdoutBytes": 2605,
+    "stdoutSha256": "60e12d4e537735f5f1ac20df6e73d64f6754a809ecfd84ed959b0fc9c87061ec",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "probe:run-gate-audit": [
+   {
+    "argv": "run-gate-audit --format compact",
+    "exit": 0,
+    "stdoutBytes": 13460,
+    "stdoutSha256": "82c5ba9f40b45d1161b34608a765168884f18db008b066eff872867e29bfe246",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "probe:runtime-audit": [
+   {
+    "argv": "runtime-audit --format markdown",
+    "exit": 0,
+    "stdoutBytes": 1533,
+    "stdoutSha256": "36ff309eb9f3a41689b7ef5fb72bb1489c555464d8fec57c098c7667aee0f4dc",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "probe:runtime-cleanup-plan": [
+   {
+    "argv": "runtime-cleanup-plan --format markdown --owner-limit 5",
+    "exit": 0,
+    "stdoutBytes": 2182,
+    "stdoutSha256": "84979bfdb22607e91b53785fa6f225d6bcf83d77fd65b0de0e1fb63be2e513d2",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "probe:scaffold": [
+   {
+    "argv": "scaffold-target example-public --origin https://example.com --page-url https://e",
+    "exit": 0,
+    "stdoutBytes": 1114,
+    "stdoutSha256": "378f44dc281b8dd63fffc08c0f4b4e366208d347f44a73c7e2a6b981b5b44495",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "probe:scrape-cdp": [
+   {
+    "argv": "scrape-cdp data:text/html,<main><h1>Catalog</h1><ul><li class=\"item\"><a href=\"/a",
+    "exit": 1,
+    "stdoutBytes": 0,
+    "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrBytes": 12,
+    "stderrSha256": "453676ffe5eb0db119dccb07a56680f480cbf0f117ebd6dbe5e3689b6ce1116d"
+   }
+  ],
+  "probe:screenshot-cdp": [
+   {
+    "argv": "screenshot-cdp data:text/html,<main style=\"background:white\"><h1>Shot</h1></main",
+    "exit": 1,
+    "stdoutBytes": 0,
+    "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrBytes": 12,
+    "stderrSha256": "453676ffe5eb0db119dccb07a56680f480cbf0f117ebd6dbe5e3689b6ce1116d"
+   }
+  ],
+  "probe:search-cdp": [
+   {
+    "argv": "search-cdp example domain --profile cdp-search-probe --link-limit 5",
+    "exit": 1,
+    "stdoutBytes": 0,
+    "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrBytes": 12,
+    "stderrSha256": "453676ffe5eb0db119dccb07a56680f480cbf0f117ebd6dbe5e3689b6ce1116d"
+   }
+  ],
+  "probe:secret-audit": [
+   {
+    "argv": "secret-audit --format markdown",
+    "exit": 0,
+    "stdoutBytes": 1694,
+    "stdoutSha256": "b286da0afb3385665c463f0ee983abebe6971ed108b0eb65faec7817d54d1f7c",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "probe:secret-env-handoff": [
+   {
+    "argv": "secret-env-handoff --format compact",
+    "exit": 0,
+    "stdoutBytes": 590,
+    "stdoutSha256": "85e58d6bc1eff3547d52cc57544b1689f72a34effd927ecddb70e1a9e47c6091",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "probe:secret-env-handoff-status": [
+   {
+    "argv": "secret-env-handoff-status --format compact",
+    "exit": 0,
+    "stdoutBytes": 898,
+    "stdoutSha256": "a66fdca838ec80d039c4632d66bfbdcc83da3f87183dbb754c5b27a479ff25a9",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "probe:secret-env-handoff-watch": [
+   {
+    "argv": "secret-env-handoff-watch --run --format compact",
+    "exit": 0,
+    "stdoutBytes": 773,
+    "stdoutSha256": "41cbc5779338f87dd9769e2ff6d778f6827a3daf54a5bc9a47870bff1d0492b9",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "probe:secret-run-plan": [
+   {
+    "argv": "secret-run-plan --mode service-account --command target-login-capture --target-d",
+    "exit": 0,
+    "stdoutBytes": 616,
+    "stdoutSha256": "2e0d0696ad31ae259c8f55b3ed4290cf4c328bd88ad54d64aecfa4d9e39e2dfc",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "probe:secret-run-select": [
+   {
+    "argv": "secret-run-select --command target-login-capture --target-dir runs/target-packs/",
+    "exit": 0,
+    "stdoutBytes": 1051,
+    "stdoutSha256": "b38a2f8ab1d0233c40f987427a34ac1f5d0c5912927cb71974a50c858496a168",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "probe:secret-setup-plan": [
+   {
+    "argv": "secret-setup-plan --mode service-account --format markdown",
+    "exit": 0,
+    "stdoutBytes": 1495,
+    "stdoutSha256": "18e83360a6afa0e33bb0e89dec11dd00c11a621b59808a5a625a76633421ac71",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "probe:selenium-doctor": [
+   {
+    "argv": "selenium-doctor --format compact",
+    "exit": 0,
+    "stdoutBytes": 959,
+    "stdoutSha256": "082763391eb789ee4e6ba2f3bd4d085e611cbd65fc78cd27600ec36016222623",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "probe:sources": [
+   {
+    "argv": "source-audit --format markdown",
+    "exit": 0,
+    "stdoutBytes": 1623,
+    "stdoutSha256": "12e9853e85cf5b228d1e153fc2dcd68c39fc2227142412e414341c3f6311d604",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "probe:status-cache": [
+   {
+    "argv": "status-cache --key provider-doctor-status --format compact",
+    "exit": 0,
+    "stdoutBytes": 368,
+    "stdoutSha256": "dfed05a8b9bdcde78e1173edb8e52971f63db70d943cc80dd3133f1705b101b7",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "probe:target-add-url": [
+   {
+    "argv": "target-add-url runs/target-packs/example-public https://example.com/",
+    "exit": 1,
+    "stdoutBytes": 0,
+    "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrBytes": 77,
+    "stderrSha256": "1a0775e147e471db39f52c6826011492d50454255dcfa7c251035bb924f3b52e"
+   }
+  ],
+  "probe:target-approval-pack": [
+   {
+    "argv": "target-approval-pack --candidate github --format compact",
+    "exit": 0,
+    "stdoutBytes": 3117,
+    "stdoutSha256": "be830909a12461a877d8f6015245a681542728d779d090d990b5bd314c3e2f69",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "probe:target-approval-preflight": [
+   {
+    "argv": "target-approval-preflight --candidate github --real-external --format compact",
+    "exit": 0,
+    "stdoutBytes": 4666,
+    "stdoutSha256": "f20e9c18a425df349f978b66ea7b549eadf2cb0772c78a6b64317b87e262a4b5",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "probe:target-approval-resume": [
+   {
+    "argv": "target-approval-resume --candidate github --real-external --format compact",
+    "exit": 0,
+    "stdoutBytes": 2877,
+    "stdoutSha256": "3efb6d75573b951b3a40ba095c1db490031e0ca4e8a34e7be631b1d5b755c30b",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "probe:target-approval-resume-status": [
+   {
+    "argv": "target-approval-resume-status --format compact",
+    "exit": 0,
+    "stdoutBytes": 2663,
+    "stdoutSha256": "f0a7ff99000f92f8df060aef73ae2b0604f18fc85d7f3be620388f1d3209b5ae",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "probe:target-approval-resume-watch": [
+   {
+    "argv": "target-approval-resume-watch --run --candidate github --real-external --format c",
+    "exit": 0,
+    "stdoutBytes": 603,
+    "stdoutSha256": "3b295146ddc3262ffc3c4d6c9b22c66e5351dd8ad0a7dfb3012b3e7dd43b7de1",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "probe:target-approval-status": [
+   {
+    "argv": "target-approval-status --candidate github --real-external --format compact",
+    "exit": 0,
+    "stdoutBytes": 4270,
+    "stdoutSha256": "4756cbc1a7dbf8ed091a3d883feef32e347f486ced1a8a3c33c7f05ece90a264",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "probe:target-audit": [
+   {
+    "argv": "target-audit runs/target-packs/example-public",
+    "exit": 1,
+    "stdoutBytes": 0,
+    "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrBytes": 77,
+    "stderrSha256": "1a0775e147e471db39f52c6826011492d50454255dcfa7c251035bb924f3b52e"
+   }
+  ],
+  "probe:target-auth-check": [
+   {
+    "argv": "scaffold-target example-public --origin https://example.com --page-url https://e",
+    "exit": 0,
+    "stdoutBytes": 1114,
+    "stdoutSha256": "378f44dc281b8dd63fffc08c0f4b4e366208d347f44a73c7e2a6b981b5b44495",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   {
+    "argv": "target-auth-check runs/target-packs/example-public --format markdown",
+    "exit": 1,
+    "stdoutBytes": 0,
+    "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrBytes": 12,
+    "stderrSha256": "453676ffe5eb0db119dccb07a56680f480cbf0f117ebd6dbe5e3689b6ce1116d"
+   }
+  ],
+  "probe:target-autostart": [
+   {
+    "argv": "target-autostart runs/target-packs/example-public plan",
+    "exit": 1,
+    "stdoutBytes": 0,
+    "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrBytes": 77,
+    "stderrSha256": "1a0775e147e471db39f52c6826011492d50454255dcfa7c251035bb924f3b52e"
+   },
+   {
+    "argv": "target-autostart runs/target-packs/example-public write",
+    "exit": 1,
+    "stdoutBytes": 0,
+    "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrBytes": 77,
+    "stderrSha256": "1a0775e147e471db39f52c6826011492d50454255dcfa7c251035bb924f3b52e"
+   },
+   {
+    "argv": "target-autostart runs/target-packs/example-public status",
+    "exit": 1,
+    "stdoutBytes": 0,
+    "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrBytes": 77,
+    "stderrSha256": "1a0775e147e471db39f52c6826011492d50454255dcfa7c251035bb924f3b52e"
+   },
+   {
+    "argv": "target-autostart runs/target-packs/example-public remove",
+    "exit": 1,
+    "stdoutBytes": 0,
+    "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrBytes": 77,
+    "stderrSha256": "1a0775e147e471db39f52c6826011492d50454255dcfa7c251035bb924f3b52e"
+   }
+  ],
+  "probe:target-batch": [
+   {
+    "argv": "scaffold-target example-public --origin https://example.com --page-url https://e",
+    "exit": 0,
+    "stdoutBytes": 1114,
+    "stdoutSha256": "378f44dc281b8dd63fffc08c0f4b4e366208d347f44a73c7e2a6b981b5b44495",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   {
+    "argv": "target-batch runs/target-packs/example-public --format compact",
+    "exit": 0,
+    "stdoutBytes": 396,
+    "stdoutSha256": "6aa4a9221def98b4851ab9ba778069282a1af43490750ac44c074674852fe263",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "probe:target-benchmark": [
+   {
+    "argv": "target-benchmark runs/target-packs/example-public --recipes observe,inspect --it",
+    "exit": 1,
+    "stdoutBytes": 0,
+    "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrBytes": 77,
+    "stderrSha256": "1a0775e147e471db39f52c6826011492d50454255dcfa7c251035bb924f3b52e"
+   }
+  ],
+  "probe:target-bootstrap-plan": [
+   {
+    "argv": "target-bootstrap-plan --name vendor-service --origin https://app.vendor-service.",
+    "exit": 0,
+    "stdoutBytes": 2299,
+    "stdoutSha256": "5e295e1c59addfcdf5f56e80d57143de41e83881f9d97c7977c358f5ec3d8064",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "probe:target-candidate-plan": [
+   {
+    "argv": "target-candidate-plan --format compact",
+    "exit": 0,
+    "stdoutBytes": 3115,
+    "stdoutSha256": "7bcfc7a2ef874a0ad506bd3dfb42f2a3c03d4dc19b8ac708cce68c738c759a85",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "probe:target-candidate-plan-status": [
+   {
+    "argv": "target-candidate-plan-status --format compact",
+    "exit": 0,
+    "stdoutBytes": 862,
+    "stdoutSha256": "d02ffac2e4b06824bcb8df9eeded4ffd29abc4d9108fcbdacab56734b02df168",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "probe:target-candidate-plan-watch": [
+   {
+    "argv": "target-candidate-plan-watch --run --format compact",
+    "exit": 0,
+    "stdoutBytes": 762,
+    "stdoutSha256": "d9fb5da340b1429c5ba482000862e84104267084e70cafaa4b1b78ceed61ee82",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "probe:target-crawl": [
+   {
+    "argv": "target-run runs/target-packs/example-public crawl",
+    "exit": 1,
+    "stdoutBytes": 0,
+    "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrBytes": 77,
+    "stderrSha256": "1a0775e147e471db39f52c6826011492d50454255dcfa7c251035bb924f3b52e"
+   }
+  ],
+  "probe:target-crawl-links": [
+   {
+    "argv": "target-run runs/target-packs/example-public crawl-links",
+    "exit": 1,
+    "stdoutBytes": 0,
+    "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrBytes": 77,
+    "stderrSha256": "1a0775e147e471db39f52c6826011492d50454255dcfa7c251035bb924f3b52e"
+   }
+  ],
+  "probe:target-daemon": [
+   {
+    "argv": "target-daemon runs/target-packs/example-public start",
+    "exit": 1,
+    "stdoutBytes": 0,
+    "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrBytes": 77,
+    "stderrSha256": "1a0775e147e471db39f52c6826011492d50454255dcfa7c251035bb924f3b52e"
+   },
+   {
+    "argv": "target-daemon runs/target-packs/example-public status",
+    "exit": 1,
+    "stdoutBytes": 0,
+    "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrBytes": 77,
+    "stderrSha256": "1a0775e147e471db39f52c6826011492d50454255dcfa7c251035bb924f3b52e"
+   },
+   {
+    "argv": "target-scrape runs/target-packs/example-public --daemon",
+    "exit": 1,
+    "stdoutBytes": 0,
+    "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrBytes": 77,
+    "stderrSha256": "1a0775e147e471db39f52c6826011492d50454255dcfa7c251035bb924f3b52e"
+   },
+   {
+    "argv": "target-daemon runs/target-packs/example-public stop",
+    "exit": 1,
+    "stdoutBytes": 0,
+    "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrBytes": 77,
+    "stderrSha256": "1a0775e147e471db39f52c6826011492d50454255dcfa7c251035bb924f3b52e"
+   }
+  ],
+  "probe:target-diagnose": [
+   {
+    "argv": "target-run runs/target-packs/example-public diagnose",
+    "exit": 1,
+    "stdoutBytes": 0,
+    "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrBytes": 77,
+    "stderrSha256": "1a0775e147e471db39f52c6826011492d50454255dcfa7c251035bb924f3b52e"
+   }
+  ],
+  "probe:target-doctor": [
+   {
+    "argv": "target-doctor runs/target-packs/example-public",
+    "exit": 1,
+    "stdoutBytes": 218,
+    "stdoutSha256": "527017da99c77acea90964db8945870f89537718ae2aacc22d3a5aad18904e26",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "probe:target-handoff-resume": [
+   {
+    "argv": "target-login-capture runs/target-packs/example-public --dry-run --handoff-out op",
+    "exit": 1,
+    "stdoutBytes": 0,
+    "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrBytes": 77,
+    "stderrSha256": "1a0775e147e471db39f52c6826011492d50454255dcfa7c251035bb924f3b52e"
+   },
+   {
+    "argv": "target-handoff-resume runs/target-packs/example-public --handoff operator-handof",
+    "exit": 1,
+    "stdoutBytes": 0,
+    "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrBytes": 77,
+    "stderrSha256": "1a0775e147e471db39f52c6826011492d50454255dcfa7c251035bb924f3b52e"
+   }
+  ],
+  "probe:target-handoff-run": [
+   {
+    "argv": "target-login-capture runs/target-packs/example-public --dry-run --handoff-out op",
+    "exit": 1,
+    "stdoutBytes": 0,
+    "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrBytes": 77,
+    "stderrSha256": "1a0775e147e471db39f52c6826011492d50454255dcfa7c251035bb924f3b52e"
+   },
+   {
+    "argv": "target-handoff-run runs/target-packs/example-public --handoff operator-handoff.j",
+    "exit": 1,
+    "stdoutBytes": 0,
+    "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrBytes": 77,
+    "stderrSha256": "1a0775e147e471db39f52c6826011492d50454255dcfa7c251035bb924f3b52e"
+   }
+  ],
+  "probe:target-handoff-status": [
+   {
+    "argv": "target-login-capture runs/target-packs/example-public --dry-run --handoff-out op",
+    "exit": 1,
+    "stdoutBytes": 0,
+    "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrBytes": 77,
+    "stderrSha256": "1a0775e147e471db39f52c6826011492d50454255dcfa7c251035bb924f3b52e"
+   },
+   {
+    "argv": "target-handoff-status runs/target-packs/example-public --handoff operator-handof",
+    "exit": 1,
+    "stdoutBytes": 0,
+    "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrBytes": 77,
+    "stderrSha256": "1a0775e147e471db39f52c6826011492d50454255dcfa7c251035bb924f3b52e"
+   }
+  ],
+  "probe:target-inspect": [
+   {
+    "argv": "target-run runs/target-packs/example-public inspect",
+    "exit": 1,
+    "stdoutBytes": 0,
+    "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrBytes": 77,
+    "stderrSha256": "1a0775e147e471db39f52c6826011492d50454255dcfa7c251035bb924f3b52e"
+   }
+  ],
+  "probe:target-login": [
+   {
+    "argv": "target-login runs/target-packs/example-public --dry-run",
+    "exit": 1,
+    "stdoutBytes": 0,
+    "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrBytes": 77,
+    "stderrSha256": "1a0775e147e471db39f52c6826011492d50454255dcfa7c251035bb924f3b52e"
+   }
+  ],
+  "probe:target-login-capture": [
+   {
+    "argv": "target-login-capture runs/target-packs/example-public --dry-run --format markdow",
+    "exit": 1,
+    "stdoutBytes": 0,
+    "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrBytes": 77,
+    "stderrSha256": "1a0775e147e471db39f52c6826011492d50454255dcfa7c251035bb924f3b52e"
+   }
+  ],
+  "probe:target-observe": [
+   {
+    "argv": "target-run runs/target-packs/example-public observe",
+    "exit": 1,
+    "stdoutBytes": 0,
+    "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrBytes": 77,
+    "stderrSha256": "1a0775e147e471db39f52c6826011492d50454255dcfa7c251035bb924f3b52e"
+   }
+  ],
+  "probe:target-operate": [
+   {
+    "argv": "target-run runs/target-packs/example-public operate",
+    "exit": 1,
+    "stdoutBytes": 0,
+    "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrBytes": 77,
+    "stderrSha256": "1a0775e147e471db39f52c6826011492d50454255dcfa7c251035bb924f3b52e"
+   }
+  ],
+  "probe:target-operate-add": [
+   {
+    "argv": "target-operate-add runs/target-packs/example-public click --selector a[href] --a",
+    "exit": 1,
+    "stdoutBytes": 0,
+    "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrBytes": 77,
+    "stderrSha256": "1a0775e147e471db39f52c6826011492d50454255dcfa7c251035bb924f3b52e"
+   }
+  ],
+  "probe:target-permissions": [
+   {
+    "argv": "target-permissions runs/target-packs/example-public status",
+    "exit": 1,
+    "stdoutBytes": 0,
+    "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrBytes": 77,
+    "stderrSha256": "1a0775e147e471db39f52c6826011492d50454255dcfa7c251035bb924f3b52e"
+   },
+   {
+    "argv": "target-permissions runs/target-packs/example-public set --allow clipboard,downlo",
+    "exit": 1,
+    "stdoutBytes": 0,
+    "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrBytes": 77,
+    "stderrSha256": "1a0775e147e471db39f52c6826011492d50454255dcfa7c251035bb924f3b52e"
+   },
+   {
+    "argv": "target-permissions runs/target-packs/example-public apply",
+    "exit": 1,
+    "stdoutBytes": 0,
+    "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrBytes": 77,
+    "stderrSha256": "1a0775e147e471db39f52c6826011492d50454255dcfa7c251035bb924f3b52e"
+   },
+   {
+    "argv": "target-permissions runs/target-packs/example-public status",
+    "exit": 1,
+    "stdoutBytes": 0,
+    "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrBytes": 77,
+    "stderrSha256": "1a0775e147e471db39f52c6826011492d50454255dcfa7c251035bb924f3b52e"
+   }
+  ],
+  "probe:target-proof": [
+   {
+    "argv": "scaffold-target example-public --origin https://example.com --page-url https://e",
+    "exit": 0,
+    "stdoutBytes": 1114,
+    "stdoutSha256": "378f44dc281b8dd63fffc08c0f4b4e366208d347f44a73c7e2a6b981b5b44495",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   {
+    "argv": "target-proof runs/target-packs/example-public --format markdown",
+    "exit": 0,
+    "stdoutBytes": 1036,
+    "stdoutSha256": "08d871cf762c5a55ef706a9d78b7e366ad252c01e3c240e918058d3958b5f44b",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "probe:target-proof-capture": [
+   {
+    "argv": "scaffold-target example-public --origin https://example.com --page-url https://e",
+    "exit": 0,
+    "stdoutBytes": 1114,
+    "stdoutSha256": "378f44dc281b8dd63fffc08c0f4b4e366208d347f44a73c7e2a6b981b5b44495",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   {
+    "argv": "target-proof-capture runs/target-packs/example-public --format markdown",
+    "exit": 0,
+    "stdoutBytes": 2158,
+    "stdoutSha256": "7f34a94c3b4ecfc9e5a60a43dddc46733c6b24eed086e1f14a32cb5baa594081",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "probe:target-proof-inventory": [
+   {
+    "argv": "target-proof-inventory --format markdown",
+    "exit": 0,
+    "stdoutBytes": 582,
+    "stdoutSha256": "2f54a943f970a057f0af6965403554a8346eba6f5c13abe222a8d9d54998d6e5",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "probe:target-proof-inventory-strict": [
+   {
+    "argv": "target-proof-inventory --real-external --strict --format json",
+    "exit": 1,
+    "stdoutBytes": 447,
+    "stdoutSha256": "e36eee2e0c27e146a54d64a8d6574022e1ec4a3bd3c48499f803b0cdb2607987",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "probe:target-proof-next": [
+   {
+    "argv": "target-proof-next --real-external --format compact",
+    "exit": 0,
+    "stdoutBytes": 7937,
+    "stdoutSha256": "f5bf579986234cfc4df2e081ced16a5b18f3b71df7c71d3dfed6b03b73464d8b",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "probe:target-proof-plan": [
+   {
+    "argv": "scaffold-target example-public --origin https://example.com --page-url https://e",
+    "exit": 0,
+    "stdoutBytes": 1114,
+    "stdoutSha256": "378f44dc281b8dd63fffc08c0f4b4e366208d347f44a73c7e2a6b981b5b44495",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   {
+    "argv": "target-proof-plan runs/target-packs/example-public --format compact",
+    "exit": 0,
+    "stdoutBytes": 1718,
+    "stdoutSha256": "bf06727836709d06b21333cf4fdd9889c311040cad18d6f275a060a8d72c62cd",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "probe:target-run": [
+   {
+    "argv": "target-run runs/target-packs/example-public links",
+    "exit": 1,
+    "stdoutBytes": 0,
+    "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrBytes": 77,
+    "stderrSha256": "1a0775e147e471db39f52c6826011492d50454255dcfa7c251035bb924f3b52e"
+   }
+  ],
+  "probe:target-run-status": [
+   {
+    "argv": "target-run-status runs/target-packs/example-public operate --format compact",
+    "exit": 1,
+    "stdoutBytes": 0,
+    "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrBytes": 77,
+    "stderrSha256": "1a0775e147e471db39f52c6826011492d50454255dcfa7c251035bb924f3b52e"
+   }
+  ],
+  "probe:target-scrape": [
+   {
+    "argv": "target-scrape runs/target-packs/example-public",
+    "exit": 1,
+    "stdoutBytes": 0,
+    "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrBytes": 77,
+    "stderrSha256": "1a0775e147e471db39f52c6826011492d50454255dcfa7c251035bb924f3b52e"
+   }
+  ],
+  "probe:target-screenshot": [
+   {
+    "argv": "target-run runs/target-packs/example-public screenshot",
+    "exit": 1,
+    "stdoutBytes": 0,
+    "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrBytes": 77,
+    "stderrSha256": "1a0775e147e471db39f52c6826011492d50454255dcfa7c251035bb924f3b52e"
+   }
+  ],
+  "probe:target-search": [
+   {
+    "argv": "target-run runs/target-packs/example-public search",
+    "exit": 1,
+    "stdoutBytes": 0,
+    "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrBytes": 77,
+    "stderrSha256": "1a0775e147e471db39f52c6826011492d50454255dcfa7c251035bb924f3b52e"
+   }
+  ],
+  "probe:target-status": [
+   {
+    "argv": "target-status runs/target-packs/example-public",
+    "exit": 1,
+    "stdoutBytes": 0,
+    "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrBytes": 77,
+    "stderrSha256": "1a0775e147e471db39f52c6826011492d50454255dcfa7c251035bb924f3b52e"
+   }
+  ],
+  "probe:target-worker-pool": [
+   {
+    "argv": "target-worker-pool --format compact",
+    "exit": 0,
+    "stdoutBytes": 112,
+    "stdoutSha256": "5dee1dee4700ebd68c815b32fbad87346e707df05d6c01de32372723a39d88a6",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "probe:wait-cdp": [
+   {
+    "argv": "wait-cdp data:text/html,<main><h1>Wait</h1><script>setTimeout(()=>{const p=docum",
+    "exit": 1,
+    "stdoutBytes": 0,
+    "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrBytes": 12,
+    "stderrSha256": "453676ffe5eb0db119dccb07a56680f480cbf0f117ebd6dbe5e3689b6ce1116d"
+   }
+  ],
+  "verify:doctor-offline": [
+   {
+    "argv": "doctor --offline",
+    "exit": 0,
+    "stdoutBytes": 1042,
+    "stdoutSha256": "5e4ecd56dd95659c3dca255668c673ef69a5d83d58f3e4ec3983ae4a15e46a91",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ],
+  "verify:mcp-compact-fast": [
+   {
+    "argv": "scripts/mcp-compact-smoke.mjs --fast",
+    "exit": 0,
+    "stdoutBytes": 22,
+    "stdoutSha256": "ba153278fe851327963c8c7d2dddd33efb5d2a1be056d627e4b83cf1701956b5",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  ]
+ }
+}
