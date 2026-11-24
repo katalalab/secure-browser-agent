@@ -5,6 +5,7 @@ import { buildLightpandaDoctor } from './lightpanda-doctor.mjs';
 import { buildLightpandaGate } from './lightpanda-gate.mjs';
 import { buildProofGateStatus } from './proof-gate-status.mjs';
 import { buildSeleniumDoctor } from './selenium-doctor.mjs';
+import { yesNo } from './common.mjs';
 
 const TASK_ALIASES = new Map([
   ['auto', 'auto'],
@@ -33,10 +34,6 @@ const TASK_ALIASES = new Map([
   ['selenium', 'compatibility-test'],
   ['webdriver', 'compatibility-test']
 ]);
-
-function yesNo(value) {
-  return value ? 'yes' : 'no';
-}
 
 function clean(value, fallback = 'none') {
   const text = String(value ?? '').replace(/\s+/g, ' ').trim();

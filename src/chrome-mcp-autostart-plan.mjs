@@ -2,16 +2,13 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import { shellQuote, resolveRunsPath } from './output.mjs';
+import { yesNo } from './common.mjs';
 
 function command(args) {
   return {
     args,
     shell: args.map(shellQuote).join(' ')
   };
-}
-
-function yesNo(value) {
-  return value ? 'yes' : 'no';
 }
 
 function clean(value, fallback = 'none') {

@@ -2,6 +2,7 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import { detectProviderStatus, readCloneMap } from './provider-report.mjs';
+import { yesNo } from './common.mjs';
 
 export const SOURCE_TARGETS = [
   {
@@ -224,10 +225,6 @@ function recommendationFor(readinessMap) {
   if (!readinessMap.lightpandaBinary) next.push('Add Lightpanda only after a local binary is configured and public URL benchmarks pass.');
   if (!readinessMap.seleniumWebdriver) next.push('Do not add Selenium unless an existing WebDriver/BiDi grid or compatibility requirement appears.');
   return next;
-}
-
-function yesNo(value) {
-  return value ? 'yes' : 'no';
 }
 
 function compact(value, fallback = 'none') {

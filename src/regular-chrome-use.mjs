@@ -5,10 +5,7 @@ import { buildChromeExtensionStatus } from './chrome-extension-status.mjs';
 import { buildChromeMcpHandoff } from './chrome-mcp-handoff.mjs';
 import { buildChromeMcpObservation } from './chrome-mcp-observation.mjs';
 import { resolveRunsPath } from './output.mjs';
-
-function yesNo(value) {
-  return value ? 'yes' : 'no';
-}
+import { yesNo } from './common.mjs';
 
 function clean(value, fallback = 'none') {
   const text = String(value ?? '').replace(/\s+/g, ' ').trim();

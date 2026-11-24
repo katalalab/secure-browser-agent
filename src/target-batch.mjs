@@ -1,10 +1,7 @@
 import { buildTargetProofCapture, formatTargetProofCaptureCompact } from './target-proof-capture.mjs';
 import { buildTargetProofPlan } from './target-proof.mjs';
 import { shellQuote } from './output.mjs';
-
-function yesNo(value) {
-  return value ? 'yes' : 'no';
-}
+import { yesNo } from './common.mjs';
 
 function compactValue(value) {
   if (value === undefined || value === null || value === '') return 'none';

@@ -21,10 +21,7 @@ import {
 import { buildTargetApprovalResume, buildTargetApprovalStatus } from './target-approval-pack.mjs';
 import fs from 'node:fs';
 import path from 'node:path';
-
-function yesNo(value) {
-  return value ? 'yes' : 'no';
-}
+import { yesNo } from './common.mjs';
 
 function compact(value, fallback = 'none') {
   const text = String(value ?? '').replace(/\s+/g, ' ').trim();

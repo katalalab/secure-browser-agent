@@ -1,10 +1,7 @@
 import fs from 'node:fs';
 import { buildBrowserRoute } from './browser-route.mjs';
 import { resolveRunsPath } from './output.mjs';
-
-function yesNo(value) {
-  return value ? 'yes' : 'no';
-}
+import { yesNo } from './common.mjs';
 
 function clean(value, fallback = 'none') {
   const text = String(value ?? '').replace(/\s+/g, ' ').trim();

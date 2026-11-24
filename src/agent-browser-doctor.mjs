@@ -1,12 +1,9 @@
 import { detectProviderStatus } from './provider-report.mjs';
+import { yesNo } from './common.mjs';
 
 function compact(value, fallback = 'none') {
   const text = String(value ?? '').replace(/\s+/g, ' ').trim();
   return text || fallback;
-}
-
-function yesNo(value) {
-  return value ? 'yes' : 'no';
 }
 
 export function buildAgentBrowserDoctor(options = {}) {

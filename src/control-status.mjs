@@ -12,10 +12,7 @@ import { buildRunGateAudit } from './run-gate-audit.mjs';
 import { buildTargetCandidatePlan } from './target-candidate-plan.mjs';
 import path from 'node:path';
 import { toPosixPath, shellQuote } from './output.mjs';
-
-function yesNo(value) {
-  return value ? 'yes' : 'no';
-}
+import { yesNo } from './common.mjs';
 
 function clean(value) {
   return String(value ?? '').replace(/\s+/g, ' ').trim();

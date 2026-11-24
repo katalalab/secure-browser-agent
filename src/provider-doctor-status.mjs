@@ -4,10 +4,7 @@ import { buildLightpandaDoctor } from './lightpanda-doctor.mjs';
 import { buildPlaywrightDoctor } from './playwright-doctor.mjs';
 import { buildProviderReport } from './provider-report.mjs';
 import { buildSeleniumDoctor } from './selenium-doctor.mjs';
-
-function yesNo(value) {
-  return value ? 'yes' : 'no';
-}
+import { yesNo } from './common.mjs';
 
 function compact(value, fallback = 'none') {
   const text = String(value ?? '').replace(/\s+/g, ' ').trim();

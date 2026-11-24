@@ -5,6 +5,7 @@ import { buildObjectiveCompletionAudit } from './objective-completion-audit.mjs'
 import { sanitizeLogLine } from './policy.mjs';
 import { buildTargetHandoffResumeWatch } from './target-handoff-run.mjs';
 import { toPosixPath, shellQuote, resolveRunsPath } from './output.mjs';
+import { yesNo } from './common.mjs';
 
 function command(args) {
   return {
@@ -16,10 +17,6 @@ function command(args) {
 function clean(value, fallback = 'none') {
   const text = String(value ?? '').replace(/\s+/g, ' ').trim();
   return text || fallback;
-}
-
-function yesNo(value) {
-  return value ? 'yes' : 'no';
 }
 
 function valueAfter(args = [], option, fallback = '') {

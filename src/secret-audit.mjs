@@ -4,6 +4,7 @@ import path from 'node:path';
 import { spawnSync } from 'node:child_process';
 import { listProcessCommandLines } from './process-list.mjs';
 import { shellQuote } from './output.mjs';
+import { yesNo } from './common.mjs';
 
 function findExecutable(command, env = process.env) {
   const paths = String(env.PATH || '').split(path.delimiter).filter(Boolean);
@@ -413,10 +414,6 @@ export function buildSecretAudit(options = {}) {
               'For local semi-headless use, keep 1Password desktop integration enabled and expect unlock/approval prompts.'
             ])
   };
-}
-
-function yesNo(value) {
-  return value ? 'yes' : 'no';
 }
 
 function command(args) {

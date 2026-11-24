@@ -2,6 +2,7 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import { spawnSync } from 'node:child_process';
+import { yesNo } from './common.mjs';
 
 const HELPER_SCRIPTS = {
   chromeRunning: 'chrome-is-running.js',
@@ -11,10 +12,6 @@ const HELPER_SCRIPTS = {
 };
 const DEFAULT_HELPER_TIMEOUT_MS = 300;
 const DEFAULT_PGREP_TIMEOUT_MS = 150;
-
-function yesNo(value) {
-  return value ? 'yes' : 'no';
-}
 
 function clean(value) {
   return String(value ?? '').replace(/\s+/g, ' ').trim();

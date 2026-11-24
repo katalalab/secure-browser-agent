@@ -9,6 +9,7 @@ import { buildSeleniumDoctor } from './selenium-doctor.mjs';
 import { buildSecretAudit, buildSecretRunSelect } from './secret-audit.mjs';
 import { buildChromeExtensionStatus } from './chrome-extension-status.mjs';
 import { buildRunGateAudit } from './run-gate-audit.mjs';
+import { yesNo } from './common.mjs';
 
 function exists(filePath) {
   try {
@@ -57,10 +58,6 @@ function commandEvidence(cliText, commands) {
 function clean(value, fallback = 'none') {
   const text = String(value ?? '').replace(/\s+/g, ' ').trim();
   return text || fallback;
-}
-
-function yesNo(value) {
-  return value ? 'yes' : 'no';
 }
 
 function compactEvidence(item = {}, key) {

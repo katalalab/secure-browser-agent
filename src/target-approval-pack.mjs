@@ -5,10 +5,7 @@ import { buildTargetBootstrapPlan } from './target-bootstrap-plan.mjs';
 import { buildTargetCandidatePlan } from './target-candidate-plan.mjs';
 import { buildTargetProofInventory } from './target-proof.mjs';
 import { toPosixPath, shellQuote, resolveRunsPath } from './output.mjs';
-
-function yesNo(value) {
-  return value ? 'yes' : 'no';
-}
+import { yesNo } from './common.mjs';
 
 function compact(value, fallback = 'none') {
   const text = String(value ?? '').replace(/\s+/g, ' ').trim();

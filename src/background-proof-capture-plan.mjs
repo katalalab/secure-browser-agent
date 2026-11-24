@@ -1,14 +1,11 @@
 import path from 'node:path';
 import { buildObjectiveProofPipeline } from './objective-proof-pipeline.mjs';
 import { toPosixPath, shellQuote } from './output.mjs';
+import { yesNo } from './common.mjs';
 
 function compactValue(value, fallback = 'none') {
   const text = String(value ?? '').replace(/\s+/g, ' ').trim();
   return text || fallback;
-}
-
-function yesNo(value) {
-  return value ? 'yes' : 'no';
 }
 
 function command(args) {

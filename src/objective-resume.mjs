@@ -5,6 +5,7 @@ import { buildObjectiveNext } from './objective-next.mjs';
 import { buildTargetAuthCheck } from './target-auth-check.mjs';
 import { buildTargetHandoffRun } from './target-handoff-run.mjs';
 import { shellQuote } from './output.mjs';
+import { yesNo } from './common.mjs';
 
 function defaultRunner(args, options = {}) {
   const result = spawnSync(args[0], args.slice(1), {
@@ -133,10 +134,6 @@ function selectAction(next, options = {}) {
 function compactValue(value) {
   if (value === undefined || value === null || value === '') return 'none';
   return String(value).replace(/\s+/g, ' ').trim() || 'none';
-}
-
-function yesNo(value) {
-  return value ? 'yes' : 'no';
 }
 
 function commandOpensBrowser(commandValue) {

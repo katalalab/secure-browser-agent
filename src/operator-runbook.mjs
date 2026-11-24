@@ -3,14 +3,11 @@ import path from 'node:path';
 import { buildOperatorPack } from './operator-pack.mjs';
 import { buildObjectiveCompletionAuditStatus } from './objective-completion-audit.mjs';
 import { toPosixPath, resolveRunsPath } from './output.mjs';
+import { yesNo } from './common.mjs';
 
 function compact(value, fallback = 'none') {
   const text = String(value ?? '').replace(/\s+/g, ' ').trim();
   return text || fallback;
-}
-
-function yesNo(value) {
-  return value ? 'yes' : 'no';
 }
 
 function yesNoUnknown(value) {

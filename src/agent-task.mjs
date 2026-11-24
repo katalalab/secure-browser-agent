@@ -5,6 +5,7 @@ import { buildAgentWorkflow } from './agent-workflow.mjs';
 import { sanitizeLogLine } from './policy.mjs';
 import { publicSearchHttp } from './public-search-http.mjs';
 import { toPosixPath, shellQuote, resolveRunsPath } from './output.mjs';
+import { yesNo, sleep } from './common.mjs';
 
 const ALLOWED_COMMAND_IDS = new Set([
   'public-search',
@@ -59,10 +60,6 @@ const STATUS_COMMAND_BY_TASK = new Map([
   ['crawl', 'crawlStatus'],
   ['links', 'linksStatus']
 ]);
-
-function yesNo(value) {
-  return value ? 'yes' : 'no';
-}
 
 function clean(value, fallback = 'none') {
   const text = String(value ?? '').replace(/\s+/g, ' ').trim();
@@ -284,10 +281,6 @@ function positiveInteger(value, fallback) {
 function nonNegativeInteger(value, fallback = 0) {
   const number = Number(value ?? fallback);
   return Number.isFinite(number) && number >= 0 ? Math.floor(number) : fallback;
-}
-
-function sleep(ms) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
 function searchSignal(stdout) {

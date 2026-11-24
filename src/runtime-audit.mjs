@@ -2,6 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { spawnSync } from 'node:child_process';
 import { shellQuote } from './output.mjs';
+import { yesNo } from './common.mjs';
 
 const CHROME_DEVTOOLS_LABELS = [
   'com.s30519.agent-chrome-devtools',
@@ -757,10 +758,6 @@ export function formatRuntimeAuditMarkdown(audit) {
 
 function compactValue(value) {
   return String(value ?? '').replace(/\s+/g, ' ').trim();
-}
-
-function yesNo(value) {
-  return value ? 'yes' : 'no';
 }
 
 export function formatRuntimeAuditCompact(audit) {

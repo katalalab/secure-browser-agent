@@ -4,6 +4,7 @@ import path from 'node:path';
 import { buildObjectiveStatus } from './objective-status.mjs';
 import { buildTargetProofNext } from './target-proof.mjs';
 import { shellQuote, resolveRunsPath } from './output.mjs';
+import { yesNo } from './common.mjs';
 
 function compactValue(value, fallback = 'none') {
   const text = String(value ?? '').replace(/\s+/g, ' ').trim();
@@ -12,10 +13,6 @@ function compactValue(value, fallback = 'none') {
 
 function redactedValue(value) {
   return compactValue(value, '') ? '[redacted]' : 'none';
-}
-
-function yesNo(value) {
-  return value ? 'yes' : 'no';
 }
 
 function yesNoUnknown(value) {

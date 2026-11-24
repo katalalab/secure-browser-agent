@@ -4,10 +4,7 @@ import { buildChromeAppleEventsStatus } from './chrome-apple-events-status.mjs';
 import { buildChromeMcpObservationStatus } from './chrome-mcp-observation.mjs';
 import { buildRegularChromeUse } from './regular-chrome-use.mjs';
 import { toPosixPath } from './output.mjs';
-
-function yesNo(value) {
-  return value ? 'yes' : 'no';
-}
+import { yesNo } from './common.mjs';
 
 function clean(value, fallback = 'none') {
   const text = String(value ?? '').replace(/\s+/g, ' ').trim();

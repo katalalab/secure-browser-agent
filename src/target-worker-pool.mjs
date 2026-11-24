@@ -4,10 +4,7 @@ import { cdpDaemonStatus } from './cdp-backend.mjs';
 import { loadPolicy, profilePath } from './policy.mjs';
 import { resolveTargetPack } from './target-pack.mjs';
 import { shellQuote } from './output.mjs';
-
-function yesNo(value) {
-  return value ? 'yes' : 'no';
-}
+import { yesNo } from './common.mjs';
 
 function compactValue(value) {
   if (value === undefined || value === null || value === '') return 'none';

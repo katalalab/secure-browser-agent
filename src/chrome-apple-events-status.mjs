@@ -2,14 +2,11 @@ import { spawnSync } from 'node:child_process';
 import fs from 'node:fs';
 import path from 'node:path';
 import { toPosixPath, resolveRunsPath } from './output.mjs';
+import { yesNo } from './common.mjs';
 
 function clean(value, fallback = '') {
   const text = String(value ?? '').replace(/\s+/g, ' ').trim();
   return text || fallback;
-}
-
-function yesNo(value) {
-  return value ? 'yes' : 'no';
 }
 
 function command(args) {

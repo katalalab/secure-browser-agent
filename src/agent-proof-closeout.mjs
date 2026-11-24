@@ -5,10 +5,7 @@ import { buildCompletionProofBundle } from './completion-proof-bundle.mjs';
 import { buildObjectiveCompletionAuditStatus } from './objective-completion-audit.mjs';
 import { buildProviderDoctorStatus } from './provider-doctor-status.mjs';
 import { toPosixPath, shellQuote, resolveRunsPath } from './output.mjs';
-
-function yesNo(value) {
-  return value ? 'yes' : 'no';
-}
+import { yesNo } from './common.mjs';
 
 function compact(value, fallback = 'none') {
   const text = String(value ?? '').replace(/\s+/g, ' ').trim();

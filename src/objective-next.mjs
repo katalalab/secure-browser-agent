@@ -7,6 +7,7 @@ import { buildStartCommandCandidates, compactKey } from './start-commands.mjs';
 import { buildTargetProofNext } from './target-proof.mjs';
 import { buildTargetCandidatePlan } from './target-candidate-plan.mjs';
 import { toPosixPath, shellQuote } from './output.mjs';
+import { yesNo } from './common.mjs';
 
 function command(args) {
   return {
@@ -599,10 +600,6 @@ export function formatObjectiveNextMarkdown(next) {
 function compactValue(value) {
   if (value === undefined || value === null || value === '') return 'none';
   return String(value).replace(/\s+/g, ' ').trim() || 'none';
-}
-
-function yesNo(value) {
-  return value ? 'yes' : 'no';
 }
 
 function commandOpensBrowser(commandValue) {

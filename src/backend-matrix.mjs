@@ -5,12 +5,9 @@ import { buildProviderReport } from './provider-report.mjs';
 import { buildRegularChromeStatus } from './regular-chrome-refresh.mjs';
 import { buildChromeMcpTimeoutPlanStatus } from './chrome-mcp-timeout-plan.mjs';
 import { toPosixPath, resolveRunsPath } from './output.mjs';
+import { yesNo } from './common.mjs';
 
 const TASKS = ['search', 'analyze', 'scrape', 'operate', 'existing-tab', 'authenticated-scrape', 'public-crawl', 'compatibility-test'];
-
-function yesNo(value) {
-  return value ? 'yes' : 'no';
-}
 
 function yesNoUnknown(value) {
   return value === null || value === undefined ? 'unknown' : yesNo(value);

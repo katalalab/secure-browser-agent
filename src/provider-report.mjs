@@ -2,6 +2,7 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import { spawnSync } from 'node:child_process';
+import { yesNo } from './common.mjs';
 
 const RETRIEVED_AT = '2026-05-28';
 
@@ -362,10 +363,6 @@ export function formatProviderReportMarkdown(report) {
   }
   lines.push('');
   return `${lines.join('\n')}`;
-}
-
-function yesNo(value) {
-  return value ? 'yes' : 'no';
 }
 
 function compact(value, fallback = 'none') {

@@ -2,10 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { buildCompletionProofBundle } from './completion-proof-bundle.mjs';
 import { toPosixPath, shellQuote, resolveRunsPath } from './output.mjs';
-
-function yesNo(value) {
-  return value ? 'yes' : 'no';
-}
+import { yesNo } from './common.mjs';
 
 function compact(value, fallback = 'none') {
   const text = String(value ?? '').replace(/\s+/g, ' ').trim();

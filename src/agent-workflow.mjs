@@ -3,6 +3,7 @@ import { buildProofGateStatus } from './proof-gate-status.mjs';
 import { buildProviderReport } from './provider-report.mjs';
 import { resolveTargetPack } from './target-pack.mjs';
 import { shellQuote } from './output.mjs';
+import { yesNo } from './common.mjs';
 
 const TASK_ALIASES = new Map([
   ['auto', 'auto'],
@@ -39,10 +40,6 @@ function command(args) {
     args,
     shell: args.map(shellQuote).join(' ')
   };
-}
-
-function yesNo(value) {
-  return value ? 'yes' : 'no';
 }
 
 function clean(value, fallback = 'none') {

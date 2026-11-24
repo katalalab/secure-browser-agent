@@ -3,6 +3,7 @@ import path from 'node:path';
 import { buildRuntimeAudit } from './runtime-audit.mjs';
 import { buildChromeExtensionStatus } from './chrome-extension-status.mjs';
 import { shellQuote } from './output.mjs';
+import { yesNo } from './common.mjs';
 
 const REMOTE_DEBUGGING_SOURCE = {
   title: 'Changes to remote debugging switches to improve security',
@@ -10,10 +11,6 @@ const REMOTE_DEBUGGING_SOURCE = {
   retrievedAt: '2026-05-28',
   summary: 'Chrome 136+ requires remote debugging switches to use a non-default user data directory; Chrome continues to recommend custom user data dirs to isolate debugging from real profiles.'
 };
-
-function yesNo(value) {
-  return value ? 'yes' : 'no';
-}
 
 function command(args) {
   return {

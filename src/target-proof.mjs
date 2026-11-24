@@ -6,6 +6,7 @@ import { auditTargetPack } from './security-audit.mjs';
 import { buildStartCommandCandidates, compactKey } from './start-commands.mjs';
 import { resolveTargetPack } from './target-pack.mjs';
 import { toPosixPath, shellQuote } from './output.mjs';
+import { yesNo } from './common.mjs';
 
 function csv(value, fallback = []) {
   if (value === undefined || value === null || value === '') return fallback;
@@ -1232,10 +1233,6 @@ export function formatTargetProofNextMarkdown(next) {
 function compactValue(value) {
   if (value === undefined || value === null || value === '') return 'none';
   return String(value).replace(/\s+/g, ' ').trim() || 'none';
-}
-
-function yesNo(value) {
-  return value ? 'yes' : 'no';
 }
 
 export function formatTargetProofNextCompact(next) {

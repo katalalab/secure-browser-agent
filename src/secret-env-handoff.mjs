@@ -3,6 +3,7 @@ import os from 'node:os';
 import path from 'node:path';
 import { buildSecretAudit } from './secret-audit.mjs';
 import { toPosixPath, shellQuote, resolveRunsPath } from './output.mjs';
+import { yesNo } from './common.mjs';
 
 const DOCS = [
   {
@@ -18,10 +19,6 @@ const DOCS = [
     note: 'Local .env files can be mounted from 1Password Environments on macOS and Linux.'
   }
 ];
-
-function yesNo(value) {
-  return value ? 'yes' : 'no';
-}
 
 function clean(value, fallback = 'none') {
   const text = String(value ?? '').replace(/\s+/g, ' ').trim();

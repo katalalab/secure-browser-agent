@@ -2,6 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { buildObjectiveCompletionAudit } from './objective-completion-audit.mjs';
 import { toPosixPath } from './output.mjs';
+import { yesNo } from './common.mjs';
 
 function command(args) {
   return {
@@ -268,10 +269,6 @@ export function formatObjectiveHandoffMarkdown(handoff) {
 function compactValue(value) {
   if (value === undefined || value === null || value === '') return 'none';
   return String(value).replace(/\s+/g, ' ').trim() || 'none';
-}
-
-function yesNo(value) {
-  return value ? 'yes' : 'no';
 }
 
 function compactKey(value) {

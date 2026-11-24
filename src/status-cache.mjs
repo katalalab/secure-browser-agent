@@ -1,9 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
-
-function yesNo(value) {
-  return value ? 'yes' : 'no';
-}
+import { yesNo } from './common.mjs';
 
 function compactValue(value) {
   if (value === undefined || value === null || value === '') return 'none';

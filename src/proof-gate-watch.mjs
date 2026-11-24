@@ -2,18 +2,11 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { buildProofGateStatus } from './proof-gate-status.mjs';
 import { toPosixPath, resolveRunsPath } from './output.mjs';
+import { yesNo, sleep } from './common.mjs';
 
 function compactValue(value, fallback = 'none') {
   const text = String(value ?? '').replace(/\s+/g, ' ').trim();
   return text || fallback;
-}
-
-function yesNo(value) {
-  return value ? 'yes' : 'no';
-}
-
-function sleep(ms) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
 function safeRunPath(rootDir, outPath) {
