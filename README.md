@@ -25,6 +25,18 @@ This tool is intentionally a thin orchestration layer:
 - Secrets should enter through existing browser login or a vault-backed workflow, not command-line arguments.
 - CDP launch readiness waits up to 30 seconds by default. Set `SBA_CDP_LAUNCH_TIMEOUT_MS` higher on a loaded machine before treating `DevToolsActivePort` startup delays as browser failure.
 
+For an observation task, set `"observeFields": ["title", "counts"]` in its policy.
+The `observe` and `observe-cdp` commands accept `--fields title` to request a
+subset. An `observe` recipe step accepts the same field names as a JSON array
+in `fields`, including recipes run through `target-run` and MCP. Available
+fields are `title`, `url`, `counts`, `headings`, `links`, `forms`, `controls` and
+`textSample`. The browser reads only selected observation fields. A scoped
+observation reports an error if the document is still loading or the selected
+result is unavailable. A failed recipe observation stops the recipe. An empty
+array of matching elements is a valid observation. Other commands and recipe
+step types have their own output contracts. Recipe envelopes include navigation
+metadata. Limit the tools exposed to an agent according to its task.
+
 ## Quick Start
 
 Node.js 22 or newer.

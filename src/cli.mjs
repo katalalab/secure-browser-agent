@@ -8,7 +8,7 @@ import { summarizeHarFile } from './har.mjs';
 import { outlineWithPlaywright } from './playwright-adapter.mjs';
 import { assertAllowedUrl, assertEngineAllowed, loadPolicy, profilePath, redact, statePath } from './policy.mjs';
 import { applyOwnedReap, planOwnedReap } from './reap-owned.mjs';
-import { buildExtractScript, buildObserveScript, buildOutlineScript } from './extract-script.mjs';
+import { buildExtractScript, buildObserveScript, resolveObserveFields, selectObservedResult, buildOutlineScript } from './extract-script.mjs';
 import { safeOutputPath, writeOutput } from './output.mjs';
 import { addTargetOperateStep, addTargetUrls, applyTargetPermissions, buildTargetRunStatus, doctorTargetPack, formatTargetRunStatusCompact, loadTargetAutostart, removeTargetAutostart, resolveTargetAutostart, resolveTargetDaemon, resolveTargetLogin, resolveTargetPack, resolveTargetPermissions, resolveTargetRun, resolveTargetScrape, scaffoldTargetPack, targetAutostartStatus, targetLoginHandoff, targetPermissionStatus, unloadTargetAutostart, writeTargetAutostart, writeTargetPermissions } from './target-pack.mjs';
 import { profileStatus } from './profile-status.mjs';
@@ -111,6 +111,11 @@ function parseArgs(argv) {
     }
   }
   return { command, flags, positional };
+}
+
+function observationFieldsFromFlags(flags, policy) {
+  const requested = flags.fields === undefined ? undefined : String(flags.fields).split(',').map(field => field.trim());
+  return resolveObserveFields(requested, policy.observeFields);
 }
 
 function ensureDirs(policy, profileName) {
@@ -305,7 +310,7 @@ Commands:
   snapshot [--profile name] [--json]
   extract <url> --selector <css> [--fields text,href,attr:data-id] [--limit 50] [--engine chrome|lightpanda] [--state-only]
   outline <url> [--profile name] [--out file.json]
-  observe-cdp <url> [--profile name] [--out file.json] [--daemon]
+  observe-cdp <url> [--fields title,counts] [--profile name] [--out file.json] [--daemon]
   analyze-cdp <url> [--profile name] [--out file.json] [--daemon]
   scrape-cdp <url> [--profile name] [--selector css] [--suggestion 0] [--fields text,href] [--limit 50] [--out file.json|file.csv] [--format json|csv] [--daemon]
   inspect-cdp <url> [--profile name] [--out file.json] [--daemon]
@@ -2863,6 +2868,7 @@ Safety:
     const recipe = expandRecipeSearchSteps(readJsonFile(target.recipe));
     assertRecipeAllowed(recipe, targetPolicy);
     const output = await runRecipeWithCdp(recipe, profilePath(targetPolicy, target.profile), {
+      observeFields: targetPolicy.observeFields,
       daemon: Boolean(flags.daemon),
       afterActionMs: Number(flags['after-action-ms'] || 100),
       allowedOrigins: targetPolicy.allowedOrigins || [],
@@ -3040,19 +3046,31 @@ Safety:
   if (command === 'observe') {
     const url = positional[0];
     assertAllowedUrl(url, policy);
+    const fields = observationFieldsFromFlags(flags, policy);
     const script = buildObserveScript({
+      fields,
       linkLimit: Number(flags['link-limit'] || 25),
       controlLimit: Number(flags['control-limit'] || 40),
       textLimit: Number(flags['text-limit'] || 600)
     });
     const browserArgs = sessionArgs(policy, profileName, { engine, stateOnly: flags['state-only'], skipAllowedDomains: isDataUrl(url) });
-    await runAgentBrowser([...browserArgs, 'open', url]);
-    const result = await runAgentBrowser([...browserArgs, 'eval', '--stdin'], { stdin: script });
+    // Only the legacy, unscoped read may forward a backend's plain-text response.
+    let result;
+    let value;
     try {
-      writeOutput(policy, flags, redact(JSON.parse(result.stdout), policy), { ...outputMetadata, url });
-    } catch {
-      process.stdout.write(result.stdout);
+      await runAgentBrowser([...browserArgs, 'open', url]);
+      result = await runAgentBrowser([...browserArgs, 'eval', '--stdin'], { stdin: script });
+      value = JSON.parse(result.stdout);
+      if (fields) value = selectObservedResult(value, fields);
+    } catch (error) {
+      if (fields) throw new Error('observation unavailable');
+      if (result && error instanceof SyntaxError) {
+        process.stdout.write(result.stdout);
+        return;
+      }
+      throw error;
     }
+    writeOutput(policy, flags, redact(value, policy), fields ? { command, profile: profileName, engine, fields } : { ...outputMetadata, url });
     return;
   }
 
@@ -3083,13 +3101,15 @@ Safety:
   if (command === 'observe-cdp') {
     const url = positional[0];
     assertAllowedUrl(url, policy);
+    const fields = observationFieldsFromFlags(flags, policy);
     const output = await observeWithCdp(url, profilePath(policy, profileName), {
+      fields,
       daemon: Boolean(flags.daemon),
       linkLimit: Number(flags['link-limit'] || 25),
       controlLimit: Number(flags['control-limit'] || 40),
       textLimit: Number(flags['text-limit'] || 600)
     });
-    writeOutput(policy, flags, redact(output, policy), { ...outputMetadata, url });
+    writeOutput(policy, flags, redact(output, policy), fields ? { command, profile: profileName, engine, fields } : { ...outputMetadata, url });
     return;
   }
 
@@ -3267,6 +3287,7 @@ Safety:
     const recipe = expandRecipeSearchSteps(readJsonFile(positional[0]));
     assertRecipeAllowed(recipe, policy);
     const output = await runRecipeWithCdp(recipe, profilePath(policy, profileName), {
+      observeFields: policy.observeFields,
       daemon: Boolean(flags.daemon),
       afterActionMs: Number(flags['after-action-ms'] || 100),
       artifactDir: policy.outputDir,

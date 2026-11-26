@@ -4,7 +4,7 @@ import os from 'node:os';
 import path from 'node:path';
 import { spawn, spawnSync } from 'node:child_process';
 import { listProcessCommandLines } from './process-list.mjs';
-import { buildExtractScript, buildInspectScript, buildObserveScript, buildOutlineScript } from './extract-script.mjs';
+import { buildExtractScript, buildInspectScript, buildObserveScript, resolveObserveFields, selectObservedResult, buildOutlineScript } from './extract-script.mjs';
 
 const DEFAULT_CDP_LAUNCH_TIMEOUT_MS = 30000;
 
@@ -1179,10 +1179,20 @@ export async function outlineWithCdp(url, profileDir, options = {}) {
   }, options);
 }
 
+async function observeDocument(client, options) {
+  const expression = buildObserveScript(options);
+  if (!options.fields) return evaluate(client, expression);
+  try {
+    return selectObservedResult(await evaluate(client, expression), options.fields);
+  } catch {
+    throw new Error('observation unavailable');
+  }
+}
+
 export async function observeWithCdp(url, profileDir, options = {}) {
   return withCdpPage(profileDir, async (client) => {
     await navigateOrSetContent(client, url);
-    return evaluate(client, buildObserveScript(options));
+    return observeDocument(client, options);
   }, options);
 }
 
@@ -1191,7 +1201,7 @@ export async function observeWithCdpPort(url, port, options = {}) {
   try {
     ({ client } = await openCdpPage(port));
     await navigateOrSetContent(client, url);
-    return await evaluate(client, buildObserveScript(options));
+    return await observeDocument(client, options);
   } finally {
     if (client) {
       try {
@@ -1503,11 +1513,12 @@ async function executeRecipeSteps(client, recipe, steps, options = {}, { current
         linkLimit: Number(step.linkLimit || 100)
       }));
     } else if (type === 'observe') {
-      output = await evaluate(client, buildObserveScript({
+      output = await observeDocument(client, {
+        fields: resolveObserveFields(step.fields, options.observeFields),
         linkLimit: Number(step.linkLimit || 25),
         controlLimit: Number(step.controlLimit || 40),
         textLimit: Number(step.textLimit || 600)
-      }));
+      });
     } else if (type === 'inspect') {
       output = await evaluate(client, buildInspectScript({
         candidateLimit: Number(step.candidateLimit || step['candidate-limit'] || 20),
@@ -1551,6 +1562,9 @@ function searchStatusFromOutline({ provider = 'duckduckgo', query = '', outline 
 export async function runRecipeWithCdp(recipe, profileDir, options = {}) {
   if (!recipe || typeof recipe !== 'object') throw new Error('recipe must be a JSON object');
   const steps = Array.isArray(recipe.steps) ? recipe.steps : [];
+  for (const step of steps) {
+    if ((step.type || step.action) === 'observe') resolveObserveFields(step.fields, options.observeFields);
+  }
   const urls = Array.isArray(recipe.urls) ? recipe.urls : [];
   if (!recipe.url && urls.length === 0 && steps.every((step) => (step.type || step.action) !== 'goto')) {
     throw new Error('recipe requires a top-level url, urls array, or a goto step');

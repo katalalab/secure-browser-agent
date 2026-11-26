@@ -65,7 +65,29 @@ return ({
 `;
 }
 
-export function buildObserveScript({ linkLimit = 25, controlLimit = 40, textLimit = 600 } = {}) {
+const OBSERVE_FIELDS = ['title', 'url', 'counts', 'headings', 'links', 'forms', 'controls', 'textSample'];
+
+export function resolveObserveFields(requested, allowed) {
+  for (const list of [requested, allowed]) {
+    if (list !== undefined && (!Array.isArray(list) || !list.length || list.some(key => !OBSERVE_FIELDS.includes(key)))) {
+      throw new Error('observe fields must be a nonempty list of known names');
+    }
+  }
+  if (allowed && requested?.some(key => !allowed.includes(key))) {
+    throw new Error('requested observe field is outside policy');
+  }
+  return requested ?? allowed;
+}
+
+export function selectObservedResult(value, fields) {
+  if (!value || typeof value !== 'object' || !fields.every(key => Object.hasOwn(value, key))) {
+    throw new Error('observation unavailable');
+  }
+  return Object.fromEntries(fields.map(key => [key, value[key]]));
+}
+
+export function buildObserveScript({ fields, linkLimit = 25, controlLimit = 40, textLimit = 600 } = {}) {
+  const selected = resolveObserveFields(fields);
   return `
 (() => {
 const text = (node) => (node?.innerText || node?.textContent || '').trim().replace(/\\s+/g, ' ');
@@ -80,7 +102,7 @@ const selectorFor = (node) => {
   if (label) return \`\${tag}[aria-label="\${esc(label)}"]\`;
   return tag;
 };
-const controls = Array.from(document.querySelectorAll('input,textarea,select,button,[role="button"],a[href]')).slice(0, ${Number(controlLimit) || 40}).map((node) => ({
+const controls = () => Array.from(document.querySelectorAll('input,textarea,select,button,[role="button"],a[href]')).slice(0, ${Number(controlLimit) || 40}).map((node) => ({
   tag: node.tagName.toLowerCase(),
   type: node.type || attr(node, 'role') || '',
   name: node.name || '',
@@ -89,25 +111,25 @@ const controls = Array.from(document.querySelectorAll('input,textarea,select,but
   href: node.href || attr(node, 'href'),
   selector: selectorFor(node)
 }));
-return ({
-  title: document.title,
-  url: location.href,
-  counts: {
+const read = {
+  title: () => document.title,
+  url: () => location.href,
+  counts: () => ({
     headings: document.querySelectorAll('h1,h2,h3').length,
     links: document.querySelectorAll('a[href]').length,
     forms: document.forms.length,
     controls: document.querySelectorAll('input,textarea,select,button,[role="button"],a[href]').length,
     tables: document.querySelectorAll('table').length
-  },
-  headings: Array.from(document.querySelectorAll('h1,h2,h3')).slice(0, 12).map((node) => ({
+  }),
+  headings: () => Array.from(document.querySelectorAll('h1,h2,h3')).slice(0, 12).map((node) => ({
     level: node.tagName.toLowerCase(),
     text: text(node)
   })).filter((row) => row.text),
-  links: Array.from(document.querySelectorAll('a[href]')).slice(0, ${Number(linkLimit) || 25}).map((node) => ({
+  links: () => Array.from(document.querySelectorAll('a[href]')).slice(0, ${Number(linkLimit) || 25}).map((node) => ({
     text: text(node),
     href: node.href || attr(node, 'href')
   })).filter((row) => row.text || row.href),
-  forms: Array.from(document.forms).slice(0, 8).map((form, index) => ({
+  forms: () => Array.from(document.forms).slice(0, 8).map((form, index) => ({
     index,
     id: form.id || '',
     name: form.name || '',
@@ -122,8 +144,10 @@ return ({
     }))
   })),
   controls,
-  textSample: text(document.querySelector('main') || document.body).slice(0, ${Number(textLimit) || 600})
-});
+  textSample: () => text(document.querySelector('main') || document.body).slice(0, ${Number(textLimit) || 600})
+};
+${selected ? "if (!['interactive', 'complete'].includes(document.readyState)) throw new Error('observation unavailable');" : ''}
+return Object.fromEntries(${JSON.stringify(selected ?? OBSERVE_FIELDS)}.map(field => [field, read[field]()]));
 })()
 `;
 }
