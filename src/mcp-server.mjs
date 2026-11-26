@@ -3806,6 +3806,7 @@ export async function callMcpTool(name, args = {}) {
     const recipe = expandRecipeSearchSteps(readJson(target.recipe));
     assertRecipeAllowed(recipe, policy);
     const output = await runRecipeWithCdp(recipe, profilePath(policy, target.profile), {
+      observeFields: policy.observeFields,
       daemon: Boolean(args.daemon),
       afterActionMs: Number(args.afterActionMs || 100),
       allowedOrigins: policy.allowedOrigins || [],
