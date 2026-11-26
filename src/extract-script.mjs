@@ -80,10 +80,17 @@ export function resolveObserveFields(requested, allowed) {
 }
 
 export function selectObservedResult(value, fields) {
-  if (!value || typeof value !== 'object' || !fields.every(key => Object.hasOwn(value, key))) {
-    throw new Error('observation unavailable');
+  const result = {};
+  for (const field of fields) {
+    const item = value?.[field];
+    const valid = ['title', 'url', 'textSample'].includes(field) ? typeof item === 'string'
+      : field === 'counts' ? item && ['headings', 'links', 'forms', 'controls', 'tables'].every(
+        key => Number.isSafeInteger(item[key]) && item[key] >= 0)
+      : Array.isArray(item);
+    if (!valid) throw new Error('observation unavailable');
+    result[field] = item;
   }
-  return Object.fromEntries(fields.map(key => [key, value[key]]));
+  return result;
 }
 
 export function buildObserveScript({ fields, linkLimit = 25, controlLimit = 40, textLimit = 600 } = {}) {

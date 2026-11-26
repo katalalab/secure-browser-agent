@@ -18,7 +18,10 @@ test('observation fields narrow policy and missing results stop the read', () =>
   assert.deepEqual(resolveObserveFields(['title'], allowed), ['title']);
   assert.throws(() => resolveObserveFields(['links'], allowed), /outside policy/);
   for (const bad of [[], null, '', ['typo']]) assert.throws(() => resolveObserveFields(undefined, bad), /nonempty list/);
-  assert.throws(() => selectObservedResult({}, ['title']), /unavailable/);
+  for (const value of [{}, { title: null }, { title: {} }]) {
+    assert.throws(() => selectObservedResult(value, ['title']), /unavailable/);
+  }
+  assert.throws(() => selectObservedResult({ counts: {} }, ['counts']), /unavailable/);
   assert.deepEqual(selectObservedResult({ headings: [], title: 'sample' }, ['headings']), { headings: [] });
 });
 
