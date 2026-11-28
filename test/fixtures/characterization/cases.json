@@ -1,0 +1,5218 @@
+[
+ {
+  "id": "bare:agent-backend-select",
+  "steps": [
+   {
+    "argv": [
+     "agent-backend-select"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "bare:agent-browser-doctor",
+  "steps": [
+   {
+    "argv": [
+     "agent-browser-doctor"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "bare:agent-control-plane",
+  "steps": [
+   {
+    "argv": [
+     "agent-control-plane"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "bare:agent-control-plane-status",
+  "steps": [
+   {
+    "argv": [
+     "agent-control-plane-status"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "bare:agent-control-plane-watch",
+  "steps": [
+   {
+    "argv": [
+     "agent-control-plane-watch"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "bare:agent-loop-step",
+  "steps": [
+   {
+    "argv": [
+     "agent-loop-step"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "bare:agent-loop-step-status",
+  "steps": [
+   {
+    "argv": [
+     "agent-loop-step-status"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "bare:agent-next",
+  "steps": [
+   {
+    "argv": [
+     "agent-next"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "bare:agent-preflight",
+  "steps": [
+   {
+    "argv": [
+     "agent-preflight"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "bare:agent-proof-checklist",
+  "steps": [
+   {
+    "argv": [
+     "agent-proof-checklist"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "bare:agent-proof-checklist-status",
+  "steps": [
+   {
+    "argv": [
+     "agent-proof-checklist-status"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "bare:agent-proof-closeout",
+  "steps": [
+   {
+    "argv": [
+     "agent-proof-closeout"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "bare:agent-proof-closeout-status",
+  "steps": [
+   {
+    "argv": [
+     "agent-proof-closeout-status"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "bare:agent-proof-step",
+  "steps": [
+   {
+    "argv": [
+     "agent-proof-step"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "bare:agent-proof-step-start",
+  "steps": [
+   {
+    "argv": [
+     "agent-proof-step-start"
+    ]
+   }
+  ],
+  "tier": "sandbox"
+ },
+ {
+  "id": "bare:agent-proof-step-status",
+  "steps": [
+   {
+    "argv": [
+     "agent-proof-step-status"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "bare:agent-task",
+  "steps": [
+   {
+    "argv": [
+     "agent-task"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "bare:agent-task-loop",
+  "steps": [
+   {
+    "argv": [
+     "agent-task-loop"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "bare:agent-task-status",
+  "steps": [
+   {
+    "argv": [
+     "agent-task-status"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "bare:agent-task-watch",
+  "steps": [
+   {
+    "argv": [
+     "agent-task-watch"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "bare:agent-task-watch-start",
+  "steps": [
+   {
+    "argv": [
+     "agent-task-watch-start"
+    ]
+   }
+  ],
+  "tier": "sandbox"
+ },
+ {
+  "id": "bare:agent-task-watch-status",
+  "steps": [
+   {
+    "argv": [
+     "agent-task-watch-status"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "bare:agent-workflow",
+  "steps": [
+   {
+    "argv": [
+     "agent-workflow"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "bare:analyze-cdp",
+  "steps": [
+   {
+    "argv": [
+     "analyze-cdp"
+    ]
+   }
+  ],
+  "tier": "sandbox"
+ },
+ {
+  "id": "bare:backend-matrix",
+  "steps": [
+   {
+    "argv": [
+     "backend-matrix"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "bare:backend-matrix-status",
+  "steps": [
+   {
+    "argv": [
+     "backend-matrix-status"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "bare:background-monitor-plan",
+  "steps": [
+   {
+    "argv": [
+     "background-monitor-plan"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "bare:background-proof-capture-plan",
+  "steps": [
+   {
+    "argv": [
+     "background-proof-capture-plan"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "bare:background-proof-capture-start",
+  "steps": [
+   {
+    "argv": [
+     "background-proof-capture-start"
+    ]
+   }
+  ],
+  "tier": "sandbox"
+ },
+ {
+  "id": "bare:background-proof-capture-status",
+  "steps": [
+   {
+    "argv": [
+     "background-proof-capture-status"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "bare:benchmark",
+  "steps": [
+   {
+    "argv": [
+     "benchmark"
+    ]
+   }
+  ],
+  "tier": "sandbox"
+ },
+ {
+  "id": "bare:browser-route",
+  "steps": [
+   {
+    "argv": [
+     "browser-route"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "bare:capture-har",
+  "steps": [
+   {
+    "argv": [
+     "capture-har"
+    ]
+   }
+  ],
+  "tier": "sandbox"
+ },
+ {
+  "id": "bare:cdp-start",
+  "steps": [
+   {
+    "argv": [
+     "cdp-start"
+    ]
+   }
+  ],
+  "tier": "sandbox"
+ },
+ {
+  "id": "bare:cdp-status",
+  "steps": [
+   {
+    "argv": [
+     "cdp-status"
+    ]
+   }
+  ],
+  "tier": "sandbox"
+ },
+ {
+  "id": "bare:cdp-stop",
+  "steps": [
+   {
+    "argv": [
+     "cdp-stop"
+    ]
+   }
+  ],
+  "tier": "sandbox"
+ },
+ {
+  "id": "bare:chrome-apple-events-enable-plan",
+  "steps": [
+   {
+    "argv": [
+     "chrome-apple-events-enable-plan"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "bare:chrome-apple-events-outline",
+  "steps": [
+   {
+    "argv": [
+     "chrome-apple-events-outline"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "bare:chrome-apple-events-status",
+  "steps": [
+   {
+    "argv": [
+     "chrome-apple-events-status"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "bare:chrome-control-plan",
+  "steps": [
+   {
+    "argv": [
+     "chrome-control-plan"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "bare:chrome-extension-backend-check-plan",
+  "steps": [
+   {
+    "argv": [
+     "chrome-extension-backend-check-plan"
+    ]
+   }
+  ],
+  "tier": "sandbox"
+ },
+ {
+  "id": "bare:chrome-extension-claim-plan",
+  "steps": [
+   {
+    "argv": [
+     "chrome-extension-claim-plan"
+    ]
+   }
+  ],
+  "tier": "sandbox"
+ },
+ {
+  "id": "bare:chrome-extension-handoff",
+  "steps": [
+   {
+    "argv": [
+     "chrome-extension-handoff"
+    ]
+   }
+  ],
+  "tier": "sandbox"
+ },
+ {
+  "id": "bare:chrome-extension-resume",
+  "steps": [
+   {
+    "argv": [
+     "chrome-extension-resume"
+    ]
+   }
+  ],
+  "tier": "sandbox"
+ },
+ {
+  "id": "bare:chrome-extension-status",
+  "steps": [
+   {
+    "argv": [
+     "chrome-extension-status"
+    ]
+   }
+  ],
+  "tier": "sandbox"
+ },
+ {
+  "id": "bare:chrome-extension-troubleshoot",
+  "steps": [
+   {
+    "argv": [
+     "chrome-extension-troubleshoot"
+    ]
+   }
+  ],
+  "tier": "sandbox"
+ },
+ {
+  "id": "bare:chrome-mcp-autostart-plan",
+  "steps": [
+   {
+    "argv": [
+     "chrome-mcp-autostart-plan"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "bare:chrome-mcp-autostart-plan-status",
+  "steps": [
+   {
+    "argv": [
+     "chrome-mcp-autostart-plan-status"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "bare:chrome-mcp-handoff",
+  "steps": [
+   {
+    "argv": [
+     "chrome-mcp-handoff"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "bare:chrome-mcp-observation",
+  "steps": [
+   {
+    "argv": [
+     "chrome-mcp-observation"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "bare:chrome-mcp-observation-status",
+  "steps": [
+   {
+    "argv": [
+     "chrome-mcp-observation-status"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "bare:chrome-mcp-status",
+  "steps": [
+   {
+    "argv": [
+     "chrome-mcp-status"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "bare:chrome-mcp-timeout-plan",
+  "steps": [
+   {
+    "argv": [
+     "chrome-mcp-timeout-plan"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "bare:chrome-mcp-timeout-plan-status",
+  "steps": [
+   {
+    "argv": [
+     "chrome-mcp-timeout-plan-status"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "bare:click-cdp",
+  "steps": [
+   {
+    "argv": [
+     "click-cdp"
+    ]
+   }
+  ],
+  "tier": "sandbox"
+ },
+ {
+  "id": "bare:close-session",
+  "steps": [
+   {
+    "argv": [
+     "close-session"
+    ]
+   }
+  ],
+  "tier": "sandbox"
+ },
+ {
+  "id": "bare:compact-command-audit",
+  "steps": [
+   {
+    "argv": [
+     "compact-command-audit"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "bare:completion-proof-bundle",
+  "steps": [
+   {
+    "argv": [
+     "completion-proof-bundle"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "bare:completion-proof-bundle-status",
+  "steps": [
+   {
+    "argv": [
+     "completion-proof-bundle-status"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "bare:completion-proof-bundle-watch",
+  "steps": [
+   {
+    "argv": [
+     "completion-proof-bundle-watch"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "bare:console-cdp",
+  "steps": [
+   {
+    "argv": [
+     "console-cdp"
+    ]
+   }
+  ],
+  "tier": "sandbox"
+ },
+ {
+  "id": "bare:control-status",
+  "steps": [
+   {
+    "argv": [
+     "control-status"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "bare:doctor",
+  "steps": [
+   {
+    "argv": [
+     "doctor"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "bare:extract",
+  "steps": [
+   {
+    "argv": [
+     "extract"
+    ]
+   }
+  ],
+  "tier": "sandbox"
+ },
+ {
+  "id": "bare:extract-cdp",
+  "steps": [
+   {
+    "argv": [
+     "extract-cdp"
+    ]
+   }
+  ],
+  "tier": "sandbox"
+ },
+ {
+  "id": "bare:fill-cdp",
+  "steps": [
+   {
+    "argv": [
+     "fill-cdp"
+    ]
+   }
+  ],
+  "tier": "sandbox"
+ },
+ {
+  "id": "bare:github-repo-research",
+  "steps": [
+   {
+    "argv": [
+     "github-repo-research"
+    ]
+   }
+  ],
+  "tier": "sandbox"
+ },
+ {
+  "id": "bare:har-summary",
+  "steps": [
+   {
+    "argv": [
+     "har-summary"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "bare:inspect-cdp",
+  "steps": [
+   {
+    "argv": [
+     "inspect-cdp"
+    ]
+   }
+  ],
+  "tier": "sandbox"
+ },
+ {
+  "id": "bare:lightpanda-decision",
+  "steps": [
+   {
+    "argv": [
+     "lightpanda-decision"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "bare:lightpanda-doctor",
+  "steps": [
+   {
+    "argv": [
+     "lightpanda-doctor"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "bare:lightpanda-gate",
+  "steps": [
+   {
+    "argv": [
+     "lightpanda-gate"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "bare:login",
+  "steps": [
+   {
+    "argv": [
+     "login"
+    ]
+   }
+  ],
+  "tier": "sandbox"
+ },
+ {
+  "id": "bare:login-cdp",
+  "steps": [
+   {
+    "argv": [
+     "login-cdp"
+    ]
+   }
+  ],
+  "tier": "sandbox"
+ },
+ {
+  "id": "bare:login-handoff-status",
+  "steps": [
+   {
+    "argv": [
+     "login-handoff-status"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "bare:mcp-stdio",
+  "steps": [
+   {
+    "argv": [
+     "mcp-stdio"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "bare:network-cdp",
+  "steps": [
+   {
+    "argv": [
+     "network-cdp"
+    ]
+   }
+  ],
+  "tier": "sandbox"
+ },
+ {
+  "id": "bare:objective-completion-audit",
+  "steps": [
+   {
+    "argv": [
+     "objective-completion-audit"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "bare:objective-completion-audit-status",
+  "steps": [
+   {
+    "argv": [
+     "objective-completion-audit-status"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "bare:objective-completion-audit-watch",
+  "steps": [
+   {
+    "argv": [
+     "objective-completion-audit-watch"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "bare:objective-handoff",
+  "steps": [
+   {
+    "argv": [
+     "objective-handoff"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "bare:objective-next",
+  "steps": [
+   {
+    "argv": [
+     "objective-next"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "bare:objective-proof-pipeline",
+  "steps": [
+   {
+    "argv": [
+     "objective-proof-pipeline"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "bare:objective-resume",
+  "steps": [
+   {
+    "argv": [
+     "objective-resume"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "bare:objective-safe-command",
+  "steps": [
+   {
+    "argv": [
+     "objective-safe-command"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "bare:objective-status",
+  "steps": [
+   {
+    "argv": [
+     "objective-status"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "bare:observe",
+  "steps": [
+   {
+    "argv": [
+     "observe"
+    ]
+   }
+  ],
+  "tier": "sandbox"
+ },
+ {
+  "id": "bare:observe-cdp",
+  "steps": [
+   {
+    "argv": [
+     "observe-cdp"
+    ]
+   }
+  ],
+  "tier": "sandbox"
+ },
+ {
+  "id": "bare:open",
+  "steps": [
+   {
+    "argv": [
+     "open"
+    ]
+   }
+  ],
+  "tier": "sandbox"
+ },
+ {
+  "id": "bare:operator-pack",
+  "steps": [
+   {
+    "argv": [
+     "operator-pack"
+    ]
+   }
+  ],
+  "tier": "sandbox"
+ },
+ {
+  "id": "bare:operator-pack-status",
+  "steps": [
+   {
+    "argv": [
+     "operator-pack-status"
+    ]
+   }
+  ],
+  "tier": "sandbox"
+ },
+ {
+  "id": "bare:operator-runbook",
+  "steps": [
+   {
+    "argv": [
+     "operator-runbook"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "bare:operator-runbook-status",
+  "steps": [
+   {
+    "argv": [
+     "operator-runbook-status"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "bare:operator-runbook-watch",
+  "steps": [
+   {
+    "argv": [
+     "operator-runbook-watch"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "bare:outline",
+  "steps": [
+   {
+    "argv": [
+     "outline"
+    ]
+   }
+  ],
+  "tier": "sandbox"
+ },
+ {
+  "id": "bare:outline-cdp",
+  "steps": [
+   {
+    "argv": [
+     "outline-cdp"
+    ]
+   }
+  ],
+  "tier": "sandbox"
+ },
+ {
+  "id": "bare:outline-playwright",
+  "steps": [
+   {
+    "argv": [
+     "outline-playwright"
+    ]
+   }
+  ],
+  "tier": "sandbox"
+ },
+ {
+  "id": "bare:playwright-doctor",
+  "steps": [
+   {
+    "argv": [
+     "playwright-doctor"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "bare:profile-info",
+  "steps": [
+   {
+    "argv": [
+     "profile-info"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "bare:profile-status",
+  "steps": [
+   {
+    "argv": [
+     "profile-status"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "bare:proof-gate-status",
+  "steps": [
+   {
+    "argv": [
+     "proof-gate-status"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "bare:proof-gate-watch",
+  "steps": [
+   {
+    "argv": [
+     "proof-gate-watch"
+    ]
+   }
+  ],
+  "tier": "sandbox"
+ },
+ {
+  "id": "bare:provider-doctor-status",
+  "steps": [
+   {
+    "argv": [
+     "provider-doctor-status"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "bare:provider-status",
+  "steps": [
+   {
+    "argv": [
+     "provider-status"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "bare:providers",
+  "steps": [
+   {
+    "argv": [
+     "providers"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "bare:readiness-audit",
+  "steps": [
+   {
+    "argv": [
+     "readiness-audit"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "bare:reap-owned",
+  "steps": [
+   {
+    "argv": [
+     "reap-owned"
+    ]
+   }
+  ],
+  "tier": "sandbox"
+ },
+ {
+  "id": "bare:regular-chrome-refresh",
+  "steps": [
+   {
+    "argv": [
+     "regular-chrome-refresh"
+    ]
+   }
+  ],
+  "tier": "sandbox"
+ },
+ {
+  "id": "bare:regular-chrome-status",
+  "steps": [
+   {
+    "argv": [
+     "regular-chrome-status"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "bare:regular-chrome-use",
+  "steps": [
+   {
+    "argv": [
+     "regular-chrome-use"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "bare:regular-chrome-watch",
+  "steps": [
+   {
+    "argv": [
+     "regular-chrome-watch"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "bare:run-cdp",
+  "steps": [
+   {
+    "argv": [
+     "run-cdp"
+    ]
+   }
+  ],
+  "tier": "sandbox"
+ },
+ {
+  "id": "bare:run-gate-audit",
+  "steps": [
+   {
+    "argv": [
+     "run-gate-audit"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "bare:runtime-audit",
+  "steps": [
+   {
+    "argv": [
+     "runtime-audit"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "bare:runtime-cleanup-plan",
+  "steps": [
+   {
+    "argv": [
+     "runtime-cleanup-plan"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "bare:scaffold-target",
+  "steps": [
+   {
+    "argv": [
+     "scaffold-target"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "bare:scrape-cdp",
+  "steps": [
+   {
+    "argv": [
+     "scrape-cdp"
+    ]
+   }
+  ],
+  "tier": "sandbox"
+ },
+ {
+  "id": "bare:screenshot-cdp",
+  "steps": [
+   {
+    "argv": [
+     "screenshot-cdp"
+    ]
+   }
+  ],
+  "tier": "sandbox"
+ },
+ {
+  "id": "bare:search",
+  "steps": [
+   {
+    "argv": [
+     "search"
+    ]
+   }
+  ],
+  "tier": "sandbox"
+ },
+ {
+  "id": "bare:search-cdp",
+  "steps": [
+   {
+    "argv": [
+     "search-cdp"
+    ]
+   }
+  ],
+  "tier": "sandbox"
+ },
+ {
+  "id": "bare:search-http",
+  "steps": [
+   {
+    "argv": [
+     "search-http"
+    ]
+   }
+  ],
+  "tier": "sandbox"
+ },
+ {
+  "id": "bare:secret-audit",
+  "steps": [
+   {
+    "argv": [
+     "secret-audit"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "bare:secret-env-handoff",
+  "steps": [
+   {
+    "argv": [
+     "secret-env-handoff"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "bare:secret-env-handoff-status",
+  "steps": [
+   {
+    "argv": [
+     "secret-env-handoff-status"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "bare:secret-env-handoff-watch",
+  "steps": [
+   {
+    "argv": [
+     "secret-env-handoff-watch"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "bare:secret-run-plan",
+  "steps": [
+   {
+    "argv": [
+     "secret-run-plan"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "bare:secret-run-select",
+  "steps": [
+   {
+    "argv": [
+     "secret-run-select"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "bare:secret-setup-plan",
+  "steps": [
+   {
+    "argv": [
+     "secret-setup-plan"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "bare:selenium-doctor",
+  "steps": [
+   {
+    "argv": [
+     "selenium-doctor"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "bare:snapshot",
+  "steps": [
+   {
+    "argv": [
+     "snapshot"
+    ]
+   }
+  ],
+  "tier": "sandbox"
+ },
+ {
+  "id": "bare:source-audit",
+  "steps": [
+   {
+    "argv": [
+     "source-audit"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "bare:status-cache",
+  "steps": [
+   {
+    "argv": [
+     "status-cache"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "bare:target-add-url",
+  "steps": [
+   {
+    "argv": [
+     "target-add-url"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "bare:target-approval-pack",
+  "steps": [
+   {
+    "argv": [
+     "target-approval-pack"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "bare:target-approval-preflight",
+  "steps": [
+   {
+    "argv": [
+     "target-approval-preflight"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "bare:target-approval-resume",
+  "steps": [
+   {
+    "argv": [
+     "target-approval-resume"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "bare:target-approval-resume-status",
+  "steps": [
+   {
+    "argv": [
+     "target-approval-resume-status"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "bare:target-approval-resume-watch",
+  "steps": [
+   {
+    "argv": [
+     "target-approval-resume-watch"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "bare:target-approval-status",
+  "steps": [
+   {
+    "argv": [
+     "target-approval-status"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "bare:target-audit",
+  "steps": [
+   {
+    "argv": [
+     "target-audit"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "bare:target-auth-check",
+  "steps": [
+   {
+    "argv": [
+     "target-auth-check"
+    ]
+   }
+  ],
+  "tier": "sandbox"
+ },
+ {
+  "id": "bare:target-auth-watch",
+  "steps": [
+   {
+    "argv": [
+     "target-auth-watch"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "bare:target-autostart",
+  "steps": [
+   {
+    "argv": [
+     "target-autostart"
+    ]
+   }
+  ],
+  "tier": "sandbox"
+ },
+ {
+  "id": "bare:target-batch",
+  "steps": [
+   {
+    "argv": [
+     "target-batch"
+    ]
+   }
+  ],
+  "tier": "sandbox"
+ },
+ {
+  "id": "bare:target-benchmark",
+  "steps": [
+   {
+    "argv": [
+     "target-benchmark"
+    ]
+   }
+  ],
+  "tier": "sandbox"
+ },
+ {
+  "id": "bare:target-bootstrap-plan",
+  "steps": [
+   {
+    "argv": [
+     "target-bootstrap-plan"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "bare:target-candidate-plan",
+  "steps": [
+   {
+    "argv": [
+     "target-candidate-plan"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "bare:target-candidate-plan-status",
+  "steps": [
+   {
+    "argv": [
+     "target-candidate-plan-status"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "bare:target-candidate-plan-watch",
+  "steps": [
+   {
+    "argv": [
+     "target-candidate-plan-watch"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "bare:target-daemon",
+  "steps": [
+   {
+    "argv": [
+     "target-daemon"
+    ]
+   }
+  ],
+  "tier": "sandbox"
+ },
+ {
+  "id": "bare:target-doctor",
+  "steps": [
+   {
+    "argv": [
+     "target-doctor"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "bare:target-handoff-resume",
+  "steps": [
+   {
+    "argv": [
+     "target-handoff-resume"
+    ]
+   }
+  ],
+  "tier": "sandbox"
+ },
+ {
+  "id": "bare:target-handoff-resume-status",
+  "steps": [
+   {
+    "argv": [
+     "target-handoff-resume-status"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "bare:target-handoff-resume-watch",
+  "steps": [
+   {
+    "argv": [
+     "target-handoff-resume-watch"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "bare:target-handoff-run",
+  "steps": [
+   {
+    "argv": [
+     "target-handoff-run"
+    ]
+   }
+  ],
+  "tier": "sandbox"
+ },
+ {
+  "id": "bare:target-handoff-status",
+  "steps": [
+   {
+    "argv": [
+     "target-handoff-status"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "bare:target-info",
+  "steps": [
+   {
+    "argv": [
+     "target-info"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "bare:target-login",
+  "steps": [
+   {
+    "argv": [
+     "target-login"
+    ]
+   }
+  ],
+  "tier": "sandbox"
+ },
+ {
+  "id": "bare:target-login-capture",
+  "steps": [
+   {
+    "argv": [
+     "target-login-capture"
+    ]
+   }
+  ],
+  "tier": "sandbox"
+ },
+ {
+  "id": "bare:target-operate-add",
+  "steps": [
+   {
+    "argv": [
+     "target-operate-add"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "bare:target-permissions",
+  "steps": [
+   {
+    "argv": [
+     "target-permissions"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "bare:target-proof",
+  "steps": [
+   {
+    "argv": [
+     "target-proof"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "bare:target-proof-capture",
+  "steps": [
+   {
+    "argv": [
+     "target-proof-capture"
+    ]
+   }
+  ],
+  "tier": "sandbox"
+ },
+ {
+  "id": "bare:target-proof-inventory",
+  "steps": [
+   {
+    "argv": [
+     "target-proof-inventory"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "bare:target-proof-next",
+  "steps": [
+   {
+    "argv": [
+     "target-proof-next"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "bare:target-proof-plan",
+  "steps": [
+   {
+    "argv": [
+     "target-proof-plan"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "bare:target-run",
+  "steps": [
+   {
+    "argv": [
+     "target-run"
+    ]
+   }
+  ],
+  "tier": "sandbox"
+ },
+ {
+  "id": "bare:target-run-status",
+  "steps": [
+   {
+    "argv": [
+     "target-run-status"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "bare:target-scrape",
+  "steps": [
+   {
+    "argv": [
+     "target-scrape"
+    ]
+   }
+  ],
+  "tier": "sandbox"
+ },
+ {
+  "id": "bare:target-status",
+  "steps": [
+   {
+    "argv": [
+     "target-status"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "bare:target-worker-pool",
+  "steps": [
+   {
+    "argv": [
+     "target-worker-pool"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "bare:wait-cdp",
+  "steps": [
+   {
+    "argv": [
+     "wait-cdp"
+    ]
+   }
+  ],
+  "tier": "sandbox"
+ },
+ {
+  "id": "mcp:handshake",
+  "steps": [
+   {
+    "argv": [
+     "mcp-stdio"
+    ],
+    "stdin": "{\"jsonrpc\":\"2.0\",\"id\":1,\"method\":\"initialize\",\"params\":{\"protocolVersion\":\"2025-06-18\",\"capabilities\":{},\"clientInfo\":{\"name\":\"char\",\"version\":\"0\"}}}\n{\"jsonrpc\":\"2.0\",\"method\":\"notifications/initialized\"}\n{\"jsonrpc\":\"2.0\",\"id\":2,\"method\":\"ping\"}\n{\"jsonrpc\":\"2.0\",\"id\":3,\"method\":\"tools/list\"}\n{\"jsonrpc\":\"2.0\",\"id\":4,\"method\":\"nope\"}\n{bad json\n{\"jsonrpc\":\"2.0\",\"id\":5,\"method\":\"tools/call\",\"params\":{}}\n{\"jsonrpc\":\"2.0\",\"id\":6,\"method\":\"tools/call\",\"params\":{\"name\":\"sba_no_such_tool\",\"arguments\":{}}}\n"
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "mcp:sba_agent_backend_select",
+  "tier": "safe",
+  "mcpTool": "sba_agent_backend_select"
+ },
+ {
+  "id": "mcp:sba_agent_browser_doctor",
+  "tier": "safe",
+  "mcpTool": "sba_agent_browser_doctor"
+ },
+ {
+  "id": "mcp:sba_agent_control_plane",
+  "tier": "safe",
+  "mcpTool": "sba_agent_control_plane"
+ },
+ {
+  "id": "mcp:sba_agent_control_plane_status",
+  "tier": "safe",
+  "mcpTool": "sba_agent_control_plane_status"
+ },
+ {
+  "id": "mcp:sba_agent_control_plane_watch",
+  "tier": "safe",
+  "mcpTool": "sba_agent_control_plane_watch"
+ },
+ {
+  "id": "mcp:sba_agent_loop_step",
+  "tier": "safe",
+  "mcpTool": "sba_agent_loop_step"
+ },
+ {
+  "id": "mcp:sba_agent_loop_step_status",
+  "tier": "safe",
+  "mcpTool": "sba_agent_loop_step_status"
+ },
+ {
+  "id": "mcp:sba_agent_next",
+  "tier": "safe",
+  "mcpTool": "sba_agent_next"
+ },
+ {
+  "id": "mcp:sba_agent_preflight",
+  "tier": "safe",
+  "mcpTool": "sba_agent_preflight"
+ },
+ {
+  "id": "mcp:sba_agent_proof_checklist",
+  "tier": "safe",
+  "mcpTool": "sba_agent_proof_checklist"
+ },
+ {
+  "id": "mcp:sba_agent_proof_checklist_status",
+  "tier": "safe",
+  "mcpTool": "sba_agent_proof_checklist_status"
+ },
+ {
+  "id": "mcp:sba_agent_proof_closeout",
+  "tier": "safe",
+  "mcpTool": "sba_agent_proof_closeout"
+ },
+ {
+  "id": "mcp:sba_agent_proof_closeout_status",
+  "tier": "safe",
+  "mcpTool": "sba_agent_proof_closeout_status"
+ },
+ {
+  "id": "mcp:sba_agent_proof_step",
+  "tier": "safe",
+  "mcpTool": "sba_agent_proof_step"
+ },
+ {
+  "id": "mcp:sba_agent_proof_step_start",
+  "tier": "sandbox",
+  "mcpTool": "sba_agent_proof_step_start"
+ },
+ {
+  "id": "mcp:sba_agent_proof_step_status",
+  "tier": "safe",
+  "mcpTool": "sba_agent_proof_step_status"
+ },
+ {
+  "id": "mcp:sba_agent_task",
+  "tier": "safe",
+  "mcpTool": "sba_agent_task"
+ },
+ {
+  "id": "mcp:sba_agent_task_loop",
+  "tier": "safe",
+  "mcpTool": "sba_agent_task_loop"
+ },
+ {
+  "id": "mcp:sba_agent_task_status",
+  "tier": "safe",
+  "mcpTool": "sba_agent_task_status"
+ },
+ {
+  "id": "mcp:sba_agent_task_watch",
+  "tier": "safe",
+  "mcpTool": "sba_agent_task_watch"
+ },
+ {
+  "id": "mcp:sba_agent_task_watch_start",
+  "tier": "sandbox",
+  "mcpTool": "sba_agent_task_watch_start"
+ },
+ {
+  "id": "mcp:sba_agent_task_watch_status",
+  "tier": "safe",
+  "mcpTool": "sba_agent_task_watch_status"
+ },
+ {
+  "id": "mcp:sba_agent_workflow",
+  "tier": "safe",
+  "mcpTool": "sba_agent_workflow"
+ },
+ {
+  "id": "mcp:sba_backend_matrix",
+  "tier": "safe",
+  "mcpTool": "sba_backend_matrix"
+ },
+ {
+  "id": "mcp:sba_backend_matrix_status",
+  "tier": "safe",
+  "mcpTool": "sba_backend_matrix_status"
+ },
+ {
+  "id": "mcp:sba_background_monitor_plan",
+  "tier": "safe",
+  "mcpTool": "sba_background_monitor_plan"
+ },
+ {
+  "id": "mcp:sba_background_proof_capture_plan",
+  "tier": "safe",
+  "mcpTool": "sba_background_proof_capture_plan"
+ },
+ {
+  "id": "mcp:sba_background_proof_capture_start",
+  "tier": "sandbox",
+  "mcpTool": "sba_background_proof_capture_start"
+ },
+ {
+  "id": "mcp:sba_background_proof_capture_status",
+  "tier": "safe",
+  "mcpTool": "sba_background_proof_capture_status"
+ },
+ {
+  "id": "mcp:sba_browser_route",
+  "tier": "safe",
+  "mcpTool": "sba_browser_route"
+ },
+ {
+  "id": "mcp:sba_cdp_analyze",
+  "tier": "sandbox",
+  "mcpTool": "sba_cdp_analyze"
+ },
+ {
+  "id": "mcp:sba_chrome_apple_events_enable_plan",
+  "tier": "safe",
+  "mcpTool": "sba_chrome_apple_events_enable_plan"
+ },
+ {
+  "id": "mcp:sba_chrome_apple_events_outline",
+  "tier": "safe",
+  "mcpTool": "sba_chrome_apple_events_outline"
+ },
+ {
+  "id": "mcp:sba_chrome_apple_events_status",
+  "tier": "safe",
+  "mcpTool": "sba_chrome_apple_events_status"
+ },
+ {
+  "id": "mcp:sba_chrome_control_plan",
+  "tier": "safe",
+  "mcpTool": "sba_chrome_control_plan"
+ },
+ {
+  "id": "mcp:sba_chrome_extension_backend_check_plan",
+  "tier": "sandbox",
+  "mcpTool": "sba_chrome_extension_backend_check_plan"
+ },
+ {
+  "id": "mcp:sba_chrome_extension_claim_plan",
+  "tier": "sandbox",
+  "mcpTool": "sba_chrome_extension_claim_plan"
+ },
+ {
+  "id": "mcp:sba_chrome_extension_handoff",
+  "tier": "sandbox",
+  "mcpTool": "sba_chrome_extension_handoff"
+ },
+ {
+  "id": "mcp:sba_chrome_extension_resume",
+  "tier": "sandbox",
+  "mcpTool": "sba_chrome_extension_resume"
+ },
+ {
+  "id": "mcp:sba_chrome_extension_status",
+  "tier": "sandbox",
+  "mcpTool": "sba_chrome_extension_status"
+ },
+ {
+  "id": "mcp:sba_chrome_extension_troubleshoot",
+  "tier": "sandbox",
+  "mcpTool": "sba_chrome_extension_troubleshoot"
+ },
+ {
+  "id": "mcp:sba_chrome_mcp_autostart_plan",
+  "tier": "safe",
+  "mcpTool": "sba_chrome_mcp_autostart_plan"
+ },
+ {
+  "id": "mcp:sba_chrome_mcp_autostart_plan_status",
+  "tier": "safe",
+  "mcpTool": "sba_chrome_mcp_autostart_plan_status"
+ },
+ {
+  "id": "mcp:sba_chrome_mcp_handoff",
+  "tier": "safe",
+  "mcpTool": "sba_chrome_mcp_handoff"
+ },
+ {
+  "id": "mcp:sba_chrome_mcp_observation",
+  "tier": "safe",
+  "mcpTool": "sba_chrome_mcp_observation"
+ },
+ {
+  "id": "mcp:sba_chrome_mcp_observation_status",
+  "tier": "safe",
+  "mcpTool": "sba_chrome_mcp_observation_status"
+ },
+ {
+  "id": "mcp:sba_chrome_mcp_status",
+  "tier": "safe",
+  "mcpTool": "sba_chrome_mcp_status"
+ },
+ {
+  "id": "mcp:sba_chrome_mcp_timeout_plan",
+  "tier": "safe",
+  "mcpTool": "sba_chrome_mcp_timeout_plan"
+ },
+ {
+  "id": "mcp:sba_chrome_mcp_timeout_plan_status",
+  "tier": "safe",
+  "mcpTool": "sba_chrome_mcp_timeout_plan_status"
+ },
+ {
+  "id": "mcp:sba_compact_command_audit",
+  "tier": "safe",
+  "mcpTool": "sba_compact_command_audit"
+ },
+ {
+  "id": "mcp:sba_completion_proof_bundle",
+  "tier": "safe",
+  "mcpTool": "sba_completion_proof_bundle"
+ },
+ {
+  "id": "mcp:sba_completion_proof_bundle_status",
+  "tier": "safe",
+  "mcpTool": "sba_completion_proof_bundle_status"
+ },
+ {
+  "id": "mcp:sba_completion_proof_bundle_watch",
+  "tier": "safe",
+  "mcpTool": "sba_completion_proof_bundle_watch"
+ },
+ {
+  "id": "mcp:sba_control_status",
+  "tier": "safe",
+  "mcpTool": "sba_control_status"
+ },
+ {
+  "id": "mcp:sba_lightpanda_decision",
+  "tier": "safe",
+  "mcpTool": "sba_lightpanda_decision"
+ },
+ {
+  "id": "mcp:sba_lightpanda_doctor",
+  "tier": "safe",
+  "mcpTool": "sba_lightpanda_doctor"
+ },
+ {
+  "id": "mcp:sba_login_handoff_status",
+  "tier": "safe",
+  "mcpTool": "sba_login_handoff_status"
+ },
+ {
+  "id": "mcp:sba_objective_completion_audit",
+  "tier": "safe",
+  "mcpTool": "sba_objective_completion_audit"
+ },
+ {
+  "id": "mcp:sba_objective_completion_audit_status",
+  "tier": "safe",
+  "mcpTool": "sba_objective_completion_audit_status"
+ },
+ {
+  "id": "mcp:sba_objective_completion_audit_watch",
+  "tier": "safe",
+  "mcpTool": "sba_objective_completion_audit_watch"
+ },
+ {
+  "id": "mcp:sba_objective_handoff",
+  "tier": "safe",
+  "mcpTool": "sba_objective_handoff"
+ },
+ {
+  "id": "mcp:sba_objective_next",
+  "tier": "safe",
+  "mcpTool": "sba_objective_next"
+ },
+ {
+  "id": "mcp:sba_objective_proof_pipeline",
+  "tier": "safe",
+  "mcpTool": "sba_objective_proof_pipeline"
+ },
+ {
+  "id": "mcp:sba_objective_resume",
+  "tier": "safe",
+  "mcpTool": "sba_objective_resume"
+ },
+ {
+  "id": "mcp:sba_objective_safe_command",
+  "tier": "safe",
+  "mcpTool": "sba_objective_safe_command"
+ },
+ {
+  "id": "mcp:sba_objective_status",
+  "tier": "safe",
+  "mcpTool": "sba_objective_status"
+ },
+ {
+  "id": "mcp:sba_operator_pack",
+  "tier": "sandbox",
+  "mcpTool": "sba_operator_pack"
+ },
+ {
+  "id": "mcp:sba_operator_pack_status",
+  "tier": "sandbox",
+  "mcpTool": "sba_operator_pack_status"
+ },
+ {
+  "id": "mcp:sba_operator_runbook",
+  "tier": "safe",
+  "mcpTool": "sba_operator_runbook"
+ },
+ {
+  "id": "mcp:sba_operator_runbook_status",
+  "tier": "safe",
+  "mcpTool": "sba_operator_runbook_status"
+ },
+ {
+  "id": "mcp:sba_operator_runbook_watch",
+  "tier": "safe",
+  "mcpTool": "sba_operator_runbook_watch"
+ },
+ {
+  "id": "mcp:sba_playwright_doctor",
+  "tier": "safe",
+  "mcpTool": "sba_playwright_doctor"
+ },
+ {
+  "id": "mcp:sba_profile_status",
+  "tier": "safe",
+  "mcpTool": "sba_profile_status"
+ },
+ {
+  "id": "mcp:sba_proof_gate_status",
+  "tier": "safe",
+  "mcpTool": "sba_proof_gate_status"
+ },
+ {
+  "id": "mcp:sba_proof_gate_watch",
+  "tier": "sandbox",
+  "mcpTool": "sba_proof_gate_watch"
+ },
+ {
+  "id": "mcp:sba_provider_benchmark",
+  "tier": "sandbox",
+  "mcpTool": "sba_provider_benchmark"
+ },
+ {
+  "id": "mcp:sba_provider_doctor_status",
+  "tier": "safe",
+  "mcpTool": "sba_provider_doctor_status"
+ },
+ {
+  "id": "mcp:sba_providers",
+  "tier": "safe",
+  "mcpTool": "sba_providers"
+ },
+ {
+  "id": "mcp:sba_readiness_audit",
+  "tier": "safe",
+  "mcpTool": "sba_readiness_audit"
+ },
+ {
+  "id": "mcp:sba_regular_chrome_refresh",
+  "tier": "sandbox",
+  "mcpTool": "sba_regular_chrome_refresh"
+ },
+ {
+  "id": "mcp:sba_regular_chrome_status",
+  "tier": "safe",
+  "mcpTool": "sba_regular_chrome_status"
+ },
+ {
+  "id": "mcp:sba_regular_chrome_use",
+  "tier": "safe",
+  "mcpTool": "sba_regular_chrome_use"
+ },
+ {
+  "id": "mcp:sba_regular_chrome_watch",
+  "tier": "safe",
+  "mcpTool": "sba_regular_chrome_watch"
+ },
+ {
+  "id": "mcp:sba_run_gate_audit",
+  "tier": "safe",
+  "mcpTool": "sba_run_gate_audit"
+ },
+ {
+  "id": "mcp:sba_runtime_audit",
+  "tier": "safe",
+  "mcpTool": "sba_runtime_audit"
+ },
+ {
+  "id": "mcp:sba_runtime_cleanup_plan",
+  "tier": "safe",
+  "mcpTool": "sba_runtime_cleanup_plan"
+ },
+ {
+  "id": "mcp:sba_secret_audit",
+  "tier": "safe",
+  "mcpTool": "sba_secret_audit"
+ },
+ {
+  "id": "mcp:sba_secret_env_handoff",
+  "tier": "safe",
+  "mcpTool": "sba_secret_env_handoff"
+ },
+ {
+  "id": "mcp:sba_secret_env_handoff_status",
+  "tier": "safe",
+  "mcpTool": "sba_secret_env_handoff_status"
+ },
+ {
+  "id": "mcp:sba_secret_env_handoff_watch",
+  "tier": "safe",
+  "mcpTool": "sba_secret_env_handoff_watch"
+ },
+ {
+  "id": "mcp:sba_secret_run_plan",
+  "tier": "safe",
+  "mcpTool": "sba_secret_run_plan"
+ },
+ {
+  "id": "mcp:sba_secret_run_select",
+  "tier": "safe",
+  "mcpTool": "sba_secret_run_select"
+ },
+ {
+  "id": "mcp:sba_secret_setup_plan",
+  "tier": "safe",
+  "mcpTool": "sba_secret_setup_plan"
+ },
+ {
+  "id": "mcp:sba_selenium_doctor",
+  "tier": "safe",
+  "mcpTool": "sba_selenium_doctor"
+ },
+ {
+  "id": "mcp:sba_source_audit",
+  "tier": "safe",
+  "mcpTool": "sba_source_audit"
+ },
+ {
+  "id": "mcp:sba_target_approval_pack",
+  "tier": "safe",
+  "mcpTool": "sba_target_approval_pack"
+ },
+ {
+  "id": "mcp:sba_target_approval_preflight",
+  "tier": "safe",
+  "mcpTool": "sba_target_approval_preflight"
+ },
+ {
+  "id": "mcp:sba_target_approval_resume",
+  "tier": "safe",
+  "mcpTool": "sba_target_approval_resume"
+ },
+ {
+  "id": "mcp:sba_target_approval_resume_status",
+  "tier": "safe",
+  "mcpTool": "sba_target_approval_resume_status"
+ },
+ {
+  "id": "mcp:sba_target_approval_resume_watch",
+  "tier": "safe",
+  "mcpTool": "sba_target_approval_resume_watch"
+ },
+ {
+  "id": "mcp:sba_target_approval_status",
+  "tier": "safe",
+  "mcpTool": "sba_target_approval_status"
+ },
+ {
+  "id": "mcp:sba_target_audit",
+  "tier": "safe",
+  "mcpTool": "sba_target_audit"
+ },
+ {
+  "id": "mcp:sba_target_auth_check",
+  "tier": "safe",
+  "mcpTool": "sba_target_auth_check"
+ },
+ {
+  "id": "mcp:sba_target_auth_watch",
+  "tier": "safe",
+  "mcpTool": "sba_target_auth_watch"
+ },
+ {
+  "id": "mcp:sba_target_benchmark",
+  "tier": "sandbox",
+  "mcpTool": "sba_target_benchmark"
+ },
+ {
+  "id": "mcp:sba_target_bootstrap_plan",
+  "tier": "safe",
+  "mcpTool": "sba_target_bootstrap_plan"
+ },
+ {
+  "id": "mcp:sba_target_candidate_plan",
+  "tier": "safe",
+  "mcpTool": "sba_target_candidate_plan"
+ },
+ {
+  "id": "mcp:sba_target_candidate_plan_status",
+  "tier": "safe",
+  "mcpTool": "sba_target_candidate_plan_status"
+ },
+ {
+  "id": "mcp:sba_target_candidate_plan_watch",
+  "tier": "safe",
+  "mcpTool": "sba_target_candidate_plan_watch"
+ },
+ {
+  "id": "mcp:sba_target_daemon",
+  "tier": "sandbox",
+  "mcpTool": "sba_target_daemon"
+ },
+ {
+  "id": "mcp:sba_target_handoff_resume",
+  "tier": "sandbox",
+  "mcpTool": "sba_target_handoff_resume"
+ },
+ {
+  "id": "mcp:sba_target_handoff_resume_status",
+  "tier": "safe",
+  "mcpTool": "sba_target_handoff_resume_status"
+ },
+ {
+  "id": "mcp:sba_target_handoff_resume_watch",
+  "tier": "safe",
+  "mcpTool": "sba_target_handoff_resume_watch"
+ },
+ {
+  "id": "mcp:sba_target_handoff_run",
+  "tier": "sandbox",
+  "mcpTool": "sba_target_handoff_run"
+ },
+ {
+  "id": "mcp:sba_target_handoff_status",
+  "tier": "safe",
+  "mcpTool": "sba_target_handoff_status"
+ },
+ {
+  "id": "mcp:sba_target_login_capture",
+  "tier": "sandbox",
+  "mcpTool": "sba_target_login_capture"
+ },
+ {
+  "id": "mcp:sba_target_operate_add",
+  "tier": "safe",
+  "mcpTool": "sba_target_operate_add"
+ },
+ {
+  "id": "mcp:sba_target_permissions",
+  "tier": "safe",
+  "mcpTool": "sba_target_permissions"
+ },
+ {
+  "id": "mcp:sba_target_proof",
+  "tier": "safe",
+  "mcpTool": "sba_target_proof"
+ },
+ {
+  "id": "mcp:sba_target_proof_capture",
+  "tier": "sandbox",
+  "mcpTool": "sba_target_proof_capture"
+ },
+ {
+  "id": "mcp:sba_target_proof_inventory",
+  "tier": "safe",
+  "mcpTool": "sba_target_proof_inventory"
+ },
+ {
+  "id": "mcp:sba_target_proof_next",
+  "tier": "safe",
+  "mcpTool": "sba_target_proof_next"
+ },
+ {
+  "id": "mcp:sba_target_proof_plan",
+  "tier": "safe",
+  "mcpTool": "sba_target_proof_plan"
+ },
+ {
+  "id": "mcp:sba_target_run",
+  "tier": "sandbox",
+  "mcpTool": "sba_target_run"
+ },
+ {
+  "id": "mcp:sba_target_run_status",
+  "tier": "safe",
+  "mcpTool": "sba_target_run_status"
+ },
+ {
+  "id": "mcp:sba_target_scrape",
+  "tier": "sandbox",
+  "mcpTool": "sba_target_scrape"
+ },
+ {
+  "id": "mcp:sba_target_status",
+  "tier": "safe",
+  "mcpTool": "sba_target_status"
+ },
+ {
+  "id": "misc:bad-engine",
+  "steps": [
+   {
+    "argv": [
+     "doctor",
+     "--engine",
+     "bogus",
+     "--offline"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "misc:help",
+  "steps": [
+   {
+    "argv": [
+     "help"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "misc:missing-policy",
+  "steps": [
+   {
+    "argv": [
+     "doctor",
+     "--policy",
+     "no-such-policy.json",
+     "--offline"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "misc:no-args",
+  "steps": [
+   {
+    "argv": []
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "misc:unknown-command",
+  "steps": [
+   {
+    "argv": [
+     "no-such-command"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "probe:agent-backend-select",
+  "steps": [
+   {
+    "argv": [
+     "agent-backend-select",
+     "--task",
+     "existing-tab",
+     "--chrome-mcp-connected",
+     "yes",
+     "--chrome-mcp-page-list-ok",
+     "yes",
+     "--chrome-mcp-page-count",
+     "1",
+     "--format",
+     "compact"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "probe:agent-browser-doctor",
+  "steps": [
+   {
+    "argv": [
+     "agent-browser-doctor",
+     "--format",
+     "compact"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "probe:agent-control-plane",
+  "steps": [
+   {
+    "argv": [
+     "agent-control-plane",
+     "--write",
+     "--task",
+     "existing-tab",
+     "--chrome-mcp-connected",
+     "yes",
+     "--chrome-mcp-page-list-ok",
+     "yes",
+     "--chrome-mcp-page-count",
+     "1",
+     "--format",
+     "compact"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "probe:agent-control-plane-status",
+  "steps": [
+   {
+    "argv": [
+     "agent-control-plane-status",
+     "--format",
+     "compact"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "probe:agent-control-plane-watch",
+  "steps": [
+   {
+    "argv": [
+     "agent-control-plane-watch",
+     "--run",
+     "--format",
+     "compact"
+    ]
+   }
+  ],
+  "tier": "sandbox"
+ },
+ {
+  "id": "probe:agent-loop-step",
+  "steps": [
+   {
+    "argv": [
+     "agent-loop-step",
+     "--format",
+     "compact"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "probe:agent-loop-step-status",
+  "steps": [
+   {
+    "argv": [
+     "agent-loop-step-status",
+     "--format",
+     "compact"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "probe:agent-loop-step-status-short",
+  "steps": [
+   {
+    "argv": [
+     "agent-loop-step-status",
+     "--monitor-timeout-ms",
+     "10000",
+     "--monitor-interval-ms",
+     "1000",
+     "--format",
+     "compact"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "probe:agent-next",
+  "steps": [
+   {
+    "argv": [
+     "agent-next",
+     "--format",
+     "compact"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "probe:agent-preflight",
+  "steps": [
+   {
+    "argv": [
+     "agent-preflight",
+     "--format",
+     "compact"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "probe:agent-proof-checklist",
+  "steps": [
+   {
+    "argv": [
+     "agent-proof-checklist",
+     "--format",
+     "compact"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "probe:agent-proof-checklist-status",
+  "steps": [
+   {
+    "argv": [
+     "agent-proof-checklist-status",
+     "--format",
+     "compact"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "probe:agent-proof-closeout",
+  "steps": [
+   {
+    "argv": [
+     "agent-proof-closeout",
+     "--include-compact-command-audit",
+     "--format",
+     "compact"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "probe:agent-proof-closeout-status",
+  "steps": [
+   {
+    "argv": [
+     "agent-proof-closeout",
+     "--include-compact-command-audit",
+     "--write",
+     "--out",
+     "operator/agent-proof-closeout-latest.json",
+     "--format",
+     "compact"
+    ]
+   },
+   {
+    "argv": [
+     "agent-proof-closeout-status",
+     "--format",
+     "compact"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "probe:agent-proof-step",
+  "steps": [
+   {
+    "argv": [
+     "agent-proof-step",
+     "--format",
+     "compact"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "probe:agent-proof-step-start",
+  "steps": [
+   {
+    "argv": [
+     "agent-proof-step-start",
+     "--format",
+     "compact"
+    ]
+   }
+  ],
+  "tier": "sandbox"
+ },
+ {
+  "id": "probe:agent-proof-step-status",
+  "steps": [
+   {
+    "argv": [
+     "agent-proof-step-status",
+     "--format",
+     "compact"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "probe:agent-workflow-existing-tab",
+  "steps": [
+   {
+    "argv": [
+     "agent-workflow",
+     "--task",
+     "existing-tab",
+     "--intent",
+     "inspect",
+     "--match-origin",
+     "https://github.com",
+     "--match-path",
+     "/notifications",
+     "--chrome-extension-prepared",
+     "yes",
+     "--chrome-extension-backend-available",
+     "yes",
+     "--format",
+     "compact"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "probe:analyze-cdp",
+  "steps": [
+   {
+    "argv": [
+     "analyze-cdp",
+     "data:text/html,<main><h1>Catalog</h1><script>console.log(\"ready\")</script><ul><li class=\"item\"><a href=\"/a\">A</a><span>100</span></li><li class=\"item\"><a href=\"/b\">B</a><span>200</span></li></ul></main>",
+     "--profile",
+     "cdp-analyze-probe"
+    ]
+   }
+  ],
+  "tier": "sandbox"
+ },
+ {
+  "id": "probe:backend-matrix",
+  "steps": [
+   {
+    "argv": [
+     "backend-matrix",
+     "--format",
+     "compact"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "probe:backend-matrix-status",
+  "steps": [
+   {
+    "argv": [
+     "backend-matrix-status",
+     "--format",
+     "compact"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "probe:background-monitor-plan",
+  "steps": [
+   {
+    "argv": [
+     "background-monitor-plan",
+     "--timeout-ms",
+     "120000",
+     "--interval-ms",
+     "2500",
+     "--format",
+     "compact"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "probe:background-proof-capture-plan",
+  "steps": [
+   {
+    "argv": [
+     "background-proof-capture-plan",
+     "--timeout-ms",
+     "120000",
+     "--interval-ms",
+     "2500",
+     "--format",
+     "compact"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "probe:background-proof-capture-start",
+  "steps": [
+   {
+    "argv": [
+     "background-proof-capture-start",
+     "--mode",
+     "capture",
+     "--format",
+     "compact"
+    ]
+   }
+  ],
+  "tier": "sandbox"
+ },
+ {
+  "id": "probe:background-proof-capture-status",
+  "steps": [
+   {
+    "argv": [
+     "background-proof-capture-status",
+     "--format",
+     "compact"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "probe:benchmark",
+  "steps": [
+   {
+    "argv": [
+     "benchmark",
+     "--quick",
+     "--iterations",
+     "1",
+     "--format",
+     "markdown"
+    ]
+   }
+  ],
+  "tier": "sandbox"
+ },
+ {
+  "id": "probe:browser-route",
+  "steps": [
+   {
+    "argv": [
+     "browser-route",
+     "--format",
+     "compact"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "probe:cdp",
+  "steps": [
+   {
+    "argv": [
+     "outline-cdp",
+     "data:text/html,<h1>CDP</h1><a href=\"/cdp\">Link</a>",
+     "--profile",
+     "cdp-probe"
+    ]
+   }
+  ],
+  "tier": "sandbox"
+ },
+ {
+  "id": "probe:cdp-daemon",
+  "steps": [
+   {
+    "argv": [
+     "cdp-start",
+     "--profile",
+     "cdp-daemon-probe"
+    ]
+   },
+   {
+    "argv": [
+     "outline-cdp",
+     "data:text/html,<h1>Daemon</h1>",
+     "--profile",
+     "cdp-daemon-probe",
+     "--daemon"
+    ]
+   },
+   {
+    "argv": [
+     "cdp-stop",
+     "--profile",
+     "cdp-daemon-probe"
+    ]
+   }
+  ],
+  "tier": "sandbox"
+ },
+ {
+  "id": "probe:chrome",
+  "steps": [
+   {
+    "argv": [
+     "extract",
+     "data:text/html,<a href=\"/x\">Link</a>",
+     "--selector",
+     "a",
+     "--fields",
+     "text,href",
+     "--profile",
+     "public"
+    ]
+   }
+  ],
+  "tier": "sandbox"
+ },
+ {
+  "id": "probe:chrome-apple-events-enable-plan",
+  "steps": [
+   {
+    "argv": [
+     "chrome-apple-events-enable-plan",
+     "--format",
+     "compact"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "probe:chrome-apple-events-outline",
+  "steps": [
+   {
+    "argv": [
+     "chrome-apple-events-outline",
+     "--format",
+     "compact"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "probe:chrome-apple-events-status",
+  "steps": [
+   {
+    "argv": [
+     "chrome-apple-events-status",
+     "--format",
+     "compact"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "probe:chrome-control-plan",
+  "steps": [
+   {
+    "argv": [
+     "chrome-control-plan",
+     "--format",
+     "compact"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "probe:chrome-extension-backend-check-plan",
+  "steps": [
+   {
+    "argv": [
+     "chrome-extension-backend-check-plan",
+     "--format",
+     "compact"
+    ]
+   }
+  ],
+  "tier": "sandbox"
+ },
+ {
+  "id": "probe:chrome-extension-claim-plan",
+  "steps": [
+   {
+    "argv": [
+     "chrome-extension-claim-plan",
+     "--backend-ready",
+     "yes",
+     "--intent",
+     "inspect",
+     "--match-origin",
+     "https://github.com",
+     "--match-path",
+     "/notifications",
+     "--format",
+     "compact"
+    ]
+   }
+  ],
+  "tier": "sandbox"
+ },
+ {
+  "id": "probe:chrome-extension-handoff",
+  "steps": [
+   {
+    "argv": [
+     "chrome-extension-handoff",
+     "--format",
+     "compact"
+    ]
+   }
+  ],
+  "tier": "sandbox"
+ },
+ {
+  "id": "probe:chrome-extension-resume",
+  "steps": [
+   {
+    "argv": [
+     "chrome-extension-resume",
+     "--format",
+     "compact"
+    ]
+   }
+  ],
+  "tier": "sandbox"
+ },
+ {
+  "id": "probe:chrome-extension-status",
+  "steps": [
+   {
+    "argv": [
+     "chrome-extension-status",
+     "--format",
+     "compact"
+    ]
+   }
+  ],
+  "tier": "sandbox"
+ },
+ {
+  "id": "probe:chrome-extension-troubleshoot",
+  "steps": [
+   {
+    "argv": [
+     "chrome-extension-troubleshoot",
+     "--backend-available",
+     "no",
+     "--backend-last-error",
+     "Browser is not available: extension",
+     "--format",
+     "compact"
+    ]
+   }
+  ],
+  "tier": "sandbox"
+ },
+ {
+  "id": "probe:chrome-extension-troubleshoot-after-retry",
+  "steps": [
+   {
+    "argv": [
+     "chrome-extension-troubleshoot",
+     "--backend-available",
+     "no",
+     "--backend-last-error",
+     "Transport closed",
+     "--profile-window-retry-attempted",
+     "yes",
+     "--format",
+     "compact"
+    ]
+   }
+  ],
+  "tier": "sandbox"
+ },
+ {
+  "id": "probe:chrome-mcp-handoff",
+  "steps": [
+   {
+    "argv": [
+     "chrome-mcp-handoff",
+     "--format",
+     "compact"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "probe:chrome-mcp-observation",
+  "steps": [
+   {
+    "argv": [
+     "chrome-mcp-observation",
+     "--status-text",
+     "Chrome DevTools MCP Status\n\nConnected: yes\nTools: 29",
+     "--list-pages-text",
+     "Pages:\n- 0: Example https://example.com/",
+     "--source",
+     "package-probe",
+     "--format",
+     "compact"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "probe:chrome-mcp-observation-flags",
+  "steps": [
+   {
+    "argv": [
+     "chrome-mcp-observation",
+     "--observed-connected",
+     "yes",
+     "--observed-tools",
+     "29",
+     "--observed-page-list-ok",
+     "no",
+     "--observed-list-pages-timed-out",
+     "yes",
+     "--observed-last-error",
+     "Network.enable timed out",
+     "--source",
+     "package-probe-normalized",
+     "--format",
+     "compact"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "probe:chrome-mcp-observation-status",
+  "steps": [
+   {
+    "argv": [
+     "chrome-mcp-observation-status",
+     "--format",
+     "compact"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "probe:chrome-mcp-status",
+  "steps": [
+   {
+    "argv": [
+     "chrome-mcp-status",
+     "--format",
+     "compact"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "probe:chrome-mcp-timeout-plan",
+  "steps": [
+   {
+    "argv": [
+     "chrome-mcp-timeout-plan",
+     "--write",
+     "--observed-connected",
+     "yes",
+     "--observed-tools",
+     "29",
+     "--observed-last-error",
+     "Network.enable timed out",
+     "--observed-source",
+     "package-probe",
+     "--format",
+     "compact"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "probe:chrome-mcp-timeout-plan-status",
+  "steps": [
+   {
+    "argv": [
+     "chrome-mcp-timeout-plan-status",
+     "--format",
+     "compact"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "probe:compact-command-audit",
+  "steps": [
+   {
+    "argv": [
+     "compact-command-audit",
+     "--format",
+     "compact"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "probe:compact-command-audit-all",
+  "steps": [
+   {
+    "argv": [
+     "compact-command-audit",
+     "--source",
+     "all",
+     "--strict",
+     "--format",
+     "compact"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "probe:compact-command-audit-ci",
+  "steps": [
+   {
+    "argv": [
+     "compact-command-audit",
+     "--source",
+     "run-gate-audit",
+     "--format",
+     "compact"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "probe:completion-proof-bundle",
+  "steps": [
+   {
+    "argv": [
+     "completion-proof-bundle",
+     "--include-compact-command-audit",
+     "--format",
+     "compact"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "probe:completion-proof-bundle-audit",
+  "steps": [
+   {
+    "argv": [
+     "completion-proof-bundle",
+     "--include-compact-command-audit",
+     "--format",
+     "compact"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "probe:completion-proof-bundle-status",
+  "steps": [
+   {
+    "argv": [
+     "completion-proof-bundle",
+     "--include-compact-command-audit",
+     "--write",
+     "--out",
+     "operator/completion-proof-bundle-latest.json",
+     "--format",
+     "compact"
+    ]
+   },
+   {
+    "argv": [
+     "completion-proof-bundle-status",
+     "--format",
+     "compact"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "probe:completion-proof-bundle-watch",
+  "steps": [
+   {
+    "argv": [
+     "completion-proof-bundle-watch",
+     "--run",
+     "--in",
+     "operator/completion-proof-bundle-latest.json",
+     "--out",
+     "operator/completion-proof-bundle-latest.json",
+     "--format",
+     "compact"
+    ]
+   }
+  ],
+  "tier": "sandbox"
+ },
+ {
+  "id": "probe:console-cdp",
+  "steps": [
+   {
+    "argv": [
+     "console-cdp",
+     "data:text/html,<script>console.log(\"hello\",42);console.error(\"bad\");setTimeout(()=>{throw new Error(\"boom\")},20)</script>",
+     "--wait-ms",
+     "150",
+     "--profile",
+     "cdp-console-probe"
+    ]
+   }
+  ],
+  "tier": "sandbox"
+ },
+ {
+  "id": "probe:control-status",
+  "steps": [
+   {
+    "argv": [
+     "control-status",
+     "--format",
+     "compact"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "probe:control-status-short",
+  "steps": [
+   {
+    "argv": [
+     "control-status",
+     "--monitor-timeout-ms",
+     "10000",
+     "--monitor-interval-ms",
+     "1000",
+     "--format",
+     "compact"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "probe:github-repo-research",
+  "steps": [
+   {
+    "argv": [
+     "github-repo-research",
+     "--limit",
+     "8",
+     "--format",
+     "compact"
+    ]
+   }
+  ],
+  "tier": "sandbox"
+ },
+ {
+  "id": "probe:inspect-cdp",
+  "steps": [
+   {
+    "argv": [
+     "inspect-cdp",
+     "data:text/html,<main><h1>Catalog</h1><ul><li class=\"item\"><a href=\"/a\">A</a><span class=\"price\">100</span></li><li class=\"item\"><a href=\"/b\">B</a><span class=\"price\">200</span></li></ul></main>",
+     "--profile",
+     "cdp-inspect-probe"
+    ]
+   }
+  ],
+  "tier": "sandbox"
+ },
+ {
+  "id": "probe:lightpanda",
+  "steps": [
+   {
+    "argv": [
+     "extract",
+     "data:text/html,<a href=\"/x\">Link</a>",
+     "--selector",
+     "a",
+     "--fields",
+     "text,href",
+     "--profile",
+     "public",
+     "--engine",
+     "lightpanda"
+    ]
+   }
+  ],
+  "tier": "sandbox"
+ },
+ {
+  "id": "probe:lightpanda-decision",
+  "steps": [
+   {
+    "argv": [
+     "lightpanda-decision",
+     "--decision",
+     "reject",
+     "--format",
+     "markdown"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "probe:lightpanda-doctor",
+  "steps": [
+   {
+    "argv": [
+     "lightpanda-doctor",
+     "--format",
+     "compact"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "probe:lightpanda-gate",
+  "steps": [
+   {
+    "argv": [
+     "lightpanda-gate",
+     "--format",
+     "compact"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "probe:login-handoff-status",
+  "steps": [
+   {
+    "argv": [
+     "login-handoff-status",
+     "--format",
+     "compact"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "probe:objective-completion-audit",
+  "steps": [
+   {
+    "argv": [
+     "objective-completion-audit",
+     "--format",
+     "markdown"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "probe:objective-completion-audit-status",
+  "steps": [
+   {
+    "argv": [
+     "objective-completion-audit-status",
+     "--format",
+     "compact"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "probe:objective-completion-audit-watch",
+  "steps": [
+   {
+    "argv": [
+     "objective-completion-audit-watch",
+     "--run",
+     "--format",
+     "compact"
+    ]
+   }
+  ],
+  "tier": "sandbox"
+ },
+ {
+  "id": "probe:objective-handoff",
+  "steps": [
+   {
+    "argv": [
+     "objective-handoff",
+     "--format",
+     "markdown"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "probe:objective-next",
+  "steps": [
+   {
+    "argv": [
+     "objective-next",
+     "--format",
+     "compact"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "probe:objective-proof-pipeline",
+  "steps": [
+   {
+    "argv": [
+     "objective-proof-pipeline",
+     "--format",
+     "compact"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "probe:objective-resume",
+  "steps": [
+   {
+    "argv": [
+     "objective-resume",
+     "--format",
+     "markdown"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "probe:objective-status",
+  "steps": [
+   {
+    "argv": [
+     "objective-status",
+     "--format",
+     "markdown"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "probe:observe-cdp",
+  "steps": [
+   {
+    "argv": [
+     "observe-cdp",
+     "data:text/html,<main><h1>CDP</h1><a href=\"/cdp\">Link</a><label>Search<input name=\"q\"></label></main>",
+     "--profile",
+     "cdp-observe-probe"
+    ]
+   }
+  ],
+  "tier": "sandbox"
+ },
+ {
+  "id": "probe:operate-cdp",
+  "steps": [
+   {
+    "argv": [
+     "click-cdp",
+     "data:text/html,<h1>Before</h1><button id=\"go\" onclick=\"document.querySelector(&quot;h1&quot;).textContent=&quot;After&quot;\">Go</button>",
+     "--selector",
+     "#go",
+     "--profile",
+     "cdp-operate-probe"
+    ]
+   }
+  ],
+  "tier": "sandbox"
+ },
+ {
+  "id": "probe:operator-pack",
+  "steps": [
+   {
+    "argv": [
+     "operator-pack",
+     "--format",
+     "compact"
+    ]
+   }
+  ],
+  "tier": "sandbox"
+ },
+ {
+  "id": "probe:operator-pack-apple-events",
+  "steps": [
+   {
+    "argv": [
+     "operator-pack",
+     "--chrome-mcp-connected",
+     "yes",
+     "--chrome-mcp-page-list-ok",
+     "no",
+     "--chrome-mcp-last-error",
+     "Network.enable timed out",
+     "--chrome-extension-backend-available",
+     "no",
+     "--chrome-extension-backend-last-error",
+     "Transport closed",
+     "--apple-events-active-tab-observed",
+     "yes",
+     "--apple-events-javascript-allowed",
+     "no",
+     "--format",
+     "compact"
+    ]
+   }
+  ],
+  "tier": "sandbox"
+ },
+ {
+  "id": "probe:operator-runbook",
+  "steps": [
+   {
+    "argv": [
+     "operator-runbook",
+     "--format",
+     "compact"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "probe:operator-runbook-status",
+  "steps": [
+   {
+    "argv": [
+     "operator-runbook-status",
+     "--format",
+     "compact"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "probe:operator-runbook-watch",
+  "steps": [
+   {
+    "argv": [
+     "operator-runbook-watch",
+     "--run",
+     "--format",
+     "compact"
+    ]
+   }
+  ],
+  "tier": "sandbox"
+ },
+ {
+  "id": "probe:outline",
+  "steps": [
+   {
+    "argv": [
+     "outline",
+     "data:text/html,<h1>Title</h1><form action=\"/login\"><label>Email<input name=\"email\"></label></form><table><tr><th>Name</th></tr></table>",
+     "--profile",
+     "public"
+    ]
+   }
+  ],
+  "tier": "sandbox"
+ },
+ {
+  "id": "probe:playwright",
+  "steps": [
+   {
+    "argv": [
+     "outline-playwright",
+     "data:text/html,<h1>PW</h1><a href=\"/pw\">Link</a>"
+    ]
+   }
+  ],
+  "tier": "sandbox"
+ },
+ {
+  "id": "probe:playwright-doctor",
+  "steps": [
+   {
+    "argv": [
+     "playwright-doctor",
+     "--format",
+     "compact"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "probe:profile-status",
+  "steps": [
+   {
+    "argv": [
+     "profile-status",
+     "--profile",
+     "public"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "probe:proof-gate-status",
+  "steps": [
+   {
+    "argv": [
+     "proof-gate-status",
+     "--format",
+     "markdown"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "probe:proof-gate-watch",
+  "steps": [
+   {
+    "argv": [
+     "proof-gate-watch",
+     "--timeout-ms",
+     "0",
+     "--interval-ms",
+     "1",
+     "--format",
+     "compact"
+    ]
+   }
+  ],
+  "tier": "sandbox"
+ },
+ {
+  "id": "probe:provider-doctor-status",
+  "steps": [
+   {
+    "argv": [
+     "provider-doctor-status",
+     "--format",
+     "compact"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "probe:providers",
+  "steps": [
+   {
+    "argv": [
+     "providers",
+     "--format",
+     "markdown"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "probe:readiness",
+  "steps": [
+   {
+    "argv": [
+     "readiness-audit",
+     "--format",
+     "markdown"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "probe:readiness-compact",
+  "steps": [
+   {
+    "argv": [
+     "readiness-audit",
+     "--format",
+     "compact"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "probe:recipe-cdp",
+  "steps": [
+   {
+    "argv": [
+     "run-cdp",
+     "examples/cdp-form-recipe.json",
+     "--profile",
+     "cdp-recipe-probe"
+    ]
+   }
+  ],
+  "tier": "sandbox"
+ },
+ {
+  "id": "probe:recipe-csv",
+  "steps": [
+   {
+    "argv": [
+     "run-cdp",
+     "examples/cdp-form-recipe.json",
+     "--profile",
+     "cdp-recipe-csv-probe",
+     "--out",
+     "recipe-probe.csv",
+     "--format",
+     "csv",
+     "--result",
+     "result",
+     "--manifest"
+    ]
+   }
+  ],
+  "tier": "sandbox"
+ },
+ {
+  "id": "probe:recipe-screenshot",
+  "steps": [
+   {
+    "argv": [
+     "run-cdp",
+     "examples/cdp-screenshot-recipe.json",
+     "--profile",
+     "cdp-recipe-screenshot-probe",
+     "--manifest"
+    ]
+   }
+  ],
+  "tier": "sandbox"
+ },
+ {
+  "id": "probe:recipe-wait",
+  "steps": [
+   {
+    "argv": [
+     "run-cdp",
+     "examples/cdp-wait-recipe.json",
+     "--profile",
+     "cdp-recipe-wait-probe"
+    ]
+   }
+  ],
+  "tier": "sandbox"
+ },
+ {
+  "id": "probe:regular-chrome-use",
+  "steps": [
+   {
+    "argv": [
+     "regular-chrome-use",
+     "--intent",
+     "inspect",
+     "--mcp-observation-in",
+     "operator/chrome-mcp-observation-latest.json",
+     "--format",
+     "compact"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "probe:regular-chrome-use-apple-events",
+  "steps": [
+   {
+    "argv": [
+     "regular-chrome-use",
+     "--intent",
+     "inspect",
+     "--chrome-mcp-connected",
+     "yes",
+     "--chrome-mcp-page-list-ok",
+     "no",
+     "--chrome-mcp-last-error",
+     "Network.enable timed out",
+     "--chrome-extension-prepared",
+     "yes",
+     "--chrome-extension-backend-available",
+     "no",
+     "--apple-events-active-tab-observed",
+     "yes",
+     "--apple-events-javascript-allowed",
+     "no",
+     "--format",
+     "compact"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "probe:regular-chrome-use-extension-reinstall",
+  "steps": [
+   {
+    "argv": [
+     "regular-chrome-use",
+     "--intent",
+     "inspect",
+     "--status-text",
+     "Chrome DevTools MCP Status\n\nConnected: yes\nTools: 29",
+     "--list-pages-text",
+     "Chrome DevTools MCP failed: Execution failed: Request timed out after 30000ms",
+     "--chrome-extension-prepared",
+     "yes",
+     "--chrome-extension-backend-available",
+     "no",
+     "--chrome-extension-backend-last-error",
+     "Transport closed",
+     "--chrome-extension-window-retry-attempted",
+     "yes",
+     "--format",
+     "compact"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "probe:regular-chrome-use-write",
+  "steps": [
+   {
+    "argv": [
+     "regular-chrome-use",
+     "--intent",
+     "inspect",
+     "--mcp-observation-in",
+     "operator/chrome-mcp-observation-latest.json",
+     "--write",
+     "--format",
+     "compact"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "probe:run-gate-audit",
+  "steps": [
+   {
+    "argv": [
+     "run-gate-audit",
+     "--format",
+     "compact"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "probe:runtime-audit",
+  "steps": [
+   {
+    "argv": [
+     "runtime-audit",
+     "--format",
+     "markdown"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "probe:runtime-cleanup-plan",
+  "steps": [
+   {
+    "argv": [
+     "runtime-cleanup-plan",
+     "--format",
+     "markdown",
+     "--owner-limit",
+     "5"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "probe:scaffold",
+  "steps": [
+   {
+    "argv": [
+     "scaffold-target",
+     "example-public",
+     "--origin",
+     "https://example.com",
+     "--page-url",
+     "https://example.com",
+     "--query",
+     "example domain",
+     "--permissions",
+     "clipboard,downloads",
+     "--force"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "probe:scrape-cdp",
+  "steps": [
+   {
+    "argv": [
+     "scrape-cdp",
+     "data:text/html,<main><h1>Catalog</h1><ul><li class=\"item\"><a href=\"/a\">A</a><span>100</span></li><li class=\"item\"><a href=\"/b\">B</a><span>200</span></li></ul></main>",
+     "--profile",
+     "cdp-scrape-probe",
+     "--out",
+     "scrape-probe.csv",
+     "--format",
+     "csv",
+     "--manifest"
+    ]
+   }
+  ],
+  "tier": "sandbox"
+ },
+ {
+  "id": "probe:screenshot-cdp",
+  "steps": [
+   {
+    "argv": [
+     "screenshot-cdp",
+     "data:text/html,<main style=\"background:white\"><h1>Shot</h1></main>",
+     "--out",
+     "screenshot-probe.png",
+     "--profile",
+     "cdp-screenshot-probe",
+     "--manifest"
+    ]
+   }
+  ],
+  "tier": "sandbox"
+ },
+ {
+  "id": "probe:search-cdp",
+  "steps": [
+   {
+    "argv": [
+     "search-cdp",
+     "example domain",
+     "--profile",
+     "cdp-search-probe",
+     "--link-limit",
+     "5"
+    ]
+   }
+  ],
+  "tier": "sandbox"
+ },
+ {
+  "id": "probe:secret-audit",
+  "steps": [
+   {
+    "argv": [
+     "secret-audit",
+     "--format",
+     "markdown"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "probe:secret-env-handoff",
+  "steps": [
+   {
+    "argv": [
+     "secret-env-handoff",
+     "--format",
+     "compact"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "probe:secret-env-handoff-status",
+  "steps": [
+   {
+    "argv": [
+     "secret-env-handoff-status",
+     "--format",
+     "compact"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "probe:secret-env-handoff-watch",
+  "steps": [
+   {
+    "argv": [
+     "secret-env-handoff-watch",
+     "--run",
+     "--format",
+     "compact"
+    ]
+   }
+  ],
+  "tier": "sandbox"
+ },
+ {
+  "id": "probe:secret-run-plan",
+  "steps": [
+   {
+    "argv": [
+     "secret-run-plan",
+     "--mode",
+     "service-account",
+     "--command",
+     "target-login-capture",
+     "--target-dir",
+     "runs/target-packs/github",
+     "--format",
+     "compact"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "probe:secret-run-select",
+  "steps": [
+   {
+    "argv": [
+     "secret-run-select",
+     "--command",
+     "target-login-capture",
+     "--target-dir",
+     "runs/target-packs/github",
+     "--format",
+     "compact"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "probe:secret-setup-plan",
+  "steps": [
+   {
+    "argv": [
+     "secret-setup-plan",
+     "--mode",
+     "service-account",
+     "--format",
+     "markdown"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "probe:selenium-doctor",
+  "steps": [
+   {
+    "argv": [
+     "selenium-doctor",
+     "--format",
+     "compact"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "probe:sources",
+  "steps": [
+   {
+    "argv": [
+     "source-audit",
+     "--format",
+     "markdown"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "probe:status-cache",
+  "steps": [
+   {
+    "argv": [
+     "status-cache",
+     "--key",
+     "provider-doctor-status",
+     "--format",
+     "compact"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "probe:target-add-url",
+  "steps": [
+   {
+    "argv": [
+     "target-add-url",
+     "runs/target-packs/example-public",
+     "https://example.com/"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "probe:target-approval-pack",
+  "steps": [
+   {
+    "argv": [
+     "target-approval-pack",
+     "--candidate",
+     "github",
+     "--format",
+     "compact"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "probe:target-approval-preflight",
+  "steps": [
+   {
+    "argv": [
+     "target-approval-preflight",
+     "--candidate",
+     "github",
+     "--real-external",
+     "--format",
+     "compact"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "probe:target-approval-resume",
+  "steps": [
+   {
+    "argv": [
+     "target-approval-resume",
+     "--candidate",
+     "github",
+     "--real-external",
+     "--format",
+     "compact"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "probe:target-approval-resume-status",
+  "steps": [
+   {
+    "argv": [
+     "target-approval-resume-status",
+     "--format",
+     "compact"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "probe:target-approval-resume-watch",
+  "steps": [
+   {
+    "argv": [
+     "target-approval-resume-watch",
+     "--run",
+     "--candidate",
+     "github",
+     "--real-external",
+     "--format",
+     "compact"
+    ]
+   }
+  ],
+  "tier": "sandbox"
+ },
+ {
+  "id": "probe:target-approval-status",
+  "steps": [
+   {
+    "argv": [
+     "target-approval-status",
+     "--candidate",
+     "github",
+     "--real-external",
+     "--format",
+     "compact"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "probe:target-audit",
+  "steps": [
+   {
+    "argv": [
+     "target-audit",
+     "runs/target-packs/example-public"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "probe:target-auth-check",
+  "steps": [
+   {
+    "argv": [
+     "scaffold-target",
+     "example-public",
+     "--origin",
+     "https://example.com",
+     "--page-url",
+     "https://example.com",
+     "--query",
+     "example domain",
+     "--permissions",
+     "clipboard,downloads",
+     "--force"
+    ]
+   },
+   {
+    "argv": [
+     "target-auth-check",
+     "runs/target-packs/example-public",
+     "--format",
+     "markdown"
+    ]
+   }
+  ],
+  "tier": "sandbox"
+ },
+ {
+  "id": "probe:target-autostart",
+  "steps": [
+   {
+    "argv": [
+     "target-autostart",
+     "runs/target-packs/example-public",
+     "plan"
+    ]
+   },
+   {
+    "argv": [
+     "target-autostart",
+     "runs/target-packs/example-public",
+     "write"
+    ]
+   },
+   {
+    "argv": [
+     "target-autostart",
+     "runs/target-packs/example-public",
+     "status"
+    ]
+   },
+   {
+    "argv": [
+     "target-autostart",
+     "runs/target-packs/example-public",
+     "remove"
+    ]
+   }
+  ],
+  "tier": "sandbox"
+ },
+ {
+  "id": "probe:target-batch",
+  "steps": [
+   {
+    "argv": [
+     "scaffold-target",
+     "example-public",
+     "--origin",
+     "https://example.com",
+     "--page-url",
+     "https://example.com",
+     "--query",
+     "example domain",
+     "--permissions",
+     "clipboard,downloads",
+     "--force"
+    ]
+   },
+   {
+    "argv": [
+     "target-batch",
+     "runs/target-packs/example-public",
+     "--format",
+     "compact"
+    ]
+   }
+  ],
+  "tier": "sandbox"
+ },
+ {
+  "id": "probe:target-benchmark",
+  "steps": [
+   {
+    "argv": [
+     "target-benchmark",
+     "runs/target-packs/example-public",
+     "--recipes",
+     "observe,inspect",
+     "--iterations",
+     "1",
+     "--format",
+     "markdown"
+    ]
+   }
+  ],
+  "tier": "sandbox"
+ },
+ {
+  "id": "probe:target-bootstrap-plan",
+  "steps": [
+   {
+    "argv": [
+     "target-bootstrap-plan",
+     "--name",
+     "vendor-service",
+     "--origin",
+     "https://app.vendor-service.com,https://accounts.vendor-service.com",
+     "--login-url",
+     "https://accounts.vendor-service.com/login",
+     "--page-url",
+     "https://app.vendor-service.com/dashboard",
+     "--format",
+     "compact"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "probe:target-candidate-plan",
+  "steps": [
+   {
+    "argv": [
+     "target-candidate-plan",
+     "--format",
+     "compact"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "probe:target-candidate-plan-status",
+  "steps": [
+   {
+    "argv": [
+     "target-candidate-plan-status",
+     "--format",
+     "compact"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "probe:target-candidate-plan-watch",
+  "steps": [
+   {
+    "argv": [
+     "target-candidate-plan-watch",
+     "--run",
+     "--format",
+     "compact"
+    ]
+   }
+  ],
+  "tier": "sandbox"
+ },
+ {
+  "id": "probe:target-crawl",
+  "steps": [
+   {
+    "argv": [
+     "target-run",
+     "runs/target-packs/example-public",
+     "crawl"
+    ]
+   }
+  ],
+  "tier": "sandbox"
+ },
+ {
+  "id": "probe:target-crawl-links",
+  "steps": [
+   {
+    "argv": [
+     "target-run",
+     "runs/target-packs/example-public",
+     "crawl-links"
+    ]
+   }
+  ],
+  "tier": "sandbox"
+ },
+ {
+  "id": "probe:target-daemon",
+  "steps": [
+   {
+    "argv": [
+     "target-daemon",
+     "runs/target-packs/example-public",
+     "start"
+    ]
+   },
+   {
+    "argv": [
+     "target-daemon",
+     "runs/target-packs/example-public",
+     "status"
+    ]
+   },
+   {
+    "argv": [
+     "target-scrape",
+     "runs/target-packs/example-public",
+     "--daemon"
+    ]
+   },
+   {
+    "argv": [
+     "target-daemon",
+     "runs/target-packs/example-public",
+     "stop"
+    ]
+   }
+  ],
+  "tier": "sandbox"
+ },
+ {
+  "id": "probe:target-diagnose",
+  "steps": [
+   {
+    "argv": [
+     "target-run",
+     "runs/target-packs/example-public",
+     "diagnose"
+    ]
+   }
+  ],
+  "tier": "sandbox"
+ },
+ {
+  "id": "probe:target-doctor",
+  "steps": [
+   {
+    "argv": [
+     "target-doctor",
+     "runs/target-packs/example-public"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "probe:target-handoff-resume",
+  "steps": [
+   {
+    "argv": [
+     "target-login-capture",
+     "runs/target-packs/example-public",
+     "--dry-run",
+     "--handoff-out",
+     "operator-handoff.json",
+     "--format",
+     "json"
+    ]
+   },
+   {
+    "argv": [
+     "target-handoff-resume",
+     "runs/target-packs/example-public",
+     "--handoff",
+     "operator-handoff.json",
+     "--format",
+     "compact"
+    ]
+   }
+  ],
+  "tier": "sandbox"
+ },
+ {
+  "id": "probe:target-handoff-run",
+  "steps": [
+   {
+    "argv": [
+     "target-login-capture",
+     "runs/target-packs/example-public",
+     "--dry-run",
+     "--handoff-out",
+     "operator-handoff.json",
+     "--format",
+     "json"
+    ]
+   },
+   {
+    "argv": [
+     "target-handoff-run",
+     "runs/target-packs/example-public",
+     "--handoff",
+     "operator-handoff.json",
+     "--command",
+     "post-login-capture",
+     "--format",
+     "markdown"
+    ]
+   }
+  ],
+  "tier": "sandbox"
+ },
+ {
+  "id": "probe:target-handoff-status",
+  "steps": [
+   {
+    "argv": [
+     "target-login-capture",
+     "runs/target-packs/example-public",
+     "--dry-run",
+     "--handoff-out",
+     "operator-handoff.json",
+     "--format",
+     "json"
+    ]
+   },
+   {
+    "argv": [
+     "target-handoff-status",
+     "runs/target-packs/example-public",
+     "--handoff",
+     "operator-handoff.json",
+     "--format",
+     "compact"
+    ]
+   }
+  ],
+  "tier": "sandbox"
+ },
+ {
+  "id": "probe:target-inspect",
+  "steps": [
+   {
+    "argv": [
+     "target-run",
+     "runs/target-packs/example-public",
+     "inspect"
+    ]
+   }
+  ],
+  "tier": "sandbox"
+ },
+ {
+  "id": "probe:target-login",
+  "steps": [
+   {
+    "argv": [
+     "target-login",
+     "runs/target-packs/example-public",
+     "--dry-run"
+    ]
+   }
+  ],
+  "tier": "sandbox"
+ },
+ {
+  "id": "probe:target-login-capture",
+  "steps": [
+   {
+    "argv": [
+     "target-login-capture",
+     "runs/target-packs/example-public",
+     "--dry-run",
+     "--format",
+     "markdown"
+    ]
+   }
+  ],
+  "tier": "sandbox"
+ },
+ {
+  "id": "probe:target-observe",
+  "steps": [
+   {
+    "argv": [
+     "target-run",
+     "runs/target-packs/example-public",
+     "observe"
+    ]
+   }
+  ],
+  "tier": "sandbox"
+ },
+ {
+  "id": "probe:target-operate",
+  "steps": [
+   {
+    "argv": [
+     "target-run",
+     "runs/target-packs/example-public",
+     "operate"
+    ]
+   }
+  ],
+  "tier": "sandbox"
+ },
+ {
+  "id": "probe:target-operate-add",
+  "steps": [
+   {
+    "argv": [
+     "target-operate-add",
+     "runs/target-packs/example-public",
+     "click",
+     "--selector",
+     "a[href]",
+     "--as",
+     "click_first_link",
+     "--dry-run"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "probe:target-permissions",
+  "steps": [
+   {
+    "argv": [
+     "target-permissions",
+     "runs/target-packs/example-public",
+     "status"
+    ]
+   },
+   {
+    "argv": [
+     "target-permissions",
+     "runs/target-packs/example-public",
+     "set",
+     "--allow",
+     "clipboard,downloads"
+    ]
+   },
+   {
+    "argv": [
+     "target-permissions",
+     "runs/target-packs/example-public",
+     "apply"
+    ]
+   },
+   {
+    "argv": [
+     "target-permissions",
+     "runs/target-packs/example-public",
+     "status"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "probe:target-proof",
+  "steps": [
+   {
+    "argv": [
+     "scaffold-target",
+     "example-public",
+     "--origin",
+     "https://example.com",
+     "--page-url",
+     "https://example.com",
+     "--query",
+     "example domain",
+     "--permissions",
+     "clipboard,downloads",
+     "--force"
+    ]
+   },
+   {
+    "argv": [
+     "target-proof",
+     "runs/target-packs/example-public",
+     "--format",
+     "markdown"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "probe:target-proof-capture",
+  "steps": [
+   {
+    "argv": [
+     "scaffold-target",
+     "example-public",
+     "--origin",
+     "https://example.com",
+     "--page-url",
+     "https://example.com",
+     "--query",
+     "example domain",
+     "--permissions",
+     "clipboard,downloads",
+     "--force"
+    ]
+   },
+   {
+    "argv": [
+     "target-proof-capture",
+     "runs/target-packs/example-public",
+     "--format",
+     "markdown"
+    ]
+   }
+  ],
+  "tier": "sandbox"
+ },
+ {
+  "id": "probe:target-proof-inventory",
+  "steps": [
+   {
+    "argv": [
+     "target-proof-inventory",
+     "--format",
+     "markdown"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "probe:target-proof-inventory-strict",
+  "steps": [
+   {
+    "argv": [
+     "target-proof-inventory",
+     "--real-external",
+     "--strict",
+     "--format",
+     "json"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "probe:target-proof-next",
+  "steps": [
+   {
+    "argv": [
+     "target-proof-next",
+     "--real-external",
+     "--format",
+     "compact"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "probe:target-proof-plan",
+  "steps": [
+   {
+    "argv": [
+     "scaffold-target",
+     "example-public",
+     "--origin",
+     "https://example.com",
+     "--page-url",
+     "https://example.com",
+     "--query",
+     "example domain",
+     "--permissions",
+     "clipboard,downloads",
+     "--force"
+    ]
+   },
+   {
+    "argv": [
+     "target-proof-plan",
+     "runs/target-packs/example-public",
+     "--format",
+     "compact"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "probe:target-run",
+  "steps": [
+   {
+    "argv": [
+     "target-run",
+     "runs/target-packs/example-public",
+     "links"
+    ]
+   }
+  ],
+  "tier": "sandbox"
+ },
+ {
+  "id": "probe:target-run-status",
+  "steps": [
+   {
+    "argv": [
+     "target-run-status",
+     "runs/target-packs/example-public",
+     "operate",
+     "--format",
+     "compact"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "probe:target-scrape",
+  "steps": [
+   {
+    "argv": [
+     "target-scrape",
+     "runs/target-packs/example-public"
+    ]
+   }
+  ],
+  "tier": "sandbox"
+ },
+ {
+  "id": "probe:target-screenshot",
+  "steps": [
+   {
+    "argv": [
+     "target-run",
+     "runs/target-packs/example-public",
+     "screenshot"
+    ]
+   }
+  ],
+  "tier": "sandbox"
+ },
+ {
+  "id": "probe:target-search",
+  "steps": [
+   {
+    "argv": [
+     "target-run",
+     "runs/target-packs/example-public",
+     "search"
+    ]
+   }
+  ],
+  "tier": "sandbox"
+ },
+ {
+  "id": "probe:target-status",
+  "steps": [
+   {
+    "argv": [
+     "target-status",
+     "runs/target-packs/example-public"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "probe:target-worker-pool",
+  "steps": [
+   {
+    "argv": [
+     "target-worker-pool",
+     "--format",
+     "compact"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "probe:wait-cdp",
+  "steps": [
+   {
+    "argv": [
+     "wait-cdp",
+     "data:text/html,<main><h1>Wait</h1><script>setTimeout(()=>{const p=document.createElement(\"p\");p.id=\"ready\";p.textContent=\"Ready\";document.body.appendChild(p)},50)</script></main>",
+     "--selector",
+     "#ready",
+     "--text",
+     "Ready",
+     "--profile",
+     "cdp-wait-probe"
+    ]
+   }
+  ],
+  "tier": "sandbox"
+ },
+ {
+  "id": "verify:doctor-offline",
+  "steps": [
+   {
+    "argv": [
+     "doctor",
+     "--offline"
+    ]
+   }
+  ],
+  "tier": "safe"
+ },
+ {
+  "id": "verify:mcp-compact-fast",
+  "steps": [
+   {
+    "script": "scripts/mcp-compact-smoke.mjs",
+    "argv": [
+     "--fast"
+    ],
+    "timeoutMs": 120000
+   }
+  ],
+  "tier": "safe"
+ }
+]

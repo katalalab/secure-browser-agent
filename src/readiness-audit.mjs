@@ -27,6 +27,20 @@ function readText(filePath) {
   }
 }
 
+// src/cli.mjs and src/mcp-server.mjs are thin entry files; their command and tool
+// definitions live in sibling parts (cli-*.mjs, mcp-*.mjs). Audit the entry plus its parts.
+function readSourceGroup(rootDir, entryFile, partPrefix) {
+  const entryText = readText(path.join(rootDir, 'src', entryFile));
+  if (!entryText) return '';
+  let partFiles = [];
+  try {
+    partFiles = fs.readdirSync(path.join(rootDir, 'src')).filter((name) => name.startsWith(`${partPrefix}-`) && name.endsWith('.mjs')).sort();
+  } catch {
+    partFiles = [];
+  }
+  return [entryText, ...partFiles.map((name) => readText(path.join(rootDir, 'src', name)))].join('\n');
+}
+
 function readJson(filePath) {
   try {
     return JSON.parse(fs.readFileSync(filePath, 'utf8'));
@@ -72,8 +86,8 @@ export function buildReadinessAudit(options = {}) {
   const generatedAt = options.generatedAt || new Date().toISOString();
   const packageJson = readJson(path.join(rootDir, 'package.json')) || {};
   const scripts = packageJson.scripts || {};
-  const cliText = readText(path.join(rootDir, 'src/cli.mjs'));
-  const mcpText = readText(path.join(rootDir, 'src/mcp-server.mjs'));
+  const cliText = readSourceGroup(rootDir, 'cli.mjs', 'cli');
+  const mcpText = readSourceGroup(rootDir, 'mcp-server.mjs', 'mcp');
   const controlStatusText = readText(path.join(rootDir, 'src/control-status.mjs'));
   const policy = readJson(path.join(rootDir, 'config/example-policy.json')) || {};
   const gitignore = readText(path.join(rootDir, '.gitignore'));
