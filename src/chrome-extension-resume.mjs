@@ -1,10 +1,7 @@
 import { spawnSync } from 'node:child_process';
 import { buildChromeExtensionHandoff } from './chrome-extension-handoff.mjs';
 import { buildChromeExtensionStatus } from './chrome-extension-status.mjs';
-
-function yesNo(value) {
-  return value ? 'yes' : 'no';
-}
+import { yesNo } from './common.mjs';
 
 function compact(value, fallback = 'none') {
   const text = String(value ?? '').replace(/\s+/g, ' ').trim();

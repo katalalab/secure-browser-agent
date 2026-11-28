@@ -6,14 +6,11 @@ import { buildBackgroundProofCaptureStart } from './background-proof-capture-sta
 import { buildTargetHandoffResumeWatch } from './target-handoff-run.mjs';
 import { buildAgentProofStepStart } from './agent-proof-step.mjs';
 import { toPosixPath, shellQuote, resolveRunsPath } from './output.mjs';
+import { yesNo } from './common.mjs';
 
 function compactValue(value) {
   if (value === undefined || value === null || value === '') return 'none';
   return String(value).replace(/\s+/g, ' ').trim() || 'none';
-}
-
-function yesNo(value) {
-  return value ? 'yes' : 'no';
 }
 
 function command(args) {

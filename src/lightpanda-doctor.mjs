@@ -2,6 +2,7 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import { spawnSync } from 'node:child_process';
+import { yesNo } from './common.mjs';
 
 const NIGHTLY_RELEASE = 'https://github.com/lightpanda-io/browser/releases/download/nightly';
 
@@ -102,10 +103,6 @@ function readText(filePath) {
 function compact(value, fallback = 'none') {
   const text = String(value ?? '').replace(/\s+/g, ' ').trim();
   return text || fallback;
-}
-
-function yesNo(value) {
-  return value ? 'yes' : 'no';
 }
 
 function parseMinimumZigVersion(cloneDir) {

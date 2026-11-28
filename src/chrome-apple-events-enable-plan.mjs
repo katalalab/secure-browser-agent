@@ -2,16 +2,13 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { buildChromeAppleEventsStatus } from './chrome-apple-events-status.mjs';
 import { resolveRunsPath } from './output.mjs';
+import { yesNo } from './common.mjs';
 
 const OFFICIAL_HELP_URL = 'https://support.google.com/chrome/?p=applescript';
 
 function clean(value, fallback = 'none') {
   const text = String(value ?? '').replace(/\s+/g, ' ').trim();
   return text || fallback;
-}
-
-function yesNo(value) {
-  return value ? 'yes' : 'no';
 }
 
 function command(args) {

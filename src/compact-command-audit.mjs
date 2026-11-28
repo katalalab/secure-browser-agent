@@ -12,14 +12,11 @@ import { buildAgentWorkflow, formatAgentWorkflowCompact } from './agent-workflow
 import { buildAgentBackendSelect, formatAgentBackendSelectCompact } from './agent-backend-select.mjs';
 import { buildAgentTask, formatAgentTaskCompact } from './agent-task.mjs';
 import { buildChromeMcpAutostartPlan, formatChromeMcpAutostartPlanCompact } from './chrome-mcp-autostart-plan.mjs';
+import { yesNo } from './common.mjs';
 
 function compactValue(value, fallback = 'none') {
   const text = String(value ?? '').replace(/\s+/g, ' ').trim();
   return text || fallback;
-}
-
-function yesNo(value) {
-  return value ? 'yes' : 'no';
 }
 
 function parseCompact(text) {

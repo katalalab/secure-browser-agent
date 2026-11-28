@@ -1,10 +1,7 @@
 import path from 'node:path';
 import { buildObjectiveCompletionAudit } from './objective-completion-audit.mjs';
 import { toPosixPath, shellQuote } from './output.mjs';
-
-function yesNo(value) {
-  return value ? 'yes' : 'no';
-}
+import { yesNo } from './common.mjs';
 
 function compactValue(value) {
   if (value === undefined || value === null || value === '') return 'none';

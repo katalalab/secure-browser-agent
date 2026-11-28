@@ -5,6 +5,7 @@ import { buildTargetProofPlan } from './target-proof.mjs';
 import { buildTargetAuthCheck } from './target-auth-check.mjs';
 import { buildObjectiveCompletionAudit } from './objective-completion-audit.mjs';
 import { toPosixPath } from './output.mjs';
+import { yesNo, sleep } from './common.mjs';
 
 function command(args) {
   return {
@@ -16,10 +17,6 @@ function command(args) {
 function compactValue(value) {
   if (value === undefined || value === null || value === '') return 'none';
   return String(value).replace(/\s+/g, ' ').trim() || 'none';
-}
-
-function yesNo(value) {
-  return value ? 'yes' : 'no';
 }
 
 function commandById(plan, id) {
@@ -137,10 +134,6 @@ function captureRunCommand(targetDir, plan, options = {}) {
 
 function stopDaemonCommand(plan) {
   return command(['node', 'src/cli.mjs', 'target-daemon', plan.dir, 'stop']);
-}
-
-function sleep(ms) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
 function waitAuthBlockers(plan) {

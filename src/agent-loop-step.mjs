@@ -3,12 +3,9 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { buildControlStatus } from './control-status.mjs';
 import { toPosixPath, shellQuote, resolveRunsPath } from './output.mjs';
+import { yesNo } from './common.mjs';
 
 const ALLOWED_RUN_COMMAND_IDS = new Set(['auth-watch']);
-
-function yesNo(value) {
-  return value ? 'yes' : 'no';
-}
 
 function clean(value) {
   return String(value ?? '').replace(/\s+/g, ' ').trim();

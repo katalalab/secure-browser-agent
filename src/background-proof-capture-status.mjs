@@ -3,14 +3,11 @@ import path from 'node:path';
 import { buildBackgroundProofCapturePlan } from './background-proof-capture-plan.mjs';
 import { sanitizeLogLine } from './policy.mjs';
 import { shellQuote } from './output.mjs';
+import { yesNo } from './common.mjs';
 
 function compactValue(value, fallback = 'none') {
   const text = String(value ?? '').replace(/\s+/g, ' ').trim();
   return text || fallback;
-}
-
-function yesNo(value) {
-  return value ? 'yes' : 'no';
 }
 
 function command(args) {

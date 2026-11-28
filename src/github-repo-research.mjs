@@ -3,6 +3,7 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import { shellQuote, resolveRunsPath } from './output.mjs';
+import { yesNo } from './common.mjs';
 
 const DEFAULT_QUERIES = [
   'browser automation',
@@ -26,10 +27,6 @@ const KEYWORDS = [
   'selenium',
   'skyvern'
 ];
-
-function yesNo(value) {
-  return value ? 'yes' : 'no';
-}
 
 function compact(value, fallback = 'none') {
   const text = String(value ?? '').replace(/\s+/g, ' ').trim();

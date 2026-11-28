@@ -33,14 +33,11 @@ import { buildAgentProofCloseout } from './agent-proof-closeout.mjs';
 import { withMonitorOverrides } from './objective-proof-pipeline.mjs';
 import { buildRunGateAudit } from './run-gate-audit.mjs';
 import { toPosixPath, shellQuote, resolveRunsPath } from './output.mjs';
+import { yesNo } from './common.mjs';
 
 function compactValue(value, fallback = 'none') {
   const text = String(value ?? '').replace(/\s+/g, ' ').trim();
   return text || fallback;
-}
-
-function yesNo(value) {
-  return value ? 'yes' : 'no';
 }
 
 function yesNoUnknown(value) {

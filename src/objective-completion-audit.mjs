@@ -5,6 +5,7 @@ import { buildReadinessAudit } from './readiness-audit.mjs';
 import { buildObjectiveNext } from './objective-next.mjs';
 import { buildTargetApprovalResume, buildTargetApprovalStatus } from './target-approval-pack.mjs';
 import { toPosixPath, shellQuote, resolveRunsPath } from './output.mjs';
+import { yesNo } from './common.mjs';
 
 function criterionFromRequirement(item) {
   const proved = item.status === 'proved';
@@ -803,10 +804,6 @@ function criterionEvidenceValue(criteria = [], id, key) {
   const prefix = `${key}=`;
   const found = evidence.find((item) => String(item).startsWith(prefix));
   return found ? found.slice(prefix.length) || 'none' : 'none';
-}
-
-function yesNo(value) {
-  return value ? 'yes' : 'no';
 }
 
 export function formatObjectiveCompletionAuditCompact(audit) {

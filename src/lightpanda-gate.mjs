@@ -1,10 +1,7 @@
 import path from 'node:path';
 import { findProviderBenchmarkProofs, lightpandaPublicBenchmarkDecision } from './provider-benchmark.mjs';
 import { toPosixPath, shellQuote } from './output.mjs';
-
-function yesNo(value) {
-  return value ? 'yes' : 'no';
-}
+import { yesNo } from './common.mjs';
 
 function compactValue(value) {
   if (value === undefined || value === null || value === '') return 'none';

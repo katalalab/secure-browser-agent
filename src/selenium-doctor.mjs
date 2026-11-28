@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { spawnSync } from 'node:child_process';
+import { yesNo } from './common.mjs';
 
 function findExecutable(command, env = process.env) {
   const paths = String(env.PATH || '').split(path.delimiter).filter(Boolean);
@@ -66,10 +67,6 @@ function packageVersion(packageJson) {
 function compact(value, fallback = 'none') {
   const text = String(value ?? '').replace(/\s+/g, ' ').trim();
   return text || fallback;
-}
-
-function yesNo(value) {
-  return value ? 'yes' : 'no';
 }
 
 function configuredExecutable(command, configuredPath, env) {

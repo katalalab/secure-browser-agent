@@ -5,6 +5,7 @@ import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import { safeOutputPath } from './output.mjs';
 import { toPosixPath } from './output.mjs';
+import { yesNo } from './common.mjs';
 
 const SEARCH_PROVIDER_ORIGINS = {
   duckduckgo: 'https://html.duckduckgo.com',
@@ -608,10 +609,6 @@ export function buildTargetRunStatus(targetDir, recipeName = 'outline', options 
     status.error = error.message;
   }
   return status;
-}
-
-function yesNo(value) {
-  return value ? 'yes' : 'no';
 }
 
 function compactValue(value, fallback = 'none') {

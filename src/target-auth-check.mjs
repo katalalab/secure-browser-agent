@@ -5,6 +5,7 @@ import { safeOutputPath, shellQuote } from './output.mjs';
 import { assertAllowedUrl, loadPolicy, profilePath } from './policy.mjs';
 import { resolveTargetPack } from './target-pack.mjs';
 import { toPosixPath } from './output.mjs';
+import { yesNo, sleep } from './common.mjs';
 
 function writeJson(filePath, value) {
   fs.mkdirSync(path.dirname(filePath), { recursive: true });
@@ -59,14 +60,6 @@ function compactValue(value) {
 
 function redactedValue(value, empty = 'none') {
   return compactValue(value) === 'none' ? empty : '[redacted]';
-}
-
-function yesNo(value) {
-  return value ? 'yes' : 'no';
-}
-
-function sleep(ms) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
 function handoffPathFor(policy, options = {}) {

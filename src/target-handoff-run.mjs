@@ -7,6 +7,7 @@ import { loadPolicy } from './policy.mjs';
 import { buildTargetAuthCheck } from './target-auth-check.mjs';
 import { buildTargetLoginCapture } from './target-login-capture.mjs';
 import { resolveTargetPack } from './target-pack.mjs';
+import { yesNo, sleep } from './common.mjs';
 
 const ALLOWED_COMMANDS = new Set([
   'target-proof-capture',
@@ -110,10 +111,6 @@ function redactedTail(value) {
   return String(value || '')
     .replace(/((?:Final URL|Page URL|Title|final_url|page_url|title):\s*)[^|\r\n]+/gi, '$1[redacted]')
     .replace(/https?:\/\/[^\s|]+/g, '[redacted]');
-}
-
-function yesNo(value) {
-  return value ? 'yes' : 'no';
 }
 
 function commandFromArgs(args) {
@@ -283,10 +280,6 @@ function normalizeOptions(options = {}) {
       && options['preflight-auth'] !== false
       && options['no-preflight-auth'] !== true
   };
-}
-
-function sleep(ms) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
 function waitAuthStatusOut(options = {}) {

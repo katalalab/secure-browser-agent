@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { toPosixPath, shellQuote, resolveRunsPath } from './output.mjs';
+import { yesNo } from './common.mjs';
 
 const CANDIDATES = [
   {
@@ -43,10 +44,6 @@ function command(args) {
     args,
     shell: args.map(shellQuote).join(' ')
   };
-}
-
-function yesNo(value) {
-  return value ? 'yes' : 'no';
 }
 
 function safeRunPath(rootDir, outPath) {

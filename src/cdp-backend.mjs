@@ -5,12 +5,9 @@ import path from 'node:path';
 import { spawn, spawnSync } from 'node:child_process';
 import { listProcessCommandLines } from './process-list.mjs';
 import { buildExtractScript, buildInspectScript, buildObserveScript, buildOutlineScript } from './extract-script.mjs';
+import { sleep } from './common.mjs';
 
 const DEFAULT_CDP_LAUNCH_TIMEOUT_MS = 30000;
-
-function sleep(ms) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
-}
 
 function positiveInteger(value, fallback) {
   const number = Number(value);

@@ -4,6 +4,7 @@ import { buildAgentTask } from './agent-task.mjs';
 import { buildAgentWorkflow } from './agent-workflow.mjs';
 import { buildBackendMatrix } from './backend-matrix.mjs';
 import { toPosixPath, shellQuote, resolveRunsPath } from './output.mjs';
+import { yesNo } from './common.mjs';
 
 function command(args) {
   return {
@@ -26,10 +27,6 @@ function appendObservedChromeArgs(args, options = {}) {
   if (options.chromeExtensionPrepared) args.push('--chrome-extension-prepared', options.chromeExtensionPrepared);
   if (options.chromeExtensionBackendAvailable) args.push('--chrome-extension-backend-available', options.chromeExtensionBackendAvailable);
   if (options.chromeExtensionBackendLastError) args.push('--chrome-extension-backend-last-error', options.chromeExtensionBackendLastError);
-}
-
-function yesNo(value) {
-  return value ? 'yes' : 'no';
 }
 
 function clean(value, fallback = 'none') {
